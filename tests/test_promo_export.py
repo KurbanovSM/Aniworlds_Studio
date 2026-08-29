@@ -55,7 +55,7 @@ def test_turn_promo_normalizes_expiration_to_utc() -> None:
 
 @pytest.mark.parametrize(
     ("turns", "activations", "expiration"),
-    [(0, 1, None), (1001, 1, None), (1, 0, None), (1, 101, None), (1, 1, "2027-01-01")],
+    [(0, 1, None), (101, 1, None), (1, 0, None), (1, 101, None), (1, 1, "2027-01-01")],
 )
 def test_turn_promo_rejects_values_outside_the_contract(
     turns: int,

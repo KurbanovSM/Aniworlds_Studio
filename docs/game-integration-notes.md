@@ -11,7 +11,7 @@ Studio и Aniworlds AI используют согласованный отде�
 1. `settings/global-gameplay.settings.json`;
 2. `catalogs/global-catalogs.catalog.json`;
 3. отдельные файлы `worlds/*.world.json`;
-4. отдельные файлы `promocodes/*.promo.json`.
+4. отдельные файлы `promocodes/<CODE>.json`.
 
 ## Владение авторским контентом
 

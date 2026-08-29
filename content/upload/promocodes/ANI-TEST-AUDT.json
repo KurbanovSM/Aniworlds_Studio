@@ -1,0 +1,7 @@
+{
+  "schema_version": 1,
+  "code": "ANI-TEST-AUDT",
+  "turns": 1,
+  "activation_limit": 1,
+  "expires_at": "2025-01-01T00:00:00Z"
+}

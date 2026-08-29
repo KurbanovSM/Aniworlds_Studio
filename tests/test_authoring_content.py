@@ -9,6 +9,7 @@ from aniworlds_studio.global_catalogs import (
     validate_world_catalog_references,
 )
 from aniworlds_studio.global_settings_export import GlobalAbilitySettings
+from aniworlds_studio.promo_export import build_turn_promo
 
 ROOT = Path(__file__).parents[1]
 CONTENT = ROOT / "content"
@@ -46,3 +47,16 @@ def test_published_global_settings_use_the_current_studio_values() -> None:
     settings.validate()
     assert published["schema_version"] == 1
     assert published["artifact_type"] == "aniworlds.global_gameplay_settings"
+
+
+def test_published_audit_promo_matches_the_studio_exporter() -> None:
+    path = CONTENT / "upload" / "promocodes" / "ANI-TEST-AUDT.json"
+    published = json.loads(path.read_text(encoding="utf-8"))
+    expected = build_turn_promo(
+        1,
+        1,
+        expires_at="2025-01-01T00:00:00Z",
+        code="ANI-TEST-AUDT",
+    )
+
+    assert published == expected.document
