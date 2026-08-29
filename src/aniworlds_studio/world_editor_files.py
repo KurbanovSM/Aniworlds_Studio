@@ -8,23 +8,36 @@ from tkinter import filedialog, messagebox
 
 from aniworlds_studio.foundation_export import (
     load_draft,
+    load_published_foundation,
     preview_foundation,
     publish_foundation,
     save_draft,
 )
 from aniworlds_studio.foundation_models import UniverseDraft
 from aniworlds_studio.foundation_validation import InvalidFoundation
+from aniworlds_studio.global_catalogs import GlobalCatalogDraft
 
 
-def open_draft_dialog() -> tuple[UniverseDraft, str] | None:
-    """Select and load a Studio draft."""
-    selected = filedialog.askopenfilename(filetypes=[("Черновик Studio", "*.draft.json")])
+def open_world_dialog(catalogs: GlobalCatalogDraft) -> tuple[UniverseDraft, str] | None:
+    """Open either an unfinished draft or a published version-4 world."""
+    selected = filedialog.askopenfilename(
+        filetypes=[
+            ("Миры и черновики Studio", "*.world.json *.draft.json"),
+            ("Все JSON", "*.json"),
+        ]
+    )
     if not selected:
         return None
     try:
-        return load_draft(Path(selected)), selected
+        path = Path(selected)
+        draft = (
+            load_published_foundation(path, catalogs)
+            if path.name.endswith(".world.json")
+            else load_draft(path)
+        )
+        return draft, selected
     except (OSError, ValueError, TypeError) as error:
-        messagebox.showerror("Не удалось открыть черновик", str(error))
+        messagebox.showerror("Не удалось открыть мир", str(error))
         return None
 
 
@@ -43,13 +56,13 @@ def save_draft_dialog(draft: UniverseDraft) -> Path | None:
         return None
 
 
-def publish_dialog(draft: UniverseDraft) -> Path | None:
+def publish_dialog(draft: UniverseDraft, catalogs: GlobalCatalogDraft) -> Path | None:
     """Select the local worlds directory and publish one package."""
     selected = filedialog.askdirectory(title="Выберите локальную папку worlds")
     if not selected:
         return None
     try:
-        path = publish_foundation(draft, Path(selected))
+        path = publish_foundation(draft, catalogs, Path(selected))
     except (InvalidFoundation, ValueError, OSError) as error:
         messagebox.showerror("Публикация невозможна", str(error))
         return None
@@ -57,10 +70,14 @@ def publish_dialog(draft: UniverseDraft) -> Path | None:
     return path
 
 
-def show_preview(owner: tk.Misc, draft: UniverseDraft) -> None:
+def show_preview(
+    owner: tk.Misc,
+    draft: UniverseDraft,
+    catalogs: GlobalCatalogDraft,
+) -> None:
     """Validate and show the exact published JSON without writing it."""
     try:
-        text = preview_foundation(draft)
+        text = preview_foundation(draft, catalogs)
     except (InvalidFoundation, ValueError) as error:
         messagebox.showerror("Предпросмотр невозможен", str(error))
         return

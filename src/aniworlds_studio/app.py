@@ -5,6 +5,8 @@ from collections.abc import Callable
 from pathlib import Path
 from tkinter import filedialog, messagebox, ttk
 
+from aniworlds_studio.clipboard_shortcuts import install_clipboard_shortcuts
+from aniworlds_studio.global_settings_editor import GlobalSettingsFrame
 from aniworlds_studio.promo_export import (
     MAX_ACTIVATIONS,
     MAX_TURNS,
@@ -17,6 +19,8 @@ from aniworlds_studio.promo_export import (
     export_promo,
     generate_promo_code,
 )
+from aniworlds_studio.shared_catalogs_editor import SharedCatalogsFrame
+from aniworlds_studio.studio_theme import configure_studio_theme
 from aniworlds_studio.window_layout import (
     DEFAULT_WINDOW_HEIGHT,
     DEFAULT_WINDOW_WIDTH,
@@ -47,25 +51,37 @@ class PromoStudioApp:
         self._root.geometry(f"{DEFAULT_WINDOW_WIDTH}x{DEFAULT_WINDOW_HEIGHT}")
         self._root.minsize(MINIMUM_WINDOW_WIDTH, MINIMUM_WINDOW_HEIGHT)
         self._root.option_add("*Font", ("Segoe UI", 10))
-        style = ttk.Style(self._root)
-        style.configure("Primary.TButton", padding=(14, 9))
+        install_clipboard_shortcuts(self._root)
+        configure_studio_theme(self._root)
 
     def _build_layout(self) -> None:
-        container = ttk.Frame(self._root, padding=24)
+        container = ttk.Frame(self._root)
         container.pack(fill="both", expand=True)
-        ttk.Label(container, text="Aniworlds Studio", font=("Segoe UI Semibold", 22)).pack(
-            anchor="w"
-        )
+        header = ttk.Frame(container, padding=(22, 12))
+        header.pack(fill="x")
+        ttk.Label(header, text="AW", style="Accent.TLabel").pack(side="left", padx=(0, 12))
+        brand = ttk.Frame(header)
+        brand.pack(side="left")
+        ttk.Label(brand, text="Aniworlds Studio", font=("Segoe UI Semibold", 16)).pack(anchor="w")
         ttk.Label(
-            container,
-            text="Автономная подготовка файлов без подключения к VPS",
-            wraplength=680,
-        ).pack(anchor="w", pady=(2, 12))
+            brand,
+            text="Автономный редактор · без подключения к VPS",
+            style="Muted.TLabel",
+        ).pack(anchor="w")
+        ttk.Separator(container).pack(fill="x")
         sections = ttk.Notebook(container)
-        sections.pack(fill="both", expand=True, pady=(4, 10))
-        promo = ttk.Frame(sections, padding=12)
+        sections.pack(fill="both", expand=True)
+        sections.add(GlobalSettingsFrame(sections), text="Глобальные настройки")
+        shared_catalogs = SharedCatalogsFrame(sections)
+        sections.add(shared_catalogs, text="Общие каталоги")
+        world_editor = WorldEditorFrame(
+            sections,
+            get_global_catalogs=lambda: shared_catalogs.catalogs,
+        )
+        sections.add(world_editor, text="Миры")
+        sections.bind("<<NotebookTabChanged>>", lambda _event: world_editor.refresh())
+        promo = ttk.Frame(sections, padding=24)
         sections.add(promo, text="Промокоды")
-        sections.add(WorldEditorFrame(sections), text="Миры")
         self._build_code_row(promo)
         tabs = ttk.Notebook(promo)
         tabs.pack(fill="both", expand=True, pady=(12, 0))

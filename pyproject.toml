@@ -40,6 +40,19 @@ omit = [
     "*/world_editor_language.py",
     "*/world_editor_scroll.py",
     "*/catalog_editor.py",
+    "*/clipboard_shortcuts.py",
+    "*/studio_theme.py",
+    "*/world_editor_shell.py",
+    "*/world_editor_pages.py",
+    "*/world_editor_fields.py",
+    "*/catalog_form_controls.py",
+    "*/catalog_form_dialog.py",
+    "*/global_settings_editor.py",
+    "*/nested_value_editor.py",
+    "*/period_child_editor.py",
+    "*/period_location_editor.py",
+    "*/shared_catalog_selection.py",
+    "*/shared_catalogs_editor.py",
 ]
 
 [tool.coverage.report]

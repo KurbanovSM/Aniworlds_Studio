@@ -10,22 +10,25 @@ from aniworlds_studio.foundation_models import (
     GroupDraft,
     ItemDraft,
     LanguageDraft,
+    LocationDraft,
     PeriodDraft,
     ShopPolicyDraft,
 )
 
 CATALOG_SECTIONS = (
-    ("periods", "Периоды, локации и наборы", PeriodDraft, "id"),
-    ("groups", "Объединения", GroupDraft, "id"),
+    ("periods", "Периоды", PeriodDraft, "id"),
+    ("locations", "Локации", LocationDraft, "id"),
     ("creature_kinds", "Виды и расы", CreatureKindDraft, "id"),
     ("languages", "Языки", LanguageDraft, "id"),
+    ("groups", "Объединения", GroupDraft, "id"),
     ("items", "Предметы", ItemDraft, "id"),
     ("shop_policies", "Магазины", ShopPolicyDraft, "shop_kind"),
     ("characters", "Персонажи и NPC", CharacterDraft, "id"),
 )
 
 CATALOG_HINTS = {
-    "periods": "Внутри периода редактируются все локации, связи, признак старта и три набора.",
+    "periods": "Название, описание, лор и начальная ситуация периода.",
+    "locations": "Локации создаются отдельно; состав периода и переходы задаются ниже.",
     "groups": "Укажите участников у персонажей; здесь хранятся состояния, места и отношения групп.",
     "creature_kinds": (
         "Доступность, мышление, общение, языки, особенности, места и родительский вид."

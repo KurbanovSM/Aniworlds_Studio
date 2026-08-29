@@ -1,124 +1,170 @@
-"""Reusable list-and-JSON editor for structured Studio catalog entries."""
+"""Reusable card editor for structured Studio catalog entries."""
 
 # ruff: noqa: RUF001
 
-import json
 import tkinter as tk
 from collections.abc import Callable
 from dataclasses import asdict
 from tkinter import messagebox, ttk
 from typing import Any
 
+from aniworlds_studio.catalog_form_dialog import CardFormDialog
+from aniworlds_studio.catalog_form_specs import CATALOG_FORM_SPECS, FieldSpec
+from aniworlds_studio.catalog_references import entry_title
 from aniworlds_studio.catalog_templates import CATALOG_HINTS, new_catalog_entry
 from aniworlds_studio.foundation_export import replace_catalog_entries
-from aniworlds_studio.foundation_models import UniverseDraft
+from aniworlds_studio.studio_theme import LINE, MUTED, SURFACE, TEXT
 
 
 class CatalogEditor(ttk.Frame):
+    """Display each entry as a card and edit it through labeled controls."""
+
     def __init__(
         self,
-        parent: ttk.Notebook,
+        parent: ttk.Widget,
         *,
         field_name: str,
         identity_field: str,
-        get_draft: Callable[[], UniverseDraft],
+        get_draft: Callable[[], Any],
         on_changed: Callable[[], None],
+        fields: tuple[FieldSpec, ...] | None = None,
+        replace_entries: Callable[[Any, str, list[dict[str, Any]]], None] = (
+            replace_catalog_entries
+        ),
     ) -> None:
-        super().__init__(parent, padding=10)
+        super().__init__(parent, padding=14, style="Surface.TFrame")
         self._field_name = field_name
         self._identity_field = identity_field
         self._get_draft = get_draft
         self._on_changed = on_changed
-        self._selected_index: int | None = None
+        self._fields = fields or CATALOG_FORM_SPECS[field_name]
+        self._replace_entries = replace_entries
         self._build()
         self.refresh()
 
     def _build(self) -> None:
-        ttk.Label(self, text=CATALOG_HINTS[self._field_name], wraplength=700).pack(
-            fill="x", pady=(0, 8)
+        ttk.Label(self, text=CATALOG_HINTS[self._field_name], wraplength=760).pack(
+            fill="x", pady=(0, 10)
         )
-        body = ttk.Panedwindow(self, orient="horizontal")
-        body.pack(fill="both", expand=True)
-        left = ttk.Frame(body)
-        right = ttk.Frame(body)
-        body.add(left, weight=1)
-        body.add(right, weight=3)
-        self._list = tk.Listbox(left, exportselection=False, height=18)
-        self._list.pack(fill="both", expand=True)
-        self._list.bind("<<ListboxSelect>>", self._select)
-        controls = ttk.Frame(left)
-        controls.pack(fill="x", pady=(6, 0))
-        ttk.Button(controls, text="Добавить", command=self._new).pack(side="left")
-        ttk.Button(controls, text="Удалить", command=self._delete).pack(side="left", padx=6)
-        self._text = tk.Text(right, wrap="none", height=22, undo=True)
-        self._text.pack(fill="both", expand=True)
-        ttk.Button(right, text="Применить запись", command=self._apply).pack(
-            anchor="e", pady=(6, 0)
+        ttk.Button(
+            self,
+            text="Добавить карточку",
+            style="Primary.TButton",
+            command=self._new,
+        ).pack(anchor="w", pady=(0, 10))
+        host = ttk.Frame(self)
+        host.pack(fill="both", expand=True)
+        self._canvas = tk.Canvas(host, highlightthickness=0, background="#090a0e")
+        scrollbar = ttk.Scrollbar(host, orient="vertical", command=self._canvas.yview)
+        self._cards = ttk.Frame(self._canvas)
+        window = self._canvas.create_window((0, 0), window=self._cards, anchor="nw")
+        self._cards.bind(
+            "<Configure>",
+            lambda _event: self._canvas.configure(scrollregion=self._canvas.bbox("all")),
         )
+        self._canvas.bind(
+            "<Configure>", lambda event: self._canvas.itemconfigure(window, width=event.width)
+        )
+        self._canvas.configure(yscrollcommand=scrollbar.set)
+        self._canvas.pack(side="left", fill="both", expand=True)
+        scrollbar.pack(side="right", fill="y")
+        self._canvas.bind("<MouseWheel>", self._wheel)
 
     def refresh(self) -> None:
+        for child in self._cards.winfo_children():
+            child.destroy()
         entries = self._entries()
-        self._list.delete(0, "end")
-        for position, entry in enumerate(entries, 1):
-            identity = getattr(entry, self._identity_field, "")
-            name = getattr(entry, "name", identity)
-            self._list.insert("end", f"{position}. {name} ({identity})")
-        if self._selected_index is not None and self._selected_index < len(entries):
-            self._list.selection_set(self._selected_index)
+        if not entries:
+            ttk.Label(
+                self._cards,
+                text="Карточек пока нет. Нажмите «Добавить карточку».",
+                style="Muted.TLabel",
+            ).pack(anchor="w", pady=14)
+            return
+        for index, entry in enumerate(entries):
+            self._card(index, entry)
+
+    def _card(self, index: int, entry: Any) -> None:
+        card = tk.Frame(
+            self._cards,
+            background=SURFACE,
+            highlightbackground=LINE,
+            highlightthickness=1,
+            padx=14,
+            pady=12,
+        )
+        card.pack(fill="x", pady=5)
+        title, identity = entry_title(entry, self._identity_field)
+        text = tk.Frame(card, background=SURFACE)
+        text.pack(side="left", fill="x", expand=True)
+        tk.Label(
+            text,
+            text=title,
+            background=SURFACE,
+            foreground=TEXT,
+            font=("Segoe UI Semibold", 12),
+        ).pack(anchor="w")
+        tk.Label(
+            text,
+            text=f"ID: {identity}",
+            background=SURFACE,
+            foreground=MUTED,
+        ).pack(anchor="w", pady=(3, 0))
+        ttk.Button(card, text="Удалить", command=lambda: self._delete(index)).pack(side="right")
+        ttk.Button(card, text="Изменить", command=lambda: self._edit(index)).pack(
+            side="right", padx=8
+        )
+        card.bind("<MouseWheel>", self._wheel)
+        for child in card.winfo_children():
+            child.bind("<MouseWheel>", self._wheel)
 
     def _entries(self) -> list[Any]:
         return getattr(self._get_draft(), self._field_name)
 
-    def _select(self, _event: object) -> None:
-        selection = self._list.curselection()
-        if not selection:
-            return
-        self._selected_index = int(selection[0])
-        self._show(asdict(self._entries()[self._selected_index]))
-
     def _new(self) -> None:
-        self._selected_index = None
-        self._list.selection_clear(0, "end")
-        self._show(new_catalog_entry(self._field_name))
+        self._open(None, new_catalog_entry(self._field_name))
 
-    def _show(self, payload: dict) -> None:
-        self._text.delete("1.0", "end")
-        self._text.insert("1.0", json.dumps(payload, ensure_ascii=False, indent=2))
+    def _edit(self, index: int) -> None:
+        self._open(index, asdict(self._entries()[index]))
 
-    def _apply(self) -> None:
-        try:
-            payload = json.loads(self._text.get("1.0", "end"))
-            if not isinstance(payload, dict):
-                raise ValueError("Запись должна быть JSON-объектом.")
-            mappings = [asdict(entry) for entry in self._entries()]
-            if self._selected_index is None:
-                mappings.append(payload)
-            else:
-                mappings[self._selected_index] = payload
-            replace_catalog_entries(self._get_draft(), self._field_name, mappings)
-        except (ValueError, TypeError, json.JSONDecodeError) as error:
-            messagebox.showerror("Не удалось применить запись", str(error))
-            return
-        self._selected_index = (
-            len(mappings) - 1 if self._selected_index is None else self._selected_index
+    def _open(self, index: int | None, initial: dict) -> None:
+        dialog = CardFormDialog(
+            self,
+            title="Новая карточка" if index is None else "Изменить карточку",
+            fields=self._fields,
+            initial=initial,
+            draft=self._get_draft(),
         )
+        self.wait_window(dialog)
+        if dialog.result is None:
+            return
+        mappings = [asdict(entry) for entry in self._entries()]
+        if index is None:
+            mappings.append(dialog.result)
+        else:
+            mappings[index] = dialog.result
+        try:
+            self._replace_entries(self._get_draft(), self._field_name, mappings)
+        except (TypeError, ValueError) as error:
+            messagebox.showerror("Не удалось сохранить карточку", str(error))
+            return
         self.refresh()
         self._on_changed()
 
-    def _delete(self) -> None:
-        if self._selected_index is None:
-            return
+    def _delete(self, index: int) -> None:
         mappings = [
             asdict(entry)
             for position, entry in enumerate(self._entries())
-            if position != self._selected_index
+            if position != index
         ]
         try:
-            replace_catalog_entries(self._get_draft(), self._field_name, mappings)
-        except (ValueError, TypeError) as error:
-            messagebox.showerror("Не удалось удалить запись", str(error))
+            self._replace_entries(self._get_draft(), self._field_name, mappings)
+        except (TypeError, ValueError) as error:
+            messagebox.showerror("Не удалось удалить карточку", str(error))
             return
-        self._selected_index = None
-        self._text.delete("1.0", "end")
         self.refresh()
         self._on_changed()
+
+    def _wheel(self, event: tk.Event) -> str:
+        self._canvas.yview_scroll(-3 if event.delta > 0 else 3, "units")
+        return "break"

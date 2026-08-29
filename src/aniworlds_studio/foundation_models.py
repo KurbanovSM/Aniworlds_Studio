@@ -1,16 +1,16 @@
-"""Versioned Studio contract for a complete editable world foundation."""
+"""Editable Studio models for one published world foundation."""
 
 # ruff: noqa: RUF001
 
 from dataclasses import asdict, dataclass, field
 from typing import Any, Final
 
-FOUNDATION_SCHEMA_VERSION: Final = 2
+FOUNDATION_SCHEMA_VERSION: Final = 4
 FOUNDATION_ARTIFACT_TYPE: Final = "aniworlds.world_foundation"
-REQUIRED_STARTING_KIT_COUNT: Final = 3
-DEFAULT_INITIAL_ABILITY_LIMIT: Final = 5
-DEFAULT_LEARNED_ABILITY_LIMIT: Final = 10
-DEFAULT_ABILITY_LESSON_COUNT: Final = 4
+MIN_STARTING_KIT_COUNT: Final = 1
+MAX_STARTING_KIT_COUNT: Final = 10
+MIN_APPEARANCE_FREQUENCY: Final = 1
+MAX_APPEARANCE_FREQUENCY: Final = 100
 
 
 @dataclass(slots=True)
@@ -19,17 +19,23 @@ class GameplayConfig:
     currency_name: str = "Валюта"
     currency_symbol: str = ""
     strength_name: str = "Запас сил"
-    initial_ability_limit: int = DEFAULT_INITIAL_ABILITY_LIMIT
-    learned_ability_limit: int = DEFAULT_LEARNED_ABILITY_LIMIT
-    ability_lesson_count: int = DEFAULT_ABILITY_LESSON_COUNT
 
 
 @dataclass(slots=True)
-class StartingLocationDraft:
+class LocationDraft:
     id: str = "start"
     name: str = "Стартовая локация"
     description: str = "Описание стартовой локации"
-    is_starting: bool = True
+    price_coefficient: float = 1.0
+
+
+# Old callers used this name while locations were nested in periods.
+StartingLocationDraft = LocationDraft
+
+
+@dataclass(slots=True)
+class PeriodConnectionDraft:
+    location_id: str
     connected_location_ids: list[str] = field(default_factory=list)
 
 
@@ -49,10 +55,7 @@ class StartingKitDraft:
 
 
 def default_starting_kits() -> list[StartingKitDraft]:
-    return [
-        StartingKitDraft(f"kit-{position}", f"Набор {position}", "Описание набора")
-        for position in range(1, REQUIRED_STARTING_KIT_COUNT + 1)
-    ]
+    return [StartingKitDraft("kit-1", "Набор 1", "Описание набора")]
 
 
 @dataclass(slots=True)
@@ -62,17 +65,17 @@ class PeriodDraft:
     description: str = "Краткое описание периода"
     lore: str = "Лор периода"
     initial_situation: str = "Начальная ситуация"
-    starting_locations: list[StartingLocationDraft] = field(
-        default_factory=lambda: [StartingLocationDraft()]
-    )
+    location_ids: list[str] = field(default_factory=lambda: ["start"])
+    starting_location_ids: list[str] = field(default_factory=lambda: ["start"])
+    location_connections: list[PeriodConnectionDraft] = field(default_factory=list)
     starting_kits: list[StartingKitDraft] = field(default_factory=default_starting_kits)
 
 
 @dataclass(slots=True)
 class CreatureKindDraft:
-    id: str = "human"
-    name: str = "Человек"
-    description: str = "Обычный человек"
+    id: str = ""
+    name: str = ""
+    description: str = ""
     category: str = "race"
     cognition: str = "sapient"
     communication_modes: list[str] = field(default_factory=lambda: ["speech", "writing"])
@@ -85,8 +88,8 @@ class CreatureKindDraft:
 
 @dataclass(slots=True)
 class LanguageDraft:
-    id: str = "common"
-    name: str = "Общий язык"
+    id: str = ""
+    name: str = ""
     has_spoken_form: bool = True
     has_written_form: bool = True
 
@@ -142,7 +145,7 @@ class CharacterDraft:
     age: int = 18
     biography: str = "Биография персонажа"
     origin_location_id: str = "start"
-    creature_kind_id: str = "human"
+    creature_kind_id: str = ""
     cognition_override: str | None = None
     trait_ids: list[str] = field(default_factory=list)
     abilities: list[AbilityDraft] = field(default_factory=list)
@@ -161,8 +164,9 @@ class UniverseDraft:
     power_systems: str = "Системы сил"
     gameplay: GameplayConfig = field(default_factory=GameplayConfig)
     periods: list[PeriodDraft] = field(default_factory=lambda: [PeriodDraft()])
-    creature_kinds: list[CreatureKindDraft] = field(default_factory=lambda: [CreatureKindDraft()])
-    languages: list[LanguageDraft] = field(default_factory=lambda: [LanguageDraft()])
+    locations: list[LocationDraft] = field(default_factory=lambda: [LocationDraft()])
+    creature_kinds: list[CreatureKindDraft] = field(default_factory=list)
+    languages: list[LanguageDraft] = field(default_factory=list)
     groups: list[GroupDraft] = field(default_factory=list)
     items: list[ItemDraft] = field(default_factory=list)
     shop_policies: list[ShopPolicyDraft] = field(default_factory=list)

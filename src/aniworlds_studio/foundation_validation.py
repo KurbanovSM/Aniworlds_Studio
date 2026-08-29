@@ -1,12 +1,23 @@
 """Single validation source for Studio world-foundation drafts."""
 
 # ruff: noqa: RUF001
-
 import re
 from collections.abc import Iterable
 
+from aniworlds_studio.catalog_contract_values import (
+    CATEGORY_OPTIONS,
+    COGNITION_OPTIONS,
+    COMMUNICATION_OPTIONS,
+    GROUP_TYPE_OPTIONS,
+    ITEM_CATEGORY_OPTIONS,
+    SHOP_OPTIONS,
+    option_values,
+)
 from aniworlds_studio.foundation_models import (
-    REQUIRED_STARTING_KIT_COUNT,
+    MAX_APPEARANCE_FREQUENCY,
+    MAX_STARTING_KIT_COUNT,
+    MIN_APPEARANCE_FREQUENCY,
+    MIN_STARTING_KIT_COUNT,
     PeriodDraft,
     UniverseDraft,
 )
@@ -32,27 +43,21 @@ def validate_foundation(draft: UniverseDraft) -> None:
     if not draft.languages:
         raise InvalidFoundation("Добавьте хотя бы один язык.")
     _require_unique((period.id for period in draft.periods), "ID периодов")
+    _validate_locations(draft)
     for period in draft.periods:
-        _validate_period(period)
+        _validate_period(period, {location.id for location in draft.locations})
     _require_unique((kind.id for kind in draft.creature_kinds), "ID видов и рас")
     for kind in draft.creature_kinds:
-        _require_id(kind.id, "ID вида или расы")
-        _require_text(kind.name, "Название вида или расы")
-        _require_text(kind.description, "Описание вида или расы")
-        if not kind.communication_modes:
-            raise InvalidFoundation(f"У вида «{kind.name}» нет способа общения.")
+        validate_shared_kind(kind)
     _require_unique((language.id for language in draft.languages), "ID языков")
     for language in draft.languages:
-        _require_id(language.id, "ID языка")
-        _require_text(language.name, "Название языка")
-        if not language.has_spoken_form and not language.has_written_form:
-            raise InvalidFoundation("Язык должен иметь устную или письменную форму.")
+        validate_shared_language(language)
     _validate_catalog_references(draft)
 
 
 def _validate_catalog_references(draft: UniverseDraft) -> None:
     period_ids = {item.id for item in draft.periods}
-    locations = _location_catalog(draft)
+    locations = {location.id for location in draft.locations}
     language_ids = {item.id for item in draft.languages}
     kind_ids = {item.id for item in draft.creature_kinds}
     group_ids = {item.id for item in draft.groups}
@@ -83,39 +88,20 @@ def _validate_catalog_references(draft: UniverseDraft) -> None:
         _validate_character(character, period_ids, locations, kind_ids, group_ids, language_ids)
 
 
-def _location_catalog(draft: UniverseDraft) -> set[str]:
-    definitions: dict[str, tuple[str, str, tuple[str, ...]]] = {}
-    for period in draft.periods:
-        for location in period.starting_locations:
-            _require_id(location.id, "ID локации")
-            _require_text(location.name, "Название локации")
-            _require_text(location.description, "Описание локации")
-            value = (location.name, location.description, tuple(location.connected_location_ids))
-            if location.id in definitions and definitions[location.id] != value:
-                raise InvalidFoundation(f"Локация {location.id} по-разному описана в периодах.")
-            definitions[location.id] = value
-    known = set(definitions)
-    for _, _, connected in definitions.values():
-        _require_references(connected, known, "связанную локацию")
-    return known
+def _validate_locations(draft: UniverseDraft) -> None:
+    if not draft.locations:
+        raise InvalidFoundation("Добавьте хотя бы одну локацию.")
+    _require_unique((location.id for location in draft.locations), "ID локаций")
+    for location in draft.locations:
+        _require_id(location.id, "ID локации")
+        _require_text(location.name, "Название локации")
+        _require_text(location.description, "Описание локации")
+        if location.price_coefficient <= 0:
+            raise InvalidFoundation("Коэффициент цен локации должен быть больше нуля.")
 
 
 def _validate_group(group, period_ids, location_ids, group_ids) -> None:
-    _require_id(group.id, "ID объединения")
-    _require_text(group.name, "Название объединения")
-    _require_text(group.description, "Описание объединения")
-    if group.group_type not in {
-        "faction",
-        "clan",
-        "organization",
-        "guild",
-        "settlement",
-        "team",
-        "house",
-        "army",
-        "other",
-    }:
-        raise InvalidFoundation("Неизвестный тип объединения.")
+    validate_shared_group(group)
     _require_references(group.location_ids, location_ids, "локацию объединения")
     _require_references(group.ally_ids, group_ids, "союзное объединение")
     _require_references(group.enemy_ids, group_ids, "враждебное объединение")
@@ -128,33 +114,60 @@ def _validate_group(group, period_ids, location_ids, group_ids) -> None:
         raise InvalidFoundation("Состояние объединения в периоде не может быть пустым.")
 
 
+def validate_shared_kind(kind) -> None:
+    _require_shared_id(kind.id, "ID вида или расы")
+    _require_text(kind.name, "Название вида или расы")
+    _require_text(kind.description, "Описание вида или расы")
+    if kind.category not in option_values(CATEGORY_OPTIONS):
+        raise InvalidFoundation("Неизвестная категория вида или расы.")
+    if kind.cognition not in option_values(COGNITION_OPTIONS):
+        raise InvalidFoundation("Неизвестный уровень мышления вида или расы.")
+    modes = kind.communication_modes
+    if not modes or not set(modes) <= option_values(COMMUNICATION_OPTIONS):
+        raise InvalidFoundation(f"У вида «{kind.name}» нет допустимого способа общения.")
+    _require_unique(modes, "Способы общения вида или расы")
+    if any(not feature.strip() for feature in kind.physical_features):
+        raise InvalidFoundation("Физическая особенность вида или расы не может быть пустой.")
+
+
+def validate_shared_language(language) -> None:
+    _require_shared_id(language.id, "ID языка")
+    _require_text(language.name, "Название языка")
+    if not language.has_spoken_form and not language.has_written_form:
+        raise InvalidFoundation("Язык должен иметь устную или письменную форму.")
+
+
+def validate_shared_group(group) -> None:
+    _require_shared_id(group.id, "ID объединения")
+    _require_text(group.name, "Название объединения")
+    _require_text(group.description, "Описание объединения")
+    if group.group_type not in option_values(GROUP_TYPE_OPTIONS):
+        raise InvalidFoundation("Неизвестный тип объединения.")
+
+
 def _validate_item(item) -> None:
     _require_id(item.id, "ID предмета")
     _require_text(item.name, "Название предмета")
     _require_text(item.description, "Описание предмета")
     if any(mark in item.name for mark in ('"', "[", "]", "*")):
         raise InvalidFoundation("Название предмета содержит запрещённый технический знак.")
-    if item.category not in {
-        "weapon",
-        "armor",
-        "clothing",
-        "consumable",
-        "common",
-        "key",
-        "artifact",
-    }:
+    if item.category not in option_values(ITEM_CATEGORY_OPTIONS):
         raise InvalidFoundation("Неизвестная категория предмета.")
     if item.uniqueness not in {"ordinary", "unique"}:
         raise InvalidFoundation("Неизвестный тип уникальности предмета.")
-    if item.base_price < 0 or item.appearance_weight <= 0:
+    if item.base_price < 0 or not (
+        MIN_APPEARANCE_FREQUENCY
+        <= item.appearance_weight
+        <= MAX_APPEARANCE_FREQUENCY
+    ):
         raise InvalidFoundation(
-            "Цена не может быть отрицательной, а вес появления должен быть положительным."
+            "Цена не может быть отрицательной, а частота появления должна быть от 1 до 100."
         )
     if item.maximum_created_instances is not None and item.maximum_created_instances <= 0:
         raise InvalidFoundation("Лимит экземпляров должен быть положительным.")
     if any(not value.strip() for value in (*item.properties, *item.limitations)):
         raise InvalidFoundation("Свойства и ограничения предмета не могут быть пустыми.")
-    if not set(item.allowed_shop_kinds) <= {"general_store", "forge"}:
+    if not set(item.allowed_shop_kinds) <= option_values(SHOP_OPTIONS):
         raise InvalidFoundation("Предмет ссылается на неизвестный вид магазина.")
 
 
@@ -209,18 +222,9 @@ def _validate_gameplay(draft: UniverseDraft) -> None:
     _require_id(gameplay.currency_id, "ID валюты")
     _require_text(gameplay.currency_name, "Название валюты")
     _require_text(gameplay.strength_name, "Название запаса сил")
-    if (
-        min(
-            gameplay.initial_ability_limit,
-            gameplay.learned_ability_limit,
-            gameplay.ability_lesson_count,
-        )
-        <= 0
-    ):
-        raise InvalidFoundation("Лимиты способностей и число уроков должны быть больше нуля.")
 
 
-def _validate_period(period: PeriodDraft) -> None:
+def _validate_period(period: PeriodDraft, location_ids: set[str]) -> None:
     _require_id(period.id, "ID периода")
     for value, label in (
         (period.name, "Название периода"),
@@ -229,17 +233,31 @@ def _validate_period(period: PeriodDraft) -> None:
         (period.initial_situation, "Начальная ситуация"),
     ):
         _require_text(value, label)
-    if not period.starting_locations or not any(
-        location.is_starting for location in period.starting_locations
-    ):
+    if not period.location_ids:
+        raise InvalidFoundation(f"В период «{period.name}» не добавлены локации.")
+    _require_unique(period.location_ids, "Локации периода")
+    _require_references(period.location_ids, location_ids, "локацию периода")
+    if not period.starting_location_ids:
         raise InvalidFoundation(f"У периода «{period.name}» нет стартовой локации.")
-    _require_unique((location.id for location in period.starting_locations), "ID локаций")
-    for location in period.starting_locations:
-        _require_id(location.id, "ID стартовой локации")
-        _require_text(location.name, "Название стартовой локации")
-        _require_text(location.description, "Описание стартовой локации")
-    if len(period.starting_kits) != REQUIRED_STARTING_KIT_COUNT:
-        raise InvalidFoundation("У каждого периода должно быть ровно три стартовых набора.")
+    _require_unique(period.starting_location_ids, "Стартовые локации периода")
+    selected = set(period.location_ids)
+    _require_references(period.starting_location_ids, selected, "стартовую локацию периода")
+    _require_unique(
+        (connection.location_id for connection in period.location_connections),
+        "Исходные локации переходов",
+    )
+    for connection in period.location_connections:
+        _require_references((connection.location_id,), selected, "исходную локацию перехода")
+        _require_unique(connection.connected_location_ids, "Переходы из одной локации")
+        _require_references(
+            connection.connected_location_ids,
+            selected,
+            "локацию перехода текущего периода",
+        )
+    if not MIN_STARTING_KIT_COUNT <= len(period.starting_kits) <= MAX_STARTING_KIT_COUNT:
+        raise InvalidFoundation(
+            "У каждого периода должно быть от одного до десяти стартовых наборов."
+        )
     _require_unique((kit.id for kit in period.starting_kits), "ID стартовых наборов")
     for kit in period.starting_kits:
         _require_id(kit.id, "ID стартового набора")
@@ -254,6 +272,21 @@ def _validate_period(period: PeriodDraft) -> None:
 def _require_id(value: str, label: str) -> None:
     if not ID_PATTERN.fullmatch(value.strip()):
         raise InvalidFoundation(f"{label}: используйте строчные латинские буквы, цифры и дефис.")
+
+
+def _require_shared_id(value: str, label: str) -> None:
+    normalized = value.strip()
+    if (
+        not normalized
+        or normalized != normalized.lower()
+        or normalized.startswith("-")
+        or normalized.endswith("-")
+        or "--" in normalized
+        or any(not (character.isalnum() or character == "-") for character in normalized)
+    ):
+        raise InvalidFoundation(
+            f"{label}: используйте строчные буквы, цифры и одиночный дефис."
+        )
 
 
 def _require_text(value: str, label: str) -> None:
