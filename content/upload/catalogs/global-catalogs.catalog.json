@@ -1,0 +1,164 @@
+{
+  "schema_version": 1,
+  "artifact_type": "aniworlds.global_catalogs",
+  "published_at": "2026-08-29T22:40:27.839638+00:00",
+  "catalogs": {
+    "creature_kinds": [
+      {
+        "id": "human",
+        "name": "Человек",
+        "description": "Разумный человек мира шиноби, способный управлять чакрой после обучения.",
+        "category": "race",
+        "cognition": "sapient",
+        "communication_modes": [
+          "speech",
+          "writing",
+          "signals"
+        ],
+        "physical_features": [
+          "Человеческое телосложение",
+          "Развитая система циркуляции чакры"
+        ],
+        "parent_kind_id": null
+      },
+      {
+        "id": "summoning-animal",
+        "name": "Разумное призывное животное",
+        "description": "Животное из связанного с шиноби призывного рода; отдельные представители разумны и владеют речью.",
+        "category": "animal",
+        "cognition": "animal",
+        "communication_modes": [
+          "signals",
+          "speech"
+        ],
+        "physical_features": [
+          "Анатомия соответствующего животного",
+          "Возможность заключать договор призыва"
+        ],
+        "parent_kind_id": null
+      },
+      {
+        "id": "tailed-beast",
+        "name": "Хвостатый зверь",
+        "description": "Разумное существо из огромной массы чакры с собственной волей и памятью.",
+        "category": "supernatural",
+        "cognition": "higher",
+        "communication_modes": [
+          "speech",
+          "telepathy"
+        ],
+        "physical_features": [
+          "Тело из концентрированной чакры",
+          "Огромный запас чакры",
+          "Характерное число хвостов"
+        ],
+        "parent_kind_id": null
+      },
+      {
+        "id": "white-zetsu",
+        "name": "Белый Дзецу",
+        "description": "Искусственно выращенное человекоподобное существо армии Акацуки.",
+        "category": "supernatural",
+        "cognition": "sapient",
+        "communication_modes": [
+          "speech",
+          "signals"
+        ],
+        "physical_features": [
+          "Белая кожа",
+          "Растительная структура тела",
+          "Способность сливаться с окружением"
+        ],
+        "parent_kind_id": null
+      },
+      {
+        "id": "reanimated-shinobi",
+        "name": "Воскрешённый шиноби",
+        "description": "Погибший шиноби, возвращённый техникой Нечестивого воскрешения и удерживаемый внешним управлением.",
+        "category": "supernatural",
+        "cognition": "sapient",
+        "communication_modes": [
+          "speech",
+          "writing",
+          "signals"
+        ],
+        "physical_features": [
+          "Восстанавливающееся тело",
+          "Трещины на коже",
+          "Подчинение управляющей печати"
+        ],
+        "parent_kind_id": "human"
+      }
+    ],
+    "languages": [
+      {
+        "id": "shinobi-common",
+        "name": "Общий язык мира шиноби",
+        "has_spoken_form": true,
+        "has_written_form": true
+      }
+    ],
+    "groups": [
+      {
+        "id": "konoha",
+        "name": "Конохагакуре",
+        "group_type": "settlement",
+        "description": "Скрытая деревня Страны Огня под руководством Хокаге."
+      },
+      {
+        "id": "sunagakure",
+        "name": "Сунагакуре",
+        "group_type": "settlement",
+        "description": "Скрытая деревня Страны Ветра под руководством Казекаге."
+      },
+      {
+        "id": "kumogakure",
+        "name": "Кумогакуре",
+        "group_type": "settlement",
+        "description": "Скрытая деревня Страны Молнии под руководством Райкаге."
+      },
+      {
+        "id": "iwagakure",
+        "name": "Ивагакуре",
+        "group_type": "settlement",
+        "description": "Скрытая деревня Страны Земли под руководством Цучикаге."
+      },
+      {
+        "id": "kirigakure",
+        "name": "Киригакуре",
+        "group_type": "settlement",
+        "description": "Скрытая деревня Страны Воды под руководством Мизукаге."
+      },
+      {
+        "id": "akatsuki",
+        "name": "Акацуки",
+        "group_type": "organization",
+        "description": "Тайная организация сильных отступников, охотящаяся за хвостатыми зверями."
+      },
+      {
+        "id": "team-kakashi",
+        "name": "Команда Какаши",
+        "group_type": "team",
+        "description": "Команда Конохи, выполняющая задания под руководством Какаши и Ямато."
+      },
+      {
+        "id": "allied-shinobi-forces",
+        "name": "Объединённые силы шиноби",
+        "group_type": "army",
+        "description": "Военный союз пяти великих стран и самураев Страны Железа."
+      },
+      {
+        "id": "taka",
+        "name": "Така",
+        "group_type": "team",
+        "description": "Независимая команда Саске Учихи, собранная вокруг его личных целей."
+      },
+      {
+        "id": "white-zetsu-army",
+        "name": "Армия Белых Дзецу",
+        "group_type": "army",
+        "description": "Массовая армия искусственных существ под командованием Акацуки."
+      }
+    ]
+  }
+}
