@@ -17,6 +17,13 @@ from aniworlds_studio.promo_export import (
     export_promo,
     generate_promo_code,
 )
+from aniworlds_studio.window_layout import (
+    DEFAULT_WINDOW_HEIGHT,
+    DEFAULT_WINDOW_WIDTH,
+    MINIMUM_WINDOW_HEIGHT,
+    MINIMUM_WINDOW_WIDTH,
+    fitted_window_size,
+)
 
 
 class PromoStudioApp:
@@ -32,12 +39,15 @@ class PromoStudioApp:
         self._status = tk.StringVar(value="Готово к созданию файла")
         self._configure_window()
         self._build_layout()
+        self._root.after_idle(self._fit_window_to_content)
 
     def _configure_window(self) -> None:
         self._root.title("Aniworlds Studio")
-        self._root.geometry("660x520")
-        self._root.minsize(620, 480)
+        self._root.geometry(f"{DEFAULT_WINDOW_WIDTH}x{DEFAULT_WINDOW_HEIGHT}")
+        self._root.minsize(MINIMUM_WINDOW_WIDTH, MINIMUM_WINDOW_HEIGHT)
         self._root.option_add("*Font", ("Segoe UI", 10))
+        style = ttk.Style(self._root)
+        style.configure("Primary.TButton", padding=(14, 9))
 
     def _build_layout(self) -> None:
         container = ttk.Frame(self._root, padding=24)
@@ -47,13 +57,17 @@ class PromoStudioApp:
         )
         ttk.Label(
             container,
-            text="Автономное создание файлов без подключения к VPS",
-        ).pack(anchor="w", pady=(2, 18))
+            text=(
+                "Раздел «Промокоды». Редактор миров и содержимого будет добавлен "
+                "следующими этапами."
+            ),
+            wraplength=680,
+        ).pack(anchor="w", pady=(2, 12))
         self._build_code_row(container)
         tabs = ttk.Notebook(container)
-        tabs.pack(fill="both", expand=True, pady=(18, 12))
-        subscription_tab = ttk.Frame(tabs, padding=20)
-        turns_tab = ttk.Frame(tabs, padding=20)
+        tabs.pack(fill="both", expand=True, pady=(12, 10))
+        subscription_tab = ttk.Frame(tabs, padding=(20, 16))
+        turns_tab = ttk.Frame(tabs, padding=(20, 16))
         tabs.add(subscription_tab, text="Подписка")
         tabs.add(turns_tab, text="Ходы")
         self._build_subscription_tab(subscription_tab)
@@ -67,7 +81,7 @@ class PromoStudioApp:
             side="left", fill="x", expand=True
         )
         ttk.Button(row, text="Новый код", command=self._replace_code).pack(
-            side="left", padx=(12, 0)
+            side="left", padx=(12, 0), ipadx=8, ipady=4
         )
 
     def _build_subscription_tab(self, parent: ttk.Frame) -> None:
@@ -91,7 +105,8 @@ class PromoStudioApp:
             parent,
             text="Сохранить промокод подписки",
             command=self._save_subscription,
-        ).pack(anchor="w")
+            style="Primary.TButton",
+        ).pack(anchor="w", pady=(2, 0))
 
     def _build_turns_tab(self, parent: ttk.Frame) -> None:
         self._add_number_field(parent, "Количество ходов", self._turns, MIN_TURNS, MAX_TURNS)
@@ -107,9 +122,12 @@ class PromoStudioApp:
         )
         ttk.Entry(parent, textvariable=self._expiration, width=40).pack(anchor="w")
         ttk.Label(parent, text="Пример: 2027-01-01T00:00:00+03:00").pack(anchor="w", pady=(4, 18))
-        ttk.Button(parent, text="Сохранить промокод ходов", command=self._save_turns).pack(
-            anchor="w"
-        )
+        ttk.Button(
+            parent,
+            text="Сохранить промокод ходов",
+            command=self._save_turns,
+            style="Primary.TButton",
+        ).pack(anchor="w", pady=(2, 0))
 
     @staticmethod
     def _add_number_field(
@@ -127,6 +145,21 @@ class PromoStudioApp:
     def _replace_code(self) -> None:
         self._code.set(generate_promo_code())
         self._status.set("Создан новый код")
+
+    def _fit_window_to_content(self) -> None:
+        """Keep controls visible when Windows applies display scaling."""
+        self._root.update_idletasks()
+        current_width = self._root.winfo_width()
+        current_height = self._root.winfo_height()
+        width, height, minimum_width, minimum_height = fitted_window_size(
+            current_width,
+            current_height,
+            self._root.winfo_reqwidth(),
+            self._root.winfo_reqheight(),
+        )
+        self._root.minsize(minimum_width, minimum_height)
+        if width != current_width or height != current_height:
+            self._root.geometry(f"{width}x{height}")
 
     def _save_subscription(self) -> None:
         self._save(
