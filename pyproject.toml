@@ -1,0 +1,54 @@
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[project]
+name = "aniworlds-studio"
+version = "0.1.0"
+description = "Offline editor and export tool for Aniworlds AI"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+    "pyright>=1.1.400,<2.0",
+    "pytest>=8.3,<10.0",
+    "pytest-cov>=6.1,<8.0",
+    "ruff>=0.11,<1.0",
+]
+
+[project.gui-scripts]
+aniworlds-studio = "aniworlds_studio.app:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/aniworlds_studio"]
+
+[tool.pytest.ini_options]
+addopts = "-q"
+testpaths = ["tests"]
+
+[tool.coverage.run]
+branch = true
+source = ["aniworlds_studio"]
+omit = [
+    "*/app.py",
+    "*/__main__.py",
+]
+
+[tool.coverage.report]
+fail_under = 90
+show_missing = true
+skip_covered = true
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM", "RUF"]
+
+[tool.pyright]
+include = ["src", "tests"]
+pythonVersion = "3.12"
+typeCheckingMode = "standard"
