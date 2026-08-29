@@ -34,6 +34,12 @@ source = ["aniworlds_studio"]
 omit = [
     "*/app.py",
     "*/__main__.py",
+    "*/world_editor.py",
+    "*/world_editor_catalogs.py",
+    "*/world_editor_files.py",
+    "*/world_editor_language.py",
+    "*/world_editor_scroll.py",
+    "*/catalog_editor.py",
 ]
 
 [tool.coverage.report]
@@ -52,3 +58,5 @@ select = ["E", "F", "I", "UP", "B", "SIM", "RUF"]
 include = ["src", "tests"]
 pythonVersion = "3.12"
 typeCheckingMode = "standard"
+venvPath = "."
+venv = ".venv"

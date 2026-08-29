@@ -24,6 +24,7 @@ from aniworlds_studio.window_layout import (
     MINIMUM_WINDOW_WIDTH,
     fitted_window_size,
 )
+from aniworlds_studio.world_editor import WorldEditorFrame
 
 
 class PromoStudioApp:
@@ -57,22 +58,24 @@ class PromoStudioApp:
         )
         ttk.Label(
             container,
-            text=(
-                "Раздел «Промокоды». Редактор миров и содержимого будет добавлен "
-                "следующими этапами."
-            ),
+            text="Автономная подготовка файлов без подключения к VPS",
             wraplength=680,
         ).pack(anchor="w", pady=(2, 12))
-        self._build_code_row(container)
-        tabs = ttk.Notebook(container)
-        tabs.pack(fill="both", expand=True, pady=(12, 10))
+        sections = ttk.Notebook(container)
+        sections.pack(fill="both", expand=True, pady=(4, 10))
+        promo = ttk.Frame(sections, padding=12)
+        sections.add(promo, text="Промокоды")
+        sections.add(WorldEditorFrame(sections), text="Миры")
+        self._build_code_row(promo)
+        tabs = ttk.Notebook(promo)
+        tabs.pack(fill="both", expand=True, pady=(12, 0))
         subscription_tab = ttk.Frame(tabs, padding=(20, 16))
         turns_tab = ttk.Frame(tabs, padding=(20, 16))
         tabs.add(subscription_tab, text="Подписка")
         tabs.add(turns_tab, text="Ходы")
         self._build_subscription_tab(subscription_tab)
         self._build_turns_tab(turns_tab)
-        ttk.Label(container, textvariable=self._status).pack(anchor="w")
+        ttk.Label(promo, textvariable=self._status).pack(anchor="w", pady=(8, 0))
 
     def _build_code_row(self, parent: ttk.Frame) -> None:
         row = ttk.LabelFrame(parent, text="Автоматический код", padding=12)

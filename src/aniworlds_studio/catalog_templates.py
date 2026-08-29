@@ -1,0 +1,44 @@
+"""Editable JSON templates for every complete Studio catalog section."""
+
+# ruff: noqa: RUF001
+
+from dataclasses import asdict
+
+from aniworlds_studio.foundation_models import (
+    CharacterDraft,
+    CreatureKindDraft,
+    GroupDraft,
+    ItemDraft,
+    LanguageDraft,
+    PeriodDraft,
+    ShopPolicyDraft,
+)
+
+CATALOG_SECTIONS = (
+    ("periods", "Периоды, локации и наборы", PeriodDraft, "id"),
+    ("groups", "Объединения", GroupDraft, "id"),
+    ("creature_kinds", "Виды и расы", CreatureKindDraft, "id"),
+    ("languages", "Языки", LanguageDraft, "id"),
+    ("items", "Предметы", ItemDraft, "id"),
+    ("shop_policies", "Магазины", ShopPolicyDraft, "shop_kind"),
+    ("characters", "Персонажи и NPC", CharacterDraft, "id"),
+)
+
+CATALOG_HINTS = {
+    "periods": "Внутри периода редактируются все локации, связи, признак старта и три набора.",
+    "groups": "Укажите участников у персонажей; здесь хранятся состояния, места и отношения групп.",
+    "creature_kinds": (
+        "Доступность, мышление, общение, языки, особенности, места и родительский вид."
+    ),
+    "languages": "ID, название и наличие устной/письменной формы.",
+    "items": "Категория, свойства, ограничения, цена, магазины, вес и предел экземпляров.",
+    "shop_policies": "Диапазон первичного ассортимента для магазина или кузницы.",
+    "characters": "Анкета, периоды, языки, черты, способности, объединения и лидерство.",
+}
+
+
+def new_catalog_entry(field_name: str) -> dict:
+    for name, _title, factory, _identity in CATALOG_SECTIONS:
+        if name == field_name:
+            return asdict(factory())
+    raise ValueError(f"Неизвестный раздел каталога: {field_name}")
