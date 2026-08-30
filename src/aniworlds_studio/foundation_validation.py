@@ -14,6 +14,9 @@ from aniworlds_studio.catalog_contract_values import (
     option_values,
 )
 from aniworlds_studio.foundation_models import (
+    MAX_ABILITY_DESCRIPTION_LENGTH,
+    MAX_ABILITY_NAME_LENGTH,
+    MAX_ABILITY_SHORT_DESCRIPTION_LENGTH,
     MAX_APPEARANCE_FREQUENCY,
     MAX_STARTING_KIT_COUNT,
     MIN_APPEARANCE_FREQUENCY,
@@ -191,9 +194,17 @@ def _validate_character(
     _require_unique((ability.id for ability in character.abilities), "ID способностей")
     for ability in character.abilities:
         _require_id(ability.id, "ID способности")
-        _require_text(ability.name, "Название способности")
-        _require_text(ability.short_description, "Краткое описание способности")
-        _require_text(ability.description, "Описание способности")
+        _require_text(ability.name, "Название способности", MAX_ABILITY_NAME_LENGTH)
+        _require_text(
+            ability.short_description,
+            "Краткое описание способности",
+            MAX_ABILITY_SHORT_DESCRIPTION_LENGTH,
+        )
+        _require_text(
+            ability.description,
+            "Описание способности",
+            MAX_ABILITY_DESCRIPTION_LENGTH,
+        )
         if ability.kind not in {"ordinary", "sustained"}:
             raise InvalidFoundation("Неизвестный тип способности.")
 
@@ -289,9 +300,11 @@ def _require_shared_id(value: str, label: str) -> None:
         )
 
 
-def _require_text(value: str, label: str) -> None:
+def _require_text(value: str, label: str, maximum: int | None = None) -> None:
     if not value.strip():
         raise InvalidFoundation(f"Поле «{label}» не заполнено.")
+    if maximum is not None and len(value) > maximum:
+        raise InvalidFoundation(f"Поле «{label}» длиннее {maximum} символов.")
 
 
 def _require_unique(values: Iterable[str], label: str) -> None:

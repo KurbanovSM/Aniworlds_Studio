@@ -288,6 +288,14 @@ def test_complete_catalog_validates_and_round_trips() -> None:
     assert restored.to_mapping() == draft.to_mapping()
 
 
+def test_ability_name_above_runtime_limit_cannot_be_published() -> None:
+    draft = _complete_foundation()
+    draft.characters[0].abilities[0].name = "я" * 31
+
+    with pytest.raises(InvalidFoundation, match=r"Название способности.*30"):
+        validate_foundation(draft)
+
+
 @pytest.mark.parametrize(
     ("mutation", "message"),
     [

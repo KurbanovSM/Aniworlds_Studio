@@ -55,7 +55,7 @@ KIT_FIELDS = (
 )
 ABILITY_FIELDS = (
     FieldSpec("id", "ID способности"),
-    FieldSpec("name", "Название"),
+    FieldSpec("name", "Название · до 30 символов"),
     FieldSpec("short_description", "Краткое описание · до 50 символов"),
     FieldSpec("description", "Полное описание", "long_text"),
     FieldSpec(
