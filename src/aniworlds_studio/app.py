@@ -7,6 +7,7 @@ from tkinter import filedialog, messagebox, ttk
 
 from aniworlds_studio.clipboard_shortcuts import install_clipboard_shortcuts
 from aniworlds_studio.global_settings_editor import GlobalSettingsFrame
+from aniworlds_studio.promo_expiration_editor import PromoExpirationEditor
 from aniworlds_studio.promo_export import (
     MAX_ACTIVATIONS,
     MAX_TURNS,
@@ -19,6 +20,7 @@ from aniworlds_studio.promo_export import (
     export_promo,
     generate_promo_code,
 )
+from aniworlds_studio.promo_form_values import bounded_integer_candidate
 from aniworlds_studio.shared_catalogs_editor import SharedCatalogsFrame
 from aniworlds_studio.studio_theme import configure_studio_theme
 from aniworlds_studio.window_layout import (
@@ -40,7 +42,6 @@ class PromoStudioApp:
         self._subscription_activations = tk.StringVar(value="10")
         self._turns = tk.StringVar(value="10")
         self._turn_activations = tk.StringVar(value="10")
-        self._expiration = tk.StringVar()
         self._status = tk.StringVar(value="Готово к созданию файла")
         self._configure_window()
         self._build_layout()
@@ -116,10 +117,16 @@ class PromoStudioApp:
             MIN_ACTIVATIONS,
             MAX_ACTIVATIONS,
         )
+        self._subscription_expiration = PromoExpirationEditor(parent)
+        self._subscription_expiration.pack(fill="x", pady=(8, 14))
         ttk.Label(
             parent,
-            text="Другие параметры подписки здесь не редактируются.",
-        ).pack(anchor="w", pady=(8, 22))
+            text=(
+                "После указанного срока код нельзя активировать. Уже выданные 30 дней "
+                "подписки сохраняются."
+            ),
+            wraplength=620,
+        ).pack(anchor="w", pady=(0, 14))
         ttk.Button(
             parent,
             text="Сохранить промокод подписки",
@@ -136,11 +143,8 @@ class PromoStudioApp:
             MIN_ACTIVATIONS,
             MAX_ACTIVATIONS,
         )
-        ttk.Label(parent, text="Окончание действия, необязательно (ISO 8601)").pack(
-            anchor="w", pady=(10, 4)
-        )
-        ttk.Entry(parent, textvariable=self._expiration, width=40).pack(anchor="w")
-        ttk.Label(parent, text="Пример: 2027-01-01T00:00:00+03:00").pack(anchor="w", pady=(4, 18))
+        self._turn_expiration = PromoExpirationEditor(parent)
+        self._turn_expiration.pack(fill="x", pady=(8, 18))
         ttk.Button(
             parent,
             text="Сохранить промокод ходов",
@@ -157,8 +161,21 @@ class PromoStudioApp:
         maximum: int,
     ) -> None:
         ttk.Label(parent, text=label).pack(anchor="w", pady=(0, 4))
-        ttk.Spinbox(parent, from_=minimum, to=maximum, textvariable=variable, width=12).pack(
-            anchor="w", pady=(0, 8)
+        validation = (
+            parent.register(lambda value: bounded_integer_candidate(value, maximum)),
+            "%P",
+        )
+        ttk.Spinbox(
+            parent,
+            from_=minimum,
+            to=maximum,
+            textvariable=variable,
+            width=12,
+            validate="key",
+            validatecommand=validation,
+        ).pack(anchor="w")
+        ttk.Label(parent, text=f"Допустимо: от {minimum} до {maximum}").pack(
+            anchor="w", pady=(3, 8)
         )
 
     def _replace_code(self) -> None:
@@ -184,6 +201,7 @@ class PromoStudioApp:
         self._save(
             lambda: build_subscription_promo(
                 int(self._subscription_activations.get()),
+                expires_at=self._subscription_expiration.value(),
                 code=self._code.get(),
             )
         )
@@ -193,7 +211,7 @@ class PromoStudioApp:
             lambda: build_turn_promo(
                 int(self._turns.get()),
                 int(self._turn_activations.get()),
-                expires_at=self._expiration.get(),
+                expires_at=self._turn_expiration.value(),
                 code=self._code.get(),
             )
         )

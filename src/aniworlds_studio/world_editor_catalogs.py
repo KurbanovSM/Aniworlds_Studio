@@ -88,12 +88,22 @@ def build_catalog_views(
             14,
             get_draft,
             on_changed,
+            get_reference_draft=get_global_catalogs,
         )
     )
     return editors
 
 
-def _add_catalog(shell, field_name, title, subtitle, number, get_draft, on_changed):
+def _add_catalog(
+    shell,
+    field_name,
+    title,
+    subtitle,
+    number,
+    get_draft,
+    on_changed,
+    get_reference_draft=None,
+):
     holder = {}
 
     def build(parent) -> None:
@@ -104,6 +114,7 @@ def _add_catalog(shell, field_name, title, subtitle, number, get_draft, on_chang
             identity_field="shop_kind" if field_name == "shop_policies" else "id",
             get_draft=get_draft,
             on_changed=on_changed,
+            get_reference_draft=get_reference_draft,
         )
         editor.pack(fill="both", expand=True)
         holder["editor"] = editor

@@ -131,7 +131,7 @@ def test_draft_round_trip_preserves_nested_values(tmp_path) -> None:
     draft.periods[0].starting_kits[0].starting_currency_amount = 25
     path = save_draft(draft, tmp_path / "world.draft.json")
 
-    loaded = load_draft(path)
+    loaded = load_draft(path, GlobalCatalogDraft())
 
     assert loaded.to_mapping() == draft.to_mapping()
 
@@ -158,7 +158,7 @@ def test_legacy_draft_locations_are_migrated_to_independent_catalog(tmp_path) ->
     payload["universe"].pop("locations")
     path.write_text(json.dumps(payload, ensure_ascii=False), encoding="utf-8")
 
-    restored = load_draft(path)
+    restored = load_draft(path, GlobalCatalogDraft())
 
     assert restored.locations[0].name == "Старая локация"
     assert restored.periods[0].starting_location_ids == ["start"]
@@ -197,6 +197,16 @@ def test_published_world_requires_current_shared_catalog(tmp_path) -> None:
         load_published_foundation(path, catalogs)
 
 
+def test_draft_requires_current_shared_catalog_when_opened(tmp_path) -> None:
+    draft = _minimal_foundation()
+    path = save_draft(draft, tmp_path / "world.draft.json")
+
+    with pytest.raises(ValueError, match="human"):
+        load_draft(path, GlobalCatalogDraft())
+
+    assert load_draft(path, _shared_catalogs(draft)).to_mapping() == draft.to_mapping()
+
+
 def test_preview_is_readable_json() -> None:
     draft = _minimal_foundation()
     preview = preview_foundation(draft, _shared_catalogs(draft))
@@ -209,7 +219,7 @@ def test_invalid_draft_file_is_rejected(tmp_path) -> None:
     path.write_text('{"draft_version": 2}', encoding="utf-8")
 
     with pytest.raises(ValueError, match="черновиком"):
-        load_draft(path)
+        load_draft(path, GlobalCatalogDraft())
 
 
 def _complete_foundation() -> UniverseDraft:

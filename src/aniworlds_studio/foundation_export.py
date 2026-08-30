@@ -37,13 +37,16 @@ def save_draft(draft: UniverseDraft, path: Path) -> Path:
     return _write_new_json(path, {"draft_version": DRAFT_VERSION, "universe": draft.to_mapping()})
 
 
-def load_draft(path: Path) -> UniverseDraft:
+def load_draft(path: Path, catalogs: GlobalCatalogDraft) -> UniverseDraft:
+    """Load a draft only when all of its shared catalog references are available."""
     payload = json.loads(path.read_text(encoding="utf-8"))
     version = payload.get("draft_version")
     if version not in {1, DRAFT_VERSION} or not isinstance(payload.get("universe"), dict):
         raise ValueError("Файл не является поддерживаемым черновиком Aniworlds Studio.")
     data = payload["universe"]
-    return universe_from_mapping(_migrate_version_one(data) if version == 1 else data)
+    draft = universe_from_mapping(_migrate_version_one(data) if version == 1 else data)
+    validate_world_catalog_references(draft, catalogs)
+    return draft
 
 
 def load_published_foundation(

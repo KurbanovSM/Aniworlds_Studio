@@ -14,6 +14,7 @@ from aniworlds_studio.foundation_models import (
     PeriodDraft,
     ShopPolicyDraft,
 )
+from aniworlds_studio.global_catalogs import CharacterTraitDraft
 
 CATALOG_SECTIONS = (
     ("periods", "Периоды", PeriodDraft, "id"),
@@ -24,6 +25,7 @@ CATALOG_SECTIONS = (
     ("items", "Предметы", ItemDraft, "id"),
     ("shop_policies", "Магазины", ShopPolicyDraft, "shop_kind"),
     ("characters", "Персонажи и NPC", CharacterDraft, "id"),
+    ("traits", "Черты характера", CharacterTraitDraft, "id"),
 )
 
 CATALOG_HINTS = {
@@ -37,6 +39,7 @@ CATALOG_HINTS = {
     "items": "Категория, свойства, ограничения, цена, магазины, вес и предел экземпляров.",
     "shop_policies": "Диапазон первичного ассортимента для магазина или кузницы.",
     "characters": "Анкета, периоды, языки, черты, способности, объединения и лидерство.",
+    "traits": "Название, объяснение поведения и несовместимые сочетания.",
 }
 
 

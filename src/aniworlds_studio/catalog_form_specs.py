@@ -134,8 +134,11 @@ CATALOG_FORM_SPECS: dict[str, tuple[FieldSpec, ...]] = {
         FieldSpec(
             "maximum_created_instances",
             "Количество экземпляров в одном мире",
-            "optional_integer",
-            help_text="Оставьте «Без ограничений» для обычных расходников.",
+            "instance_limit",
+            help_text=(
+                "Выберите «Без ограничений» либо укажите точное максимальное количество. "
+                "Пустое значение не используется."
+            ),
             minimum=1,
         ),
     ),
@@ -158,7 +161,7 @@ CATALOG_FORM_SPECS: dict[str, tuple[FieldSpec, ...]] = {
             "choice_optional",
             COGNITION_OPTIONS,
         ),
-        FieldSpec("trait_ids", "Черты характера · по одной на строке", "lines"),
+        FieldSpec("trait_ids", "Черты характера", "references", source="traits"),
         FieldSpec("abilities", "Способности", "nested", nested=ABILITY_FIELDS, maximum=8),
         FieldSpec("group_ids", "Состоит в объединениях", "references", source="groups"),
         FieldSpec("leader_group_ids", "Возглавляет объединения", "references", source="groups"),
@@ -180,6 +183,18 @@ GLOBAL_CATALOG_FORM_SPECS: dict[str, tuple[FieldSpec, ...]] = {
     ),
     "languages": CATALOG_FORM_SPECS["languages"],
     "groups": CATALOG_FORM_SPECS["groups"][:4],
+    "traits": (
+        FieldSpec("id", "ID черты"),
+        FieldSpec("name", "Название · до 30 символов"),
+        FieldSpec("description", "Описание проявления · до 200 символов", "long_text"),
+        FieldSpec(
+            "incompatible_trait_ids",
+            "Несовместимые черты",
+            "references",
+            source="traits",
+            help_text="Связь должна быть указана у обеих несовместимых черт.",
+        ),
+    ),
 }
 
 WORLD_KIND_FIELDS = (

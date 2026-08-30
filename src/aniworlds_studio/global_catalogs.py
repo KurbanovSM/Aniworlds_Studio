@@ -3,8 +3,10 @@
 # ruff: noqa: RUF001
 
 import json
+import re
 from dataclasses import asdict, dataclass, field
 from datetime import UTC, datetime
+from importlib.resources import as_file, files
 from pathlib import Path
 from typing import Any
 
@@ -21,10 +23,22 @@ from aniworlds_studio.foundation_validation import (
 )
 
 GLOBAL_CATALOG_FILE_NAME = "global-catalogs.studio.json"
-GLOBAL_CATALOG_VERSION = 1
+GLOBAL_CATALOG_VERSION = 2
 PUBLISHED_CATALOG_FILE_NAME = "global-catalogs.catalog.json"
-PUBLISHED_CATALOG_SCHEMA_VERSION = 1
+PUBLISHED_CATALOG_SCHEMA_VERSION = 2
 PUBLISHED_CATALOG_ARTIFACT_TYPE = "aniworlds.global_catalogs"
+CHARACTER_TRAIT_ID_PATTERN = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
+CHARACTER_TRAIT_ID_MAX_LENGTH = 32
+CHARACTER_TRAIT_NAME_MAX_LENGTH = 30
+CHARACTER_TRAIT_DESCRIPTION_MAX_LENGTH = 200
+
+
+@dataclass(slots=True)
+class CharacterTraitDraft:
+    id: str = "trait"
+    name: str = "Черта характера"
+    description: str = "Описание проявления черты"
+    incompatible_trait_ids: list[str] = field(default_factory=list)
 
 
 @dataclass(slots=True)
@@ -32,6 +46,7 @@ class GlobalCatalogDraft:
     creature_kinds: list[CreatureKindDraft] = field(default_factory=list)
     languages: list[LanguageDraft] = field(default_factory=list)
     groups: list[GroupDraft] = field(default_factory=list)
+    traits: list[CharacterTraitDraft] = field(default_factory=list)
 
 
 def catalog_publication_payload(
@@ -70,6 +85,7 @@ def catalog_publication_payload(
                 }
                 for item in catalogs.groups
             ],
+            "traits": [asdict(item) for item in catalogs.traits],
         },
     }
 
@@ -80,6 +96,7 @@ def validate_global_catalogs(catalogs: GlobalCatalogDraft) -> None:
         ("видов и рас", catalogs.creature_kinds),
         ("языков", catalogs.languages),
         ("объединений", catalogs.groups),
+        ("черт характера", catalogs.traits),
     ):
         identifiers = [item.id.strip() for item in entries]
         if any(not identifier for identifier in identifiers):
@@ -103,6 +120,44 @@ def validate_global_catalogs(catalogs: GlobalCatalogDraft) -> None:
         validate_shared_language(language)
     for group in catalogs.groups:
         validate_shared_group(group)
+    _validate_traits(catalogs.traits)
+
+
+def _validate_traits(traits: list[CharacterTraitDraft]) -> None:
+    trait_ids = {item.id for item in traits}
+    by_id = {item.id: item for item in traits}
+    for trait in traits:
+        if (
+            len(trait.id) > CHARACTER_TRAIT_ID_MAX_LENGTH
+            or CHARACTER_TRAIT_ID_PATTERN.fullmatch(trait.id) is None
+        ):
+            raise ValueError(
+                "ID черты: не более 32 символов, только строчные латинские "
+                "буквы, цифры и одиночный дефис."
+            )
+        if len(trait.name) > CHARACTER_TRAIT_NAME_MAX_LENGTH:
+            raise ValueError("Название черты не должно превышать 30 символов.")
+        if not trait.description.strip():
+            raise ValueError(f"У черты «{trait.name}» нет описания.")
+        if len(trait.description) > CHARACTER_TRAIT_DESCRIPTION_MAX_LENGTH:
+            raise ValueError("Описание черты не должно превышать 200 символов.")
+        incompatible = set(trait.incompatible_trait_ids)
+        if trait.id in incompatible:
+            raise ValueError(f"Черта «{trait.name}» несовместима сама с собой.")
+        missing = sorted(incompatible - trait_ids)
+        if missing:
+            raise ValueError(
+                f"Черта «{trait.name}» ссылается на отсутствующие черты: "
+                f"{', '.join(missing)}."
+            )
+        if len(incompatible) != len(trait.incompatible_trait_ids):
+            raise ValueError(f"Несовместимые черты для «{trait.name}» повторяются.")
+        for other_id in incompatible:
+            if trait.id not in by_id[other_id].incompatible_trait_ids:
+                raise ValueError(
+                    f"Несовместимость «{trait.name}» и «{by_id[other_id].name}» "
+                    "должна быть взаимной."
+                )
 
 
 def _valid_shared_id(value: str) -> bool:
@@ -137,12 +192,24 @@ def validate_world_catalog_references(
             {item.id for item in draft.groups},
             {item.id for item in catalogs.groups},
         ),
+        (
+            "черту характера",
+            {trait_id for character in draft.characters for trait_id in character.trait_ids},
+            {item.id for item in catalogs.traits},
+        ),
     ):
         missing = sorted(selected - available)
         if missing:
             raise ValueError(
                 f"Мир ссылается на отсутствующий общий {label}: {', '.join(missing)}."
             )
+    incompatible_by_id = {
+        trait.id: set(trait.incompatible_trait_ids) for trait in catalogs.traits
+    }
+    for character in draft.characters:
+        selected = set(character.trait_ids)
+        if any(incompatible_by_id.get(trait_id, set()) & selected for trait_id in selected):
+            raise ValueError(f"У персонажа «{character.name}» выбраны несовместимые черты.")
 
 
 def preview_global_catalogs(catalogs: GlobalCatalogDraft) -> str:
@@ -205,6 +272,7 @@ def save_global_catalogs(
         "creature_kinds": [asdict(item) for item in catalogs.creature_kinds],
         "languages": [asdict(item) for item in catalogs.languages],
         "groups": [asdict(item) for item in catalogs.groups],
+        "traits": [asdict(item) for item in catalogs.traits],
     }
     temporary = path.with_suffix(".tmp")
     temporary.write_text(
@@ -225,13 +293,45 @@ def _write_new_json(path: Path, payload: dict[str, Any]) -> Path:
 
 def load_global_catalogs(path: Path) -> GlobalCatalogDraft:
     payload = json.loads(path.read_text(encoding="utf-8"))
-    if payload.get("studio_catalog_version") != GLOBAL_CATALOG_VERSION:
+    if not isinstance(payload, dict):
+        raise ValueError("Файл общих каталогов должен содержать JSON-объект.")
+    if payload.get("studio_catalog_version") in {1, GLOBAL_CATALOG_VERSION}:
+        catalog_values = payload
+        published = False
+    elif (
+        payload.get("schema_version") in {1, PUBLISHED_CATALOG_SCHEMA_VERSION}
+        and payload.get("artifact_type") == PUBLISHED_CATALOG_ARTIFACT_TYPE
+    ):
+        catalog_values = payload.get("catalogs")
+        published = True
+    else:
         raise ValueError("Неподдерживаемая версия глобальных каталогов Studio.")
-    return GlobalCatalogDraft(
-        creature_kinds=[CreatureKindDraft(**item) for item in payload.get("creature_kinds", [])],
-        languages=[LanguageDraft(**item) for item in payload.get("languages", [])],
-        groups=[GroupDraft(**item) for item in payload.get("groups", [])],
-    )
+    if not isinstance(catalog_values, dict):
+        raise ValueError("Файл общих каталогов не содержит раздел catalogs.")
+    try:
+        catalogs = GlobalCatalogDraft(
+            creature_kinds=[
+                CreatureKindDraft(**item) for item in catalog_values.get("creature_kinds", [])
+            ],
+            languages=[LanguageDraft(**item) for item in catalog_values.get("languages", [])],
+            groups=[GroupDraft(**item) for item in catalog_values.get("groups", [])],
+            traits=[CharacterTraitDraft(**item) for item in catalog_values.get("traits", [])],
+        )
+    except (TypeError, AttributeError) as error:
+        raise ValueError("Структура общих каталогов повреждена.") from error
+    if published:
+        validate_global_catalogs(catalogs)
+    return catalogs
+
+
+def load_initial_global_catalogs() -> GlobalCatalogDraft:
+    """Load the editable authored default without embedding content in Python."""
+    repository_copy = Path(__file__).resolve().parents[2] / "content" / GLOBAL_CATALOG_FILE_NAME
+    if repository_copy.is_file():
+        return load_global_catalogs(repository_copy)
+    packaged = files("aniworlds_studio").joinpath("defaults", GLOBAL_CATALOG_FILE_NAME)
+    with as_file(packaged) as packaged_path:
+        return load_global_catalogs(packaged_path)
 
 
 def replace_global_catalog_entries(
@@ -243,6 +343,7 @@ def replace_global_catalog_entries(
         "creature_kinds": lambda item: CreatureKindDraft(**item),
         "languages": lambda item: LanguageDraft(**item),
         "groups": lambda item: GroupDraft(**item),
+        "traits": lambda item: CharacterTraitDraft(**item),
     }
     try:
         builder = builders[field_name]

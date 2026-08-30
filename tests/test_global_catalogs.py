@@ -16,9 +16,11 @@ from aniworlds_studio.foundation_models import (
 from aniworlds_studio.global_catalogs import (
     GLOBAL_CATALOG_FILE_NAME,
     PUBLISHED_CATALOG_FILE_NAME,
+    CharacterTraitDraft,
     GlobalCatalogDraft,
     catalog_publication_payload,
     load_global_catalogs,
+    load_initial_global_catalogs,
     preview_global_catalogs,
     publish_global_catalogs,
     replace_global_catalog_entries,
@@ -34,6 +36,15 @@ def test_new_shared_catalog_is_empty() -> None:
     assert catalogs.creature_kinds == []
     assert catalogs.languages == []
     assert catalogs.groups == []
+    assert catalogs.traits == []
+
+
+def test_studio_initial_catalog_comes_from_the_editable_authored_file() -> None:
+    catalogs = load_initial_global_catalogs()
+
+    assert catalogs.creature_kinds
+    assert catalogs.languages
+    assert catalogs.traits
 
 
 def test_shared_catalogs_round_trip_and_require_explicit_replacement(tmp_path) -> None:
@@ -48,7 +59,7 @@ def test_shared_catalogs_round_trip_and_require_explicit_replacement(tmp_path) -
     with pytest.raises(FileExistsError):
         save_global_catalogs(catalogs, tmp_path)
     save_global_catalogs(catalogs, tmp_path, replace_existing=True)
-    assert json.loads(path.read_text(encoding="utf-8"))["studio_catalog_version"] == 1
+    assert json.loads(path.read_text(encoding="utf-8"))["studio_catalog_version"] == 2
 
 
 def test_world_relations_survive_shared_base_refresh() -> None:
@@ -97,7 +108,7 @@ def test_server_catalog_contains_base_fields_without_world_relationships() -> No
         published_at=datetime(2026, 8, 29, tzinfo=UTC),
     )
 
-    assert payload["schema_version"] == 1
+    assert payload["schema_version"] == 2
     assert payload["artifact_type"] == "aniworlds.global_catalogs"
     assert payload["published_at"] == "2026-08-29T00:00:00+00:00"
     kind = payload["catalogs"]["creature_kinds"][0]
@@ -123,6 +134,23 @@ def test_server_catalog_publication_is_immutable(tmp_path) -> None:
         publish_global_catalogs(catalogs, tmp_path)
 
 
+def test_published_server_catalog_opens_as_new_editable_draft(tmp_path) -> None:
+    catalogs = GlobalCatalogDraft(
+        creature_kinds=[
+            CreatureKindDraft(id="human", name="Человек", description="Описание")
+        ],
+        languages=[LanguageDraft(id="common", name="Общий")],
+        groups=[GroupDraft(id="guards", name="Стража", description="Описание")],
+    )
+    path = publish_global_catalogs(catalogs, tmp_path)
+    original = path.read_text(encoding="utf-8")
+
+    loaded = load_global_catalogs(path)
+
+    assert loaded == catalogs
+    assert path.read_text(encoding="utf-8") == original
+
+
 def test_server_catalog_rejects_missing_parent_kind() -> None:
     catalogs = GlobalCatalogDraft(
         creature_kinds=[
@@ -137,6 +165,39 @@ def test_server_catalog_rejects_missing_parent_kind() -> None:
 
     with pytest.raises(ValueError, match="Родительский вид"):
         catalog_publication_payload(catalogs)
+
+
+def test_trait_incompatibility_is_published_and_must_be_symmetric() -> None:
+    catalogs = GlobalCatalogDraft(
+        traits=[
+            CharacterTraitDraft("brave", "Смелый", "Описание", ["cowardly"]),
+            CharacterTraitDraft("cowardly", "Трусливый", "Описание", ["brave"]),
+        ]
+    )
+
+    payload = catalog_publication_payload(catalogs)
+
+    assert payload["catalogs"]["traits"][0]["incompatible_trait_ids"] == ["cowardly"]
+    catalogs.traits[1].incompatible_trait_ids = []
+    with pytest.raises(ValueError, match="взаимной"):
+        catalog_publication_payload(catalogs)
+
+
+@pytest.mark.parametrize(
+    ("trait", "message"),
+    [
+        (CharacterTraitDraft(id="смелый"), "ID черты"),
+        (CharacterTraitDraft(id="a" * 33), "ID черты"),
+        (CharacterTraitDraft(name="a" * 31), "Название черты"),
+        (CharacterTraitDraft(description="a" * 201), "Описание черты"),
+    ],
+)
+def test_trait_limits_match_the_game_catalog_contract(
+    trait: CharacterTraitDraft,
+    message: str,
+) -> None:
+    with pytest.raises(ValueError, match=message):
+        catalog_publication_payload(GlobalCatalogDraft(traits=[trait]))
 
 
 def test_world_rejects_reference_missing_from_shared_catalog() -> None:
@@ -173,4 +234,20 @@ def test_unsupported_studio_catalog_version_is_rejected(tmp_path) -> None:
     path.write_text('{"studio_catalog_version": 999}', encoding="utf-8")
 
     with pytest.raises(ValueError, match="Неподдерживаемая версия"):
+        load_global_catalogs(path)
+
+
+@pytest.mark.parametrize(
+    "contents",
+    [
+        "[]",
+        '{"schema_version": 1, "artifact_type": "aniworlds.global_catalogs"}',
+        '{"studio_catalog_version": 1, "creature_kinds": [1]}',
+    ],
+)
+def test_malformed_catalog_structure_is_rejected(tmp_path, contents: str) -> None:
+    path = tmp_path / GLOBAL_CATALOG_FILE_NAME
+    path.write_text(contents, encoding="utf-8")
+
+    with pytest.raises(ValueError):
         load_global_catalogs(path)

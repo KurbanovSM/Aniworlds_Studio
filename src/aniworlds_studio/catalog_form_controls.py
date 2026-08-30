@@ -58,6 +58,8 @@ def _widget_for_kind(
         values = [label for label, _ in options]
         widget = ttk.Combobox(parent, textvariable=variable, values=values, state="readonly")
         return FormControl(kind, widget, variable, options)
+    if kind == "instance_limit":
+        return _instance_limit_control(parent, spec)
     variable = tk.StringVar()
     if kind in {"integer", "decimal", "optional_integer"}:
         widget = ttk.Spinbox(
@@ -69,6 +71,36 @@ def _widget_for_kind(
     else:
         widget = ttk.Entry(parent, textvariable=variable)
     return FormControl(kind, widget, variable)
+
+
+def _instance_limit_control(parent: ttk.Frame, spec: FieldSpec) -> FormControl:
+    host = ttk.Frame(parent)
+    mode = tk.StringVar(value="Без ограничений")
+    amount = tk.StringVar(value=str(spec.minimum or 1))
+    selector = ttk.Combobox(
+        host,
+        textvariable=mode,
+        values=("Без ограничений", "Ограниченное количество"),
+        state="readonly",
+        width=24,
+    )
+    selector.pack(side="left")
+    amount_widget = ttk.Spinbox(
+        host,
+        from_=spec.minimum or 1,
+        to=spec.maximum or 1_000_000,
+        textvariable=amount,
+        width=12,
+    )
+    amount_widget.pack(side="left", padx=(8, 0))
+
+    def update_state(*_args: object) -> None:
+        state = "normal" if mode.get() == "Ограниченное количество" else "disabled"
+        amount_widget.configure(state=state)
+
+    mode.trace_add("write", update_state)
+    update_state()
+    return FormControl("instance_limit", host, variable=(mode, amount))
 
 
 def _normalized_kind(kind: str) -> str:

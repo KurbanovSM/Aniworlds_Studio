@@ -16,3 +16,19 @@ jobs:
       - run: ruff check .
       - run: pyright
       - run: python -m pytest --cov
+
+  game-compatibility:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: KurbanovSM/Aniworlds_AI
+          path: .integration/Aniworlds_AI
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m pip install -e ".[dev]" -e .integration/Aniworlds_AI
+      - run: python -m pytest tests/test_published_game_compatibility.py
+        env:
+          ANIWORLDS_AI_ROOT: ${{ github.workspace }}/.integration/Aniworlds_AI

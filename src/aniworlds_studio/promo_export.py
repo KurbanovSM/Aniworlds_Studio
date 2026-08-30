@@ -12,7 +12,7 @@ from typing import Final
 PROMO_CODE_PATTERN: Final = re.compile(r"^ANI-[A-HJ-NP-Z2-9]{4}-[A-HJ-NP-Z2-9]{4}$")
 PROMO_CODE_ALPHABET: Final = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"
 TURN_PROMO_SCHEMA_VERSION: Final = 1
-SUBSCRIPTION_PROMO_SCHEMA_VERSION: Final = 2
+SUBSCRIPTION_PROMO_SCHEMA_VERSION: Final = 3
 MIN_TURNS: Final = 1
 MAX_TURNS: Final = 100
 MIN_ACTIVATIONS: Final = 1
@@ -44,8 +44,13 @@ def generate_promo_code(
     return f"ANI-{random_part[:4]}-{random_part[4:]}"
 
 
-def build_subscription_promo(activation_limit: int, *, code: str | None = None) -> PromoExport:
-    """Create a subscription promo whose only editable value is its global limit."""
+def build_subscription_promo(
+    activation_limit: int,
+    *,
+    expires_at: str | None = None,
+    code: str | None = None,
+) -> PromoExport:
+    """Create a subscription promo with an optional redemption deadline."""
     canonical_code = _validated_code(code or generate_promo_code())
     _validate_range("Количество активаций", activation_limit, MIN_ACTIVATIONS, MAX_ACTIVATIONS)
     return PromoExport(
@@ -55,6 +60,7 @@ def build_subscription_promo(activation_limit: int, *, code: str | None = None) 
             "code": canonical_code,
             "reward": SUBSCRIPTION_REWARD,
             "activation_limit": activation_limit,
+            "expires_at": _normalized_expiration(expires_at),
         },
     )
 

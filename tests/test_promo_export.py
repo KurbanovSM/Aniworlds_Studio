@@ -18,22 +18,37 @@ def test_generated_code_uses_unambiguous_canonical_format() -> None:
     assert generate_promo_code(lambda _: next(symbols)) == "ANI-A2B3-C4D5"
 
 
-def test_subscription_promo_only_exports_its_activation_limit() -> None:
-    promo = build_subscription_promo(20, code="ANI-A2B3-C4D5")
+def test_subscription_promo_exports_activation_limit_and_optional_expiration() -> None:
+    promo = build_subscription_promo(
+        20,
+        expires_at="2027-01-01T03:00:00+03:00",
+        code="ANI-A2B3-C4D5",
+    )
 
     assert promo.document == {
-        "schema_version": 2,
+        "schema_version": 3,
         "code": "ANI-A2B3-C4D5",
         "reward": "multiplayer_subscription",
         "activation_limit": 20,
+        "expires_at": "2027-01-01T00:00:00Z",
     }
     assert promo.filename == "ANI-A2B3-C4D5.json"
 
 
-@pytest.mark.parametrize("activation_limit", [0, 101, True])
+@pytest.mark.parametrize("activation_limit", [0, 101, 10_000, True])
 def test_subscription_promo_rejects_invalid_activation_limit(activation_limit: int) -> None:
     with pytest.raises(InvalidPromoExport):
         build_subscription_promo(activation_limit, code="ANI-A2B3-C4D5")
+
+
+@pytest.mark.parametrize("expiration", ["not-a-date", "2027-01-01T00:00:00"])
+def test_subscription_promo_requires_timezone_aware_expiration(expiration: str) -> None:
+    with pytest.raises(InvalidPromoExport):
+        build_subscription_promo(
+            1,
+            expires_at=expiration,
+            code="ANI-A2B3-C4D5",
+        )
 
 
 def test_turn_promo_normalizes_expiration_to_utc() -> None:

@@ -1,7 +1,7 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "artifact_type": "aniworlds.global_catalogs",
-  "published_at": "2026-08-29T22:40:27.839638+00:00",
+  "published_at": "2026-08-30T00:26:08.826176+00:00",
   "catalogs": {
     "creature_kinds": [
       {
@@ -158,6 +158,248 @@
         "name": "Армия Белых Дзецу",
         "group_type": "army",
         "description": "Массовая армия искусственных существ под командованием Акацуки."
+      }
+    ],
+    "traits": [
+      {
+        "id": "determined",
+        "name": "Целеустремлённый",
+        "description": "Продолжает двигаться к выбранной цели, несмотря на препятствия.",
+        "incompatible_trait_ids": []
+      },
+      {
+        "id": "impulsive",
+        "name": "Импульсивный",
+        "description": "Может действовать под влиянием первого порыва, не оценив последствия.",
+        "incompatible_trait_ids": [
+          "calm"
+        ]
+      },
+      {
+        "id": "loyal",
+        "name": "Преданный",
+        "description": "Сохраняет верность близким, союзникам или выбранному делу.",
+        "incompatible_trait_ids": [
+          "treacherous"
+        ]
+      },
+      {
+        "id": "empathetic",
+        "name": "Сочувствующий",
+        "description": "Замечает чувства окружающих и учитывает их состояние.",
+        "incompatible_trait_ids": []
+      },
+      {
+        "id": "protective",
+        "name": "Защищающий",
+        "description": "Стремится оберегать тех, за кого считает себя ответственным.",
+        "incompatible_trait_ids": []
+      },
+      {
+        "id": "disciplined",
+        "name": "Дисциплинированный",
+        "description": "Следует порядку, подготовке и принятым обязанностям.",
+        "incompatible_trait_ids": []
+      },
+      {
+        "id": "observant",
+        "name": "Наблюдательный",
+        "description": "Замечает важные детали окружения и поведения других.",
+        "incompatible_trait_ids": []
+      },
+      {
+        "id": "calm",
+        "name": "Спокойный",
+        "description": "Сохраняет самообладание без резких эмоциональных решений.",
+        "incompatible_trait_ids": [
+          "impulsive"
+        ]
+      },
+      {
+        "id": "strategic",
+        "name": "Стратегичный",
+        "description": "Оценивает несколько шагов вперёд и сопоставляет последствия.",
+        "incompatible_trait_ids": []
+      },
+      {
+        "id": "reserved",
+        "name": "Замкнутый",
+        "description": "Неохотно раскрывает мысли и чувства посторонним.",
+        "incompatible_trait_ids": []
+      },
+      {
+        "id": "literal",
+        "name": "Прямолинейный",
+        "description": "Предпочитает буквальные и недвусмысленные формулировки.",
+        "incompatible_trait_ids": []
+      },
+      {
+        "id": "responsible",
+        "name": "Ответственный",
+        "description": "Серьёзно относится к обязательствам и последствиям решений.",
+        "incompatible_trait_ids": []
+      },
+      {
+        "id": "cautious",
+        "name": "Осторожный",
+        "description": "Заранее оценивает угрозы и старается уменьшить риск.",
+        "incompatible_trait_ids": []
+      },
+      {
+        "id": "strict",
+        "name": "Строгий",
+        "description": "Требовательно относится к правилам, дисциплине и результату.",
+        "incompatible_trait_ids": []
+      },
+      {
+        "id": "authoritative",
+        "name": "Властный",
+        "description": "Привык принимать решения и ожидать исполнения распоряжений.",
+        "incompatible_trait_ids": []
+      },
+      {
+        "id": "resolute",
+        "name": "Твёрдый",
+        "description": "Не отступает от принятого решения без веской причины.",
+        "incompatible_trait_ids": []
+      },
+      {
+        "id": "brave",
+        "name": "Смелый",
+        "description": "Готов действовать при опасности, понимая возможный риск.",
+        "incompatible_trait_ids": []
+      },
+      {
+        "id": "curious",
+        "name": "Любопытный",
+        "description": "Ищет новые сведения и исследует неизвестное.",
+        "incompatible_trait_ids": []
+      },
+      {
+        "id": "unmotivated",
+        "name": "Немотивированный",
+        "description": "Избегает лишних усилий, пока не увидит важной причины действовать.",
+        "incompatible_trait_ids": []
+      },
+      {
+        "id": "kind",
+        "name": "Добрый",
+        "description": "Стремится помогать другим и учитывает их благополучие.",
+        "incompatible_trait_ids": [
+          "cruel"
+        ]
+      },
+      {
+        "id": "perceptive",
+        "name": "Проницательный",
+        "description": "Быстро распознаёт скрытые причины и изменения ситуации.",
+        "incompatible_trait_ids": []
+      },
+      {
+        "id": "hardworking",
+        "name": "Трудолюбивый",
+        "description": "Готов долго и последовательно работать ради результата.",
+        "incompatible_trait_ids": []
+      },
+      {
+        "id": "earnest",
+        "name": "Искренний",
+        "description": "Относится к словам и действиям серьёзно, без притворной небрежности.",
+        "incompatible_trait_ids": []
+      },
+      {
+        "id": "energetic",
+        "name": "Энергичный",
+        "description": "Охотно действует и поддерживает высокий темп.",
+        "incompatible_trait_ids": []
+      },
+      {
+        "id": "competitive",
+        "name": "Соревновательный",
+        "description": "Стремится превзойти соперников и доказать собственный уровень.",
+        "incompatible_trait_ids": []
+      },
+      {
+        "id": "confident",
+        "name": "Уверенный",
+        "description": "Полагается на свои решения и способности без постоянных сомнений.",
+        "incompatible_trait_ids": []
+      },
+      {
+        "id": "unpredictable",
+        "name": "Непредсказуемый",
+        "description": "Часто выбирает неожиданный для окружающих способ действия.",
+        "incompatible_trait_ids": []
+      },
+      {
+        "id": "driven",
+        "name": "Одержимый целью",
+        "description": "Подчиняет многие решения одной особенно важной цели.",
+        "incompatible_trait_ids": []
+      },
+      {
+        "id": "guarded",
+        "name": "Недоверчивый",
+        "description": "Осторожно раскрывает намерения и личные сведения.",
+        "incompatible_trait_ids": []
+      },
+      {
+        "id": "independent",
+        "name": "Независимый",
+        "description": "Предпочитает самостоятельно принимать решения и отвечать за них.",
+        "incompatible_trait_ids": []
+      },
+      {
+        "id": "secretive",
+        "name": "Скрытный",
+        "description": "Сознательно ограничивает доступ окружающих к своим планам и знаниям.",
+        "incompatible_trait_ids": []
+      },
+      {
+        "id": "ideological",
+        "name": "Идейный",
+        "description": "Строит решения вокруг устойчивого мировоззрения или учения.",
+        "incompatible_trait_ids": []
+      },
+      {
+        "id": "watchful",
+        "name": "Бдительный",
+        "description": "Постоянно следит за возможными угрозами и изменениями вокруг.",
+        "incompatible_trait_ids": []
+      },
+      {
+        "id": "manipulative",
+        "name": "Манипулятивный",
+        "description": "Скрыто влияет на чувства и решения других ради своей цели.",
+        "incompatible_trait_ids": []
+      },
+      {
+        "id": "calculating",
+        "name": "Расчётливый",
+        "description": "Сопоставляет выгоду, риск и доступные ресурсы перед действием.",
+        "incompatible_trait_ids": []
+      },
+      {
+        "id": "adaptive",
+        "name": "Адаптивный",
+        "description": "Быстро меняет подход, когда обстоятельства перестают ему соответствовать.",
+        "incompatible_trait_ids": []
+      },
+      {
+        "id": "cruel",
+        "name": "Жестокий",
+        "description": "Готов сознательно причинять страдания ради своих целей.",
+        "incompatible_trait_ids": [
+          "kind"
+        ]
+      },
+      {
+        "id": "treacherous",
+        "name": "Вероломный",
+        "description": "Нарушает доверие или договорённость ради собственной выгоды.",
+        "incompatible_trait_ids": [
+          "loyal"
+        ]
       }
     ]
   }

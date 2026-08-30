@@ -19,6 +19,7 @@ from aniworlds_studio.foundation_models import (
     LanguageDraft,
     UniverseDraft,
 )
+from aniworlds_studio.global_catalogs import CharacterTraitDraft, GlobalCatalogDraft
 
 
 class _Variable:
@@ -74,6 +75,12 @@ def test_specs_cover_every_root_catalog_without_json_fields() -> None:
         field for field in CATALOG_FORM_SPECS["items"] if field.key == "appearance_weight"
     )
     assert (frequency.minimum, frequency.maximum) == (1, 100)
+    instance_limit = next(
+        field
+        for field in CATALOG_FORM_SPECS["items"]
+        if field.key == "maximum_created_instances"
+    )
+    assert instance_limit.kind == "instance_limit"
 
 
 def test_creature_reference_options_match_game_contract_labels() -> None:
@@ -144,6 +151,18 @@ def test_reads_and_writes_text_choices_and_lists() -> None:
         read_control(FormControl("unknown", object()))
 
 
+def test_instance_limit_never_depends_on_an_ambiguous_blank_number() -> None:
+    mode = _Variable("Без ограничений")
+    amount = _Variable("1")
+    control = FormControl("instance_limit", object(), (mode, amount))
+
+    assert read_control(control) is None
+    write_control(control, 3)
+    assert mode.value == "Ограниченное количество"
+    assert amount.value == "3"
+    assert read_control(control) == 3
+
+
 def test_reference_options_and_titles_use_authored_cards() -> None:
     draft = UniverseDraft()
     draft.groups = [GroupDraft(id="guards", name="Стража")]
@@ -157,5 +176,9 @@ def test_reference_options_and_titles_use_authored_cards() -> None:
     assert reference_options(draft, "items") == (("Бинт (bandage)", "bandage"),)
     assert reference_options(draft, "kinds") == (("Человек (human)", "human"),)
     assert reference_options(draft, "languages") == (("Общий (common)", "common"),)
+    catalogs = GlobalCatalogDraft(
+        traits=[CharacterTraitDraft(id="brave", name="Смелый")]
+    )
+    assert reference_options(catalogs, "traits") == (("Смелый (brave)", "brave"),)
     assert reference_options(draft, "missing") == ()
     assert entry_title(SimpleNamespace(id="x", name="Имя"), "id") == ("Имя", "x")

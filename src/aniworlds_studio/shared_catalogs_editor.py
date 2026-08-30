@@ -12,6 +12,7 @@ from aniworlds_studio.global_catalogs import (
     GLOBAL_CATALOG_FILE_NAME,
     GlobalCatalogDraft,
     load_global_catalogs,
+    load_initial_global_catalogs,
     preview_global_catalogs,
     publish_global_catalogs,
     replace_global_catalog_entries,
@@ -20,11 +21,11 @@ from aniworlds_studio.global_catalogs import (
 
 
 class SharedCatalogsFrame(ttk.Frame):
-    """Edit races, languages and organizations outside a specific world."""
+    """Edit shared content referenced by every authored world."""
 
     def __init__(self, parent: ttk.Notebook) -> None:
         super().__init__(parent, padding=20)
-        self._catalogs = GlobalCatalogDraft()
+        self._catalogs = load_initial_global_catalogs()
         self._editors: list[CatalogEditor] = []
         self._status = tk.StringVar(value="Каталоги ещё не сохранены")
         self._build()
@@ -53,6 +54,7 @@ class SharedCatalogsFrame(ttk.Frame):
             ("creature_kinds", "Расы и виды"),
             ("languages", "Языки"),
             ("groups", "Объединения"),
+            ("traits", "Черты характера"),
         ):
             page = ttk.Frame(tabs, padding=8)
             tabs.add(page, text=title)
@@ -107,7 +109,7 @@ class SharedCatalogsFrame(ttk.Frame):
 
     def _load(self) -> None:
         selected = filedialog.askopenfilename(
-            title="Откройте общие каталоги Studio",
+            title="Откройте черновик или опубликованные общие каталоги",
             filetypes=(("Общие каталоги", "*.json"),),
         )
         if not selected:

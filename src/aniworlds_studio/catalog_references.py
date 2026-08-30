@@ -3,24 +3,24 @@
 from collections.abc import Iterable
 from typing import Any
 
-from aniworlds_studio.foundation_models import UniverseDraft
 
-
-def reference_options(draft: UniverseDraft, source: str) -> tuple[tuple[str, str], ...]:
+def reference_options(draft: object, source: str) -> tuple[tuple[str, str], ...]:
     """Return display label and stable ID without exposing raw JSON references."""
     values: Iterable[Any]
     if source == "periods":
-        values = draft.periods
+        values = getattr(draft, "periods", ())
     elif source == "locations":
-        values = draft.locations
+        values = getattr(draft, "locations", ())
     elif source == "groups":
-        values = draft.groups
+        values = getattr(draft, "groups", ())
     elif source == "items":
-        values = draft.items
+        values = getattr(draft, "items", ())
     elif source == "kinds":
-        values = draft.creature_kinds
+        values = getattr(draft, "creature_kinds", ())
     elif source == "languages":
-        values = draft.languages
+        values = getattr(draft, "languages", ())
+    elif source == "traits":
+        values = getattr(draft, "traits", ())
     else:
         return ()
     return tuple((f"{item.name} ({item.id})", item.id) for item in values)

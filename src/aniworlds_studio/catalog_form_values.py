@@ -14,11 +14,14 @@ class VariableControl(Protocol):
 class FormControl:
     kind: str
     widget: Any
-    variable: VariableControl | None = None
+    variable: Any = None
     options: tuple[tuple[str, str], ...] = ()
 
 
 def read_control(control: FormControl) -> Any:
+    if control.kind == "instance_limit":
+        mode, amount = control.variable
+        return None if mode.get() == "Без ограничений" else int(amount.get())
     if control.kind == "boolean":
         return bool(control.variable.get()) if control.variable is not None else False
     if control.kind in {
@@ -49,6 +52,11 @@ def read_control(control: FormControl) -> Any:
 
 
 def write_control(control: FormControl, value: Any) -> None:
+    if control.kind == "instance_limit":
+        mode, amount = control.variable
+        mode.set("Без ограничений" if value is None else "Ограниченное количество")
+        amount.set("1" if value is None else str(value))
+        return
     if control.kind in {"long_text", "lines"}:
         text = value if isinstance(value, str) else "\n".join(value or ())
         control.widget.insert("1.0", text)  # type: ignore[attr-defined]

@@ -30,6 +30,7 @@ class CardFormDialog(tk.Toplevel):
         fields: tuple[FieldSpec, ...],
         initial: dict,
         draft: UniverseDraft,
+        reference_draft: object | None = None,
     ) -> None:
         super().__init__(parent)
         self.title(title)
@@ -39,6 +40,7 @@ class CardFormDialog(tk.Toplevel):
         self.grab_set()
         self.result: dict | None = None
         self._draft = draft
+        self._reference_draft = reference_draft or draft
         self._fields = fields
         self._controls: dict[str, FormControl | NestedValueEditor] = {}
         self._build(initial)
@@ -58,7 +60,7 @@ class CardFormDialog(tk.Toplevel):
             if spec.kind in {"nested", "language_units", "states"}:
                 self._controls[spec.key] = self._nested_control(form, spec, value)
                 continue
-            options = spec.options or reference_options(self._draft, spec.source)
+            options = spec.options or reference_options(self._reference_draft, spec.source)
             if spec.kind in {"choice_optional", "reference_optional"}:
                 options = (("Не задано", ""), *options)
             self._controls[spec.key] = build_control(
@@ -130,6 +132,7 @@ class CardFormDialog(tk.Toplevel):
             fields=fields,
             initial=initial,
             draft=self._draft,
+            reference_draft=self._reference_draft,
         )
         self.wait_window(dialog)
         return dialog.result

@@ -31,6 +31,7 @@ class CatalogEditor(ttk.Frame):
         replace_entries: Callable[[Any, str, list[dict[str, Any]]], None] = (
             replace_catalog_entries
         ),
+        get_reference_draft: Callable[[], Any] | None = None,
     ) -> None:
         super().__init__(parent, padding=14, style="Surface.TFrame")
         self._field_name = field_name
@@ -39,6 +40,7 @@ class CatalogEditor(ttk.Frame):
         self._on_changed = on_changed
         self._fields = fields or CATALOG_FORM_SPECS[field_name]
         self._replace_entries = replace_entries
+        self._get_reference_draft = get_reference_draft or get_draft
         self._build()
         self.refresh()
 
@@ -134,6 +136,7 @@ class CatalogEditor(ttk.Frame):
             fields=self._fields,
             initial=initial,
             draft=self._get_draft(),
+            reference_draft=self._get_reference_draft(),
         )
         self.wait_window(dialog)
         if dialog.result is None:

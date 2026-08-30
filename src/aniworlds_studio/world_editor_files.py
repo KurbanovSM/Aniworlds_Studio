@@ -33,7 +33,7 @@ def open_world_dialog(catalogs: GlobalCatalogDraft) -> tuple[UniverseDraft, str]
         draft = (
             load_published_foundation(path, catalogs)
             if path.name.endswith(".world.json")
-            else load_draft(path)
+            else load_draft(path, catalogs)
         )
         return draft, selected
     except (OSError, ValueError, TypeError) as error:

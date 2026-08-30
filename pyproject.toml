@@ -24,6 +24,9 @@ aniworlds-studio = "aniworlds_studio.app:main"
 [tool.hatch.build.targets.wheel]
 packages = ["src/aniworlds_studio"]
 
+[tool.hatch.build.targets.wheel.force-include]
+"content/global-catalogs.studio.json" = "aniworlds_studio/defaults/global-catalogs.studio.json"
+
 [tool.pytest.ini_options]
 addopts = "-q"
 testpaths = ["tests"]
@@ -48,6 +51,7 @@ omit = [
     "*/catalog_form_controls.py",
     "*/catalog_form_dialog.py",
     "*/global_settings_editor.py",
+    "*/promo_expiration_editor.py",
     "*/nested_value_editor.py",
     "*/period_child_editor.py",
     "*/period_location_editor.py",

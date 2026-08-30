@@ -21,7 +21,7 @@ def test_every_authoring_draft_matches_its_published_server_package() -> None:
 
     assert draft_paths
     for path in draft_paths:
-        draft = load_draft(path)
+        draft = load_draft(path, catalogs)
         validate_world_catalog_references(draft, catalogs)
         published_path = CONTENT / "upload" / "worlds" / f"{draft.id}.world.json"
         published = json.loads(published_path.read_text(encoding="utf-8"))
@@ -37,6 +37,18 @@ def test_shared_catalog_draft_matches_published_catalog() -> None:
     timestamp = datetime.fromisoformat(published["published_at"])
 
     assert published == catalog_publication_payload(catalogs, published_at=timestamp)
+    assert len(catalogs.traits) >= 36
+    assert all(trait.description.strip() for trait in catalogs.traits)
+
+
+def test_every_authored_character_trait_exists_in_the_shared_catalog() -> None:
+    catalogs = load_global_catalogs(CONTENT / "global-catalogs.studio.json")
+    available = {trait.id for trait in catalogs.traits}
+
+    for path in sorted((CONTENT / "worlds").glob("*.draft.json")):
+        draft = load_draft(path, catalogs)
+        used = {trait_id for character in draft.characters for trait_id in character.trait_ids}
+        assert used <= available
 
 
 def test_published_global_settings_use_the_current_studio_values() -> None:
