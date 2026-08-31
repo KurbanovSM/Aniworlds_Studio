@@ -15,16 +15,17 @@ ROOT = Path(__file__).parents[1]
 CONTENT = ROOT / "content"
 
 
-def test_every_authoring_draft_matches_its_published_server_package() -> None:
+def test_every_published_world_matches_an_authoring_draft() -> None:
     catalogs = load_global_catalogs(CONTENT / "global-catalogs.studio.json")
     draft_paths = sorted((CONTENT / "worlds").glob("*.draft.json"))
+    drafts = {draft.id: draft for draft in (load_draft(path, catalogs) for path in draft_paths)}
+    published_paths = sorted((CONTENT / "upload" / "worlds").glob("*.world.json"))
 
-    assert draft_paths
-    for path in draft_paths:
-        draft = load_draft(path, catalogs)
-        validate_world_catalog_references(draft, catalogs)
-        published_path = CONTENT / "upload" / "worlds" / f"{draft.id}.world.json"
+    assert published_paths
+    for published_path in published_paths:
         published = json.loads(published_path.read_text(encoding="utf-8"))
+        draft = drafts[published["universe"]["id"]]
+        validate_world_catalog_references(draft, catalogs)
         timestamp = datetime.fromisoformat(published["published_at"])
 
         assert published == publication_payload(draft, catalogs, published_at=timestamp)
@@ -65,10 +66,25 @@ def test_published_audit_promo_matches_the_studio_exporter() -> None:
     path = CONTENT / "upload" / "promocodes" / "ANI-TEST-AUDT.json"
     published = json.loads(path.read_text(encoding="utf-8"))
     expected = build_turn_promo(
-        1,
-        1,
+        100,
+        10,
         expires_at="2025-01-01T00:00:00Z",
         code="ANI-TEST-AUDT",
     )
 
     assert published == expected.document
+
+
+def test_every_published_turn_promo_matches_the_studio_exporter() -> None:
+    paths = sorted((CONTENT / "upload" / "promocodes").glob("*.json"))
+
+    assert paths
+    for path in paths:
+        published = json.loads(path.read_text(encoding="utf-8"))
+        expected = build_turn_promo(
+            published["turns"],
+            published["activation_limit"],
+            expires_at=published["expires_at"],
+            code=published["code"],
+        )
+        assert published == expected.document
