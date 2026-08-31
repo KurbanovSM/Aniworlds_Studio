@@ -59,12 +59,12 @@ Studio не подмешивает записи из кода или мигра�
 `content/drafts/naruto-npc-generation.draft.json`. Это редактируемый черновик,
 а не опубликованный серверный файл. Списки не встроены в Python-код Studio.
 Соответствующий отдельный выпуск для импорта находится в
-`content/releases/npc-generation/naruto-shinobi-world-v2.world.json`; прежний
-опубликованный пакет в `content/upload/worlds` не перезаписан.
+`content/releases/npc-generation/naruto-shinobi-world-v2.world.json`; он не
+входит в текущее дерево загрузки `content/upload`.
 Для сквозной проверки Studio также выпущен отдельный мир v3: редактируемый
 `content/worlds/naruto-v3.draft.json` и серверный
-`content/upload/worlds/naruto-shinobi-world-v3.world.json`. Мир v2 сохранён без
-перезаписи.
+`content/upload/worlds/naruto-shinobi-world-v3.world.json`. В актуальном дереве
+загрузки публикуется v3, а v2 остаётся только отдельным справочным выпуском.
 
 ## Запуск
 
@@ -106,3 +106,10 @@ Aniworlds AI принимает отдельный общий каталог в�
 .\.venv\Scripts\pyright.exe
 .\.venv\Scripts\python.exe -m pytest --cov
 ```
+
+Отдельный job `game-compatibility` прогоняет опубликованные файлы через реальные
+контракты Aniworlds AI. Поскольку оба репозитория приватные, для этой проверки в
+GitHub Actions нужен repository secret `ANIWORLDS_AI_REPO_TOKEN` с правом только
+на чтение репозитория `KurbanovSM/Aniworlds_AI`. Пока secret не настроен, обычные
+проверки Studio выполняются полностью, а межрепозиторная проверка явно
+пропускается; локально она доступна при соседней папке `Aniworlds_AI`.
