@@ -1,0 +1,2698 @@
+{
+  "draft_version": 2,
+  "universe": {
+    "id": "naruto-shinobi-world-v3",
+    "name": "Мир Наруто — живые NPC",
+    "description": "Мир скрытых деревень, шиноби, чакры, опасных заданий и конфликтов между великими странами. Новые участники получают устойчивую личность из редактируемых правил этого мира.",
+    "world_rules": "Рассказчик ведёт повествование от третьего лица и описывает только доступную текущей сцене информацию. Он не принимает решения за игрока, не подтверждает невозможные заявления и оценивает результат действий по способностям, состоянию, расстоянию и реакции окружающих. NPC могут первыми обратиться к игроку или помешать ему. Знания будущих событий не раскрываются персонажам и игроку без причины внутри мира. В мирном периоде жители не ожидают нападения Пейна или мировой войны. Простое заявление игрока не создаёт способность, редкий предмет, магазин или достижение. Возможные обычные места и товары допускаются по лору и сохраняются только после фактического раскрытия. Рассказчик использует только выбранный период и не пересказывает другие периоды.",
+    "power_systems": "Основой способностей служит чакра, образуемая физической и духовной энергией. Шиноби применяют ниндзюцу, гендзюцу и тайдзюцу, складывают печати, используют оружие и особые наследственные техники. Сила техники ограничена подготовкой, запасом чакры, телом, знаниями и условиями сцены. Хвостатые звери обладают огромными запасами чакры, а призывные животные действуют по договорам. Нельзя получить новую технику одним заявлением: она создаётся при подготовке персонажа или изучается через подтверждённое обучение в мире.",
+    "gameplay": {
+      "currency_id": "ryo",
+      "currency_name": "Рё",
+      "currency_symbol": "両",
+      "strength_name": "Чакра"
+    },
+    "periods": [
+      {
+        "id": "before-pain",
+        "name": "Спокойное время до нападения Пейна",
+        "description": "Условная точка примерно за год до нападения Пейна: деревни живут обычными заданиями, а Акацуки действует скрытно.",
+        "lore": "Коноха восстановила привычный ритм после прежних потрясений. Цунаде остаётся Пятой Хокаге, команды получают сопровождение, разведку, охрану и поиск пропавших. Наруто продолжает тренировки и пытается вернуть Саске. Великие деревни конкурируют, но открытой мировой войны нет. Акацуки тайно охотится за джинчурики. Пейн управляет Скрытым Дождём и рассматривает будущие действия против Конохи, однако его намерения не известны обычным жителям и большинству шиноби. Этот скрытый замысел нельзя раскрывать без полученного внутри мира знания.",
+        "initial_situation": "Начинается обычный день заданий. В выбранной стартовой локации идут привычные дела: у ворот проверяют документы, в центре Конохи работают лавки, на полигоне тренируются команды, на дороге движутся торговцы и курьеры. Рассказчик описывает только то, что персонаж видит рядом, его одежду и положение, затем передаёт управление игроку. Никаких предвестий нападения Пейна без действий игрока не появляется.",
+        "location_ids": [
+          "konoha-gates",
+          "konoha-center",
+          "hokage-residence",
+          "training-ground-seven",
+          "konoha-hospital",
+          "land-of-fire-road",
+          "hidden-sand",
+          "hidden-rain",
+          "akatsuki-hideout"
+        ],
+        "starting_location_ids": [
+          "konoha-gates",
+          "konoha-center",
+          "training-ground-seven",
+          "land-of-fire-road",
+          "hidden-sand"
+        ],
+        "location_connections": [
+          {
+            "location_id": "konoha-gates",
+            "connected_location_ids": [
+              "konoha-center",
+              "land-of-fire-road"
+            ]
+          },
+          {
+            "location_id": "konoha-center",
+            "connected_location_ids": [
+              "konoha-gates",
+              "hokage-residence",
+              "training-ground-seven",
+              "konoha-hospital"
+            ]
+          },
+          {
+            "location_id": "hokage-residence",
+            "connected_location_ids": [
+              "konoha-center"
+            ]
+          },
+          {
+            "location_id": "training-ground-seven",
+            "connected_location_ids": [
+              "konoha-center"
+            ]
+          },
+          {
+            "location_id": "konoha-hospital",
+            "connected_location_ids": [
+              "konoha-center"
+            ]
+          },
+          {
+            "location_id": "land-of-fire-road",
+            "connected_location_ids": [
+              "konoha-gates",
+              "hidden-sand",
+              "hidden-rain"
+            ]
+          },
+          {
+            "location_id": "hidden-sand",
+            "connected_location_ids": [
+              "land-of-fire-road"
+            ]
+          },
+          {
+            "location_id": "hidden-rain",
+            "connected_location_ids": [
+              "land-of-fire-road",
+              "akatsuki-hideout"
+            ]
+          },
+          {
+            "location_id": "akatsuki-hideout",
+            "connected_location_ids": [
+              "hidden-rain"
+            ]
+          }
+        ],
+        "starting_kits": [
+          {
+            "id": "shinobi-basic",
+            "name": "Базовый набор шиноби",
+            "description": "Универсальное снаряжение для обычных заданий и дороги.",
+            "starting_currency_amount": 1000,
+            "items": [
+              {
+                "item_id": "kunai",
+                "quantity": 3
+              },
+              {
+                "item_id": "shuriken",
+                "quantity": 5
+              },
+              {
+                "item_id": "bandage",
+                "quantity": 2
+              },
+              {
+                "item_id": "ration-pack",
+                "quantity": 2
+              },
+              {
+                "item_id": "wire",
+                "quantity": 1
+              }
+            ]
+          },
+          {
+            "id": "field-medic",
+            "name": "Набор полевого медика",
+            "description": "Первая помощь и защита группы во время задания.",
+            "starting_currency_amount": 800,
+            "items": [
+              {
+                "item_id": "kunai",
+                "quantity": 2
+              },
+              {
+                "item_id": "bandage",
+                "quantity": 4
+              },
+              {
+                "item_id": "medical-kit",
+                "quantity": 1
+              },
+              {
+                "item_id": "antidote",
+                "quantity": 2
+              },
+              {
+                "item_id": "smoke-bomb",
+                "quantity": 2
+              }
+            ]
+          },
+          {
+            "id": "traveler-scout",
+            "name": "Набор разведчика",
+            "description": "Лёгкое снаряжение для наблюдения и дальнего пути.",
+            "starting_currency_amount": 1200,
+            "items": [
+              {
+                "item_id": "kunai",
+                "quantity": 2
+              },
+              {
+                "item_id": "smoke-bomb",
+                "quantity": 3
+              },
+              {
+                "item_id": "wire",
+                "quantity": 2
+              },
+              {
+                "item_id": "ration-pack",
+                "quantity": 4
+              },
+              {
+                "item_id": "field-map",
+                "quantity": 1
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "fourth-war",
+        "name": "Четвёртая мировая война шиноби",
+        "description": "Первые этапы войны Объединённых сил шиноби против армии Белых Дзецу и воскрешённых бойцов Кабуто.",
+        "lore": "Пять великих стран и самураи создали Объединённые силы шиноби. Армия разделена на боевые подразделения, штаб координирует фронты, а медики и разведчики работают под постоянной угрозой проникновения Белых Дзецу. Противник использует многочисленных искусственных бойцов и Нечестивое воскрешение. Наруто и Киллер Би сначала удерживаются в стороне от основной войны, но развитие событий может привести их на фронт. Данные позднейших этапов войны не считаются уже произошедшими и не раскрываются заранее.",
+        "initial_situation": "Война уже началась. В выбранной стартовой локации ощущается напряжение: у штаба передают приказы, на фронте укрепляют позиции, в деревнях проверяют сообщения, а на Острове-Черепахе сохраняют режим изоляции. Рассказчик показывает ближайших людей, знаки подразделений, одежду и текущую обстановку персонажа, после чего передаёт управление игроку. Результаты будущих сражений заранее не определены.",
+        "location_ids": [
+          "konoha-gates",
+          "konoha-center",
+          "konoha-hospital",
+          "land-of-fire-road",
+          "hidden-sand",
+          "hidden-cloud",
+          "hidden-stone",
+          "allied-headquarters",
+          "fourth-division-front",
+          "island-turtle",
+          "mountain-graveyard"
+        ],
+        "starting_location_ids": [
+          "allied-headquarters",
+          "fourth-division-front",
+          "konoha-gates",
+          "hidden-sand",
+          "hidden-cloud"
+        ],
+        "location_connections": [
+          {
+            "location_id": "konoha-gates",
+            "connected_location_ids": [
+              "konoha-center",
+              "land-of-fire-road"
+            ]
+          },
+          {
+            "location_id": "konoha-center",
+            "connected_location_ids": [
+              "konoha-gates",
+              "konoha-hospital"
+            ]
+          },
+          {
+            "location_id": "konoha-hospital",
+            "connected_location_ids": [
+              "konoha-center"
+            ]
+          },
+          {
+            "location_id": "land-of-fire-road",
+            "connected_location_ids": [
+              "konoha-gates",
+              "hidden-sand",
+              "hidden-cloud",
+              "hidden-stone",
+              "allied-headquarters"
+            ]
+          },
+          {
+            "location_id": "hidden-sand",
+            "connected_location_ids": [
+              "land-of-fire-road",
+              "allied-headquarters"
+            ]
+          },
+          {
+            "location_id": "hidden-cloud",
+            "connected_location_ids": [
+              "land-of-fire-road",
+              "allied-headquarters",
+              "island-turtle"
+            ]
+          },
+          {
+            "location_id": "hidden-stone",
+            "connected_location_ids": [
+              "land-of-fire-road",
+              "allied-headquarters"
+            ]
+          },
+          {
+            "location_id": "allied-headquarters",
+            "connected_location_ids": [
+              "land-of-fire-road",
+              "hidden-sand",
+              "hidden-cloud",
+              "hidden-stone",
+              "fourth-division-front",
+              "island-turtle"
+            ]
+          },
+          {
+            "location_id": "fourth-division-front",
+            "connected_location_ids": [
+              "allied-headquarters",
+              "mountain-graveyard"
+            ]
+          },
+          {
+            "location_id": "island-turtle",
+            "connected_location_ids": [
+              "hidden-cloud",
+              "allied-headquarters"
+            ]
+          },
+          {
+            "location_id": "mountain-graveyard",
+            "connected_location_ids": [
+              "fourth-division-front"
+            ]
+          }
+        ],
+        "starting_kits": [
+          {
+            "id": "frontline-shinobi",
+            "name": "Фронтовой набор",
+            "description": "Боевой запас для действующего подразделения.",
+            "starting_currency_amount": 500,
+            "items": [
+              {
+                "item_id": "kunai",
+                "quantity": 5
+              },
+              {
+                "item_id": "shuriken",
+                "quantity": 8
+              },
+              {
+                "item_id": "explosive-tag",
+                "quantity": 3
+              },
+              {
+                "item_id": "soldier-pill",
+                "quantity": 2
+              },
+              {
+                "item_id": "bandage",
+                "quantity": 3
+              },
+              {
+                "item_id": "radio",
+                "quantity": 1
+              }
+            ]
+          },
+          {
+            "id": "war-medic",
+            "name": "Набор медика войны",
+            "description": "Средства стабилизации раненых под угрозой боя.",
+            "starting_currency_amount": 400,
+            "items": [
+              {
+                "item_id": "kunai",
+                "quantity": 2
+              },
+              {
+                "item_id": "medical-kit",
+                "quantity": 2
+              },
+              {
+                "item_id": "bandage",
+                "quantity": 6
+              },
+              {
+                "item_id": "antidote",
+                "quantity": 3
+              },
+              {
+                "item_id": "smoke-bomb",
+                "quantity": 2
+              },
+              {
+                "item_id": "radio",
+                "quantity": 1
+              }
+            ]
+          },
+          {
+            "id": "war-scout",
+            "name": "Набор военного разведчика",
+            "description": "Связь, маскировка и автономность для наблюдения.",
+            "starting_currency_amount": 600,
+            "items": [
+              {
+                "item_id": "kunai",
+                "quantity": 3
+              },
+              {
+                "item_id": "smoke-bomb",
+                "quantity": 4
+              },
+              {
+                "item_id": "wire",
+                "quantity": 3
+              },
+              {
+                "item_id": "ration-pack",
+                "quantity": 4
+              },
+              {
+                "item_id": "radio",
+                "quantity": 1
+              },
+              {
+                "item_id": "field-map",
+                "quantity": 1
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "locations": [
+      {
+        "id": "konoha-gates",
+        "name": "Главные ворота Конохи",
+        "description": "Высокие ворота с постом проверки, очередью путников и дежурными шиноби.",
+        "price_coefficient": 1
+      },
+      {
+        "id": "konoha-center",
+        "name": "Центр Конохи",
+        "description": "Жилые улицы, лавки, закусочные и оживлённые перекрёстки под скалой Хокаге.",
+        "price_coefficient": 1
+      },
+      {
+        "id": "hokage-residence",
+        "name": "Резиденция Хокаге",
+        "description": "Административный комплекс, где распределяют задания и принимают важные решения.",
+        "price_coefficient": 1.15
+      },
+      {
+        "id": "training-ground-seven",
+        "name": "Седьмой тренировочный полигон",
+        "description": "Лесистый полигон с открытой площадкой и тремя памятными столбами.",
+        "price_coefficient": 1
+      },
+      {
+        "id": "konoha-hospital",
+        "name": "Госпиталь Конохи",
+        "description": "Главный медицинский центр деревни с палатами, операционными и запасами лекарств.",
+        "price_coefficient": 1.2
+      },
+      {
+        "id": "land-of-fire-road",
+        "name": "Дорога Страны Огня",
+        "description": "Сеть лесных дорог между Конохой, границами и соседними странами.",
+        "price_coefficient": 1.1
+      },
+      {
+        "id": "hidden-sand",
+        "name": "Сунагакуре",
+        "description": "Укреплённая деревня среди пустыни, защищённая скалами и песчаными проходами.",
+        "price_coefficient": 1.25
+      },
+      {
+        "id": "hidden-rain",
+        "name": "Амегакуре",
+        "description": "Промышленная деревня высоких башен и труб, почти постоянно скрытая дождём.",
+        "price_coefficient": 1.35
+      },
+      {
+        "id": "akatsuki-hideout",
+        "name": "Скрытое убежище Акацуки",
+        "description": "Изолированное каменное убежище для тайных встреч и ритуалов организации.",
+        "price_coefficient": 1.5
+      },
+      {
+        "id": "hidden-cloud",
+        "name": "Кумогакуре",
+        "description": "Горная деревня среди облаков, ущелий и высоких плато Страны Молнии.",
+        "price_coefficient": 1.2
+      },
+      {
+        "id": "hidden-stone",
+        "name": "Ивагакуре",
+        "description": "Каменная деревня в суровом горном ландшафте Страны Земли.",
+        "price_coefficient": 1.15
+      },
+      {
+        "id": "allied-headquarters",
+        "name": "Штаб Объединённых сил",
+        "description": "Защищённый центр командования, связи, разведки и распределения подразделений.",
+        "price_coefficient": 1.3
+      },
+      {
+        "id": "fourth-division-front",
+        "name": "Фронт Четвёртой дивизии",
+        "description": "Широкая каменистая равнина с укреплениями, дозорами и следами масштабного боя.",
+        "price_coefficient": 1.45
+      },
+      {
+        "id": "island-turtle",
+        "name": "Остров-Черепаха",
+        "description": "Гигантская живая черепаха с лесами и тренировочными местами на панцире.",
+        "price_coefficient": 1.6
+      },
+      {
+        "id": "mountain-graveyard",
+        "name": "Горное кладбище",
+        "description": "Скрытая область с подземными залами и опасными путями к базе противника.",
+        "price_coefficient": 1.7
+      }
+    ],
+    "creature_kinds": [
+      {
+        "id": "human",
+        "name": "Человек",
+        "description": "Разумный человек мира шиноби, способный управлять чакрой после обучения.",
+        "category": "race",
+        "cognition": "sapient",
+        "communication_modes": [
+          "speech",
+          "writing",
+          "signals"
+        ],
+        "default_languages": [
+          {
+            "language_id": "shinobi-common",
+            "progress_units": 20
+          }
+        ],
+        "physical_features": [
+          "Человеческое телосложение",
+          "Развитая система циркуляции чакры"
+        ],
+        "habitat_location_ids": [
+          "konoha-gates",
+          "hokage-residence",
+          "training-ground-seven",
+          "konoha-hospital",
+          "land-of-fire-road",
+          "akatsuki-hideout",
+          "allied-headquarters",
+          "fourth-division-front",
+          "island-turtle",
+          "mountain-graveyard",
+          "konoha-center",
+          "hidden-sand",
+          "hidden-rain",
+          "hidden-cloud",
+          "hidden-stone"
+        ],
+        "period_ids": [
+          "before-pain",
+          "fourth-war"
+        ],
+        "parent_kind_id": null
+      },
+      {
+        "id": "summoning-animal",
+        "name": "Разумное призывное животное",
+        "description": "Животное из связанного с шиноби призывного рода; отдельные представители разумны и владеют речью.",
+        "category": "animal",
+        "cognition": "animal",
+        "communication_modes": [
+          "signals",
+          "speech"
+        ],
+        "default_languages": [
+          {
+            "language_id": "shinobi-common",
+            "progress_units": 20
+          }
+        ],
+        "physical_features": [
+          "Анатомия соответствующего животного",
+          "Возможность заключать договор призыва"
+        ],
+        "habitat_location_ids": [
+          "training-ground-seven",
+          "island-turtle"
+        ],
+        "period_ids": [
+          "before-pain",
+          "fourth-war"
+        ],
+        "parent_kind_id": null
+      },
+      {
+        "id": "tailed-beast",
+        "name": "Хвостатый зверь",
+        "description": "Разумное существо из огромной массы чакры с собственной волей и памятью.",
+        "category": "supernatural",
+        "cognition": "higher",
+        "communication_modes": [
+          "speech",
+          "telepathy"
+        ],
+        "default_languages": [
+          {
+            "language_id": "shinobi-common",
+            "progress_units": 20
+          }
+        ],
+        "physical_features": [
+          "Тело из концентрированной чакры",
+          "Огромный запас чакры",
+          "Характерное число хвостов"
+        ],
+        "habitat_location_ids": [
+          "island-turtle",
+          "hidden-sand"
+        ],
+        "period_ids": [
+          "before-pain",
+          "fourth-war"
+        ],
+        "parent_kind_id": null
+      },
+      {
+        "id": "white-zetsu",
+        "name": "Белый Дзецу",
+        "description": "Искусственно выращенное человекоподобное существо армии Акацуки.",
+        "category": "supernatural",
+        "cognition": "sapient",
+        "communication_modes": [
+          "speech",
+          "signals"
+        ],
+        "default_languages": [
+          {
+            "language_id": "shinobi-common",
+            "progress_units": 20
+          }
+        ],
+        "physical_features": [
+          "Белая кожа",
+          "Растительная структура тела",
+          "Способность сливаться с окружением"
+        ],
+        "habitat_location_ids": [
+          "mountain-graveyard",
+          "fourth-division-front"
+        ],
+        "period_ids": [
+          "fourth-war"
+        ],
+        "parent_kind_id": null
+      },
+      {
+        "id": "reanimated-shinobi",
+        "name": "Воскрешённый шиноби",
+        "description": "Погибший шиноби, возвращённый техникой Нечестивого воскрешения и удерживаемый внешним управлением.",
+        "category": "supernatural",
+        "cognition": "sapient",
+        "communication_modes": [
+          "speech",
+          "writing",
+          "signals"
+        ],
+        "default_languages": [
+          {
+            "language_id": "shinobi-common",
+            "progress_units": 20
+          }
+        ],
+        "physical_features": [
+          "Восстанавливающееся тело",
+          "Трещины на коже",
+          "Подчинение управляющей печати"
+        ],
+        "habitat_location_ids": [
+          "fourth-division-front",
+          "mountain-graveyard"
+        ],
+        "period_ids": [
+          "fourth-war"
+        ],
+        "parent_kind_id": "human"
+      }
+    ],
+    "languages": [
+      {
+        "id": "shinobi-common",
+        "name": "Общий язык мира шиноби",
+        "has_spoken_form": true,
+        "has_written_form": true
+      }
+    ],
+    "groups": [
+      {
+        "id": "konoha",
+        "name": "Конохагакуре",
+        "group_type": "settlement",
+        "description": "Скрытая деревня Страны Огня под руководством Хокаге.",
+        "location_ids": [
+          "konoha-gates",
+          "konoha-center",
+          "hokage-residence",
+          "training-ground-seven",
+          "konoha-hospital"
+        ],
+        "ally_ids": [
+          "sunagakure",
+          "kumogakure",
+          "iwagakure",
+          "kirigakure",
+          "allied-shinobi-forces"
+        ],
+        "enemy_ids": [
+          "akatsuki",
+          "white-zetsu-army"
+        ],
+        "period_states": {
+          "before-pain": "Живёт обычными заданиями под руководством Пятой Хокаге; скрытая угроза Акацуки известна лишь частично.",
+          "fourth-war": "Поддерживает фронт, госпиталь и подразделения Объединённых сил."
+        }
+      },
+      {
+        "id": "sunagakure",
+        "name": "Сунагакуре",
+        "group_type": "settlement",
+        "description": "Скрытая деревня Страны Ветра под руководством Казекаге.",
+        "location_ids": [
+          "hidden-sand"
+        ],
+        "ally_ids": [
+          "konoha",
+          "allied-shinobi-forces"
+        ],
+        "enemy_ids": [
+          "akatsuki",
+          "white-zetsu-army"
+        ],
+        "period_states": {
+          "before-pain": "Поддерживает союз с Конохой и выполняет собственные задания.",
+          "fourth-war": "Казекаге ведёт подразделения общего альянса."
+        }
+      },
+      {
+        "id": "kumogakure",
+        "name": "Кумогакуре",
+        "group_type": "settlement",
+        "description": "Скрытая деревня Страны Молнии под руководством Райкаге.",
+        "location_ids": [
+          "hidden-cloud",
+          "island-turtle"
+        ],
+        "ally_ids": [
+          "konoha",
+          "allied-shinobi-forces"
+        ],
+        "enemy_ids": [
+          "akatsuki",
+          "white-zetsu-army"
+        ],
+        "period_states": {
+          "before-pain": "Защищает собственные интересы и джинчурики.",
+          "fourth-war": "Участвует в союзе и охраняет Остров-Черепаху."
+        }
+      },
+      {
+        "id": "iwagakure",
+        "name": "Ивагакуре",
+        "group_type": "settlement",
+        "description": "Скрытая деревня Страны Земли под руководством Цучикаге.",
+        "location_ids": [
+          "hidden-stone"
+        ],
+        "ally_ids": [
+          "konoha",
+          "allied-shinobi-forces"
+        ],
+        "enemy_ids": [
+          "akatsuki",
+          "white-zetsu-army"
+        ],
+        "period_states": {
+          "before-pain": "Сохраняет самостоятельную военную политику.",
+          "fourth-war": "Направила силы и Цучикаге в общий альянс."
+        }
+      },
+      {
+        "id": "kirigakure",
+        "name": "Киригакуре",
+        "group_type": "settlement",
+        "description": "Скрытая деревня Страны Воды под руководством Мизукаге.",
+        "location_ids": [],
+        "ally_ids": [
+          "konoha",
+          "allied-shinobi-forces"
+        ],
+        "enemy_ids": [
+          "akatsuki",
+          "white-zetsu-army"
+        ],
+        "period_states": {
+          "before-pain": "Постепенно отходит от жестокого прошлого Кровавого Тумана.",
+          "fourth-war": "Участвует в объединённом командовании и фронтовых частях."
+        }
+      },
+      {
+        "id": "akatsuki",
+        "name": "Акацуки",
+        "group_type": "organization",
+        "description": "Тайная организация сильных отступников, охотящаяся за хвостатыми зверями.",
+        "location_ids": [
+          "hidden-rain",
+          "akatsuki-hideout",
+          "mountain-graveyard"
+        ],
+        "ally_ids": [
+          "white-zetsu-army",
+          "taka"
+        ],
+        "enemy_ids": [
+          "konoha",
+          "sunagakure",
+          "kumogakure",
+          "iwagakure",
+          "kirigakure",
+          "allied-shinobi-forces"
+        ],
+        "period_states": {
+          "before-pain": "Скрытно собирает хвостатых зверей; Пейн обдумывает дальнейшие действия, не раскрывая их миру.",
+          "fourth-war": "Ведёт войну силами Белых Дзецу, подконтрольных существ и союзом с Кабуто."
+        }
+      },
+      {
+        "id": "team-kakashi",
+        "name": "Команда Какаши",
+        "group_type": "team",
+        "description": "Команда Конохи, выполняющая задания под руководством Какаши и Ямато.",
+        "location_ids": [
+          "konoha-center",
+          "training-ground-seven"
+        ],
+        "ally_ids": [
+          "konoha"
+        ],
+        "enemy_ids": [
+          "akatsuki"
+        ],
+        "period_states": {
+          "before-pain": "Выполняет задания и продолжает поиски способа вернуть Саске.",
+          "fourth-war": "Участники распределены между задачами Конохи и фронтом."
+        }
+      },
+      {
+        "id": "allied-shinobi-forces",
+        "name": "Объединённые силы шиноби",
+        "group_type": "army",
+        "description": "Военный союз пяти великих стран и самураев Страны Железа.",
+        "location_ids": [
+          "allied-headquarters",
+          "fourth-division-front"
+        ],
+        "ally_ids": [
+          "konoha",
+          "sunagakure",
+          "kumogakure",
+          "iwagakure",
+          "kirigakure"
+        ],
+        "enemy_ids": [
+          "akatsuki",
+          "white-zetsu-army"
+        ],
+        "period_states": {
+          "fourth-war": "Развёрнуты по дивизиям и ведут согласованную оборону против армии противника."
+        }
+      },
+      {
+        "id": "taka",
+        "name": "Така",
+        "group_type": "team",
+        "description": "Независимая команда Саске Учихи, собранная вокруг его личных целей.",
+        "location_ids": [
+          "land-of-fire-road",
+          "akatsuki-hideout",
+          "mountain-graveyard"
+        ],
+        "ally_ids": [
+          "akatsuki"
+        ],
+        "enemy_ids": [
+          "konoha"
+        ],
+        "period_states": {
+          "before-pain": "Небольшая мобильная команда следует решениям Саске.",
+          "fourth-war": "Участники действуют раздельно, а решения Саске остаются непредсказуемыми."
+        }
+      },
+      {
+        "id": "white-zetsu-army",
+        "name": "Армия Белых Дзецу",
+        "group_type": "army",
+        "description": "Массовая армия искусственных существ под командованием Акацуки.",
+        "location_ids": [
+          "mountain-graveyard",
+          "fourth-division-front"
+        ],
+        "ally_ids": [
+          "akatsuki"
+        ],
+        "enemy_ids": [
+          "konoha",
+          "sunagakure",
+          "kumogakure",
+          "iwagakure",
+          "kirigakure",
+          "allied-shinobi-forces"
+        ],
+        "period_states": {
+          "before-pain": "Скрытый резерв, о существовании которого мир не осведомлён.",
+          "fourth-war": "Проникает в порядки союзников и атакует фронтовые подразделения."
+        }
+      }
+    ],
+    "items": [
+      {
+        "id": "kunai",
+        "name": "Кунай",
+        "description": "Стандартный метательный и ближний клинок шиноби.",
+        "category": "weapon",
+        "uniqueness": "ordinary",
+        "properties": [
+          "Можно метать",
+          "Подходит для ближнего боя"
+        ],
+        "limitations": [
+          "Не пробивает тяжёлую защиту без достаточной силы"
+        ],
+        "allowed_shop_kinds": [
+          "general_store",
+          "forge"
+        ],
+        "base_price": 50,
+        "appearance_weight": 90,
+        "maximum_created_instances": null
+      },
+      {
+        "id": "shuriken",
+        "name": "Сюрикен",
+        "description": "Метательная стальная звезда для отвлечения и поражения цели.",
+        "category": "weapon",
+        "uniqueness": "ordinary",
+        "properties": [
+          "Можно метать серией"
+        ],
+        "limitations": [
+          "Требует точности"
+        ],
+        "allowed_shop_kinds": [
+          "general_store",
+          "forge"
+        ],
+        "base_price": 30,
+        "appearance_weight": 85,
+        "maximum_created_instances": null
+      },
+      {
+        "id": "explosive-tag",
+        "name": "Взрывная печать",
+        "description": "Бумажная печать, взрывающаяся после активации.",
+        "category": "consumable",
+        "uniqueness": "ordinary",
+        "properties": [
+          "Создаёт локальный взрыв"
+        ],
+        "limitations": [
+          "Расходуется при применении",
+          "Опасна для всех рядом"
+        ],
+        "allowed_shop_kinds": [
+          "general_store"
+        ],
+        "base_price": 180,
+        "appearance_weight": 45,
+        "maximum_created_instances": null
+      },
+      {
+        "id": "smoke-bomb",
+        "name": "Дымовая бомба",
+        "description": "Небольшой заряд для создания плотной дымовой завесы.",
+        "category": "consumable",
+        "uniqueness": "ordinary",
+        "properties": [
+          "Закрывает обзор"
+        ],
+        "limitations": [
+          "Расходуется при применении",
+          "Ветер рассеивает дым"
+        ],
+        "allowed_shop_kinds": [
+          "general_store"
+        ],
+        "base_price": 80,
+        "appearance_weight": 70,
+        "maximum_created_instances": null
+      },
+      {
+        "id": "soldier-pill",
+        "name": "Военная пилюля",
+        "description": "Стимулирующая пилюля для кратковременной поддержки сил шиноби.",
+        "category": "consumable",
+        "uniqueness": "ordinary",
+        "properties": [
+          "Временно поддерживает работоспособность"
+        ],
+        "limitations": [
+          "Расходуется при применении",
+          "Не заменяет отдых и лечение"
+        ],
+        "allowed_shop_kinds": [
+          "general_store"
+        ],
+        "base_price": 250,
+        "appearance_weight": 35,
+        "maximum_created_instances": null
+      },
+      {
+        "id": "bandage",
+        "name": "Бинт",
+        "description": "Чистый перевязочный материал для первой помощи.",
+        "category": "consumable",
+        "uniqueness": "ordinary",
+        "properties": [
+          "Помогает остановить кровотечение"
+        ],
+        "limitations": [
+          "Расходуется при применении"
+        ],
+        "allowed_shop_kinds": [
+          "general_store"
+        ],
+        "base_price": 20,
+        "appearance_weight": 100,
+        "maximum_created_instances": null
+      },
+      {
+        "id": "medical-kit",
+        "name": "Медицинский комплект",
+        "description": "Набор инструментов и средств полевого медика.",
+        "category": "common",
+        "uniqueness": "ordinary",
+        "properties": [
+          "Позволяет оказать расширенную первую помощь"
+        ],
+        "limitations": [
+          "Эффективность зависит от медицинских знаний"
+        ],
+        "allowed_shop_kinds": [
+          "general_store"
+        ],
+        "base_price": 600,
+        "appearance_weight": 30,
+        "maximum_created_instances": null
+      },
+      {
+        "id": "antidote",
+        "name": "Противоядие",
+        "description": "Порция распространённого противоядия общего назначения.",
+        "category": "consumable",
+        "uniqueness": "ordinary",
+        "properties": [
+          "Может ослабить действие подходящего яда"
+        ],
+        "limitations": [
+          "Расходуется при применении",
+          "Не действует на неизвестные составы автоматически"
+        ],
+        "allowed_shop_kinds": [
+          "general_store"
+        ],
+        "base_price": 220,
+        "appearance_weight": 40,
+        "maximum_created_instances": null
+      },
+      {
+        "id": "wire",
+        "name": "Стальная проволока",
+        "description": "Тонкая прочная проволока для ловушек и манёвров.",
+        "category": "common",
+        "uniqueness": "ordinary",
+        "properties": [
+          "Подходит для простых ловушек",
+          "Можно соединять с оружием"
+        ],
+        "limitations": [
+          "Заметна при плохой маскировке"
+        ],
+        "allowed_shop_kinds": [
+          "general_store",
+          "forge"
+        ],
+        "base_price": 70,
+        "appearance_weight": 70,
+        "maximum_created_instances": null
+      },
+      {
+        "id": "ration-pack",
+        "name": "Походный паёк",
+        "description": "Простая еда для длительного задания.",
+        "category": "consumable",
+        "uniqueness": "ordinary",
+        "properties": [
+          "Утоляет голод"
+        ],
+        "limitations": [
+          "Расходуется при применении"
+        ],
+        "allowed_shop_kinds": [
+          "general_store"
+        ],
+        "base_price": 40,
+        "appearance_weight": 95,
+        "maximum_created_instances": null
+      },
+      {
+        "id": "radio",
+        "name": "Полевой передатчик",
+        "description": "Компактное средство связи подразделений на ограниченной дистанции.",
+        "category": "common",
+        "uniqueness": "ordinary",
+        "properties": [
+          "Поддерживает голосовую связь на настроенной частоте"
+        ],
+        "limitations": [
+          "Связь зависит от дальности и помех"
+        ],
+        "allowed_shop_kinds": [
+          "general_store"
+        ],
+        "base_price": 900,
+        "appearance_weight": 20,
+        "maximum_created_instances": null
+      },
+      {
+        "id": "field-map",
+        "name": "Полевая карта",
+        "description": "Складная карта известных дорог и крупных поселений.",
+        "category": "common",
+        "uniqueness": "ordinary",
+        "properties": [
+          "Помогает ориентироваться на известных маршрутах"
+        ],
+        "limitations": [
+          "Не показывает скрытые и недавно изменившиеся места"
+        ],
+        "allowed_shop_kinds": [
+          "general_store"
+        ],
+        "base_price": 120,
+        "appearance_weight": 55,
+        "maximum_created_instances": null
+      },
+      {
+        "id": "flak-jacket",
+        "name": "Защитный жилет шиноби",
+        "description": "Служебный жилет с карманами и ограниченной защитой корпуса.",
+        "category": "armor",
+        "uniqueness": "ordinary",
+        "properties": [
+          "Частично защищает корпус",
+          "Позволяет переносить снаряжение"
+        ],
+        "limitations": [
+          "Не останавливает сильные техники"
+        ],
+        "allowed_shop_kinds": [
+          "general_store"
+        ],
+        "base_price": 1800,
+        "appearance_weight": 25,
+        "maximum_created_instances": null
+      },
+      {
+        "id": "chakra-paper",
+        "name": "Бумага определения чакры",
+        "description": "Особая бумага, реагирующая на природное преобразование чакры.",
+        "category": "consumable",
+        "uniqueness": "ordinary",
+        "properties": [
+          "Показывает природную склонность чакры"
+        ],
+        "limitations": [
+          "Расходуется при проверке",
+          "Не обучает технике"
+        ],
+        "allowed_shop_kinds": [
+          "general_store"
+        ],
+        "base_price": 300,
+        "appearance_weight": 25,
+        "maximum_created_instances": null
+      }
+    ],
+    "shop_policies": [
+      {
+        "shop_kind": "general_store",
+        "minimum_assortment_size": 3,
+        "maximum_assortment_size": 8
+      },
+      {
+        "shop_kind": "forge",
+        "minimum_assortment_size": 2,
+        "maximum_assortment_size": 5
+      }
+    ],
+    "characters": [
+      {
+        "id": "naruto-before-pain",
+        "name": "Наруто Узумаки",
+        "sex": "male",
+        "age": 18,
+        "biography": "Упрямый и открытый шиноби Конохи, стремящийся заслужить признание и вернуть Саске. Носит в себе Девятихвостого, но ещё не управляет его силой свободно.",
+        "origin_location_id": "konoha-center",
+        "creature_kind_id": "human",
+        "cognition_override": null,
+        "trait_ids": [
+          "determined",
+          "impulsive",
+          "loyal"
+        ],
+        "abilities": [
+          {
+            "id": "shadow-clones",
+            "name": "Теневые клоны",
+            "short_description": "Создаёт материальные копии",
+            "description": "Распределяет чакру между материальными клонами, которые передают опыт после исчезновения.",
+            "kind": "ordinary"
+          },
+          {
+            "id": "rasengan",
+            "name": "Расенган",
+            "short_description": "Сфера вращающейся чакры",
+            "description": "Формирует в ладони плотную вращающуюся чакру для мощного удара на близкой дистанции.",
+            "kind": "ordinary"
+          }
+        ],
+        "group_ids": [
+          "konoha",
+          "team-kakashi"
+        ],
+        "leader_group_ids": [],
+        "period_ids": [
+          "before-pain"
+        ],
+        "language_knowledge": [
+          {
+            "language_id": "shinobi-common",
+            "progress_units": 20
+          }
+        ]
+      },
+      {
+        "id": "naruto-fourth-war",
+        "name": "Наруто Узумаки",
+        "sex": "male",
+        "age": 18,
+        "biography": "Шиноби Конохи и джинчурики Девятихвостого, прошедший тяжёлые тренировки и готовый защищать союзников на войне.",
+        "origin_location_id": "island-turtle",
+        "creature_kind_id": "human",
+        "cognition_override": null,
+        "trait_ids": [
+          "determined",
+          "empathetic",
+          "protective"
+        ],
+        "abilities": [
+          {
+            "id": "shadow-clones",
+            "name": "Теневые клоны",
+            "short_description": "Создаёт материальные копии",
+            "description": "Создаёт множество материальных клонов и распределяет между ними задачи и чакру.",
+            "kind": "ordinary"
+          },
+          {
+            "id": "sage-mode",
+            "name": "Режим отшельника",
+            "short_description": "Использует природную энергию",
+            "description": "Поддерживает усиленное состояние за счёт уравновешенной природной энергии, пока сохраняет необходимый баланс.",
+            "kind": "sustained"
+          },
+          {
+            "id": "nine-tails-chakra",
+            "name": "Режим чакры Девятихвостого",
+            "short_description": "Окутывает тело чакрой Курамы",
+            "description": "Поддерживает мощную чакровую оболочку, усиливающую скорость, силу и восприятие.",
+            "kind": "sustained"
+          },
+          {
+            "id": "rasenshuriken",
+            "name": "Стихия ветра Расенсюрикен",
+            "short_description": "Метательная режущая сфера чакры",
+            "description": "Создаёт технику ветра с множеством микроскопических режущих потоков чакры.",
+            "kind": "ordinary"
+          }
+        ],
+        "group_ids": [
+          "konoha",
+          "team-kakashi"
+        ],
+        "leader_group_ids": [],
+        "period_ids": [
+          "fourth-war"
+        ],
+        "language_knowledge": [
+          {
+            "language_id": "shinobi-common",
+            "progress_units": 20
+          }
+        ]
+      },
+      {
+        "id": "sakura-haruno",
+        "name": "Сакура Харуно",
+        "sex": "female",
+        "age": 18,
+        "biography": "Медик и куноити Конохи с точным контролем чакры, строгим характером и сильной привязанностью к товарищам.",
+        "origin_location_id": "konoha-hospital",
+        "creature_kind_id": "human",
+        "cognition_override": null,
+        "trait_ids": [
+          "disciplined",
+          "protective",
+          "observant"
+        ],
+        "abilities": [
+          {
+            "id": "medical-ninjutsu",
+            "name": "Медицинское ниндзюцу",
+            "short_description": "Лечит повреждения чакрой",
+            "description": "Использует точный контроль чакры для диагностики, стабилизации и лечения подходящих повреждений.",
+            "kind": "sustained"
+          },
+          {
+            "id": "chakra-strength",
+            "name": "Усиленный удар",
+            "short_description": "Высвобождает чакру в момент удара",
+            "description": "Концентрирует чакру и высвобождает её при контакте, создавая разрушительный физический удар.",
+            "kind": "ordinary"
+          }
+        ],
+        "group_ids": [
+          "konoha",
+          "team-kakashi"
+        ],
+        "leader_group_ids": [],
+        "period_ids": [
+          "before-pain",
+          "fourth-war"
+        ],
+        "language_knowledge": [
+          {
+            "language_id": "shinobi-common",
+            "progress_units": 20
+          }
+        ]
+      },
+      {
+        "id": "kakashi-before-pain",
+        "name": "Какаши Хатаке",
+        "sex": "male",
+        "age": 30,
+        "biography": "Опытный дзёнин Конохи и командир, известный хладнокровием, наблюдательностью и умением защищать команду.",
+        "origin_location_id": "training-ground-seven",
+        "creature_kind_id": "human",
+        "cognition_override": null,
+        "trait_ids": [
+          "calm",
+          "strategic",
+          "loyal"
+        ],
+        "abilities": [
+          {
+            "id": "sharingan",
+            "name": "Шаринган",
+            "short_description": "Анализирует движения и техники",
+            "description": "Поддерживает открытый Шаринган для усиленного восприятия, чтения движений и копирования допустимых техник.",
+            "kind": "sustained"
+          },
+          {
+            "id": "lightning-blade",
+            "name": "Молниерез",
+            "short_description": "Удар концентрированной молнией",
+            "description": "Концентрирует чакру молнии в руке и проводит быстрый пронзающий удар.",
+            "kind": "ordinary"
+          }
+        ],
+        "group_ids": [
+          "konoha",
+          "team-kakashi"
+        ],
+        "leader_group_ids": [
+          "team-kakashi"
+        ],
+        "period_ids": [
+          "before-pain"
+        ],
+        "language_knowledge": [
+          {
+            "language_id": "shinobi-common",
+            "progress_units": 20
+          }
+        ]
+      },
+      {
+        "id": "kakashi-fourth-war",
+        "name": "Какаши Хатаке",
+        "sex": "male",
+        "age": 31,
+        "biography": "Командир боевого подразделения Объединённых сил, сохраняющий ясность мышления даже перед неожиданными противниками.",
+        "origin_location_id": "fourth-division-front",
+        "creature_kind_id": "human",
+        "cognition_override": null,
+        "trait_ids": [
+          "calm",
+          "strategic",
+          "protective"
+        ],
+        "abilities": [
+          {
+            "id": "sharingan",
+            "name": "Шаринган",
+            "short_description": "Анализирует движения и техники",
+            "description": "Поддерживает Шаринган для усиленного восприятия и точного чтения движений противника.",
+            "kind": "sustained"
+          },
+          {
+            "id": "kamui",
+            "name": "Камуи",
+            "short_description": "Искажает пространство в точке",
+            "description": "Фокусирует Мангэкё Шаринган на цели и переносит ограниченную область в другое измерение ценой большой нагрузки.",
+            "kind": "ordinary"
+          },
+          {
+            "id": "lightning-clone",
+            "name": "Клон молнии",
+            "short_description": "Клон поражает разрушившего его врага",
+            "description": "Создаёт клона из чакры молнии, который разряжается при разрушении.",
+            "kind": "ordinary"
+          }
+        ],
+        "group_ids": [
+          "konoha"
+        ],
+        "leader_group_ids": [],
+        "period_ids": [
+          "fourth-war"
+        ],
+        "language_knowledge": [
+          {
+            "language_id": "shinobi-common",
+            "progress_units": 20
+          }
+        ]
+      },
+      {
+        "id": "sai",
+        "name": "Сай",
+        "sex": "male",
+        "age": 18,
+        "biography": "Сдержанный шиноби Конохи, обученный тайным операциям и постепенно осваивающий обычные человеческие связи.",
+        "origin_location_id": "konoha-center",
+        "creature_kind_id": "human",
+        "cognition_override": null,
+        "trait_ids": [
+          "reserved",
+          "observant",
+          "literal"
+        ],
+        "abilities": [
+          {
+            "id": "ink-creatures",
+            "name": "Техника оживших чернил",
+            "short_description": "Оживляет нарисованных существ",
+            "description": "Создаёт тушью зверей и птиц, которые выполняют разведывательные, транспортные или атакующие задачи.",
+            "kind": "sustained"
+          },
+          {
+            "id": "ink-clone",
+            "name": "Чернильный клон",
+            "short_description": "Создаёт копию из чернил",
+            "description": "Формирует временную копию из чернил для отвлечения и разведки.",
+            "kind": "ordinary"
+          }
+        ],
+        "group_ids": [
+          "konoha",
+          "team-kakashi"
+        ],
+        "leader_group_ids": [],
+        "period_ids": [
+          "before-pain",
+          "fourth-war"
+        ],
+        "language_knowledge": [
+          {
+            "language_id": "shinobi-common",
+            "progress_units": 20
+          }
+        ]
+      },
+      {
+        "id": "yamato",
+        "name": "Ямато",
+        "sex": "male",
+        "age": 26,
+        "biography": "Дзёнин Конохи с редкой стихией дерева, назначаемый командиром и специалистом по сдерживанию чакры Девятихвостого.",
+        "origin_location_id": "training-ground-seven",
+        "creature_kind_id": "human",
+        "cognition_override": null,
+        "trait_ids": [
+          "responsible",
+          "cautious",
+          "strict"
+        ],
+        "abilities": [
+          {
+            "id": "wood-style",
+            "name": "Стихия дерева",
+            "short_description": "Создаёт и управляет древесиной",
+            "description": "Формирует древесные конструкции, преграды и захваты из объединённой чакры земли и воды.",
+            "kind": "ordinary"
+          },
+          {
+            "id": "wood-restraint",
+            "name": "Древесное сдерживание",
+            "short_description": "Подавляет опасный выброс чакры",
+            "description": "Поддерживает особое древесное подавление для ограничения нестабильной чакры цели.",
+            "kind": "sustained"
+          }
+        ],
+        "group_ids": [
+          "konoha",
+          "team-kakashi"
+        ],
+        "leader_group_ids": [
+          "team-kakashi"
+        ],
+        "period_ids": [
+          "before-pain",
+          "fourth-war"
+        ],
+        "language_knowledge": [
+          {
+            "language_id": "shinobi-common",
+            "progress_units": 20
+          }
+        ]
+      },
+      {
+        "id": "tsunade",
+        "name": "Цунаде",
+        "sex": "female",
+        "age": 54,
+        "biography": "Пятая Хокаге, легендарный медик и одна из трёх саннинов; несёт ответственность за Коноху и её жителей.",
+        "origin_location_id": "hokage-residence",
+        "creature_kind_id": "human",
+        "cognition_override": null,
+        "trait_ids": [
+          "authoritative",
+          "protective",
+          "resolute"
+        ],
+        "abilities": [
+          {
+            "id": "creation-rebirth",
+            "name": "Созидательное возрождение",
+            "short_description": "Ускоряет восстановление тела",
+            "description": "Высвобождает накопленную чакру для интенсивного восстановления повреждений ценой большого расхода сил.",
+            "kind": "sustained"
+          },
+          {
+            "id": "monstrous-strength",
+            "name": "Чудовищная сила",
+            "short_description": "Разрушительный удар точной чакрой",
+            "description": "Высвобождает точно рассчитанную чакру в момент физического удара.",
+            "kind": "ordinary"
+          }
+        ],
+        "group_ids": [
+          "konoha"
+        ],
+        "leader_group_ids": [
+          "konoha"
+        ],
+        "period_ids": [
+          "before-pain",
+          "fourth-war"
+        ],
+        "language_knowledge": [
+          {
+            "language_id": "shinobi-common",
+            "progress_units": 20
+          }
+        ]
+      },
+      {
+        "id": "jiraiya",
+        "name": "Джирайя",
+        "sex": "male",
+        "age": 54,
+        "biography": "Странствующий саннин Конохи, наставник Наруто, разведчик и автор, собирающий сведения об Акацуки.",
+        "origin_location_id": "land-of-fire-road",
+        "creature_kind_id": "human",
+        "cognition_override": null,
+        "trait_ids": [
+          "brave",
+          "curious",
+          "protective"
+        ],
+        "abilities": [
+          {
+            "id": "toad-summoning",
+            "name": "Призыв жаб",
+            "short_description": "Призывает союзников с горы Мьёбоку",
+            "description": "Использует договор призыва, чтобы вызвать подходящую жабу при достаточной чакре и условиях.",
+            "kind": "ordinary"
+          },
+          {
+            "id": "sage-mode",
+            "name": "Режим отшельника",
+            "short_description": "Соединяет чакру с природной энергией",
+            "description": "Поддерживает усиленное состояние с помощью мудрых жаб и природной энергии.",
+            "kind": "sustained"
+          }
+        ],
+        "group_ids": [
+          "konoha"
+        ],
+        "leader_group_ids": [],
+        "period_ids": [
+          "before-pain"
+        ],
+        "language_knowledge": [
+          {
+            "language_id": "shinobi-common",
+            "progress_units": 20
+          }
+        ]
+      },
+      {
+        "id": "shikamaru-nara",
+        "name": "Шикамару Нара",
+        "sex": "male",
+        "age": 18,
+        "biography": "Тактик Конохи с выдающимся аналитическим мышлением, предпочитающий простые решения, но не бросающий товарищей.",
+        "origin_location_id": "konoha-center",
+        "creature_kind_id": "human",
+        "cognition_override": "higher",
+        "trait_ids": [
+          "strategic",
+          "loyal",
+          "unmotivated"
+        ],
+        "abilities": [
+          {
+            "id": "shadow-possession",
+            "name": "Теневое подражание",
+            "short_description": "Связывает движения цели своей тенью",
+            "description": "Поддерживает соединение теней и заставляет связанную цель повторять движения пользователя в пределах техники.",
+            "kind": "sustained"
+          },
+          {
+            "id": "shadow-strangle",
+            "name": "Теневое удушение",
+            "short_description": "Атакует связанную цель тенью",
+            "description": "Продвигает теневую руку к связанной цели, если захват уже установлен и не сорван.",
+            "kind": "ordinary"
+          }
+        ],
+        "group_ids": [
+          "konoha"
+        ],
+        "leader_group_ids": [],
+        "period_ids": [
+          "before-pain",
+          "fourth-war"
+        ],
+        "language_knowledge": [
+          {
+            "language_id": "shinobi-common",
+            "progress_units": 20
+          }
+        ]
+      },
+      {
+        "id": "hinata-hyuga",
+        "name": "Хината Хьюга",
+        "sex": "female",
+        "age": 18,
+        "biography": "Куноити клана Хьюга, мягкая в общении и решительная при защите близких.",
+        "origin_location_id": "konoha-center",
+        "creature_kind_id": "human",
+        "cognition_override": null,
+        "trait_ids": [
+          "kind",
+          "perceptive",
+          "determined"
+        ],
+        "abilities": [
+          {
+            "id": "byakugan",
+            "name": "Бьякуган",
+            "short_description": "Расширяет обзор и видит потоки чакры",
+            "description": "Поддерживает додзюцу для широкого обзора, дальнего наблюдения и восприятия системы чакры.",
+            "kind": "sustained"
+          },
+          {
+            "id": "gentle-fist",
+            "name": "Мягкий кулак",
+            "short_description": "Поражает систему циркуляции чакры",
+            "description": "Наносит точные удары чакрой по внутренним каналам цели на близкой дистанции.",
+            "kind": "ordinary"
+          }
+        ],
+        "group_ids": [
+          "konoha"
+        ],
+        "leader_group_ids": [],
+        "period_ids": [
+          "before-pain",
+          "fourth-war"
+        ],
+        "language_knowledge": [
+          {
+            "language_id": "shinobi-common",
+            "progress_units": 20
+          }
+        ]
+      },
+      {
+        "id": "neji-hyuga",
+        "name": "Неджи Хьюга",
+        "sex": "male",
+        "age": 18,
+        "biography": "Талантливый дзёнин Хьюга с точным контролем Мягкого кулака и строгим чувством долга.",
+        "origin_location_id": "training-ground-seven",
+        "creature_kind_id": "human",
+        "cognition_override": null,
+        "trait_ids": [
+          "disciplined",
+          "perceptive",
+          "protective"
+        ],
+        "abilities": [
+          {
+            "id": "byakugan",
+            "name": "Бьякуган",
+            "short_description": "Видит потоки чакры и окружение",
+            "description": "Поддерживает почти круговой обзор и точное восприятие чакровых точек.",
+            "kind": "sustained"
+          },
+          {
+            "id": "eight-trigrams",
+            "name": "Восемь триграмм: 64 ладони",
+            "short_description": "Серия точных блокирующих ударов",
+            "description": "Проводит быструю последовательность ударов по чакровым точкам цели в пределах своей зоны контроля.",
+            "kind": "ordinary"
+          }
+        ],
+        "group_ids": [
+          "konoha"
+        ],
+        "leader_group_ids": [],
+        "period_ids": [
+          "before-pain",
+          "fourth-war"
+        ],
+        "language_knowledge": [
+          {
+            "language_id": "shinobi-common",
+            "progress_units": 20
+          }
+        ]
+      },
+      {
+        "id": "rock-lee",
+        "name": "Рок Ли",
+        "sex": "male",
+        "age": 18,
+        "biography": "Специалист по тайдзюцу, компенсирующий отсутствие ниндзюцу упорными тренировками и необычайной дисциплиной.",
+        "origin_location_id": "training-ground-seven",
+        "creature_kind_id": "human",
+        "cognition_override": null,
+        "trait_ids": [
+          "hardworking",
+          "earnest",
+          "loyal"
+        ],
+        "abilities": [
+          {
+            "id": "primary-lotus",
+            "name": "Первичный лотос",
+            "short_description": "Высокоскоростная связка тайдзюцу",
+            "description": "Проводит опасную воздушную связку после снятия ограничивающих грузов и открытия первых врат.",
+            "kind": "ordinary"
+          },
+          {
+            "id": "inner-gates",
+            "name": "Внутренние врата",
+            "short_description": "Снимает ограничения тела",
+            "description": "Поддерживает открытые врата, резко повышая физические возможности и одновременно повреждая тело.",
+            "kind": "sustained"
+          }
+        ],
+        "group_ids": [
+          "konoha"
+        ],
+        "leader_group_ids": [],
+        "period_ids": [
+          "before-pain",
+          "fourth-war"
+        ],
+        "language_knowledge": [
+          {
+            "language_id": "shinobi-common",
+            "progress_units": 20
+          }
+        ]
+      },
+      {
+        "id": "might-guy",
+        "name": "Майто Гай",
+        "sex": "male",
+        "age": 31,
+        "biography": "Дзёнин и мастер тайдзюцу, вдохновляющий учеников энергией, дисциплиной и личным примером.",
+        "origin_location_id": "training-ground-seven",
+        "creature_kind_id": "human",
+        "cognition_override": null,
+        "trait_ids": [
+          "energetic",
+          "protective",
+          "competitive"
+        ],
+        "abilities": [
+          {
+            "id": "inner-gates",
+            "name": "Восемь внутренних врат",
+            "short_description": "Высвобождает скрытый предел тела",
+            "description": "Поддерживает открытые врата для огромного физического усиления ценой всё более тяжёлых повреждений.",
+            "kind": "sustained"
+          },
+          {
+            "id": "morning-peacock",
+            "name": "Утренний павлин",
+            "short_description": "Шквал ударов создаёт огненные вспышки",
+            "description": "Наносит множество высокоскоростных ударов, воспламеняющих воздух перед целью.",
+            "kind": "ordinary"
+          }
+        ],
+        "group_ids": [
+          "konoha"
+        ],
+        "leader_group_ids": [],
+        "period_ids": [
+          "before-pain",
+          "fourth-war"
+        ],
+        "language_knowledge": [
+          {
+            "language_id": "shinobi-common",
+            "progress_units": 20
+          }
+        ]
+      },
+      {
+        "id": "gaara",
+        "name": "Гаара",
+        "sex": "male",
+        "age": 20,
+        "biography": "Пятый Казекаге, защищающий Сунагакуре песком и стремящийся укрепить доверие между деревнями.",
+        "origin_location_id": "hidden-sand",
+        "creature_kind_id": "human",
+        "cognition_override": null,
+        "trait_ids": [
+          "calm",
+          "protective",
+          "resolute"
+        ],
+        "abilities": [
+          {
+            "id": "sand-defense",
+            "name": "Песчаная защита",
+            "short_description": "Песок автоматически закрывает угрозы",
+            "description": "Поддерживает управляемый слой песка, который перехватывает доступные его скорости атаки.",
+            "kind": "sustained"
+          },
+          {
+            "id": "sand-coffin",
+            "name": "Песчаный гроб",
+            "short_description": "Охватывает и сдавливает цель песком",
+            "description": "Управляет массой песка, чтобы обездвижить или сдавить цель при успешном захвате.",
+            "kind": "ordinary"
+          }
+        ],
+        "group_ids": [
+          "sunagakure"
+        ],
+        "leader_group_ids": [
+          "sunagakure"
+        ],
+        "period_ids": [
+          "before-pain",
+          "fourth-war"
+        ],
+        "language_knowledge": [
+          {
+            "language_id": "shinobi-common",
+            "progress_units": 20
+          }
+        ]
+      },
+      {
+        "id": "killer-b",
+        "name": "Киллер Би",
+        "sex": "male",
+        "age": 36,
+        "biography": "Джинчурики Восьмихвостого из Кумогакуре, опытный мечник и уверенный партнёр своего хвостатого зверя.",
+        "origin_location_id": "island-turtle",
+        "creature_kind_id": "human",
+        "cognition_override": null,
+        "trait_ids": [
+          "confident",
+          "unpredictable",
+          "loyal"
+        ],
+        "abilities": [
+          {
+            "id": "eight-tails-cloak",
+            "name": "Покров Восьмихвостого",
+            "short_description": "Окутывает тело чакрой Гьюки",
+            "description": "Поддерживает усиленную чакровую оболочку с растущим проявлением силы Восьмихвостого.",
+            "kind": "sustained"
+          },
+          {
+            "id": "acrobat",
+            "name": "Акробат",
+            "short_description": "Непредсказуемый бой семью мечами",
+            "description": "Использует необычные углы, вращения и семь клинков в ближнем бою.",
+            "kind": "ordinary"
+          }
+        ],
+        "group_ids": [
+          "kumogakure"
+        ],
+        "leader_group_ids": [],
+        "period_ids": [
+          "fourth-war"
+        ],
+        "language_knowledge": [
+          {
+            "language_id": "shinobi-common",
+            "progress_units": 20
+          }
+        ]
+      },
+      {
+        "id": "sasuke-before-pain",
+        "name": "Саске Учиха",
+        "sex": "male",
+        "age": 18,
+        "biography": "Отступник Конохи, сосредоточенный на собственной мести и действующий вместе с недавно собранной командой Така.",
+        "origin_location_id": "land-of-fire-road",
+        "creature_kind_id": "human",
+        "cognition_override": null,
+        "trait_ids": [
+          "driven",
+          "guarded",
+          "observant"
+        ],
+        "abilities": [
+          {
+            "id": "sharingan",
+            "name": "Шаринган",
+            "short_description": "Читает движения и гендзюцу",
+            "description": "Поддерживает додзюцу для анализа движений, чакры и применения зрительных иллюзий.",
+            "kind": "sustained"
+          },
+          {
+            "id": "chidori",
+            "name": "Чидори",
+            "short_description": "Пронзающий удар чакрой молнии",
+            "description": "Концентрирует молнию в руке и атакует на высокой скорости, полагаясь на усиленное зрение.",
+            "kind": "ordinary"
+          },
+          {
+            "id": "fireball",
+            "name": "Великий огненный шар",
+            "short_description": "Выдыхает крупный поток огня",
+            "description": "Преобразует чакру в огонь и выпускает плотный огненный шар по выбранному направлению.",
+            "kind": "ordinary"
+          }
+        ],
+        "group_ids": [
+          "taka"
+        ],
+        "leader_group_ids": [
+          "taka"
+        ],
+        "period_ids": [
+          "before-pain"
+        ],
+        "language_knowledge": [
+          {
+            "language_id": "shinobi-common",
+            "progress_units": 20
+          }
+        ]
+      },
+      {
+        "id": "sasuke-fourth-war",
+        "name": "Саске Учиха",
+        "sex": "male",
+        "age": 18,
+        "biography": "Сильный Учиха, переживший тяжёлые открытия о клане и принимающий решения независимо от обеих сторон войны.",
+        "origin_location_id": "mountain-graveyard",
+        "creature_kind_id": "human",
+        "cognition_override": null,
+        "trait_ids": [
+          "driven",
+          "independent",
+          "guarded"
+        ],
+        "abilities": [
+          {
+            "id": "mangekyo-sharingan",
+            "name": "Мангэкё Шаринган",
+            "short_description": "Открывает опасные техники глаз",
+            "description": "Поддерживает развитое додзюцу, усиливающее зрительные техники ценой нагрузки на глаза и чакру.",
+            "kind": "sustained"
+          },
+          {
+            "id": "amaterasu",
+            "name": "Аматэрасу",
+            "short_description": "Создаёт чёрное неугасимое пламя",
+            "description": "Фокусирует взгляд и воспламеняет выбранную область чёрным пламенем, требующим больших сил.",
+            "kind": "ordinary"
+          },
+          {
+            "id": "susanoo",
+            "name": "Сусаноо",
+            "short_description": "Создаёт чакрового защитника",
+            "description": "Поддерживает огромную чакровую оболочку в форме воина для защиты и атаки.",
+            "kind": "sustained"
+          }
+        ],
+        "group_ids": [
+          "taka"
+        ],
+        "leader_group_ids": [
+          "taka"
+        ],
+        "period_ids": [
+          "fourth-war"
+        ],
+        "language_knowledge": [
+          {
+            "language_id": "shinobi-common",
+            "progress_units": 20
+          }
+        ]
+      },
+      {
+        "id": "pain",
+        "name": "Пейн",
+        "sex": "male",
+        "age": 35,
+        "biography": "Публичный лидер Акацуки и правитель Амегакуре, действующий через Шесть путей под контролем скрытого Нагато.",
+        "origin_location_id": "hidden-rain",
+        "creature_kind_id": "human",
+        "cognition_override": "higher",
+        "trait_ids": [
+          "secretive",
+          "authoritative",
+          "ideological"
+        ],
+        "abilities": [
+          {
+            "id": "six-paths",
+            "name": "Шесть путей Пейна",
+            "short_description": "Управляет шестью связанными телами",
+            "description": "Поддерживает общий обзор и дистанционное управление несколькими телами с разными возможностями Риннегана.",
+            "kind": "sustained"
+          },
+          {
+            "id": "almighty-push",
+            "name": "Всемогущий толчок",
+            "short_description": "Отталкивает материю направленной силой",
+            "description": "Создаёт мощное отталкивающее воздействие вокруг выбранного тела с обязательным промежутком между применениями.",
+            "kind": "ordinary"
+          }
+        ],
+        "group_ids": [
+          "akatsuki"
+        ],
+        "leader_group_ids": [
+          "akatsuki"
+        ],
+        "period_ids": [
+          "before-pain"
+        ],
+        "language_knowledge": [
+          {
+            "language_id": "shinobi-common",
+            "progress_units": 20
+          }
+        ]
+      },
+      {
+        "id": "konan",
+        "name": "Конан",
+        "sex": "female",
+        "age": 35,
+        "biography": "Ближайшая соратница Нагато и посредник Пейна, управляющая бумагой и поддерживающая власть в Амегакуре.",
+        "origin_location_id": "hidden-rain",
+        "creature_kind_id": "human",
+        "cognition_override": null,
+        "trait_ids": [
+          "calm",
+          "loyal",
+          "watchful"
+        ],
+        "abilities": [
+          {
+            "id": "paper-body",
+            "name": "Бумажное тело",
+            "short_description": "Разделяет тело на листы бумаги",
+            "description": "Поддерживает превращение частей тела в бумагу для полёта, уклонения и формирования конструкций.",
+            "kind": "sustained"
+          },
+          {
+            "id": "paper-shuriken",
+            "name": "Бумажные сюрикены",
+            "short_description": "Формирует режущие бумажные снаряды",
+            "description": "Складывает укреплённые чакрой листы в острые метательные формы.",
+            "kind": "ordinary"
+          }
+        ],
+        "group_ids": [
+          "akatsuki"
+        ],
+        "leader_group_ids": [],
+        "period_ids": [
+          "before-pain"
+        ],
+        "language_knowledge": [
+          {
+            "language_id": "shinobi-common",
+            "progress_units": 20
+          }
+        ]
+      },
+      {
+        "id": "obito-fourth-war",
+        "name": "Тоби",
+        "sex": "male",
+        "age": 31,
+        "biography": "Человек в маске, управляющий остатками Акацуки и ведущий войну ради собственного плана переустройства мира.",
+        "origin_location_id": "mountain-graveyard",
+        "creature_kind_id": "human",
+        "cognition_override": "higher",
+        "trait_ids": [
+          "secretive",
+          "manipulative",
+          "strategic"
+        ],
+        "abilities": [
+          {
+            "id": "kamui-phasing",
+            "name": "Неосязаемость Камуи",
+            "short_description": "Пропускает атаки сквозь тело",
+            "description": "Поддерживает перенос частей тела в другое пространство, становясь недоступным для обычного контакта на ограниченное время.",
+            "kind": "sustained"
+          },
+          {
+            "id": "kamui-transport",
+            "name": "Перемещение Камуи",
+            "short_description": "Переносит себя или захваченную цель",
+            "description": "Создаёт пространственное искажение для переноса при достаточном времени контакта и концентрации.",
+            "kind": "ordinary"
+          }
+        ],
+        "group_ids": [
+          "akatsuki"
+        ],
+        "leader_group_ids": [
+          "akatsuki"
+        ],
+        "period_ids": [
+          "fourth-war"
+        ],
+        "language_knowledge": [
+          {
+            "language_id": "shinobi-common",
+            "progress_units": 20
+          }
+        ]
+      },
+      {
+        "id": "kabuto-fourth-war",
+        "name": "Кабуто Якуши",
+        "sex": "male",
+        "age": 24,
+        "biography": "Медик, шпион и исследователь, усиливший себя чужими клетками и предложивший Акацуки армию воскрешённых шиноби.",
+        "origin_location_id": "mountain-graveyard",
+        "creature_kind_id": "human",
+        "cognition_override": "higher",
+        "trait_ids": [
+          "calculating",
+          "adaptive",
+          "secretive"
+        ],
+        "abilities": [
+          {
+            "id": "reanimation",
+            "name": "Нечестивое воскрешение",
+            "short_description": "Управляет подготовленными воскрешёнными",
+            "description": "Поддерживает заранее подготовленных воскрешённых шиноби через управляющие печати и жертвенные тела.",
+            "kind": "sustained"
+          },
+          {
+            "id": "medical-scalpel",
+            "name": "Чакровый скальпель",
+            "short_description": "Режет ткани направленной чакрой",
+            "description": "Формирует тонкое лезвие чакры для медицинской работы или точного поражения тканей.",
+            "kind": "ordinary"
+          },
+          {
+            "id": "sage-transformation",
+            "name": "Змеиный режим отшельника",
+            "short_description": "Усиливается природной энергией",
+            "description": "Поддерживает преобразованное тело и усиленные чувства с помощью природной энергии.",
+            "kind": "sustained"
+          }
+        ],
+        "group_ids": [],
+        "leader_group_ids": [],
+        "period_ids": [
+          "fourth-war"
+        ],
+        "language_knowledge": [
+          {
+            "language_id": "shinobi-common",
+            "progress_units": 20
+          }
+        ]
+      }
+    ],
+    "npc_name_sets": [
+      {
+        "id": "ordinary-human-names",
+        "name": "Обычные имена жителей мира шиноби",
+        "male_names": [
+          "Акихиро",
+          "Акио",
+          "Ацуси",
+          "Даики",
+          "Дайсукэ",
+          "Горо",
+          "Гэнсуке",
+          "Исао",
+          "Итиро",
+          "Кадзуо",
+          "Кайто",
+          "Каору",
+          "Кэйдзи",
+          "Кэнго",
+          "Кэнта",
+          "Кёсукэ",
+          "Киёси",
+          "Котаро",
+          "Масато",
+          "Масаюки",
+          "Минору",
+          "Мицуо",
+          "Наоки",
+          "Нобору",
+          "Норио",
+          "Осаму",
+          "Рэйдзи",
+          "Рику",
+          "Рёта",
+          "Рюдзи",
+          "Сабуро",
+          "Сатору",
+          "Сигэру",
+          "Синдзи",
+          "Синпэй",
+          "Сёго",
+          "Сюндзи",
+          "Такао",
+          "Такуми",
+          "Тэцуо",
+          "Томоаки",
+          "Тору",
+          "Фумио",
+          "Хаято",
+          "Хидэо",
+          "Хироси",
+          "Юдзи",
+          "Юкио",
+          "Юсукэ",
+          "Ясухиро"
+        ],
+        "female_names": [
+          "Аканэ",
+          "Акико",
+          "Ами",
+          "Аои",
+          "Асука",
+          "Ацуко",
+          "Ая",
+          "Аяко",
+          "Вакая",
+          "Ёсико",
+          "Идзуми",
+          "Каэдэ",
+          "Каори",
+          "Касуми",
+          "Кацуми",
+          "Киёко",
+          "Кохару",
+          "Куми",
+          "Маки",
+          "Мана",
+          "Маюми",
+          "Мэгуми",
+          "Мидори",
+          "Мика",
+          "Мики",
+          "Мина",
+          "Мисаки",
+          "Митико",
+          "Михо",
+          "Наоко",
+          "Нацуми",
+          "Норико",
+          "Рэйка",
+          "Рико",
+          "Рина",
+          "Рури",
+          "Саки",
+          "Сатико",
+          "Саюри",
+          "Сидзука",
+          "Сумико",
+          "Тамико",
+          "Тиэ",
+          "Тихиро",
+          "Томоко",
+          "Харуко",
+          "Хикари",
+          "Фумико",
+          "Эми",
+          "Юми"
+        ],
+        "surnames": [
+          "Аоки",
+          "Араи",
+          "Иваи",
+          "Икэда",
+          "Иноуэ",
+          "Исикава",
+          "Исихара",
+          "Ито",
+          "Имаи",
+          "Кавада",
+          "Каваи",
+          "Кавамура",
+          "Канда",
+          "Като",
+          "Кимура",
+          "Кобаяси",
+          "Кодзима",
+          "Кондо",
+          "Маэда",
+          "Мацуи",
+          "Мацуда",
+          "Мацумото",
+          "Миядзаки",
+          "Мията",
+          "Мори",
+          "Мурата",
+          "Нагаи",
+          "Накада",
+          "Накамура",
+          "Накано",
+          "Нисида",
+          "Номура",
+          "Огава",
+          "Окада",
+          "Оно",
+          "Осида",
+          "Сакаи",
+          "Сакамото",
+          "Сано",
+          "Сато",
+          "Симада",
+          "Сираиси",
+          "Сугиура",
+          "Судзуки",
+          "Такада",
+          "Такэда",
+          "Танида",
+          "Фудзита",
+          "Ямада",
+          "Ямамото"
+        ]
+      }
+    ],
+    "npc_biographies": [
+      {
+        "id": "resident",
+        "name": "Местный житель",
+        "text": "Повседневная жизнь связана с местными заботами и знакомыми. О громких событиях узнаёт из обычных разговоров, не обладает тайными сведениями."
+      },
+      {
+        "id": "traveler",
+        "name": "Путник",
+        "text": "Привычны дорога, остановки и разговоры с незнакомыми людьми. Прошлое не связано с известными кланами; конкретные знакомства раскрываются в игре."
+      },
+      {
+        "id": "guard-duty",
+        "name": "Дежурство",
+        "text": "Повседневные обязанности связаны с дежурством и наблюдением за порядком. Привычны ожидание и проверка сообщений; специальные техники этой биографией не задаются."
+      },
+      {
+        "id": "guard-rotation",
+        "name": "Сменная служба",
+        "text": "Привычен распорядок смен и совместная работа с другими людьми. Личные подвиги, звание и участие в известных битвах заранее не определены."
+      },
+      {
+        "id": "craft-family",
+        "name": "Быт и ремесло",
+        "text": "Выросший среди обычных бытовых забот человек, знакомый с ценностью труда. Семейные связи, имущество и владение ремеслом требуют отдельного раскрытия."
+      },
+      {
+        "id": "merchant",
+        "name": "Торговые заботы",
+        "text": "Привычны переговоры и разговоры о повседневных нуждах. Товары, деньги, цены и принадлежность магазина не задаются этой биографией."
+      },
+      {
+        "id": "hospital",
+        "name": "Больничный быт",
+        "text": "Знакомы распорядок больницы и заботы людей рядом с больными. Медицинские техники, квалификация и доступ к запасам не предполагаются автоматически."
+      },
+      {
+        "id": "courier",
+        "name": "Поручения и дорога",
+        "text": "Привычны поручения, дорога и ожидание получателя. Содержание сообщений, секретные связи и особые навыки заранее не определены."
+      }
+    ],
+    "npc_generation_rules": [
+      {
+        "id": "common-peace",
+        "name": "Местный житель",
+        "role": "",
+        "period_ids": [
+          "before-pain"
+        ],
+        "location_ids": [
+          "konoha-gates",
+          "konoha-center",
+          "hokage-residence",
+          "training-ground-seven",
+          "konoha-hospital",
+          "land-of-fire-road",
+          "hidden-sand",
+          "hidden-rain",
+          "akatsuki-hideout"
+        ],
+        "creature_kind_id": "human",
+        "weight": 1,
+        "age_min": 18,
+        "age_max": 65,
+        "sexes": [
+          "male",
+          "female"
+        ],
+        "name_set_id": "ordinary-human-names",
+        "biography_ids": [
+          "resident",
+          "traveler"
+        ],
+        "trait_ids": [
+          "calm",
+          "curious",
+          "calculating"
+        ]
+      },
+      {
+        "id": "common-war",
+        "name": "Участник повседневной жизни военного времени",
+        "role": "",
+        "period_ids": [
+          "fourth-war"
+        ],
+        "location_ids": [
+          "konoha-gates",
+          "konoha-center",
+          "konoha-hospital",
+          "land-of-fire-road",
+          "hidden-sand",
+          "hidden-cloud",
+          "hidden-stone",
+          "allied-headquarters",
+          "fourth-division-front",
+          "island-turtle",
+          "mountain-graveyard"
+        ],
+        "creature_kind_id": "human",
+        "weight": 1,
+        "age_min": 18,
+        "age_max": 65,
+        "sexes": [
+          "male",
+          "female"
+        ],
+        "name_set_id": "ordinary-human-names",
+        "biography_ids": [
+          "resident",
+          "traveler"
+        ],
+        "trait_ids": [
+          "calm",
+          "watchful",
+          "calculating"
+        ]
+      },
+      {
+        "id": "gate-guard",
+        "name": "Дежурный у ворот",
+        "role": "guard",
+        "period_ids": [
+          "before-pain",
+          "fourth-war"
+        ],
+        "location_ids": [
+          "konoha-gates"
+        ],
+        "creature_kind_id": "human",
+        "weight": 1,
+        "age_min": 22,
+        "age_max": 55,
+        "sexes": [
+          "male",
+          "female"
+        ],
+        "name_set_id": "ordinary-human-names",
+        "biography_ids": [
+          "guard-duty",
+          "guard-rotation"
+        ],
+        "trait_ids": [
+          "watchful",
+          "disciplined",
+          "calm"
+        ]
+      },
+      {
+        "id": "civilian-peace",
+        "name": "Прохожий",
+        "role": "resident",
+        "period_ids": [
+          "before-pain"
+        ],
+        "location_ids": [
+          "konoha-center",
+          "hidden-sand",
+          "hidden-rain"
+        ],
+        "creature_kind_id": "human",
+        "weight": 1,
+        "age_min": 18,
+        "age_max": 70,
+        "sexes": [
+          "male",
+          "female"
+        ],
+        "name_set_id": "ordinary-human-names",
+        "biography_ids": [
+          "resident",
+          "craft-family"
+        ],
+        "trait_ids": [
+          "curious",
+          "kind",
+          "calm"
+        ]
+      },
+      {
+        "id": "merchant-peace",
+        "name": "Торговец",
+        "role": "merchant",
+        "period_ids": [
+          "before-pain",
+          "fourth-war"
+        ],
+        "location_ids": [
+          "konoha-center",
+          "hidden-sand",
+          "land-of-fire-road"
+        ],
+        "creature_kind_id": "human",
+        "weight": 1,
+        "age_min": 22,
+        "age_max": 65,
+        "sexes": [
+          "male",
+          "female"
+        ],
+        "name_set_id": "ordinary-human-names",
+        "biography_ids": [
+          "merchant",
+          "traveler"
+        ],
+        "trait_ids": [
+          "calculating",
+          "calm",
+          "earnest"
+        ]
+      },
+      {
+        "id": "hospital-staff",
+        "name": "Сотрудник больницы",
+        "role": "medic",
+        "period_ids": [
+          "before-pain",
+          "fourth-war"
+        ],
+        "location_ids": [
+          "konoha-hospital"
+        ],
+        "creature_kind_id": "human",
+        "weight": 1,
+        "age_min": 22,
+        "age_max": 60,
+        "sexes": [
+          "male",
+          "female"
+        ],
+        "name_set_id": "ordinary-human-names",
+        "biography_ids": [
+          "hospital"
+        ],
+        "trait_ids": [
+          "calm",
+          "kind",
+          "disciplined"
+        ]
+      },
+      {
+        "id": "courier-peace",
+        "name": "Курьер",
+        "role": "courier",
+        "period_ids": [
+          "before-pain",
+          "fourth-war"
+        ],
+        "location_ids": [
+          "konoha-gates",
+          "konoha-center",
+          "land-of-fire-road"
+        ],
+        "creature_kind_id": "human",
+        "weight": 1,
+        "age_min": 18,
+        "age_max": 45,
+        "sexes": [
+          "male",
+          "female"
+        ],
+        "name_set_id": "ordinary-human-names",
+        "biography_ids": [
+          "courier"
+        ],
+        "trait_ids": [
+          "watchful",
+          "disciplined",
+          "independent"
+        ]
+      },
+      {
+        "id": "field-personnel",
+        "name": "Человек на службе",
+        "role": "soldier",
+        "period_ids": [
+          "fourth-war"
+        ],
+        "location_ids": [
+          "allied-headquarters",
+          "fourth-division-front"
+        ],
+        "creature_kind_id": "human",
+        "weight": 1,
+        "age_min": 20,
+        "age_max": 55,
+        "sexes": [
+          "male",
+          "female"
+        ],
+        "name_set_id": "ordinary-human-names",
+        "biography_ids": [
+          "guard-rotation",
+          "courier"
+        ],
+        "trait_ids": [
+          "disciplined",
+          "watchful",
+          "calm"
+        ]
+      }
+    ]
+  }
+}

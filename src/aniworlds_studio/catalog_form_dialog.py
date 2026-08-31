@@ -60,7 +60,8 @@ class CardFormDialog(tk.Toplevel):
             if spec.kind in {"nested", "language_units", "states"}:
                 self._controls[spec.key] = self._nested_control(form, spec, value)
                 continue
-            options = spec.options or reference_options(self._reference_draft, spec.source)
+            source = self._reference_draft if spec.source == "traits" else self._draft
+            options = spec.options or reference_options(source, spec.source)
             if spec.kind in {"choice_optional", "reference_optional"}:
                 options = (("Не задано", ""), *options)
             self._controls[spec.key] = build_control(

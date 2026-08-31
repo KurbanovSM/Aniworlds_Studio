@@ -194,7 +194,8 @@ def validate_world_catalog_references(
         ),
         (
             "черту характера",
-            {trait_id for character in draft.characters for trait_id in character.trait_ids},
+            {trait_id for character in draft.characters for trait_id in character.trait_ids}
+            | {trait_id for rule in draft.npc_generation_rules for trait_id in rule.trait_ids},
             {item.id for item in catalogs.traits},
         ),
     ):

@@ -91,6 +91,23 @@ def build_catalog_views(
             get_reference_draft=get_global_catalogs,
         )
     )
+    for number, field, title in (
+        (15, "npc_name_sets", "NPC · имена и фамилии"),
+        (16, "npc_biographies", "NPC · биографии"),
+        (17, "npc_generation_rules", "NPC · правила появления"),
+    ):
+        editors.append(
+            _add_catalog(
+                shell,
+                field,
+                title,
+                "Генерация новых NPC",
+                number,
+                get_draft,
+                on_changed,
+                get_reference_draft=get_global_catalogs,
+            )
+        )
     return editors
 
 

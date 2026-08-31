@@ -13,6 +13,7 @@ from aniworlds_studio.catalog_form_specs import CATALOG_FORM_SPECS, FieldSpec
 from aniworlds_studio.catalog_references import entry_title
 from aniworlds_studio.catalog_templates import CATALOG_HINTS, new_catalog_entry
 from aniworlds_studio.foundation_export import replace_catalog_entries
+from aniworlds_studio.npc_generation_forms import NPC_FORM_SPECS
 from aniworlds_studio.studio_theme import LINE, MUTED, SURFACE, TEXT
 
 
@@ -38,7 +39,7 @@ class CatalogEditor(ttk.Frame):
         self._identity_field = identity_field
         self._get_draft = get_draft
         self._on_changed = on_changed
-        self._fields = fields or CATALOG_FORM_SPECS[field_name]
+        self._fields = fields or NPC_FORM_SPECS.get(field_name) or CATALOG_FORM_SPECS[field_name]
         self._replace_entries = replace_entries
         self._get_reference_draft = get_reference_draft or get_draft
         self._build()

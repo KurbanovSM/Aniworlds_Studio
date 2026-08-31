@@ -29,6 +29,7 @@ from aniworlds_studio.global_catalogs import (
     GlobalCatalogDraft,
     validate_world_catalog_references,
 )
+from aniworlds_studio.npc_generation_models import NPC_BUILDERS
 
 DRAFT_VERSION = 2
 
@@ -134,8 +135,13 @@ def universe_from_mapping(data: dict[str, Any]) -> UniverseDraft:
             "items",
             "shop_policies",
             "characters",
+            *NPC_BUILDERS,
         },
     )
+    npc_fields: dict[str, Any] = {
+        key: [builder(**item) for item in data.get(key, [])]
+        for key, builder in NPC_BUILDERS.items()
+    }
     return UniverseDraft(
         **scalar,
         gameplay=gameplay,
@@ -147,6 +153,7 @@ def universe_from_mapping(data: dict[str, Any]) -> UniverseDraft:
         items=[ItemDraft(**item) for item in data.get("items", [])],
         shop_policies=[ShopPolicyDraft(**item) for item in data.get("shop_policies", [])],
         characters=[_character_from_mapping(item) for item in data.get("characters", [])],
+        **npc_fields,
     )
 
 
@@ -180,6 +187,10 @@ def replace_catalog_entries(
     entries: list[dict[str, Any]],
 ) -> None:
     builders = {
+        **{
+            key: (lambda item, factory=factory: factory(**item))
+            for key, factory in NPC_BUILDERS.items()
+        },
         "periods": _period_from_mapping,
         "locations": lambda item: LocationDraft(**item),
         "creature_kinds": lambda item: CreatureKindDraft(**item),
@@ -198,6 +209,9 @@ def replace_catalog_entries(
 
 def _publication_universe(draft: UniverseDraft) -> dict[str, Any]:
     data = draft.to_mapping()
+    if not any(data[key] for key in NPC_BUILDERS):
+        for key in NPC_BUILDERS:
+            data.pop(key)
     data.pop("creature_kinds", None)
     data.pop("languages", None)
     data.pop("groups", None)

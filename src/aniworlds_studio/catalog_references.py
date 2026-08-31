@@ -21,6 +21,8 @@ def reference_options(draft: object, source: str) -> tuple[tuple[str, str], ...]
         values = getattr(draft, "languages", ())
     elif source == "traits":
         values = getattr(draft, "traits", ())
+    elif source in {"npc_name_sets", "npc_biographies"}:
+        values = getattr(draft, source, ())
     else:
         return ()
     return tuple((f"{item.name} ({item.id})", item.id) for item in values)

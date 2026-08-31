@@ -37,8 +37,12 @@ def test_published_files_pass_the_game_import_path() -> None:
     )
     world_paths = sorted((STUDIO_ROOT / "content" / "upload" / "worlds").glob("*.world.json"))
     catalog = catalog_import.load_global_catalog_package(catalog_path)
+    release = world_import.load_world_foundation_package(
+        STUDIO_ROOT / "content/releases/npc-generation/naruto-shinobi-world-v2.world.json"
+    )
 
     assert world_paths, "Studio must publish at least one world contract fixture"
+    assert len(release.universe.npc_generation_rules) == 8
     for world_path in world_paths:
         package = world_import.load_world_foundation_package(world_path)
         definitions = [

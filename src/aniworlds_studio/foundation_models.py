@@ -5,6 +5,12 @@
 from dataclasses import asdict, dataclass, field
 from typing import Any, Final
 
+from aniworlds_studio.npc_generation_models import (
+    NpcBiographyDraft,
+    NpcGenerationRuleDraft,
+    NpcNameSetDraft,
+)
+
 FOUNDATION_SCHEMA_VERSION: Final = 4
 FOUNDATION_ARTIFACT_TYPE: Final = "aniworlds.world_foundation"
 MIN_STARTING_KIT_COUNT: Final = 1
@@ -174,6 +180,9 @@ class UniverseDraft:
     items: list[ItemDraft] = field(default_factory=list)
     shop_policies: list[ShopPolicyDraft] = field(default_factory=list)
     characters: list[CharacterDraft] = field(default_factory=list)
+    npc_name_sets: list[NpcNameSetDraft] = field(default_factory=list)
+    npc_biographies: list[NpcBiographyDraft] = field(default_factory=list)
+    npc_generation_rules: list[NpcGenerationRuleDraft] = field(default_factory=list)
 
     def to_mapping(self) -> dict[str, Any]:
         return asdict(self)

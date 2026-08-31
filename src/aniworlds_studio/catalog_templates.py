@@ -15,8 +15,16 @@ from aniworlds_studio.foundation_models import (
     ShopPolicyDraft,
 )
 from aniworlds_studio.global_catalogs import CharacterTraitDraft
+from aniworlds_studio.npc_generation_models import (
+    NpcBiographyDraft,
+    NpcGenerationRuleDraft,
+    NpcNameSetDraft,
+)
 
 CATALOG_SECTIONS = (
+    ("npc_name_sets", "Имена новых NPC", NpcNameSetDraft, "id"),
+    ("npc_biographies", "Биографии новых NPC", NpcBiographyDraft, "id"),
+    ("npc_generation_rules", "Появление новых NPC", NpcGenerationRuleDraft, "id"),
     ("periods", "Периоды", PeriodDraft, "id"),
     ("locations", "Локации", LocationDraft, "id"),
     ("creature_kinds", "Виды и расы", CreatureKindDraft, "id"),
@@ -29,6 +37,9 @@ CATALOG_SECTIONS = (
 )
 
 CATALOG_HINTS = {
+    "npc_name_sets": "Мужские имена, женские имена и фамилии: по одному варианту на строке.",
+    "npc_biographies": "Короткие биографии без выдачи способностей и имущества; до 30 карточек.",
+    "npc_generation_rules": "Вид, роль, места, периоды и источники для заполнения пропусков.",
     "periods": "Название, описание, лор и начальная ситуация периода.",
     "locations": "Локации создаются отдельно; состав периода и переходы задаются ниже.",
     "groups": "Укажите участников у персонажей; здесь хранятся состояния, места и отношения групп.",

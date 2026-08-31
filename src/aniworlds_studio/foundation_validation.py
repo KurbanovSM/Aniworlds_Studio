@@ -24,6 +24,7 @@ from aniworlds_studio.foundation_models import (
     PeriodDraft,
     UniverseDraft,
 )
+from aniworlds_studio.npc_generation_validation import validate_npc_generation
 
 ID_PATTERN = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 
@@ -56,6 +57,7 @@ def validate_foundation(draft: UniverseDraft) -> None:
     for language in draft.languages:
         validate_shared_language(language)
     _validate_catalog_references(draft)
+    validate_npc_generation(draft)
 
 
 def _validate_catalog_references(draft: UniverseDraft) -> None:
