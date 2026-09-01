@@ -28,6 +28,8 @@ class GameplayConfig:
     currency_name: str = "Валюта"
     currency_symbol: str = ""
     strength_name: str = "Запас сил"
+    npc_starting_currency_min: int = 0
+    npc_starting_currency_max: int = 10_000
 
 
 @dataclass(slots=True)
@@ -36,6 +38,8 @@ class LocationDraft:
     name: str = "Стартовая локация"
     description: str = "Описание стартовой локации"
     price_coefficient: float = 1.0
+    map_x: int | None = None
+    map_y: int | None = None
 
 
 # Old callers used this name while locations were nested in periods.

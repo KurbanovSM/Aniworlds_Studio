@@ -15,6 +15,8 @@ ECONOMY_FIELDS = (
     ("currency_id", "ID валюты"),
     ("currency_name", "Название валюты"),
     ("currency_symbol", "Символ валюты"),
+    ("npc_starting_currency_min", "Минимальная валюта нового NPC", "integer"),
+    ("npc_starting_currency_max", "Максимальная валюта нового NPC", "integer"),
 )
 
 STRENGTH_FIELDS = (("strength_name", "Название запаса сил"),)

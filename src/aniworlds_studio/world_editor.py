@@ -153,12 +153,17 @@ class WorldEditorFrame(ttk.Frame):
             setattr(self._draft, key, self._variables[key].get())
         for key in ("currency_id", "currency_name", "currency_symbol", "strength_name"):
             setattr(self._draft.gameplay, key, self._variables[key].get())
+        for key in ("npc_starting_currency_min", "npc_starting_currency_max"):
+            setattr(self._draft.gameplay, key, int(self._variables[key].get()))
         synchronize_shared_catalogs(self._draft, self._get_global_catalogs())
 
     def _load_form(self) -> None:
         for key in ("id", "name", "description", "world_rules", "power_systems"):
             self._variables[key].set(getattr(self._draft, key))
-        for key in ("currency_id", "currency_name", "currency_symbol", "strength_name"):
+        for key in (
+            "currency_id", "currency_name", "currency_symbol", "strength_name",
+            "npc_starting_currency_min", "npc_starting_currency_max",
+        ):
             self._variables[key].set(str(getattr(self._draft.gameplay, key)))
 
     def _new(self) -> None:

@@ -41,6 +41,8 @@ LOCATION_FIELDS = (
         ),
         minimum=0,
     ),
+    FieldSpec("map_x", "Карта: X (0–1000)", "optional_integer", minimum=0, maximum=1000),
+    FieldSpec("map_y", "Карта: Y (0–1000)", "optional_integer", minimum=0, maximum=1000),
 )
 KIT_ITEM_FIELDS = (
     FieldSpec("item_id", "Предмет", "reference", source="items"),

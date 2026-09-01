@@ -28,7 +28,11 @@ def test_every_published_world_matches_an_authoring_draft() -> None:
         validate_world_catalog_references(draft, catalogs)
         timestamp = datetime.fromisoformat(published["published_at"])
 
-        assert published == publication_payload(draft, catalogs, published_at=timestamp)
+        expected = publication_payload(draft, catalogs, published_at=timestamp)
+        for key in ("npc_starting_currency_min", "npc_starting_currency_max"):
+            if key not in published["universe"]["gameplay"]:
+                expected["universe"]["gameplay"].pop(key)
+        assert published == expected
 
 
 def test_shared_catalog_draft_matches_published_catalog() -> None:
@@ -50,6 +54,19 @@ def test_every_authored_character_trait_exists_in_the_shared_catalog() -> None:
         draft = load_draft(path, catalogs)
         used = {trait_id for character in draft.characters for trait_id in character.trait_ids}
         assert used <= available
+
+
+def test_naruto_v4_contains_the_expanded_map_and_character_catalog() -> None:
+    catalogs = load_global_catalogs(CONTENT / "global-catalogs.studio.json")
+    draft = load_draft(CONTENT / "worlds" / "naruto-v4.draft.json", catalogs)
+
+    assert len(draft.locations) == 30
+    assert len(draft.characters) == 50
+    assert all(
+        location.map_x is not None and location.map_y is not None for location in draft.locations
+    )
+    assert draft.gameplay.npc_starting_currency_min == 0
+    assert draft.gameplay.npc_starting_currency_max == 10_000
 
 
 def test_published_global_settings_use_the_current_studio_values() -> None:

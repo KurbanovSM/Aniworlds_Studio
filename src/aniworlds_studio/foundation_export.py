@@ -119,7 +119,10 @@ def _write_new_json(path: Path, payload: dict) -> Path:
 
 
 def universe_from_mapping(data: dict[str, Any]) -> UniverseDraft:
-    gameplay_keys = {"currency_id", "currency_name", "currency_symbol", "strength_name"}
+    gameplay_keys = {
+        "currency_id", "currency_name", "currency_symbol", "strength_name",
+        "npc_starting_currency_min", "npc_starting_currency_max",
+    }
     gameplay = GameplayConfig(**_only(data.get("gameplay", {}), gameplay_keys))
     periods = [_period_from_mapping(item) for item in data.get("periods", [])]
     locations = [LocationDraft(**item) for item in data.get("locations", [])]
@@ -209,6 +212,10 @@ def replace_catalog_entries(
 
 def _publication_universe(draft: UniverseDraft) -> dict[str, Any]:
     data = draft.to_mapping()
+    for location in data["locations"]:
+        if location.get("map_x") is None:
+            location.pop("map_x", None)
+            location.pop("map_y", None)
     if not any(data[key] for key in NPC_BUILDERS):
         for key in NPC_BUILDERS:
             data.pop(key)

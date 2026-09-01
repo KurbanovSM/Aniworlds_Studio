@@ -103,6 +103,13 @@ def _validate_locations(draft: UniverseDraft) -> None:
         _require_text(location.description, "Описание локации")
         if location.price_coefficient <= 0:
             raise InvalidFoundation("Коэффициент цен локации должен быть больше нуля.")
+        if (location.map_x is None) != (location.map_y is None):
+            raise InvalidFoundation("Для точки на карте нужны обе координаты.")
+        if any(
+            value is not None and not 0 <= value <= 1000
+            for value in (location.map_x, location.map_y)
+        ):
+            raise InvalidFoundation("Координаты локации должны быть от 0 до 1000.")
 
 
 def _validate_group(group, period_ids, location_ids, group_ids) -> None:
@@ -235,6 +242,10 @@ def _validate_gameplay(draft: UniverseDraft) -> None:
     _require_id(gameplay.currency_id, "ID валюты")
     _require_text(gameplay.currency_name, "Название валюты")
     _require_text(gameplay.strength_name, "Название запаса сил")
+    if gameplay.npc_starting_currency_min < 0:
+        raise InvalidFoundation("Минимальная валюта NPC не может быть отрицательной.")
+    if gameplay.npc_starting_currency_min > gameplay.npc_starting_currency_max:
+        raise InvalidFoundation("Минимальная валюта NPC не может быть больше максимальной.")
 
 
 def _validate_period(period: PeriodDraft, location_ids: set[str]) -> None:
