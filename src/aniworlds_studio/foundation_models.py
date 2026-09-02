@@ -20,6 +20,8 @@ MAX_APPEARANCE_FREQUENCY: Final = 100
 MAX_ABILITY_NAME_LENGTH: Final = 30
 MAX_ABILITY_SHORT_DESCRIPTION_LENGTH: Final = 50
 MAX_ABILITY_DESCRIPTION_LENGTH: Final = 250
+MAX_CHARACTER_BIOGRAPHY_LENGTH: Final = 350
+MAX_CHARACTER_PROFESSION_LENGTH: Final = 30
 
 
 @dataclass(slots=True)
@@ -92,19 +94,10 @@ class CreatureKindDraft:
     category: str = "race"
     cognition: str = "sapient"
     communication_modes: list[str] = field(default_factory=lambda: ["speech", "writing"])
-    default_languages: list[dict[str, Any]] = field(default_factory=list)
     physical_features: list[str] = field(default_factory=list)
     habitat_location_ids: list[str] = field(default_factory=list)
     period_ids: list[str] = field(default_factory=lambda: ["period"])
     parent_kind_id: str | None = None
-
-
-@dataclass(slots=True)
-class LanguageDraft:
-    id: str = ""
-    name: str = ""
-    has_spoken_form: bool = True
-    has_written_form: bool = True
 
 
 @dataclass(slots=True)
@@ -132,6 +125,21 @@ class ItemDraft:
     base_price: int = 0
     appearance_weight: int = 1
     maximum_created_instances: int | None = None
+    equipment_slot: str | None = None
+    protection_level: str = "none"
+
+
+@dataclass(slots=True)
+class EquipmentDraft(ItemDraft):
+    """Reusable equipment authored once and selected by multiple worlds."""
+
+    section_id: str = "common"
+
+
+@dataclass(slots=True)
+class EquipmentSectionDraft:
+    id: str = "world-section"
+    name: str = "Раздел мира"
 
 
 @dataclass(slots=True)
@@ -157,6 +165,7 @@ class CharacterDraft:
     sex: str = "male"
     age: int = 18
     biography: str = "Биография персонажа"
+    profession: str = "Не указана"
     origin_location_id: str = "start"
     creature_kind_id: str = ""
     cognition_override: str | None = None
@@ -165,7 +174,8 @@ class CharacterDraft:
     group_ids: list[str] = field(default_factory=list)
     leader_group_ids: list[str] = field(default_factory=list)
     period_ids: list[str] = field(default_factory=lambda: ["period"])
-    language_knowledge: list[dict[str, Any]] = field(default_factory=list)
+    starting_currency_amount: int = 0
+    items: list[StartingKitItemDraft] = field(default_factory=list)
 
 
 @dataclass(slots=True)
@@ -176,11 +186,12 @@ class UniverseDraft:
     world_rules: str = "Правила мира"
     power_systems: str = "Системы сил"
     gameplay: GameplayConfig = field(default_factory=GameplayConfig)
+    item_catalog_section_id: str = ""
     periods: list[PeriodDraft] = field(default_factory=lambda: [PeriodDraft()])
     locations: list[LocationDraft] = field(default_factory=lambda: [LocationDraft()])
     creature_kinds: list[CreatureKindDraft] = field(default_factory=list)
-    languages: list[LanguageDraft] = field(default_factory=list)
     groups: list[GroupDraft] = field(default_factory=list)
+    equipment: list[EquipmentDraft] = field(default_factory=list)
     items: list[ItemDraft] = field(default_factory=list)
     shop_policies: list[ShopPolicyDraft] = field(default_factory=list)
     characters: list[CharacterDraft] = field(default_factory=list)

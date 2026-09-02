@@ -7,9 +7,9 @@ from dataclasses import asdict
 from aniworlds_studio.foundation_models import (
     CharacterDraft,
     CreatureKindDraft,
+    EquipmentDraft,
     GroupDraft,
     ItemDraft,
-    LanguageDraft,
     LocationDraft,
     PeriodDraft,
     ShopPolicyDraft,
@@ -28,9 +28,9 @@ CATALOG_SECTIONS = (
     ("periods", "Периоды", PeriodDraft, "id"),
     ("locations", "Локации", LocationDraft, "id"),
     ("creature_kinds", "Виды и расы", CreatureKindDraft, "id"),
-    ("languages", "Языки", LanguageDraft, "id"),
     ("groups", "Объединения", GroupDraft, "id"),
     ("items", "Предметы", ItemDraft, "id"),
+    ("equipment", "Общая экипировка", EquipmentDraft, "id"),
     ("shop_policies", "Магазины", ShopPolicyDraft, "shop_kind"),
     ("characters", "Персонажи и NPC", CharacterDraft, "id"),
     ("traits", "Черты характера", CharacterTraitDraft, "id"),
@@ -43,13 +43,11 @@ CATALOG_HINTS = {
     "periods": "Название, описание, лор и начальная ситуация периода.",
     "locations": "Локации создаются отдельно; состав периода и переходы задаются ниже.",
     "groups": "Укажите участников у персонажей; здесь хранятся состояния, места и отношения групп.",
-    "creature_kinds": (
-        "Доступность, мышление, общение, языки, особенности, места и родительский вид."
-    ),
-    "languages": "ID, название и наличие устной/письменной формы.",
+    "creature_kinds": "Доступность, мышление, общение, особенности, места и родительский вид.",
     "items": "Категория, свойства, ограничения, цена, магазины, вес и предел экземпляров.",
-    "shop_policies": "Диапазон первичного ассортимента для магазина или кузницы.",
-    "characters": "Анкета, периоды, языки, черты, способности, объединения и лидерство.",
+    "equipment": ("Одежда, броня и оружие общего каталога. Раздел определяет сеттинг мира."),
+    "shop_policies": "Диапазон первичного ассортимента для каждого вида торгового места.",
+    "characters": "Анкета, периоды, черты, способности, объединения и лидерство.",
     "traits": "Название, объяснение поведения и несовместимые сочетания.",
 }
 

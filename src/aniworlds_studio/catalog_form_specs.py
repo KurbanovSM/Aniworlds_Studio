@@ -8,8 +8,10 @@ from aniworlds_studio.catalog_contract_values import (
     CATEGORY_OPTIONS,
     COGNITION_OPTIONS,
     COMMUNICATION_OPTIONS,
+    EQUIPMENT_SLOT_OPTIONS,
     GROUP_TYPE_OPTIONS,
     ITEM_CATEGORY_OPTIONS,
+    PROTECTION_OPTIONS,
     SHOP_OPTIONS,
 )
 
@@ -45,7 +47,7 @@ LOCATION_FIELDS = (
     FieldSpec("map_y", "Карта: Y (0–1000)", "optional_integer", minimum=0, maximum=1000),
 )
 KIT_ITEM_FIELDS = (
-    FieldSpec("item_id", "Предмет", "reference", source="items"),
+    FieldSpec("item_id", "Предмет", "reference", source="global_items"),
     FieldSpec("quantity", "Количество", "integer", minimum=1),
 )
 KIT_FIELDS = (
@@ -94,27 +96,23 @@ CATALOG_FORM_SPECS: dict[str, tuple[FieldSpec, ...]] = {
         FieldSpec("category", "Категория", "choice", CATEGORY_OPTIONS),
         FieldSpec("cognition", "Базовый уровень мышления", "choice", COGNITION_OPTIONS),
         FieldSpec("communication_modes", "Способы общения", "choices", COMMUNICATION_OPTIONS),
-        FieldSpec(
-            "default_languages",
-            "Начальные языки этого вида или расы",
-            "language_units",
-        ),
         FieldSpec("physical_features", "Физические особенности · по одной на строке", "lines"),
         FieldSpec("habitat_location_ids", "Места обитания", "references", source="locations"),
         FieldSpec("period_ids", "Доступность по периодам", "references", source="periods"),
         FieldSpec("parent_kind_id", "Родительский вид", "reference_optional", source="kinds"),
-    ),
-    "languages": (
-        FieldSpec("id", "Стабильный ID языка"),
-        FieldSpec("name", "Название"),
-        FieldSpec("has_spoken_form", "Есть устная форма", "boolean"),
-        FieldSpec("has_written_form", "Есть письменная форма", "boolean"),
     ),
     "items": (
         FieldSpec("id", "ID предмета"),
         FieldSpec("name", "Название"),
         FieldSpec("description", "Описание", "long_text"),
         FieldSpec("category", "Категория", "choice", ITEM_CATEGORY_OPTIONS),
+        FieldSpec(
+            "equipment_slot",
+            "Слот экипировки",
+            "choice_optional",
+            tuple(option for option in EQUIPMENT_SLOT_OPTIONS if option[1]),
+        ),
+        FieldSpec("protection_level", "Уровень защиты", "choice", PROTECTION_OPTIONS),
         FieldSpec(
             "uniqueness",
             "Редкость",
@@ -155,6 +153,7 @@ CATALOG_FORM_SPECS: dict[str, tuple[FieldSpec, ...]] = {
         FieldSpec("sex", "Пол", "choice", (("Мужской", "male"), ("Женский", "female"))),
         FieldSpec("age", "Возраст", "integer", minimum=18),
         FieldSpec("biography", "Биография", "long_text"),
+        FieldSpec("profession", "Профессия", maximum=30),
         FieldSpec("origin_location_id", "Исходная локация", "reference", source="locations"),
         FieldSpec("creature_kind_id", "Вид или раса", "reference", source="kinds"),
         FieldSpec(
@@ -168,7 +167,19 @@ CATALOG_FORM_SPECS: dict[str, tuple[FieldSpec, ...]] = {
         FieldSpec("group_ids", "Состоит в объединениях", "references", source="groups"),
         FieldSpec("leader_group_ids", "Возглавляет объединения", "references", source="groups"),
         FieldSpec("period_ids", "Доступен в периодах", "references", source="periods"),
-        FieldSpec("language_knowledge", "Знание языков", "language_units"),
+        FieldSpec(
+            "starting_currency_amount",
+            "Личные деньги",
+            "integer",
+            minimum=0,
+        ),
+        FieldSpec(
+            "items",
+            "Личная одежда, оружие и вещи",
+            "nested",
+            nested=KIT_ITEM_FIELDS,
+            maximum=10,
+        ),
     ),
 }
 
@@ -183,7 +194,6 @@ GLOBAL_CATALOG_FORM_SPECS: dict[str, tuple[FieldSpec, ...]] = {
         FieldSpec("physical_features", "Физические особенности · по одной на строке", "lines"),
         FieldSpec("parent_kind_id", "Родительский вид", "reference_optional", source="kinds"),
     ),
-    "languages": CATALOG_FORM_SPECS["languages"],
     "groups": CATALOG_FORM_SPECS["groups"][:4],
     "traits": (
         FieldSpec("id", "ID черты"),
@@ -197,10 +207,11 @@ GLOBAL_CATALOG_FORM_SPECS: dict[str, tuple[FieldSpec, ...]] = {
             help_text="Связь должна быть указана у обеих несовместимых черт.",
         ),
     ),
+    "equipment": CATALOG_FORM_SPECS["items"],
 }
 
 WORLD_KIND_FIELDS = (
-    CATALOG_FORM_SPECS["creature_kinds"][6],
+    CATALOG_FORM_SPECS["creature_kinds"][7],
     CATALOG_FORM_SPECS["creature_kinds"][8],
     CATALOG_FORM_SPECS["creature_kinds"][9],
 )

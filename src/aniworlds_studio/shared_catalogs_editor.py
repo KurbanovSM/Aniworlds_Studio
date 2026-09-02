@@ -8,6 +8,7 @@ from tkinter import filedialog, messagebox, ttk
 
 from aniworlds_studio.catalog_editor import CatalogEditor
 from aniworlds_studio.catalog_form_specs import GLOBAL_CATALOG_FORM_SPECS
+from aniworlds_studio.equipment_sections_editor import EquipmentSectionsEditor
 from aniworlds_studio.global_catalogs import (
     GLOBAL_CATALOG_FILE_NAME,
     GlobalCatalogDraft,
@@ -26,7 +27,7 @@ class SharedCatalogsFrame(ttk.Frame):
     def __init__(self, parent: ttk.Notebook) -> None:
         super().__init__(parent, padding=20)
         self._catalogs = load_initial_global_catalogs()
-        self._editors: list[CatalogEditor] = []
+        self._editors: list = []
         self._status = tk.StringVar(value="Каталоги ещё не сохранены")
         self._build()
 
@@ -52,7 +53,6 @@ class SharedCatalogsFrame(ttk.Frame):
         tabs.pack(fill="both", expand=True)
         for field_name, title in (
             ("creature_kinds", "Расы и виды"),
-            ("languages", "Языки"),
             ("groups", "Объединения"),
             ("traits", "Черты характера"),
         ):
@@ -69,6 +69,15 @@ class SharedCatalogsFrame(ttk.Frame):
             )
             editor.pack(fill="both", expand=True)
             self._editors.append(editor)
+        equipment_page = ttk.Frame(tabs, padding=8)
+        tabs.add(equipment_page, text="Каталоги предметов")
+        equipment_editor = EquipmentSectionsEditor(
+            equipment_page,
+            get_catalogs=lambda: self._catalogs,
+            on_changed=self._changed,
+        )
+        equipment_editor.pack(fill="both", expand=True)
+        self._editors.append(equipment_editor)
         controls = ttk.Frame(self)
         controls.pack(fill="x", pady=(12, 0))
         ttk.Button(controls, text="Открыть каталоги", command=self._load).pack(side="left")

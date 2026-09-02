@@ -8,6 +8,5 @@ def test_every_catalog_section_has_an_independent_template() -> None:
     assert all(isinstance(entry, dict) for entry in first_entries)
     assert first_entries == second_entries
     assert all(
-        first is not second
-        for first, second in zip(first_entries, second_entries, strict=True)
+        first is not second for first, second in zip(first_entries, second_entries, strict=True)
     )

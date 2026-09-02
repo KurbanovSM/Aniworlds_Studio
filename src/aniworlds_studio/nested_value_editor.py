@@ -43,7 +43,7 @@ class NestedValueEditor(ttk.LabelFrame):
     def refresh(self) -> None:
         self._list.delete(0, "end")
         for position, value in enumerate(self._values, 1):
-            label = value.get("name") or value.get("item_id") or value.get("language_id")
+            label = value.get("name") or value.get("item_id")
             label = label or value.get("period_id") or value.get("id") or f"Запись {position}"
             self._list.insert("end", f"{position}. {label}")
 
@@ -90,7 +90,7 @@ def _default_mapping(fields: tuple[FieldSpec, ...]) -> dict:
             result[field.key] = False
         elif field.kind in {"integer", "decimal", "optional_integer"}:
             result[field.key] = field.minimum if field.kind == "integer" else None
-        elif field.kind in {"lines", "choices", "references", "nested", "language_units"}:
+        elif field.kind in {"lines", "choices", "references", "nested"}:
             result[field.key] = []
         elif field.kind == "states":
             result[field.key] = {}

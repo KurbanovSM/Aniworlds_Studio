@@ -38,6 +38,4 @@ def test_rejects_invalid_values_and_silent_replacement(tmp_path) -> None:
         tmp_path,
         replace_existing=True,
     )
-    assert json.loads(path.read_text(encoding="utf-8"))["abilities"][
-        "initial_ability_limit"
-    ] == 7
+    assert json.loads(path.read_text(encoding="utf-8"))["abilities"]["initial_ability_limit"] == 7

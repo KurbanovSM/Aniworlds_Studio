@@ -22,11 +22,14 @@ class GlobalAbilitySettings:
     ability_lesson_count: int = 4
 
     def validate(self) -> None:
-        if min(
-            self.initial_ability_limit,
-            self.learned_ability_limit,
-            self.ability_lesson_count,
-        ) <= 0:
+        if (
+            min(
+                self.initial_ability_limit,
+                self.learned_ability_limit,
+                self.ability_lesson_count,
+            )
+            <= 0
+        ):
             raise InvalidGlobalSettings("Все значения должны быть больше нуля.")
 
 

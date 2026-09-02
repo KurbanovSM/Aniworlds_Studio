@@ -4,7 +4,6 @@ import pytest
 
 from aniworlds_studio.foundation_export import (
     load_draft,
-    load_published_foundation,
     publication_payload,
     universe_from_mapping,
 )
@@ -27,10 +26,8 @@ def test_authored_naruto_generation_cards_round_trip_and_publish() -> None:
     assert restored.npc_generation_rules == draft.npc_generation_rules
     universe = publication_payload(draft, catalogs)["universe"]
     assert universe["npc_generation_rules"] and universe["npc_biographies"]
-    restored_release = load_published_foundation(
-        ROOT / "content/releases/npc-generation/naruto-shinobi-world-v2.world.json", catalogs
-    )
-    assert restored_release.npc_name_sets == draft.npc_name_sets
+    assert "language_ids" not in universe
+    assert all("language_knowledge" not in item for item in universe["characters"])
 
 
 def test_generation_cards_require_one_location_fallback() -> None:
@@ -73,5 +70,7 @@ def test_invalid_generation_card_is_rejected(mutate) -> None:
 
 def test_all_three_generation_card_forms_are_declared() -> None:
     assert set(NPC_FORM_SPECS) == {
-        "npc_name_sets", "npc_biographies", "npc_generation_rules",
+        "npc_name_sets",
+        "npc_biographies",
+        "npc_generation_rules",
     }

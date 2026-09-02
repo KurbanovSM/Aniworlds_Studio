@@ -16,7 +16,6 @@ from aniworlds_studio.foundation_models import (
     CreatureKindDraft,
     GroupDraft,
     ItemDraft,
-    LanguageDraft,
     UniverseDraft,
 )
 from aniworlds_studio.global_catalogs import CharacterTraitDraft, GlobalCatalogDraft
@@ -61,26 +60,23 @@ def test_specs_cover_every_root_catalog_without_json_fields() -> None:
         "locations",
         "groups",
         "creature_kinds",
-        "languages",
         "items",
         "shop_policies",
         "characters",
     }
-    assert all(
-        field.kind != "json"
-        for fields in CATALOG_FORM_SPECS.values()
-        for field in fields
-    )
+    assert all(field.kind != "json" for fields in CATALOG_FORM_SPECS.values() for field in fields)
     frequency = next(
         field for field in CATALOG_FORM_SPECS["items"] if field.key == "appearance_weight"
     )
     assert (frequency.minimum, frequency.maximum) == (1, 100)
     instance_limit = next(
-        field
-        for field in CATALOG_FORM_SPECS["items"]
-        if field.key == "maximum_created_instances"
+        field for field in CATALOG_FORM_SPECS["items"] if field.key == "maximum_created_instances"
     )
     assert instance_limit.kind == "instance_limit"
+    profession = next(
+        field for field in CATALOG_FORM_SPECS["characters"] if field.key == "profession"
+    )
+    assert profession.maximum == 30
 
 
 def test_creature_reference_options_match_game_contract_labels() -> None:
@@ -99,7 +95,7 @@ def test_creature_reference_options_match_game_contract_labels() -> None:
     assert COMMUNICATION_OPTIONS == (
         ("Сигналы", "signals"),
         ("Речь", "speech"),
-        ("Жестовый язык", "sign_language"),
+        ("Жесты", "sign_language"),
         ("Письмо", "writing"),
         ("Телепатия", "telepathy"),
         ("Особый способ", "other"),
@@ -125,8 +121,7 @@ def test_reads_and_writes_text_choices_and_lists() -> None:
     options = (("Первый", "one"), ("Второй", "two"))
     assert read_control(FormControl("choice", object(), _Variable("Второй"), options)) == "two"
     assert (
-        read_control(FormControl("reference", object(), _Variable("custom"), options))
-        == "custom"
+        read_control(FormControl("reference", object(), _Variable("custom"), options)) == "custom"
     )
     assert read_control(FormControl("long_text", _Text("  Текст  "))) == "Текст"
     assert read_control(FormControl("lines", _Text(" один\n\n два "))) == ["один", "два"]
@@ -168,17 +163,13 @@ def test_reference_options_and_titles_use_authored_cards() -> None:
     draft.groups = [GroupDraft(id="guards", name="Стража")]
     draft.items = [ItemDraft(id="bandage", name="Бинт")]
     draft.creature_kinds = [CreatureKindDraft(id="human", name="Человек")]
-    draft.languages = [LanguageDraft(id="common", name="Общий")]
 
     assert reference_options(draft, "periods")[0][1] == "period"
     assert reference_options(draft, "locations")[0][1] == "start"
     assert reference_options(draft, "groups") == (("Стража (guards)", "guards"),)
     assert reference_options(draft, "items") == (("Бинт (bandage)", "bandage"),)
     assert reference_options(draft, "kinds") == (("Человек (human)", "human"),)
-    assert reference_options(draft, "languages") == (("Общий (common)", "common"),)
-    catalogs = GlobalCatalogDraft(
-        traits=[CharacterTraitDraft(id="brave", name="Смелый")]
-    )
+    catalogs = GlobalCatalogDraft(traits=[CharacterTraitDraft(id="brave", name="Смелый")])
     assert reference_options(catalogs, "traits") == (("Смелый (brave)", "brave"),)
     assert reference_options(draft, "missing") == ()
     assert entry_title(SimpleNamespace(id="x", name="Имя"), "id") == ("Имя", "x")

@@ -4,6 +4,7 @@ UNIVERSE_FIELDS = (
     ("id", "ID вселенной"),
     ("name", "Название"),
     ("description", "Описание", "long_text"),
+    ("item_catalog_section_id", "ID основного каталога предметов"),
 )
 
 WORLD_RULE_FIELDS = (

@@ -1,5 +1,5 @@
 {
-  "studio_catalog_version": 2,
+  "studio_catalog_version": 3,
   "creature_kinds": [
     {
       "id": "human",
@@ -7,11 +7,19 @@
       "description": "Разумный человек мира шиноби, способный управлять чакрой после обучения.",
       "category": "race",
       "cognition": "sapient",
-      "communication_modes": ["speech", "writing", "signals"],
-      "default_languages": [],
-      "physical_features": ["Человеческое телосложение", "Развитая система циркуляции чакры"],
+      "communication_modes": [
+        "speech",
+        "writing",
+        "signals"
+      ],
+      "physical_features": [
+        "Человеческое телосложение",
+        "Развитая система циркуляции чакры"
+      ],
       "habitat_location_ids": [],
-      "period_ids": ["period"],
+      "period_ids": [
+        "period"
+      ],
       "parent_kind_id": null
     },
     {
@@ -20,11 +28,18 @@
       "description": "Животное из связанного с шиноби призывного рода; отдельные представители разумны и владеют речью.",
       "category": "animal",
       "cognition": "animal",
-      "communication_modes": ["signals", "speech"],
-      "default_languages": [],
-      "physical_features": ["Анатомия соответствующего животного", "Возможность заключать договор призыва"],
+      "communication_modes": [
+        "signals",
+        "speech"
+      ],
+      "physical_features": [
+        "Анатомия соответствующего животного",
+        "Возможность заключать договор призыва"
+      ],
       "habitat_location_ids": [],
-      "period_ids": ["period"],
+      "period_ids": [
+        "period"
+      ],
       "parent_kind_id": null
     },
     {
@@ -33,11 +48,19 @@
       "description": "Разумное существо из огромной массы чакры с собственной волей и памятью.",
       "category": "supernatural",
       "cognition": "higher",
-      "communication_modes": ["speech", "telepathy"],
-      "default_languages": [],
-      "physical_features": ["Тело из концентрированной чакры", "Огромный запас чакры", "Характерное число хвостов"],
+      "communication_modes": [
+        "speech",
+        "telepathy"
+      ],
+      "physical_features": [
+        "Тело из концентрированной чакры",
+        "Огромный запас чакры",
+        "Характерное число хвостов"
+      ],
       "habitat_location_ids": [],
-      "period_ids": ["period"],
+      "period_ids": [
+        "period"
+      ],
       "parent_kind_id": null
     },
     {
@@ -46,11 +69,19 @@
       "description": "Искусственно выращенное человекоподобное существо армии Акацуки.",
       "category": "supernatural",
       "cognition": "sapient",
-      "communication_modes": ["speech", "signals"],
-      "default_languages": [],
-      "physical_features": ["Белая кожа", "Растительная структура тела", "Способность сливаться с окружением"],
+      "communication_modes": [
+        "speech",
+        "signals"
+      ],
+      "physical_features": [
+        "Белая кожа",
+        "Растительная структура тела",
+        "Способность сливаться с окружением"
+      ],
       "habitat_location_ids": [],
-      "period_ids": ["period"],
+      "period_ids": [
+        "period"
+      ],
       "parent_kind_id": null
     },
     {
@@ -59,72 +90,2309 @@
       "description": "Погибший шиноби, возвращённый техникой Нечестивого воскрешения и удерживаемый внешним управлением.",
       "category": "supernatural",
       "cognition": "sapient",
-      "communication_modes": ["speech", "writing", "signals"],
-      "default_languages": [],
-      "physical_features": ["Восстанавливающееся тело", "Трещины на коже", "Подчинение управляющей печати"],
+      "communication_modes": [
+        "speech",
+        "writing",
+        "signals"
+      ],
+      "physical_features": [
+        "Восстанавливающееся тело",
+        "Трещины на коже",
+        "Подчинение управляющей печати"
+      ],
       "habitat_location_ids": [],
-      "period_ids": ["period"],
+      "period_ids": [
+        "period"
+      ],
       "parent_kind_id": "human"
     }
   ],
-  "languages": [
+  "groups": [
     {
-      "id": "shinobi-common",
-      "name": "Общий язык мира шиноби",
-      "has_spoken_form": true,
-      "has_written_form": true
+      "id": "konoha",
+      "name": "Конохагакуре",
+      "group_type": "settlement",
+      "description": "Скрытая деревня Страны Огня под руководством Хокаге.",
+      "location_ids": [],
+      "ally_ids": [],
+      "enemy_ids": [],
+      "period_states": {}
+    },
+    {
+      "id": "sunagakure",
+      "name": "Сунагакуре",
+      "group_type": "settlement",
+      "description": "Скрытая деревня Страны Ветра под руководством Казекаге.",
+      "location_ids": [],
+      "ally_ids": [],
+      "enemy_ids": [],
+      "period_states": {}
+    },
+    {
+      "id": "kumogakure",
+      "name": "Кумогакуре",
+      "group_type": "settlement",
+      "description": "Скрытая деревня Страны Молнии под руководством Райкаге.",
+      "location_ids": [],
+      "ally_ids": [],
+      "enemy_ids": [],
+      "period_states": {}
+    },
+    {
+      "id": "iwagakure",
+      "name": "Ивагакуре",
+      "group_type": "settlement",
+      "description": "Скрытая деревня Страны Земли под руководством Цучикаге.",
+      "location_ids": [],
+      "ally_ids": [],
+      "enemy_ids": [],
+      "period_states": {}
+    },
+    {
+      "id": "kirigakure",
+      "name": "Киригакуре",
+      "group_type": "settlement",
+      "description": "Скрытая деревня Страны Воды под руководством Мизукаге.",
+      "location_ids": [],
+      "ally_ids": [],
+      "enemy_ids": [],
+      "period_states": {}
+    },
+    {
+      "id": "akatsuki",
+      "name": "Акацуки",
+      "group_type": "organization",
+      "description": "Тайная организация сильных отступников, охотящаяся за хвостатыми зверями.",
+      "location_ids": [],
+      "ally_ids": [],
+      "enemy_ids": [],
+      "period_states": {}
+    },
+    {
+      "id": "team-kakashi",
+      "name": "Команда Какаши",
+      "group_type": "team",
+      "description": "Команда Конохи, выполняющая задания под руководством Какаши и Ямато.",
+      "location_ids": [],
+      "ally_ids": [],
+      "enemy_ids": [],
+      "period_states": {}
+    },
+    {
+      "id": "allied-shinobi-forces",
+      "name": "Объединённые силы шиноби",
+      "group_type": "army",
+      "description": "Военный союз пяти великих стран и самураев Страны Железа.",
+      "location_ids": [],
+      "ally_ids": [],
+      "enemy_ids": [],
+      "period_states": {}
+    },
+    {
+      "id": "taka",
+      "name": "Така",
+      "group_type": "team",
+      "description": "Независимая команда Саске Учихи, собранная вокруг его личных целей.",
+      "location_ids": [],
+      "ally_ids": [],
+      "enemy_ids": [],
+      "period_states": {}
+    },
+    {
+      "id": "white-zetsu-army",
+      "name": "Армия Белых Дзецу",
+      "group_type": "army",
+      "description": "Массовая армия искусственных существ под командованием Акацуки.",
+      "location_ids": [],
+      "ally_ids": [],
+      "enemy_ids": [],
+      "period_states": {}
     }
   ],
-  "groups": [
-    {"id": "konoha", "name": "Конохагакуре", "group_type": "settlement", "description": "Скрытая деревня Страны Огня под руководством Хокаге."},
-    {"id": "sunagakure", "name": "Сунагакуре", "group_type": "settlement", "description": "Скрытая деревня Страны Ветра под руководством Казекаге."},
-    {"id": "kumogakure", "name": "Кумогакуре", "group_type": "settlement", "description": "Скрытая деревня Страны Молнии под руководством Райкаге."},
-    {"id": "iwagakure", "name": "Ивагакуре", "group_type": "settlement", "description": "Скрытая деревня Страны Земли под руководством Цучикаге."},
-    {"id": "kirigakure", "name": "Киригакуре", "group_type": "settlement", "description": "Скрытая деревня Страны Воды под руководством Мизукаге."},
-    {"id": "akatsuki", "name": "Акацуки", "group_type": "organization", "description": "Тайная организация сильных отступников, охотящаяся за хвостатыми зверями."},
-    {"id": "team-kakashi", "name": "Команда Какаши", "group_type": "team", "description": "Команда Конохи, выполняющая задания под руководством Какаши и Ямато."},
-    {"id": "allied-shinobi-forces", "name": "Объединённые силы шиноби", "group_type": "army", "description": "Военный союз пяти великих стран и самураев Страны Железа."},
-    {"id": "taka", "name": "Така", "group_type": "team", "description": "Независимая команда Саске Учихи, собранная вокруг его личных целей."},
-    {"id": "white-zetsu-army", "name": "Армия Белых Дзецу", "group_type": "army", "description": "Массовая армия искусственных существ под командованием Акацуки."}
-  ],
   "traits": [
-    {"id": "determined", "name": "Целеустремлённый", "description": "Продолжает двигаться к выбранной цели, несмотря на препятствия.", "incompatible_trait_ids": []},
-    {"id": "impulsive", "name": "Импульсивный", "description": "Может действовать под влиянием первого порыва, не оценив последствия.", "incompatible_trait_ids": ["calm"]},
-    {"id": "loyal", "name": "Преданный", "description": "Сохраняет верность близким, союзникам или выбранному делу.", "incompatible_trait_ids": ["treacherous"]},
-    {"id": "empathetic", "name": "Сочувствующий", "description": "Замечает чувства окружающих и учитывает их состояние.", "incompatible_trait_ids": []},
-    {"id": "protective", "name": "Защищающий", "description": "Стремится оберегать тех, за кого считает себя ответственным.", "incompatible_trait_ids": []},
-    {"id": "disciplined", "name": "Дисциплинированный", "description": "Следует порядку, подготовке и принятым обязанностям.", "incompatible_trait_ids": []},
-    {"id": "observant", "name": "Наблюдательный", "description": "Замечает важные детали окружения и поведения других.", "incompatible_trait_ids": []},
-    {"id": "calm", "name": "Спокойный", "description": "Сохраняет самообладание без резких эмоциональных решений.", "incompatible_trait_ids": ["impulsive"]},
-    {"id": "strategic", "name": "Стратегичный", "description": "Оценивает несколько шагов вперёд и сопоставляет последствия.", "incompatible_trait_ids": []},
-    {"id": "reserved", "name": "Замкнутый", "description": "Неохотно раскрывает мысли и чувства посторонним.", "incompatible_trait_ids": []},
-    {"id": "literal", "name": "Прямолинейный", "description": "Предпочитает буквальные и недвусмысленные формулировки.", "incompatible_trait_ids": []},
-    {"id": "responsible", "name": "Ответственный", "description": "Серьёзно относится к обязательствам и последствиям решений.", "incompatible_trait_ids": []},
-    {"id": "cautious", "name": "Осторожный", "description": "Заранее оценивает угрозы и старается уменьшить риск.", "incompatible_trait_ids": []},
-    {"id": "strict", "name": "Строгий", "description": "Требовательно относится к правилам, дисциплине и результату.", "incompatible_trait_ids": []},
-    {"id": "authoritative", "name": "Властный", "description": "Привык принимать решения и ожидать исполнения распоряжений.", "incompatible_trait_ids": []},
-    {"id": "resolute", "name": "Твёрдый", "description": "Не отступает от принятого решения без веской причины.", "incompatible_trait_ids": []},
-    {"id": "brave", "name": "Смелый", "description": "Готов действовать при опасности, понимая возможный риск.", "incompatible_trait_ids": []},
-    {"id": "curious", "name": "Любопытный", "description": "Ищет новые сведения и исследует неизвестное.", "incompatible_trait_ids": []},
-    {"id": "unmotivated", "name": "Немотивированный", "description": "Избегает лишних усилий, пока не увидит важной причины действовать.", "incompatible_trait_ids": []},
-    {"id": "kind", "name": "Добрый", "description": "Стремится помогать другим и учитывает их благополучие.", "incompatible_trait_ids": ["cruel"]},
-    {"id": "perceptive", "name": "Проницательный", "description": "Быстро распознаёт скрытые причины и изменения ситуации.", "incompatible_trait_ids": []},
-    {"id": "hardworking", "name": "Трудолюбивый", "description": "Готов долго и последовательно работать ради результата.", "incompatible_trait_ids": []},
-    {"id": "earnest", "name": "Искренний", "description": "Относится к словам и действиям серьёзно, без притворной небрежности.", "incompatible_trait_ids": []},
-    {"id": "energetic", "name": "Энергичный", "description": "Охотно действует и поддерживает высокий темп.", "incompatible_trait_ids": []},
-    {"id": "competitive", "name": "Соревновательный", "description": "Стремится превзойти соперников и доказать собственный уровень.", "incompatible_trait_ids": []},
-    {"id": "confident", "name": "Уверенный", "description": "Полагается на свои решения и способности без постоянных сомнений.", "incompatible_trait_ids": []},
-    {"id": "unpredictable", "name": "Непредсказуемый", "description": "Часто выбирает неожиданный для окружающих способ действия.", "incompatible_trait_ids": []},
-    {"id": "driven", "name": "Одержимый целью", "description": "Подчиняет многие решения одной особенно важной цели.", "incompatible_trait_ids": []},
-    {"id": "guarded", "name": "Недоверчивый", "description": "Осторожно раскрывает намерения и личные сведения.", "incompatible_trait_ids": []},
-    {"id": "independent", "name": "Независимый", "description": "Предпочитает самостоятельно принимать решения и отвечать за них.", "incompatible_trait_ids": []},
-    {"id": "secretive", "name": "Скрытный", "description": "Сознательно ограничивает доступ окружающих к своим планам и знаниям.", "incompatible_trait_ids": []},
-    {"id": "ideological", "name": "Идейный", "description": "Строит решения вокруг устойчивого мировоззрения или учения.", "incompatible_trait_ids": []},
-    {"id": "watchful", "name": "Бдительный", "description": "Постоянно следит за возможными угрозами и изменениями вокруг.", "incompatible_trait_ids": []},
-    {"id": "manipulative", "name": "Манипулятивный", "description": "Скрыто влияет на чувства и решения других ради своей цели.", "incompatible_trait_ids": []},
-    {"id": "calculating", "name": "Расчётливый", "description": "Сопоставляет выгоду, риск и доступные ресурсы перед действием.", "incompatible_trait_ids": []},
-    {"id": "adaptive", "name": "Адаптивный", "description": "Быстро меняет подход, когда обстоятельства перестают ему соответствовать.", "incompatible_trait_ids": []},
-    {"id": "cruel", "name": "Жестокий", "description": "Готов сознательно причинять страдания ради своих целей.", "incompatible_trait_ids": ["kind"]},
-    {"id": "treacherous", "name": "Вероломный", "description": "Нарушает доверие или договорённость ради собственной выгоды.", "incompatible_trait_ids": ["loyal"]}
+    {
+      "id": "determined",
+      "name": "Целеустремлённый",
+      "description": "Продолжает двигаться к выбранной цели, несмотря на препятствия.",
+      "incompatible_trait_ids": []
+    },
+    {
+      "id": "impulsive",
+      "name": "Импульсивный",
+      "description": "Может действовать под влиянием первого порыва, не оценив последствия.",
+      "incompatible_trait_ids": [
+        "calm"
+      ]
+    },
+    {
+      "id": "loyal",
+      "name": "Преданный",
+      "description": "Сохраняет верность близким, союзникам или выбранному делу.",
+      "incompatible_trait_ids": [
+        "treacherous"
+      ]
+    },
+    {
+      "id": "empathetic",
+      "name": "Сочувствующий",
+      "description": "Замечает чувства окружающих и учитывает их состояние.",
+      "incompatible_trait_ids": []
+    },
+    {
+      "id": "protective",
+      "name": "Защищающий",
+      "description": "Стремится оберегать тех, за кого считает себя ответственным.",
+      "incompatible_trait_ids": []
+    },
+    {
+      "id": "disciplined",
+      "name": "Дисциплинированный",
+      "description": "Следует порядку, подготовке и принятым обязанностям.",
+      "incompatible_trait_ids": []
+    },
+    {
+      "id": "observant",
+      "name": "Наблюдательный",
+      "description": "Замечает важные детали окружения и поведения других.",
+      "incompatible_trait_ids": []
+    },
+    {
+      "id": "calm",
+      "name": "Спокойный",
+      "description": "Сохраняет самообладание без резких эмоциональных решений.",
+      "incompatible_trait_ids": [
+        "impulsive"
+      ]
+    },
+    {
+      "id": "strategic",
+      "name": "Стратегичный",
+      "description": "Оценивает несколько шагов вперёд и сопоставляет последствия.",
+      "incompatible_trait_ids": []
+    },
+    {
+      "id": "reserved",
+      "name": "Замкнутый",
+      "description": "Неохотно раскрывает мысли и чувства посторонним.",
+      "incompatible_trait_ids": []
+    },
+    {
+      "id": "literal",
+      "name": "Прямолинейный",
+      "description": "Предпочитает буквальные и недвусмысленные формулировки.",
+      "incompatible_trait_ids": []
+    },
+    {
+      "id": "responsible",
+      "name": "Ответственный",
+      "description": "Серьёзно относится к обязательствам и последствиям решений.",
+      "incompatible_trait_ids": []
+    },
+    {
+      "id": "cautious",
+      "name": "Осторожный",
+      "description": "Заранее оценивает угрозы и старается уменьшить риск.",
+      "incompatible_trait_ids": []
+    },
+    {
+      "id": "strict",
+      "name": "Строгий",
+      "description": "Требовательно относится к правилам, дисциплине и результату.",
+      "incompatible_trait_ids": []
+    },
+    {
+      "id": "authoritative",
+      "name": "Властный",
+      "description": "Привык принимать решения и ожидать исполнения распоряжений.",
+      "incompatible_trait_ids": []
+    },
+    {
+      "id": "resolute",
+      "name": "Твёрдый",
+      "description": "Не отступает от принятого решения без веской причины.",
+      "incompatible_trait_ids": []
+    },
+    {
+      "id": "brave",
+      "name": "Смелый",
+      "description": "Готов действовать при опасности, понимая возможный риск.",
+      "incompatible_trait_ids": []
+    },
+    {
+      "id": "curious",
+      "name": "Любопытный",
+      "description": "Ищет новые сведения и исследует неизвестное.",
+      "incompatible_trait_ids": []
+    },
+    {
+      "id": "unmotivated",
+      "name": "Немотивированный",
+      "description": "Избегает лишних усилий, пока не увидит важной причины действовать.",
+      "incompatible_trait_ids": []
+    },
+    {
+      "id": "kind",
+      "name": "Добрый",
+      "description": "Стремится помогать другим и учитывает их благополучие.",
+      "incompatible_trait_ids": [
+        "cruel"
+      ]
+    },
+    {
+      "id": "perceptive",
+      "name": "Проницательный",
+      "description": "Быстро распознаёт скрытые причины и изменения ситуации.",
+      "incompatible_trait_ids": []
+    },
+    {
+      "id": "hardworking",
+      "name": "Трудолюбивый",
+      "description": "Готов долго и последовательно работать ради результата.",
+      "incompatible_trait_ids": []
+    },
+    {
+      "id": "earnest",
+      "name": "Искренний",
+      "description": "Относится к словам и действиям серьёзно, без притворной небрежности.",
+      "incompatible_trait_ids": []
+    },
+    {
+      "id": "energetic",
+      "name": "Энергичный",
+      "description": "Охотно действует и поддерживает высокий темп.",
+      "incompatible_trait_ids": []
+    },
+    {
+      "id": "competitive",
+      "name": "Соревновательный",
+      "description": "Стремится превзойти соперников и доказать собственный уровень.",
+      "incompatible_trait_ids": []
+    },
+    {
+      "id": "confident",
+      "name": "Уверенный",
+      "description": "Полагается на свои решения и способности без постоянных сомнений.",
+      "incompatible_trait_ids": []
+    },
+    {
+      "id": "unpredictable",
+      "name": "Непредсказуемый",
+      "description": "Часто выбирает неожиданный для окружающих способ действия.",
+      "incompatible_trait_ids": []
+    },
+    {
+      "id": "driven",
+      "name": "Одержимый целью",
+      "description": "Подчиняет многие решения одной особенно важной цели.",
+      "incompatible_trait_ids": []
+    },
+    {
+      "id": "guarded",
+      "name": "Недоверчивый",
+      "description": "Осторожно раскрывает намерения и личные сведения.",
+      "incompatible_trait_ids": []
+    },
+    {
+      "id": "independent",
+      "name": "Независимый",
+      "description": "Предпочитает самостоятельно принимать решения и отвечать за них.",
+      "incompatible_trait_ids": []
+    },
+    {
+      "id": "secretive",
+      "name": "Скрытный",
+      "description": "Сознательно ограничивает доступ окружающих к своим планам и знаниям.",
+      "incompatible_trait_ids": []
+    },
+    {
+      "id": "ideological",
+      "name": "Идейный",
+      "description": "Строит решения вокруг устойчивого мировоззрения или учения.",
+      "incompatible_trait_ids": []
+    },
+    {
+      "id": "watchful",
+      "name": "Бдительный",
+      "description": "Постоянно следит за возможными угрозами и изменениями вокруг.",
+      "incompatible_trait_ids": []
+    },
+    {
+      "id": "manipulative",
+      "name": "Манипулятивный",
+      "description": "Скрыто влияет на чувства и решения других ради своей цели.",
+      "incompatible_trait_ids": []
+    },
+    {
+      "id": "calculating",
+      "name": "Расчётливый",
+      "description": "Сопоставляет выгоду, риск и доступные ресурсы перед действием.",
+      "incompatible_trait_ids": []
+    },
+    {
+      "id": "adaptive",
+      "name": "Адаптивный",
+      "description": "Быстро меняет подход, когда обстоятельства перестают ему соответствовать.",
+      "incompatible_trait_ids": []
+    },
+    {
+      "id": "cruel",
+      "name": "Жестокий",
+      "description": "Готов сознательно причинять страдания ради своих целей.",
+      "incompatible_trait_ids": [
+        "kind"
+      ]
+    },
+    {
+      "id": "treacherous",
+      "name": "Вероломный",
+      "description": "Нарушает доверие или договорённость ради собственной выгоды.",
+      "incompatible_trait_ids": [
+        "loyal"
+      ]
+    }
+  ],
+  "equipment_sections": [
+    {
+      "id": "Narutov4",
+      "name": "Наруто"
+    }
+  ],
+  "equipment": [
+    {
+      "id": "academy-sandals",
+      "name": "Сандалии Академии",
+      "description": "Простые сандалии для тренировок.",
+      "category": "clothing",
+      "uniqueness": "ordinary",
+      "properties": [],
+      "limitations": [],
+      "allowed_shop_kinds": [
+        "clothing_shop"
+      ],
+      "base_price": 90,
+      "appearance_weight": 5,
+      "maximum_created_instances": null,
+      "equipment_slot": "feet",
+      "protection_level": "none",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "academy-trousers",
+      "name": "Штаны Академии",
+      "description": "Простые форменные штаны для занятий.",
+      "category": "clothing",
+      "uniqueness": "ordinary",
+      "properties": [],
+      "limitations": [],
+      "allowed_shop_kinds": [
+        "clothing_shop"
+      ],
+      "base_price": 150,
+      "appearance_weight": 5,
+      "maximum_created_instances": null,
+      "equipment_slot": "legs",
+      "protection_level": "none",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "academy-uniform",
+      "name": "Форма Академии",
+      "description": "Повседневная форма преподавателя или ученика Академии.",
+      "category": "clothing",
+      "uniqueness": "ordinary",
+      "properties": [],
+      "limitations": [],
+      "allowed_shop_kinds": [
+        "clothing_shop"
+      ],
+      "base_price": 180,
+      "appearance_weight": 5,
+      "maximum_created_instances": null,
+      "equipment_slot": "torso",
+      "protection_level": "none",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "akatsuki-cloak",
+      "name": "Плащ Акацуки",
+      "description": "Чёрный дорожный плащ с красными облаками.",
+      "category": "clothing",
+      "uniqueness": "ordinary",
+      "properties": [],
+      "limitations": [],
+      "allowed_shop_kinds": [
+        "clothing_shop"
+      ],
+      "base_price": 900,
+      "appearance_weight": 2,
+      "maximum_created_instances": null,
+      "equipment_slot": "torso",
+      "protection_level": "light",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "anbu-vest",
+      "name": "Жилет АНБУ",
+      "description": "Защитный жилет для скрытых операций.",
+      "category": "armor",
+      "uniqueness": "ordinary",
+      "properties": [],
+      "limitations": [],
+      "allowed_shop_kinds": [
+        "armor_shop",
+        "forge"
+      ],
+      "base_price": 1350,
+      "appearance_weight": 2,
+      "maximum_created_instances": null,
+      "equipment_slot": "torso",
+      "protection_level": "medium",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "antidote",
+      "name": "Противоядие",
+      "description": "Порция распространённого противоядия общего назначения.",
+      "category": "consumable",
+      "uniqueness": "ordinary",
+      "properties": [
+        "Может ослабить действие подходящего яда"
+      ],
+      "limitations": [
+        "Расходуется при применении",
+        "Не действует на неизвестные составы автоматически"
+      ],
+      "allowed_shop_kinds": [
+        "pharmacy"
+      ],
+      "base_price": 220,
+      "appearance_weight": 40,
+      "maximum_created_instances": null,
+      "equipment_slot": null,
+      "protection_level": "none",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "arm-guards",
+      "name": "Боевые наручи",
+      "description": "Укреплённые накладки для предплечий и кистей.",
+      "category": "armor",
+      "uniqueness": "ordinary",
+      "properties": [
+        "Защищают руки от лёгких ударов"
+      ],
+      "limitations": [
+        "Не выдерживают мощных техник"
+      ],
+      "allowed_shop_kinds": [
+        "armor_shop",
+        "forge"
+      ],
+      "base_price": 420,
+      "appearance_weight": 45,
+      "maximum_created_instances": null,
+      "equipment_slot": "hands",
+      "protection_level": "medium",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "armored-gauntlets",
+      "name": "Латные перчатки",
+      "description": "Тяжёлые перчатки с металлическими пластинами.",
+      "category": "armor",
+      "uniqueness": "ordinary",
+      "properties": [],
+      "limitations": [],
+      "allowed_shop_kinds": [
+        "armor_shop",
+        "forge"
+      ],
+      "base_price": 900,
+      "appearance_weight": 2,
+      "maximum_created_instances": null,
+      "equipment_slot": "hands",
+      "protection_level": "heavy",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "bandage",
+      "name": "Бинт",
+      "description": "Чистый перевязочный материал для первой помощи.",
+      "category": "consumable",
+      "uniqueness": "ordinary",
+      "properties": [
+        "Помогает остановить кровотечение"
+      ],
+      "limitations": [
+        "Расходуется при применении"
+      ],
+      "allowed_shop_kinds": [
+        "pharmacy"
+      ],
+      "base_price": 20,
+      "appearance_weight": 100,
+      "maximum_created_instances": null,
+      "equipment_slot": null,
+      "protection_level": "none",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "blank-scroll",
+      "name": "Чистый свиток",
+      "description": "Пустой свиток для записей и печатей.",
+      "category": "common",
+      "uniqueness": "ordinary",
+      "properties": [],
+      "limitations": [],
+      "allowed_shop_kinds": [
+        "tool_and_scroll_shop"
+      ],
+      "base_price": 40,
+      "appearance_weight": 5,
+      "maximum_created_instances": null,
+      "equipment_slot": null,
+      "protection_level": "none",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "bo-staff",
+      "name": "Боевой посох",
+      "description": "Прочный деревянный посох для защиты и ближнего боя.",
+      "category": "weapon",
+      "uniqueness": "ordinary",
+      "properties": [
+        "Увеличивает дистанцию удара",
+        "Можно использовать для защиты"
+      ],
+      "limitations": [
+        "Неудобен в тесном помещении"
+      ],
+      "allowed_shop_kinds": [
+        "weapon_shop",
+        "forge"
+      ],
+      "base_price": 190,
+      "appearance_weight": 35,
+      "maximum_created_instances": null,
+      "equipment_slot": "active_weapon",
+      "protection_level": "none",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "bow",
+      "name": "Лук",
+      "description": "Дальнобойное оружие со стрелами.",
+      "category": "weapon",
+      "uniqueness": "ordinary",
+      "properties": [],
+      "limitations": [],
+      "allowed_shop_kinds": [
+        "weapon_shop",
+        "forge"
+      ],
+      "base_price": 520,
+      "appearance_weight": 3,
+      "maximum_created_instances": null,
+      "equipment_slot": "active_weapon",
+      "protection_level": "none",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "camping-blanket",
+      "name": "Походное одеяло",
+      "description": "Плотное свёрнутое одеяло для ночлега.",
+      "category": "common",
+      "uniqueness": "ordinary",
+      "properties": [],
+      "limitations": [],
+      "allowed_shop_kinds": [
+        "general_store"
+      ],
+      "base_price": 85,
+      "appearance_weight": 5,
+      "maximum_created_instances": null,
+      "equipment_slot": null,
+      "protection_level": "none",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "chakra-blade",
+      "name": "Чакроклинок",
+      "description": "Клинок из металла, хорошо проводящего чакру.",
+      "category": "weapon",
+      "uniqueness": "ordinary",
+      "properties": [],
+      "limitations": [],
+      "allowed_shop_kinds": [
+        "weapon_shop",
+        "forge"
+      ],
+      "base_price": 1800,
+      "appearance_weight": 2,
+      "maximum_created_instances": null,
+      "equipment_slot": "active_weapon",
+      "protection_level": "none",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "chakra-gloves",
+      "name": "Чакропроводящие перчатки",
+      "description": "Перчатки с проводящей чакру тканью.",
+      "category": "armor",
+      "uniqueness": "ordinary",
+      "properties": [],
+      "limitations": [],
+      "allowed_shop_kinds": [
+        "armor_shop",
+        "forge"
+      ],
+      "base_price": 650,
+      "appearance_weight": 3,
+      "maximum_created_instances": null,
+      "equipment_slot": "hands",
+      "protection_level": "light",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "chakra-paper",
+      "name": "Бумага определения чакры",
+      "description": "Особая бумага, реагирующая на природное преобразование чакры.",
+      "category": "consumable",
+      "uniqueness": "ordinary",
+      "properties": [
+        "Показывает природную склонность чакры"
+      ],
+      "limitations": [
+        "Расходуется при проверке",
+        "Не обучает технике"
+      ],
+      "allowed_shop_kinds": [
+        "tool_and_scroll_shop"
+      ],
+      "base_price": 300,
+      "appearance_weight": 25,
+      "maximum_created_instances": null,
+      "equipment_slot": null,
+      "protection_level": "none",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "civilian-hakama",
+      "name": "Повседневные хакама",
+      "description": "Свободная традиционная одежда для ног.",
+      "category": "clothing",
+      "uniqueness": "ordinary",
+      "properties": [
+        "Закрывают ноги",
+        "Удобны в повседневной жизни"
+      ],
+      "limitations": [
+        "Не защищают от атак"
+      ],
+      "allowed_shop_kinds": [
+        "clothing_shop"
+      ],
+      "base_price": 150,
+      "appearance_weight": 60,
+      "maximum_created_instances": null,
+      "equipment_slot": "legs",
+      "protection_level": "none",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "civilian-kimono",
+      "name": "Повседневное кимоно",
+      "description": "Обычная одежда жителей городов и деревень.",
+      "category": "clothing",
+      "uniqueness": "ordinary",
+      "properties": [
+        "Полностью закрывает торс"
+      ],
+      "limitations": [
+        "Не предназначено для боя"
+      ],
+      "allowed_shop_kinds": [
+        "clothing_shop"
+      ],
+      "base_price": 160,
+      "appearance_weight": 85,
+      "maximum_created_instances": null,
+      "equipment_slot": "torso",
+      "protection_level": "none",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "cloth-hood",
+      "name": "Дорожный капюшон",
+      "description": "Плотный тканевый капюшон от ветра, пыли и посторонних взглядов.",
+      "category": "clothing",
+      "uniqueness": "ordinary",
+      "properties": [
+        "Прикрывает голову и лицо"
+      ],
+      "limitations": [
+        "Не защищает от оружия"
+      ],
+      "allowed_shop_kinds": [
+        "clothing_shop"
+      ],
+      "base_price": 90,
+      "appearance_weight": 45,
+      "maximum_created_instances": null,
+      "equipment_slot": "head",
+      "protection_level": "none",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "cloud-combat-vest",
+      "name": "Боевой жилет Кумогакуре",
+      "description": "Плотный жилет шиноби Страны Молнии.",
+      "category": "armor",
+      "uniqueness": "ordinary",
+      "properties": [],
+      "limitations": [],
+      "allowed_shop_kinds": [
+        "armor_shop",
+        "forge"
+      ],
+      "base_price": 1450,
+      "appearance_weight": 3,
+      "maximum_created_instances": null,
+      "equipment_slot": "torso",
+      "protection_level": "medium",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "cloud-trousers",
+      "name": "Штаны Кумогакуре",
+      "description": "Усиленные форменные штаны Страны Молнии.",
+      "category": "armor",
+      "uniqueness": "ordinary",
+      "properties": [],
+      "limitations": [],
+      "allowed_shop_kinds": [
+        "armor_shop",
+        "forge"
+      ],
+      "base_price": 420,
+      "appearance_weight": 5,
+      "maximum_created_instances": null,
+      "equipment_slot": "legs",
+      "protection_level": "light",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "combat-claws",
+      "name": "Боевые когти",
+      "description": "Короткие лезвия, закрепляемые на кистях.",
+      "category": "weapon",
+      "uniqueness": "ordinary",
+      "properties": [],
+      "limitations": [],
+      "allowed_shop_kinds": [
+        "weapon_shop",
+        "forge"
+      ],
+      "base_price": 680,
+      "appearance_weight": 2,
+      "maximum_created_instances": null,
+      "equipment_slot": "active_weapon",
+      "protection_level": "none",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "combat-shorts",
+      "name": "Боевые шорты",
+      "description": "Лёгкая одежда, не мешающая быстрым движениям.",
+      "category": "clothing",
+      "uniqueness": "ordinary",
+      "properties": [],
+      "limitations": [],
+      "allowed_shop_kinds": [
+        "clothing_shop"
+      ],
+      "base_price": 170,
+      "appearance_weight": 5,
+      "maximum_created_instances": null,
+      "equipment_slot": "legs",
+      "protection_level": "light",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "crossbow",
+      "name": "Арбалет",
+      "description": "Механическое оружие для точной стрельбы болтами.",
+      "category": "weapon",
+      "uniqueness": "ordinary",
+      "properties": [],
+      "limitations": [],
+      "allowed_shop_kinds": [
+        "weapon_shop",
+        "forge"
+      ],
+      "base_price": 820,
+      "appearance_weight": 2,
+      "maximum_created_instances": null,
+      "equipment_slot": "active_weapon",
+      "protection_level": "none",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "desert-boots",
+      "name": "Пустынные сапоги",
+      "description": "Закрытая обувь для горячего песка.",
+      "category": "clothing",
+      "uniqueness": "ordinary",
+      "properties": [],
+      "limitations": [],
+      "allowed_shop_kinds": [
+        "clothing_shop"
+      ],
+      "base_price": 300,
+      "appearance_weight": 5,
+      "maximum_created_instances": null,
+      "equipment_slot": "feet",
+      "protection_level": "light",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "explosive-tag",
+      "name": "Взрывная печать",
+      "description": "Бумажная печать, взрывающаяся после активации.",
+      "category": "consumable",
+      "uniqueness": "ordinary",
+      "properties": [
+        "Создаёт локальный взрыв"
+      ],
+      "limitations": [
+        "Расходуется при применении",
+        "Опасна для всех рядом"
+      ],
+      "allowed_shop_kinds": [
+        "weapon_shop",
+        "tool_and_scroll_shop"
+      ],
+      "base_price": 180,
+      "appearance_weight": 45,
+      "maximum_created_instances": null,
+      "equipment_slot": null,
+      "protection_level": "none",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "field-map",
+      "name": "Полевая карта",
+      "description": "Складная карта известных дорог и крупных поселений.",
+      "category": "common",
+      "uniqueness": "ordinary",
+      "properties": [
+        "Помогает ориентироваться на известных маршрутах"
+      ],
+      "limitations": [
+        "Не показывает скрытые и недавно изменившиеся места"
+      ],
+      "allowed_shop_kinds": [
+        "general_store",
+        "tool_and_scroll_shop"
+      ],
+      "base_price": 120,
+      "appearance_weight": 55,
+      "maximum_created_instances": null,
+      "equipment_slot": null,
+      "protection_level": "none",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "fingerless-gloves",
+      "name": "Перчатки без пальцев",
+      "description": "Удобные перчатки для работы, тренировок и путешествий.",
+      "category": "clothing",
+      "uniqueness": "ordinary",
+      "properties": [
+        "Защищают ладони",
+        "Не мешают точным движениям"
+      ],
+      "limitations": [
+        "Оставляют пальцы открытыми"
+      ],
+      "allowed_shop_kinds": [
+        "clothing_shop"
+      ],
+      "base_price": 70,
+      "appearance_weight": 70,
+      "maximum_created_instances": null,
+      "equipment_slot": "hands",
+      "protection_level": "light",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "flak-jacket",
+      "name": "Защитный жилет шиноби",
+      "description": "Служебный жилет с карманами и усиленной защитой корпуса.",
+      "category": "armor",
+      "uniqueness": "ordinary",
+      "properties": [
+        "Частично защищает корпус",
+        "Позволяет переносить снаряжение"
+      ],
+      "limitations": [
+        "Не останавливает сильные техники"
+      ],
+      "allowed_shop_kinds": [
+        "armor_shop",
+        "forge"
+      ],
+      "base_price": 1800,
+      "appearance_weight": 35,
+      "maximum_created_instances": null,
+      "equipment_slot": "torso",
+      "protection_level": "medium",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "forehead-protector",
+      "name": "Налобный протектор шиноби",
+      "description": "Металлическая пластина со знаком деревни на тканевой повязке.",
+      "category": "armor",
+      "uniqueness": "ordinary",
+      "properties": [
+        "Показывает принадлежность к деревне",
+        "Частично защищает голову"
+      ],
+      "limitations": [
+        "Не закрывает всю голову"
+      ],
+      "allowed_shop_kinds": [
+        "armor_shop",
+        "forge"
+      ],
+      "base_price": 180,
+      "appearance_weight": 90,
+      "maximum_created_instances": null,
+      "equipment_slot": "head",
+      "protection_level": "light",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "fuma-shuriken",
+      "name": "Фума-сюрикен",
+      "description": "Крупный складной метательный сюрикен.",
+      "category": "weapon",
+      "uniqueness": "ordinary",
+      "properties": [],
+      "limitations": [],
+      "allowed_shop_kinds": [
+        "weapon_shop",
+        "forge"
+      ],
+      "base_price": 480,
+      "appearance_weight": 3,
+      "maximum_created_instances": null,
+      "equipment_slot": "active_weapon",
+      "protection_level": "none",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "giant-shuriken",
+      "name": "Гигантский сюрикен",
+      "description": "Тяжёлый метательный клинок большого размера.",
+      "category": "weapon",
+      "uniqueness": "ordinary",
+      "properties": [],
+      "limitations": [],
+      "allowed_shop_kinds": [
+        "weapon_shop",
+        "forge"
+      ],
+      "base_price": 520,
+      "appearance_weight": 2,
+      "maximum_created_instances": null,
+      "equipment_slot": "active_weapon",
+      "protection_level": "none",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "giant-war-fan",
+      "name": "Гигантский боевой веер",
+      "description": "Большой веер для усиления техник ветра.",
+      "category": "weapon",
+      "uniqueness": "ordinary",
+      "properties": [],
+      "limitations": [],
+      "allowed_shop_kinds": [
+        "weapon_shop",
+        "forge"
+      ],
+      "base_price": 1400,
+      "appearance_weight": 2,
+      "maximum_created_instances": null,
+      "equipment_slot": "active_weapon",
+      "protection_level": "none",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "hunter-mask",
+      "name": "Маска охотника-нина",
+      "description": "Прочная маска, скрывающая лицо.",
+      "category": "armor",
+      "uniqueness": "ordinary",
+      "properties": [],
+      "limitations": [],
+      "allowed_shop_kinds": [
+        "armor_shop",
+        "forge"
+      ],
+      "base_price": 420,
+      "appearance_weight": 2,
+      "maximum_created_instances": null,
+      "equipment_slot": "head",
+      "protection_level": "light",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "ink-set",
+      "name": "Набор туши",
+      "description": "Тушь, кисти и небольшая чернильница.",
+      "category": "common",
+      "uniqueness": "ordinary",
+      "properties": [],
+      "limitations": [],
+      "allowed_shop_kinds": [
+        "general_store",
+        "tool_and_scroll_shop"
+      ],
+      "base_price": 75,
+      "appearance_weight": 5,
+      "maximum_created_instances": null,
+      "equipment_slot": null,
+      "protection_level": "none",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "insulated-underwear",
+      "name": "Утеплённое нижнее бельё",
+      "description": "Тёплый нижний слой для холодных земель.",
+      "category": "clothing",
+      "uniqueness": "ordinary",
+      "properties": [],
+      "limitations": [],
+      "allowed_shop_kinds": [
+        "clothing_shop"
+      ],
+      "base_price": 120,
+      "appearance_weight": 5,
+      "maximum_created_instances": null,
+      "equipment_slot": "underwear",
+      "protection_level": "none",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "iron-fan",
+      "name": "Железный веер",
+      "description": "Складной боевой веер с металлическими рёбрами.",
+      "category": "weapon",
+      "uniqueness": "ordinary",
+      "properties": [],
+      "limitations": [],
+      "allowed_shop_kinds": [
+        "weapon_shop",
+        "forge"
+      ],
+      "base_price": 540,
+      "appearance_weight": 3,
+      "maximum_created_instances": null,
+      "equipment_slot": "active_weapon",
+      "protection_level": "none",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "katana",
+      "name": "Катана",
+      "description": "Длинный меч с однолезвийным клинком.",
+      "category": "weapon",
+      "uniqueness": "ordinary",
+      "properties": [],
+      "limitations": [],
+      "allowed_shop_kinds": [
+        "weapon_shop",
+        "forge"
+      ],
+      "base_price": 900,
+      "appearance_weight": 4,
+      "maximum_created_instances": null,
+      "equipment_slot": "active_weapon",
+      "protection_level": "none",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "kunai",
+      "name": "Кунай",
+      "description": "Стандартный метательный и ближний клинок шиноби.",
+      "category": "weapon",
+      "uniqueness": "ordinary",
+      "properties": [
+        "Можно метать",
+        "Подходит для ближнего боя"
+      ],
+      "limitations": [
+        "Не пробивает тяжёлую защиту без достаточной силы"
+      ],
+      "allowed_shop_kinds": [
+        "weapon_shop",
+        "forge"
+      ],
+      "base_price": 50,
+      "appearance_weight": 90,
+      "maximum_created_instances": null,
+      "equipment_slot": "active_weapon",
+      "protection_level": "none",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "kusarigama",
+      "name": "Кусаригама",
+      "description": "Серп с длинной цепью и грузом.",
+      "category": "weapon",
+      "uniqueness": "ordinary",
+      "properties": [],
+      "limitations": [],
+      "allowed_shop_kinds": [
+        "weapon_shop",
+        "forge"
+      ],
+      "base_price": 760,
+      "appearance_weight": 2,
+      "maximum_created_instances": null,
+      "equipment_slot": "active_weapon",
+      "protection_level": "none",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "medic-coat",
+      "name": "Куртка медика",
+      "description": "Светлая рабочая куртка с карманами для инструментов.",
+      "category": "clothing",
+      "uniqueness": "ordinary",
+      "properties": [],
+      "limitations": [],
+      "allowed_shop_kinds": [
+        "clothing_shop"
+      ],
+      "base_price": 320,
+      "appearance_weight": 5,
+      "maximum_created_instances": null,
+      "equipment_slot": "torso",
+      "protection_level": "light",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "medic-gloves",
+      "name": "Перчатки медика",
+      "description": "Тонкие перчатки для лечения и операций.",
+      "category": "clothing",
+      "uniqueness": "ordinary",
+      "properties": [],
+      "limitations": [],
+      "allowed_shop_kinds": [
+        "clothing_shop"
+      ],
+      "base_price": 130,
+      "appearance_weight": 5,
+      "maximum_created_instances": null,
+      "equipment_slot": "hands",
+      "protection_level": "none",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "medic-sandals",
+      "name": "Сандалии медика",
+      "description": "Мягкая рабочая обувь медика-ниндзя.",
+      "category": "clothing",
+      "uniqueness": "ordinary",
+      "properties": [],
+      "limitations": [],
+      "allowed_shop_kinds": [
+        "clothing_shop"
+      ],
+      "base_price": 140,
+      "appearance_weight": 5,
+      "maximum_created_instances": null,
+      "equipment_slot": "feet",
+      "protection_level": "none",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "medic-trousers",
+      "name": "Штаны медика",
+      "description": "Удобные рабочие штаны полевого врача.",
+      "category": "clothing",
+      "uniqueness": "ordinary",
+      "properties": [],
+      "limitations": [],
+      "allowed_shop_kinds": [
+        "clothing_shop"
+      ],
+      "base_price": 190,
+      "appearance_weight": 5,
+      "maximum_created_instances": null,
+      "equipment_slot": "legs",
+      "protection_level": "none",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "medical-kit",
+      "name": "Медицинский комплект",
+      "description": "Набор инструментов и средств полевого медика.",
+      "category": "common",
+      "uniqueness": "ordinary",
+      "properties": [
+        "Позволяет оказать расширенную первую помощь"
+      ],
+      "limitations": [
+        "Эффективность зависит от медицинских знаний"
+      ],
+      "allowed_shop_kinds": [
+        "pharmacy"
+      ],
+      "base_price": 600,
+      "appearance_weight": 30,
+      "maximum_created_instances": null,
+      "equipment_slot": null,
+      "protection_level": "none",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "mesh-shirt",
+      "name": "Сетчатая рубаха",
+      "description": "Гибкая защитная рубаха под верхнюю одежду.",
+      "category": "clothing",
+      "uniqueness": "ordinary",
+      "properties": [],
+      "limitations": [],
+      "allowed_shop_kinds": [
+        "clothing_shop"
+      ],
+      "base_price": 360,
+      "appearance_weight": 5,
+      "maximum_created_instances": null,
+      "equipment_slot": "torso",
+      "protection_level": "light",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "mesh-underlayer",
+      "name": "Сетчатое нижнее бельё",
+      "description": "Эластичный нижний слой шиноби.",
+      "category": "clothing",
+      "uniqueness": "ordinary",
+      "properties": [],
+      "limitations": [],
+      "allowed_shop_kinds": [
+        "clothing_shop"
+      ],
+      "base_price": 80,
+      "appearance_weight": 5,
+      "maximum_created_instances": null,
+      "equipment_slot": "underwear",
+      "protection_level": "none",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "mist-boots",
+      "name": "Сапоги Киригакуре",
+      "description": "Нескользящие водостойкие сапоги.",
+      "category": "clothing",
+      "uniqueness": "ordinary",
+      "properties": [],
+      "limitations": [],
+      "allowed_shop_kinds": [
+        "clothing_shop"
+      ],
+      "base_price": 320,
+      "appearance_weight": 5,
+      "maximum_created_instances": null,
+      "equipment_slot": "feet",
+      "protection_level": "light",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "mist-combat-vest",
+      "name": "Боевой жилет Киригакуре",
+      "description": "Влагостойкий жилет шиноби Тумана.",
+      "category": "armor",
+      "uniqueness": "ordinary",
+      "properties": [],
+      "limitations": [],
+      "allowed_shop_kinds": [
+        "armor_shop",
+        "forge"
+      ],
+      "base_price": 1400,
+      "appearance_weight": 3,
+      "maximum_created_instances": null,
+      "equipment_slot": "torso",
+      "protection_level": "medium",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "mist-trousers",
+      "name": "Штаны Киригакуре",
+      "description": "Влагостойкие форменные штаны Тумана.",
+      "category": "armor",
+      "uniqueness": "ordinary",
+      "properties": [],
+      "limitations": [],
+      "allowed_shop_kinds": [
+        "armor_shop",
+        "forge"
+      ],
+      "base_price": 410,
+      "appearance_weight": 5,
+      "maximum_created_instances": null,
+      "equipment_slot": "legs",
+      "protection_level": "light",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "naginata",
+      "name": "Нагината",
+      "description": "Длинное древковое оружие самураев.",
+      "category": "weapon",
+      "uniqueness": "ordinary",
+      "properties": [],
+      "limitations": [],
+      "allowed_shop_kinds": [
+        "weapon_shop",
+        "forge"
+      ],
+      "base_price": 1100,
+      "appearance_weight": 2,
+      "maximum_created_instances": null,
+      "equipment_slot": "active_weapon",
+      "protection_level": "none",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "ninjato",
+      "name": "Ниндзято",
+      "description": "Прямой короткий меч для подготовленного бойца.",
+      "category": "weapon",
+      "uniqueness": "ordinary",
+      "properties": [
+        "Подходит для рубящих и колющих атак"
+      ],
+      "limitations": [
+        "Требует навыка владения мечом"
+      ],
+      "allowed_shop_kinds": [
+        "weapon_shop",
+        "forge"
+      ],
+      "base_price": 1100,
+      "appearance_weight": 20,
+      "maximum_created_instances": null,
+      "equipment_slot": "active_weapon",
+      "protection_level": "none",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "noble-kimono",
+      "name": "Кимоно главы клана",
+      "description": "Качественное официальное кимоно знатного дома.",
+      "category": "clothing",
+      "uniqueness": "ordinary",
+      "properties": [],
+      "limitations": [],
+      "allowed_shop_kinds": [
+        "clothing_shop"
+      ],
+      "base_price": 700,
+      "appearance_weight": 2,
+      "maximum_created_instances": null,
+      "equipment_slot": "torso",
+      "protection_level": "none",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "nunchaku",
+      "name": "Нунчаки",
+      "description": "Секционное оружие для мастера тайдзюцу.",
+      "category": "weapon",
+      "uniqueness": "ordinary",
+      "properties": [],
+      "limitations": [],
+      "allowed_shop_kinds": [
+        "weapon_shop",
+        "forge"
+      ],
+      "base_price": 430,
+      "appearance_weight": 3,
+      "maximum_created_instances": null,
+      "equipment_slot": "active_weapon",
+      "protection_level": "none",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "paired-short-swords",
+      "name": "Комплект коротких мечей",
+      "description": "Несколько коротких клинков в общей перевязи.",
+      "category": "weapon",
+      "uniqueness": "ordinary",
+      "properties": [],
+      "limitations": [],
+      "allowed_shop_kinds": [
+        "weapon_shop",
+        "forge"
+      ],
+      "base_price": 1700,
+      "appearance_weight": 2,
+      "maximum_created_instances": null,
+      "equipment_slot": "active_weapon",
+      "protection_level": "none",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "poison-kit",
+      "name": "Набор ядов",
+      "description": "Закрытый набор для приготовления и хранения ядов.",
+      "category": "consumable",
+      "uniqueness": "ordinary",
+      "properties": [],
+      "limitations": [],
+      "allowed_shop_kinds": [
+        "pharmacy"
+      ],
+      "base_price": 600,
+      "appearance_weight": 2,
+      "maximum_created_instances": null,
+      "equipment_slot": null,
+      "protection_level": "none",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "puppet-blade",
+      "name": "Клинок кукловода",
+      "description": "Складной клинок для управления через нити чакры.",
+      "category": "weapon",
+      "uniqueness": "ordinary",
+      "properties": [],
+      "limitations": [],
+      "allowed_shop_kinds": [
+        "weapon_shop",
+        "forge"
+      ],
+      "base_price": 880,
+      "appearance_weight": 2,
+      "maximum_created_instances": null,
+      "equipment_slot": "active_weapon",
+      "protection_level": "none",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "puppet-bracers",
+      "name": "Наручи кукловода",
+      "description": "Защитные наручи с креплениями для нитей чакры.",
+      "category": "armor",
+      "uniqueness": "ordinary",
+      "properties": [],
+      "limitations": [],
+      "allowed_shop_kinds": [
+        "armor_shop",
+        "forge"
+      ],
+      "base_price": 540,
+      "appearance_weight": 2,
+      "maximum_created_instances": null,
+      "equipment_slot": "hands",
+      "protection_level": "light",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "radio",
+      "name": "Полевой передатчик",
+      "description": "Компактное средство связи подразделений на ограниченной дистанции.",
+      "category": "common",
+      "uniqueness": "ordinary",
+      "properties": [
+        "Поддерживает голосовую связь на настроенной частоте"
+      ],
+      "limitations": [
+        "Связь зависит от дальности и помех"
+      ],
+      "allowed_shop_kinds": [
+        "tool_and_scroll_shop"
+      ],
+      "base_price": 900,
+      "appearance_weight": 20,
+      "maximum_created_instances": null,
+      "equipment_slot": null,
+      "protection_level": "none",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "rain-hood",
+      "name": "Капюшон Страны Дождя",
+      "description": "Водостойкий глубокий капюшон.",
+      "category": "clothing",
+      "uniqueness": "ordinary",
+      "properties": [],
+      "limitations": [],
+      "allowed_shop_kinds": [
+        "clothing_shop"
+      ],
+      "base_price": 150,
+      "appearance_weight": 5,
+      "maximum_created_instances": null,
+      "equipment_slot": "head",
+      "protection_level": "light",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "ration-pack",
+      "name": "Походный паёк",
+      "description": "Простая еда для длительного задания.",
+      "category": "consumable",
+      "uniqueness": "ordinary",
+      "properties": [
+        "Утоляет голод"
+      ],
+      "limitations": [
+        "Расходуется при применении"
+      ],
+      "allowed_shop_kinds": [
+        "general_store",
+        "food_shop"
+      ],
+      "base_price": 40,
+      "appearance_weight": 95,
+      "maximum_created_instances": null,
+      "equipment_slot": null,
+      "protection_level": "none",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "reinforced-sandals",
+      "name": "Усиленные сандалии",
+      "description": "Сандалии с защитными накладками.",
+      "category": "armor",
+      "uniqueness": "ordinary",
+      "properties": [],
+      "limitations": [],
+      "allowed_shop_kinds": [
+        "armor_shop",
+        "forge"
+      ],
+      "base_price": 280,
+      "appearance_weight": 5,
+      "maximum_created_instances": null,
+      "equipment_slot": "feet",
+      "protection_level": "light",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "rope",
+      "name": "Моток верёвки",
+      "description": "Крепкая верёвка для пути и ловушек.",
+      "category": "common",
+      "uniqueness": "ordinary",
+      "properties": [],
+      "limitations": [],
+      "allowed_shop_kinds": [
+        "general_store",
+        "tool_and_scroll_shop"
+      ],
+      "base_price": 55,
+      "appearance_weight": 5,
+      "maximum_created_instances": null,
+      "equipment_slot": null,
+      "protection_level": "none",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "samurai-boots",
+      "name": "Сапоги самурая",
+      "description": "Тяжёлые сапоги с металлической защитой.",
+      "category": "armor",
+      "uniqueness": "ordinary",
+      "properties": [],
+      "limitations": [],
+      "allowed_shop_kinds": [
+        "armor_shop",
+        "forge"
+      ],
+      "base_price": 950,
+      "appearance_weight": 2,
+      "maximum_created_instances": null,
+      "equipment_slot": "feet",
+      "protection_level": "heavy",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "samurai-cuirass",
+      "name": "Кираса самурая",
+      "description": "Тяжёлая пластинчатая броня Страны Железа.",
+      "category": "armor",
+      "uniqueness": "ordinary",
+      "properties": [],
+      "limitations": [],
+      "allowed_shop_kinds": [
+        "armor_shop",
+        "forge"
+      ],
+      "base_price": 2600,
+      "appearance_weight": 2,
+      "maximum_created_instances": null,
+      "equipment_slot": "torso",
+      "protection_level": "heavy",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "samurai-greaves",
+      "name": "Поножи самурая",
+      "description": "Тяжёлые металлические поножи.",
+      "category": "armor",
+      "uniqueness": "ordinary",
+      "properties": [],
+      "limitations": [],
+      "allowed_shop_kinds": [
+        "armor_shop",
+        "forge"
+      ],
+      "base_price": 1100,
+      "appearance_weight": 2,
+      "maximum_created_instances": null,
+      "equipment_slot": "legs",
+      "protection_level": "heavy",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "samurai-helmet",
+      "name": "Шлем самурая",
+      "description": "Тяжёлый металлический шлем Страны Железа.",
+      "category": "armor",
+      "uniqueness": "ordinary",
+      "properties": [],
+      "limitations": [],
+      "allowed_shop_kinds": [
+        "armor_shop",
+        "forge"
+      ],
+      "base_price": 1200,
+      "appearance_weight": 2,
+      "maximum_created_instances": null,
+      "equipment_slot": "head",
+      "protection_level": "heavy",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "sand-robe",
+      "name": "Одеяние Сунагакуре",
+      "description": "Свободная одежда для жаркого пустынного климата.",
+      "category": "clothing",
+      "uniqueness": "ordinary",
+      "properties": [],
+      "limitations": [],
+      "allowed_shop_kinds": [
+        "clothing_shop"
+      ],
+      "base_price": 280,
+      "appearance_weight": 5,
+      "maximum_created_instances": null,
+      "equipment_slot": "torso",
+      "protection_level": "light",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "sand-trousers",
+      "name": "Пустынные штаны",
+      "description": "Свободные штаны из плотной светлой ткани.",
+      "category": "clothing",
+      "uniqueness": "ordinary",
+      "properties": [],
+      "limitations": [],
+      "allowed_shop_kinds": [
+        "clothing_shop"
+      ],
+      "base_price": 230,
+      "appearance_weight": 5,
+      "maximum_created_instances": null,
+      "equipment_slot": "legs",
+      "protection_level": "light",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "sand-veil",
+      "name": "Пустынная вуаль",
+      "description": "Защищает лицо от песка и сухого ветра.",
+      "category": "clothing",
+      "uniqueness": "ordinary",
+      "properties": [],
+      "limitations": [],
+      "allowed_shop_kinds": [
+        "clothing_shop"
+      ],
+      "base_price": 90,
+      "appearance_weight": 5,
+      "maximum_created_instances": null,
+      "equipment_slot": "head",
+      "protection_level": "none",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "sealing-scroll",
+      "name": "Свиток запечатывания",
+      "description": "Свиток для хранения подготовленных предметов.",
+      "category": "common",
+      "uniqueness": "ordinary",
+      "properties": [],
+      "limitations": [],
+      "allowed_shop_kinds": [
+        "tool_and_scroll_shop"
+      ],
+      "base_price": 280,
+      "appearance_weight": 5,
+      "maximum_created_instances": null,
+      "equipment_slot": null,
+      "protection_level": "none",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "senbon",
+      "name": "Сэнбон",
+      "description": "Тонкие метательные иглы шиноби.",
+      "category": "weapon",
+      "uniqueness": "ordinary",
+      "properties": [],
+      "limitations": [],
+      "allowed_shop_kinds": [
+        "weapon_shop",
+        "forge"
+      ],
+      "base_price": 70,
+      "appearance_weight": 5,
+      "maximum_created_instances": null,
+      "equipment_slot": "active_weapon",
+      "protection_level": "none",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "shinobi-bandana",
+      "name": "Бандана шиноби",
+      "description": "Тканевая повязка без металлической пластины.",
+      "category": "clothing",
+      "uniqueness": "ordinary",
+      "properties": [],
+      "limitations": [],
+      "allowed_shop_kinds": [
+        "clothing_shop"
+      ],
+      "base_price": 60,
+      "appearance_weight": 5,
+      "maximum_created_instances": null,
+      "equipment_slot": "head",
+      "protection_level": "none",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "shinobi-jacket",
+      "name": "Куртка шиноби",
+      "description": "Прочная служебная куртка, не мешающая быстрым движениям.",
+      "category": "armor",
+      "uniqueness": "ordinary",
+      "properties": [
+        "Закрывает торс",
+        "Смягчает лёгкие воздействия"
+      ],
+      "limitations": [
+        "Не заменяет тяжёлую броню"
+      ],
+      "allowed_shop_kinds": [
+        "armor_shop",
+        "forge"
+      ],
+      "base_price": 220,
+      "appearance_weight": 90,
+      "maximum_created_instances": null,
+      "equipment_slot": "torso",
+      "protection_level": "light",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "shinobi-sandals",
+      "name": "Сандалии шиноби",
+      "description": "Прочная открытая обувь для быстрого перемещения.",
+      "category": "clothing",
+      "uniqueness": "ordinary",
+      "properties": [
+        "Защищают ступни при движении"
+      ],
+      "limitations": [
+        "Не защищают от сильных ударов"
+      ],
+      "allowed_shop_kinds": [
+        "clothing_shop"
+      ],
+      "base_price": 120,
+      "appearance_weight": 95,
+      "maximum_created_instances": null,
+      "equipment_slot": "feet",
+      "protection_level": "light",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "shinobi-trousers",
+      "name": "Штаны шиноби",
+      "description": "Плотные штаны для движения, тренировок и полевых заданий.",
+      "category": "clothing",
+      "uniqueness": "ordinary",
+      "properties": [
+        "Закрывают ноги",
+        "Не мешают движению"
+      ],
+      "limitations": [
+        "Дают только простую защиту"
+      ],
+      "allowed_shop_kinds": [
+        "clothing_shop"
+      ],
+      "base_price": 180,
+      "appearance_weight": 90,
+      "maximum_created_instances": null,
+      "equipment_slot": "legs",
+      "protection_level": "light",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "shinobi-underwear",
+      "name": "Нижнее бельё шиноби",
+      "description": "Удобное нижнее бельё для повседневной жизни и заданий.",
+      "category": "clothing",
+      "uniqueness": "ordinary",
+      "properties": [
+        "Закрывает интимные части тела"
+      ],
+      "limitations": [
+        "Не защищает от атак"
+      ],
+      "allowed_shop_kinds": [
+        "clothing_shop"
+      ],
+      "base_price": 40,
+      "appearance_weight": 100,
+      "maximum_created_instances": null,
+      "equipment_slot": "underwear",
+      "protection_level": "none",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "shuriken",
+      "name": "Сюрикен",
+      "description": "Метательная стальная звезда для отвлечения и поражения цели.",
+      "category": "weapon",
+      "uniqueness": "ordinary",
+      "properties": [
+        "Можно метать серией"
+      ],
+      "limitations": [
+        "Требует точности"
+      ],
+      "allowed_shop_kinds": [
+        "weapon_shop",
+        "forge"
+      ],
+      "base_price": 30,
+      "appearance_weight": 85,
+      "maximum_created_instances": null,
+      "equipment_slot": "active_weapon",
+      "protection_level": "none",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "smoke-bomb",
+      "name": "Дымовая бомба",
+      "description": "Небольшой заряд для создания плотной дымовой завесы.",
+      "category": "consumable",
+      "uniqueness": "ordinary",
+      "properties": [
+        "Закрывает обзор"
+      ],
+      "limitations": [
+        "Расходуется при применении",
+        "Ветер рассеивает дым"
+      ],
+      "allowed_shop_kinds": [
+        "weapon_shop",
+        "tool_and_scroll_shop"
+      ],
+      "base_price": 80,
+      "appearance_weight": 70,
+      "maximum_created_instances": null,
+      "equipment_slot": null,
+      "protection_level": "none",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "soldier-pill",
+      "name": "Военная пилюля",
+      "description": "Стимулирующая пилюля для кратковременной поддержки сил шиноби.",
+      "category": "consumable",
+      "uniqueness": "ordinary",
+      "properties": [
+        "Временно поддерживает работоспособность"
+      ],
+      "limitations": [
+        "Расходуется при применении",
+        "Не заменяет отдых и лечение"
+      ],
+      "allowed_shop_kinds": [
+        "pharmacy"
+      ],
+      "base_price": 250,
+      "appearance_weight": 35,
+      "maximum_created_instances": null,
+      "equipment_slot": null,
+      "protection_level": "none",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "spear",
+      "name": "Копьё",
+      "description": "Древковое оружие с металлическим наконечником.",
+      "category": "weapon",
+      "uniqueness": "ordinary",
+      "properties": [],
+      "limitations": [],
+      "allowed_shop_kinds": [
+        "weapon_shop",
+        "forge"
+      ],
+      "base_price": 420,
+      "appearance_weight": 4,
+      "maximum_created_instances": null,
+      "equipment_slot": "active_weapon",
+      "protection_level": "none",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "spyglass",
+      "name": "Подзорная труба",
+      "description": "Складная труба для дальней разведки.",
+      "category": "common",
+      "uniqueness": "ordinary",
+      "properties": [],
+      "limitations": [],
+      "allowed_shop_kinds": [
+        "tool_and_scroll_shop"
+      ],
+      "base_price": 350,
+      "appearance_weight": 3,
+      "maximum_created_instances": null,
+      "equipment_slot": null,
+      "protection_level": "none",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "stone-combat-vest",
+      "name": "Боевой жилет Ивагакуре",
+      "description": "Усиленный жилет шиноби Камня.",
+      "category": "armor",
+      "uniqueness": "ordinary",
+      "properties": [],
+      "limitations": [],
+      "allowed_shop_kinds": [
+        "armor_shop",
+        "forge"
+      ],
+      "base_price": 1500,
+      "appearance_weight": 3,
+      "maximum_created_instances": null,
+      "equipment_slot": "torso",
+      "protection_level": "medium",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "stone-trousers",
+      "name": "Штаны Ивагакуре",
+      "description": "Плотные штаны с защитными вставками.",
+      "category": "armor",
+      "uniqueness": "ordinary",
+      "properties": [],
+      "limitations": [],
+      "allowed_shop_kinds": [
+        "armor_shop",
+        "forge"
+      ],
+      "base_price": 560,
+      "appearance_weight": 5,
+      "maximum_created_instances": null,
+      "equipment_slot": "legs",
+      "protection_level": "medium",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "straw-hat",
+      "name": "Соломенная шляпа",
+      "description": "Широкая шляпа от солнца и дождя.",
+      "category": "clothing",
+      "uniqueness": "ordinary",
+      "properties": [],
+      "limitations": [],
+      "allowed_shop_kinds": [
+        "clothing_shop"
+      ],
+      "base_price": 45,
+      "appearance_weight": 5,
+      "maximum_created_instances": null,
+      "equipment_slot": "head",
+      "protection_level": "none",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "tanto",
+      "name": "Танто",
+      "description": "Короткий клинок для ближнего боя и скрытого ношения.",
+      "category": "weapon",
+      "uniqueness": "ordinary",
+      "properties": [
+        "Удобен в тесном пространстве"
+      ],
+      "limitations": [
+        "Малая дальность"
+      ],
+      "allowed_shop_kinds": [
+        "weapon_shop",
+        "forge"
+      ],
+      "base_price": 380,
+      "appearance_weight": 45,
+      "maximum_created_instances": null,
+      "equipment_slot": "active_weapon",
+      "protection_level": "none",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "tonfa",
+      "name": "Тонфа",
+      "description": "Парное оружие ближнего боя для блоков и ударов.",
+      "category": "weapon",
+      "uniqueness": "ordinary",
+      "properties": [],
+      "limitations": [],
+      "allowed_shop_kinds": [
+        "weapon_shop",
+        "forge"
+      ],
+      "base_price": 460,
+      "appearance_weight": 3,
+      "maximum_created_instances": null,
+      "equipment_slot": "active_weapon",
+      "protection_level": "none",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "tool-pouch",
+      "name": "Подсумок шиноби",
+      "description": "Поясной подсумок для оружия и инструментов.",
+      "category": "common",
+      "uniqueness": "ordinary",
+      "properties": [],
+      "limitations": [],
+      "allowed_shop_kinds": [
+        "general_store",
+        "weapon_shop",
+        "tool_and_scroll_shop"
+      ],
+      "base_price": 110,
+      "appearance_weight": 5,
+      "maximum_created_instances": null,
+      "equipment_slot": null,
+      "protection_level": "none",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "training-top",
+      "name": "Тренировочная куртка",
+      "description": "Лёгкая куртка для тайдзюцу и ежедневных тренировок.",
+      "category": "clothing",
+      "uniqueness": "ordinary",
+      "properties": [],
+      "limitations": [],
+      "allowed_shop_kinds": [
+        "clothing_shop"
+      ],
+      "base_price": 240,
+      "appearance_weight": 5,
+      "maximum_created_instances": null,
+      "equipment_slot": "torso",
+      "protection_level": "light",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "travel-boots",
+      "name": "Дорожные сапоги",
+      "description": "Закрытая обувь для долгих переходов и плохой погоды.",
+      "category": "clothing",
+      "uniqueness": "ordinary",
+      "properties": [
+        "Защищают ступни от холода и грязи"
+      ],
+      "limitations": [
+        "Тяжелее сандалий"
+      ],
+      "allowed_shop_kinds": [
+        "clothing_shop"
+      ],
+      "base_price": 210,
+      "appearance_weight": 45,
+      "maximum_created_instances": null,
+      "equipment_slot": "feet",
+      "protection_level": "light",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "travel-cloak",
+      "name": "Дорожный плащ",
+      "description": "Плотный плащ для путешествий и защиты от непогоды.",
+      "category": "clothing",
+      "uniqueness": "ordinary",
+      "properties": [
+        "Скрывает одежду и снаряжение",
+        "Защищает от дождя"
+      ],
+      "limitations": [
+        "Может мешать в ближнем бою"
+      ],
+      "allowed_shop_kinds": [
+        "clothing_shop"
+      ],
+      "base_price": 240,
+      "appearance_weight": 55,
+      "maximum_created_instances": null,
+      "equipment_slot": "torso",
+      "protection_level": "light",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "trench-knives",
+      "name": "Парные траншейные ножи",
+      "description": "Пара коротких чакропроводящих клинков.",
+      "category": "weapon",
+      "uniqueness": "ordinary",
+      "properties": [],
+      "limitations": [],
+      "allowed_shop_kinds": [
+        "weapon_shop",
+        "forge"
+      ],
+      "base_price": 1500,
+      "appearance_weight": 2,
+      "maximum_created_instances": null,
+      "equipment_slot": "active_weapon",
+      "protection_level": "none",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "wakizashi",
+      "name": "Вакидзаси",
+      "description": "Короткий меч самурая.",
+      "category": "weapon",
+      "uniqueness": "ordinary",
+      "properties": [],
+      "limitations": [],
+      "allowed_shop_kinds": [
+        "weapon_shop",
+        "forge"
+      ],
+      "base_price": 650,
+      "appearance_weight": 3,
+      "maximum_created_instances": null,
+      "equipment_slot": "active_weapon",
+      "protection_level": "none",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "war-hammer",
+      "name": "Боевой молот",
+      "description": "Тяжёлое ударное оружие.",
+      "category": "weapon",
+      "uniqueness": "ordinary",
+      "properties": [],
+      "limitations": [],
+      "allowed_shop_kinds": [
+        "weapon_shop",
+        "forge"
+      ],
+      "base_price": 720,
+      "appearance_weight": 2,
+      "maximum_created_instances": null,
+      "equipment_slot": "active_weapon",
+      "protection_level": "none",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "water-flask",
+      "name": "Фляга воды",
+      "description": "Прочная дорожная фляга.",
+      "category": "common",
+      "uniqueness": "ordinary",
+      "properties": [],
+      "limitations": [],
+      "allowed_shop_kinds": [
+        "general_store",
+        "food_shop"
+      ],
+      "base_price": 35,
+      "appearance_weight": 5,
+      "maximum_created_instances": null,
+      "equipment_slot": null,
+      "protection_level": "none",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "wire",
+      "name": "Стальная проволока",
+      "description": "Тонкая прочная проволока для ловушек и манёвров.",
+      "category": "common",
+      "uniqueness": "ordinary",
+      "properties": [
+        "Подходит для простых ловушек",
+        "Можно соединять с оружием"
+      ],
+      "limitations": [
+        "Заметна при плохой маскировке"
+      ],
+      "allowed_shop_kinds": [
+        "weapon_shop",
+        "tool_and_scroll_shop"
+      ],
+      "base_price": 70,
+      "appearance_weight": 70,
+      "maximum_created_instances": null,
+      "equipment_slot": null,
+      "protection_level": "none",
+      "section_id": "Narutov4"
+    },
+    {
+      "id": "wrapped-underwear",
+      "name": "Тканевое нижнее бельё",
+      "description": "Простой нижний слой из мягкой ткани.",
+      "category": "clothing",
+      "uniqueness": "ordinary",
+      "properties": [
+        "Закрывает интимные части тела"
+      ],
+      "limitations": [
+        "Не защищает от атак"
+      ],
+      "allowed_shop_kinds": [
+        "clothing_shop"
+      ],
+      "base_price": 25,
+      "appearance_weight": 65,
+      "maximum_created_instances": null,
+      "equipment_slot": "underwear",
+      "protection_level": "none",
+      "section_id": "Narutov4"
+    }
   ]
 }

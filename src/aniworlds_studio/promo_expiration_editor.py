@@ -32,9 +32,7 @@ class PromoExpirationEditor(ttk.LabelFrame):
         ttk.Label(
             self,
             text="ДД.ММ.ГГГГ   ЧЧ:ММ · время компьютера",  # noqa: RUF001
-        ).grid(
-            row=3, column=0, columnspan=4, sticky="w", pady=(5, 10)
-        )
+        ).grid(row=3, column=0, columnspan=4, sticky="w", pady=(5, 10))
         for column, days in enumerate((7, 30, 90)):
             ttk.Button(
                 self,

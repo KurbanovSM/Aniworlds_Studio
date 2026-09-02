@@ -935,12 +935,6 @@
           "writing",
           "signals"
         ],
-        "default_languages": [
-          {
-            "language_id": "shinobi-common",
-            "progress_units": 20
-          }
-        ],
         "physical_features": [
           "Человеческое телосложение",
           "Развитая система циркуляции чакры"
@@ -978,12 +972,6 @@
           "signals",
           "speech"
         ],
-        "default_languages": [
-          {
-            "language_id": "shinobi-common",
-            "progress_units": 20
-          }
-        ],
         "physical_features": [
           "Анатомия соответствующего животного",
           "Возможность заключать договор призыва"
@@ -1007,12 +995,6 @@
         "communication_modes": [
           "speech",
           "telepathy"
-        ],
-        "default_languages": [
-          {
-            "language_id": "shinobi-common",
-            "progress_units": 20
-          }
         ],
         "physical_features": [
           "Тело из концентрированной чакры",
@@ -1039,12 +1021,6 @@
           "speech",
           "signals"
         ],
-        "default_languages": [
-          {
-            "language_id": "shinobi-common",
-            "progress_units": 20
-          }
-        ],
         "physical_features": [
           "Белая кожа",
           "Растительная структура тела",
@@ -1070,12 +1046,6 @@
           "writing",
           "signals"
         ],
-        "default_languages": [
-          {
-            "language_id": "shinobi-common",
-            "progress_units": 20
-          }
-        ],
         "physical_features": [
           "Восстанавливающееся тело",
           "Трещины на коже",
@@ -1089,14 +1059,6 @@
           "fourth-war"
         ],
         "parent_kind_id": "human"
-      }
-    ],
-    "languages": [
-      {
-        "id": "shinobi-common",
-        "name": "Общий язык мира шиноби",
-        "has_spoken_form": true,
-        "has_written_form": true
       }
     ],
     "groups": [
@@ -1658,12 +1620,6 @@
         "leader_group_ids": [],
         "period_ids": [
           "before-pain"
-        ],
-        "language_knowledge": [
-          {
-            "language_id": "shinobi-common",
-            "progress_units": 20
-          }
         ]
       },
       {
@@ -1717,12 +1673,6 @@
         "leader_group_ids": [],
         "period_ids": [
           "fourth-war"
-        ],
-        "language_knowledge": [
-          {
-            "language_id": "shinobi-common",
-            "progress_units": 20
-          }
         ]
       },
       {
@@ -1763,12 +1713,6 @@
         "period_ids": [
           "before-pain",
           "fourth-war"
-        ],
-        "language_knowledge": [
-          {
-            "language_id": "shinobi-common",
-            "progress_units": 20
-          }
         ]
       },
       {
@@ -1810,12 +1754,6 @@
         ],
         "period_ids": [
           "before-pain"
-        ],
-        "language_knowledge": [
-          {
-            "language_id": "shinobi-common",
-            "progress_units": 20
-          }
         ]
       },
       {
@@ -1861,12 +1799,6 @@
         "leader_group_ids": [],
         "period_ids": [
           "fourth-war"
-        ],
-        "language_knowledge": [
-          {
-            "language_id": "shinobi-common",
-            "progress_units": 20
-          }
         ]
       },
       {
@@ -1907,12 +1839,6 @@
         "period_ids": [
           "before-pain",
           "fourth-war"
-        ],
-        "language_knowledge": [
-          {
-            "language_id": "shinobi-common",
-            "progress_units": 20
-          }
         ]
       },
       {
@@ -1955,12 +1881,6 @@
         "period_ids": [
           "before-pain",
           "fourth-war"
-        ],
-        "language_knowledge": [
-          {
-            "language_id": "shinobi-common",
-            "progress_units": 20
-          }
         ]
       },
       {
@@ -2002,12 +1922,6 @@
         "period_ids": [
           "before-pain",
           "fourth-war"
-        ],
-        "language_knowledge": [
-          {
-            "language_id": "shinobi-common",
-            "progress_units": 20
-          }
         ]
       },
       {
@@ -2046,12 +1960,6 @@
         "leader_group_ids": [],
         "period_ids": [
           "before-pain"
-        ],
-        "language_knowledge": [
-          {
-            "language_id": "shinobi-common",
-            "progress_units": 20
-          }
         ]
       },
       {
@@ -2091,12 +1999,6 @@
         "period_ids": [
           "before-pain",
           "fourth-war"
-        ],
-        "language_knowledge": [
-          {
-            "language_id": "shinobi-common",
-            "progress_units": 20
-          }
         ]
       },
       {
@@ -2136,12 +2038,6 @@
         "period_ids": [
           "before-pain",
           "fourth-war"
-        ],
-        "language_knowledge": [
-          {
-            "language_id": "shinobi-common",
-            "progress_units": 20
-          }
         ]
       },
       {
@@ -2181,12 +2077,6 @@
         "period_ids": [
           "before-pain",
           "fourth-war"
-        ],
-        "language_knowledge": [
-          {
-            "language_id": "shinobi-common",
-            "progress_units": 20
-          }
         ]
       },
       {
@@ -2226,12 +2116,6 @@
         "period_ids": [
           "before-pain",
           "fourth-war"
-        ],
-        "language_knowledge": [
-          {
-            "language_id": "shinobi-common",
-            "progress_units": 20
-          }
         ]
       },
       {
@@ -2271,12 +2155,6 @@
         "period_ids": [
           "before-pain",
           "fourth-war"
-        ],
-        "language_knowledge": [
-          {
-            "language_id": "shinobi-common",
-            "progress_units": 20
-          }
         ]
       },
       {
@@ -2318,12 +2196,6 @@
         "period_ids": [
           "before-pain",
           "fourth-war"
-        ],
-        "language_knowledge": [
-          {
-            "language_id": "shinobi-common",
-            "progress_units": 20
-          }
         ]
       },
       {
@@ -2362,12 +2234,6 @@
         "leader_group_ids": [],
         "period_ids": [
           "fourth-war"
-        ],
-        "language_knowledge": [
-          {
-            "language_id": "shinobi-common",
-            "progress_units": 20
-          }
         ]
       },
       {
@@ -2415,12 +2281,6 @@
         ],
         "period_ids": [
           "before-pain"
-        ],
-        "language_knowledge": [
-          {
-            "language_id": "shinobi-common",
-            "progress_units": 20
-          }
         ]
       },
       {
@@ -2468,12 +2328,6 @@
         ],
         "period_ids": [
           "fourth-war"
-        ],
-        "language_knowledge": [
-          {
-            "language_id": "shinobi-common",
-            "progress_units": 20
-          }
         ]
       },
       {
@@ -2514,12 +2368,6 @@
         ],
         "period_ids": [
           "before-pain"
-        ],
-        "language_knowledge": [
-          {
-            "language_id": "shinobi-common",
-            "progress_units": 20
-          }
         ]
       },
       {
@@ -2558,12 +2406,6 @@
         "leader_group_ids": [],
         "period_ids": [
           "before-pain"
-        ],
-        "language_knowledge": [
-          {
-            "language_id": "shinobi-common",
-            "progress_units": 20
-          }
         ]
       },
       {
@@ -2604,12 +2446,6 @@
         ],
         "period_ids": [
           "fourth-war"
-        ],
-        "language_knowledge": [
-          {
-            "language_id": "shinobi-common",
-            "progress_units": 20
-          }
         ]
       },
       {
@@ -2653,12 +2489,6 @@
         "leader_group_ids": [],
         "period_ids": [
           "fourth-war"
-        ],
-        "language_knowledge": [
-          {
-            "language_id": "shinobi-common",
-            "progress_units": 20
-          }
         ]
       }
     ]

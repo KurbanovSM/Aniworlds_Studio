@@ -57,7 +57,7 @@ class CardFormDialog(tk.Toplevel):
         scroll.pack(side="right", fill="y")
         for spec in self._fields:
             value = initial.get(spec.key)
-            if spec.kind in {"nested", "language_units", "states"}:
+            if spec.kind in {"nested", "states"}:
                 self._controls[spec.key] = self._nested_control(form, spec, value)
                 continue
             source = self._reference_draft if spec.source == "traits" else self._draft
@@ -90,13 +90,7 @@ class CardFormDialog(tk.Toplevel):
     ) -> NestedValueEditor:
         fields = spec.nested
         values: list[dict]
-        if spec.kind == "language_units":
-            fields = (
-                FieldSpec("language_id", "Язык", "reference", source="languages"),
-                FieldSpec("progress_units", "Прогресс", "integer", minimum=0),
-            )
-            values = [dict(item) for item in cast(list[dict[str, Any]], value or [])]
-        elif spec.kind == "states":
+        if spec.kind == "states":
             fields = (
                 FieldSpec("period_id", "Период", "reference", source="periods"),
                 FieldSpec("description", "Состояние", "long_text"),

@@ -21,11 +21,13 @@ class PeriodChildEditor(ttk.Frame):
         *,
         child: str,
         get_draft,
+        get_reference_draft,
         on_changed,
     ) -> None:
         super().__init__(parent, padding=14, style="Surface.TFrame")
         self._child = child
         self._get_draft = get_draft
+        self._get_reference_draft = get_reference_draft
         self._on_changed = on_changed
         self._selector = ttk.Combobox(self, state="readonly")
         self._selector.pack(fill="x", pady=(0, 12))
@@ -66,6 +68,7 @@ class PeriodChildEditor(ttk.Frame):
             fields=fields,
             initial=initial,
             draft=self._get_draft(),
+            reference_draft=self._get_reference_draft(),
         )
         self.wait_window(dialog)
         return dialog.result

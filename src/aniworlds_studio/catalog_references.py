@@ -14,11 +14,11 @@ def reference_options(draft: object, source: str) -> tuple[tuple[str, str], ...]
     elif source == "groups":
         values = getattr(draft, "groups", ())
     elif source == "items":
-        values = getattr(draft, "items", ())
+        values = (*getattr(draft, "items", ()), *getattr(draft, "equipment", ()))
+    elif source == "global_items":
+        values = getattr(draft, "equipment", ())
     elif source == "kinds":
         values = getattr(draft, "creature_kinds", ())
-    elif source == "languages":
-        values = getattr(draft, "languages", ())
     elif source == "traits":
         values = getattr(draft, "traits", ())
     elif source in {"npc_name_sets", "npc_biographies"}:
@@ -30,4 +30,5 @@ def reference_options(draft: object, source: str) -> tuple[tuple[str, str], ...]
 
 def entry_title(entry: Any, identity_field: str) -> tuple[str, str]:
     identity = str(getattr(entry, identity_field, ""))
-    return str(getattr(entry, "name", identity)), identity
+    title = str(getattr(entry, "name", identity))
+    return title, identity

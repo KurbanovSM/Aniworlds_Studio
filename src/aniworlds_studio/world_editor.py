@@ -20,7 +20,7 @@ from aniworlds_studio.world_editor_files import (
     save_draft_dialog,
     show_preview,
 )
-from aniworlds_studio.world_editor_language import entry_field
+from aniworlds_studio.world_editor_inputs import entry_field
 from aniworlds_studio.world_editor_pages import (
     build_basics_page,
     build_overview_page,
@@ -36,6 +36,7 @@ class WorldEditorFrame(ttk.Frame):
         super().__init__(parent)
         self._draft = UniverseDraft()
         self._variables: dict[str, tk.StringVar] = {}
+        self._item_catalog_selector: ttk.Combobox | None = None
         self._status = tk.StringVar(value="Новый черновик")
         self._get_global_catalogs = get_global_catalogs
         self._build()
@@ -128,7 +129,17 @@ class WorldEditorFrame(ttk.Frame):
         section.pack(fill="x")
         for field in fields:
             key, label, *kind = field
-            self._variables[key] = entry_field(section, label, kind[0] if kind else "text")
+            if key == "item_catalog_section_id":
+                variable = tk.StringVar()
+                ttk.Label(section, text=label).pack(anchor="w", pady=(4, 2))
+                self._item_catalog_selector = ttk.Combobox(
+                    section, textvariable=variable, state="readonly"
+                )
+                self._item_catalog_selector.pack(fill="x")
+                self._variables[key] = variable
+                self._refresh_item_catalog_choices()
+            else:
+                self._variables[key] = entry_field(section, label, kind[0] if kind else "text")
 
     def _build_overview(self, parent: ttk.Frame) -> None:
         build_overview_page(parent)
@@ -141,15 +152,29 @@ class WorldEditorFrame(ttk.Frame):
         self.after_idle(self._refresh_catalogs)
 
     def _refresh_catalogs(self) -> None:
+        self._refresh_item_catalog_choices()
         for editor in getattr(self, "_catalog_editors", ()):
             editor.refresh()
+
+    def _refresh_item_catalog_choices(self) -> None:
+        if self._item_catalog_selector is None:
+            return
+        sections = self._get_global_catalogs().equipment_sections
+        self._item_catalog_selector.configure(values=tuple(section.id for section in sections))
 
     def refresh(self) -> None:
         """Refresh shared-catalog choices after the user returns to the Worlds tab."""
         self._refresh_catalogs()
 
     def _store_form(self) -> None:
-        for key in ("id", "name", "description", "world_rules", "power_systems"):
+        for key in (
+            "id",
+            "name",
+            "description",
+            "world_rules",
+            "power_systems",
+            "item_catalog_section_id",
+        ):
             setattr(self._draft, key, self._variables[key].get())
         for key in ("currency_id", "currency_name", "currency_symbol", "strength_name"):
             setattr(self._draft.gameplay, key, self._variables[key].get())
@@ -158,11 +183,22 @@ class WorldEditorFrame(ttk.Frame):
         synchronize_shared_catalogs(self._draft, self._get_global_catalogs())
 
     def _load_form(self) -> None:
-        for key in ("id", "name", "description", "world_rules", "power_systems"):
+        for key in (
+            "id",
+            "name",
+            "description",
+            "world_rules",
+            "power_systems",
+            "item_catalog_section_id",
+        ):
             self._variables[key].set(getattr(self._draft, key))
         for key in (
-            "currency_id", "currency_name", "currency_symbol", "strength_name",
-            "npc_starting_currency_min", "npc_starting_currency_max",
+            "currency_id",
+            "currency_name",
+            "currency_symbol",
+            "strength_name",
+            "npc_starting_currency_min",
+            "npc_starting_currency_max",
         ):
             self._variables[key].set(str(getattr(self._draft.gameplay, key)))
 

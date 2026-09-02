@@ -40,7 +40,7 @@ omit = [
     "*/world_editor.py",
     "*/world_editor_catalogs.py",
     "*/world_editor_files.py",
-    "*/world_editor_language.py",
+    "*/world_editor_inputs.py",
     "*/world_editor_scroll.py",
     "*/catalog_editor.py",
     "*/clipboard_shortcuts.py",

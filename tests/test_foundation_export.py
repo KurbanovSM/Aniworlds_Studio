@@ -18,9 +18,10 @@ from aniworlds_studio.foundation_models import (
     AbilityDraft,
     CharacterDraft,
     CreatureKindDraft,
+    EquipmentDraft,
+    EquipmentSectionDraft,
     GroupDraft,
     ItemDraft,
-    LanguageDraft,
     PeriodConnectionDraft,
     PeriodDraft,
     ShopPolicyDraft,
@@ -34,7 +35,6 @@ from aniworlds_studio.global_catalogs import GlobalCatalogDraft
 
 def _minimal_foundation() -> UniverseDraft:
     draft = UniverseDraft()
-    draft.languages = [LanguageDraft(id="common", name="Общий язык")]
     draft.creature_kinds = [
         CreatureKindDraft(
             id="human",
@@ -48,12 +48,11 @@ def _minimal_foundation() -> UniverseDraft:
 def _shared_catalogs(draft: UniverseDraft) -> GlobalCatalogDraft:
     return GlobalCatalogDraft(
         creature_kinds=draft.creature_kinds,
-        languages=draft.languages,
         groups=draft.groups,
     )
 
 
-def test_default_foundation_requires_explicit_kind_and_language_cards() -> None:
+def test_default_foundation_requires_explicit_kind_card() -> None:
     draft = UniverseDraft()
 
     with pytest.raises(InvalidFoundation, match="вид или расу"):
@@ -89,13 +88,89 @@ def test_minimal_explicit_foundation_is_publishable() -> None:
     assert payload["universe"]["creature_kind_settings"] == [
         {
             "creature_kind_id": "human",
-            "default_languages": [],
             "habitat_location_ids": [],
             "period_ids": ["period"],
         }
     ]
-    assert payload["universe"]["language_ids"] == ["common"]
+    assert "language_ids" not in payload["universe"]
     assert payload["universe"]["group_settings"] == []
+
+
+def test_shared_equipment_is_expanded_into_the_world_item_snapshot() -> None:
+    draft = _minimal_foundation()
+    cloak = EquipmentDraft(
+        id="cloak",
+        name="Плащ",
+        description="Дорожный плащ",
+        category="clothing",
+        equipment_slot="torso",
+        section_id="medieval",
+    )
+    draft.equipment = [cloak]
+    catalogs = _shared_catalogs(draft)
+    catalogs.equipment = [cloak]
+
+    payload = publication_payload(draft, catalogs)
+
+    assert "equipment" not in payload["universe"]
+    assert payload["universe"]["items"][0]["id"] == "cloak"
+    assert "section_id" not in payload["universe"]["items"][0]
+
+
+def test_world_uses_main_catalog_and_keeps_explicit_cross_catalog_loadouts() -> None:
+    draft = _minimal_foundation()
+    draft.item_catalog_section_id = "Narutov4"
+    draft.periods[0].starting_kits[0].items = [StartingKitItemDraft("traveler-map", 1)]
+    draft.characters = [
+        CharacterDraft(
+            id="ino",
+            name="Ино",
+            creature_kind_id="human",
+            starting_currency_amount=345,
+            items=[StartingKitItemDraft("shinobi-jacket", 1)],
+        )
+    ]
+    catalogs = _shared_catalogs(draft)
+    catalogs.equipment_sections = [
+        EquipmentSectionDraft("Narutov4", "Наруто"),
+        EquipmentSectionDraft("common", "Общие вещи"),
+        EquipmentSectionDraft("unused", "Неиспользуемое"),
+    ]
+    catalogs.equipment = [
+        EquipmentDraft(
+            id="shinobi-jacket",
+            name="Куртка шиноби",
+            description="Повседневная форма.",
+            category="clothing",
+            equipment_slot="torso",
+            section_id="Narutov4",
+        ),
+        EquipmentDraft(
+            id="traveler-map",
+            name="Карта путника",
+            description="Общая дорожная карта.",
+            category="common",
+            section_id="common",
+        ),
+        EquipmentDraft(
+            id="laser",
+            name="Лазер",
+            description="Предмет другого сеттинга.",
+            category="weapon",
+            equipment_slot="active_weapon",
+            section_id="unused",
+        ),
+    ]
+
+    universe = publication_payload(draft, catalogs)["universe"]
+
+    assert universe["item_catalog_section_id"] == "Narutov4"
+    assert {item["id"] for item in universe["items"]} == {
+        "shinobi-jacket",
+        "traveler-map",
+    }
+    assert universe["characters"][0]["starting_currency_amount"] == 345
+    assert universe["characters"][0]["items"] == [{"item_id": "shinobi-jacket", "quantity": 1}]
 
 
 @pytest.mark.parametrize(
@@ -104,7 +179,6 @@ def test_minimal_explicit_foundation_is_publishable() -> None:
         (lambda draft: setattr(draft, "id", "Bad ID"), "ID вселенной"),
         (lambda draft: draft.periods.clear(), "хотя бы один период"),
         (lambda draft: draft.creature_kinds.clear(), "вид или расу"),
-        (lambda draft: draft.languages.clear(), "один язык"),
         (lambda draft: draft.periods[0].starting_location_ids.clear(), "стартовой локации"),
         (lambda draft: draft.periods[0].starting_kits.pop(), "от одного до десяти"),
     ],
@@ -112,6 +186,23 @@ def test_minimal_explicit_foundation_is_publishable() -> None:
 def test_incomplete_foundation_cannot_be_published(change, message) -> None:
     draft = _minimal_foundation()
     change(draft)
+
+    with pytest.raises(InvalidFoundation, match=message):
+        validate_foundation(draft)
+
+
+@pytest.mark.parametrize(
+    ("field", "value", "message"),
+    [
+        ("biography", "Б" * 351, "Биография персонажа"),
+        ("profession", "П" * 31, "Профессия персонажа"),
+    ],
+)
+def test_character_profile_text_limits_are_enforced(field, value, message) -> None:
+    draft = _minimal_foundation()
+    character = CharacterDraft(creature_kind_id="human")
+    setattr(character, field, value)
+    draft.characters = [character]
 
     with pytest.raises(InvalidFoundation, match=message):
         validate_foundation(draft)
@@ -244,12 +335,10 @@ def _complete_foundation() -> UniverseDraft:
         PeriodConnectionDraft("village", ["forest"]),
         PeriodConnectionDraft("forest", ["village"]),
     ]
-    draft.languages[0].id = "common"
     draft.creature_kinds[0] = CreatureKindDraft(
         id="human",
         name="Человек",
         description="Обычный человек",
-        default_languages=[{"language_id": "common", "progress_units": 40}],
         physical_features=["Две руки"],
         habitat_location_ids=["village"],
     )
@@ -260,9 +349,7 @@ def _complete_foundation() -> UniverseDraft:
             period_states={"period": "Защищают деревню"},
         )
     ]
-    draft.items = [
-        ItemDraft(id="bandage", name="Бинт", allowed_shop_kinds=["general_store"])
-    ]
+    draft.items = [ItemDraft(id="bandage", name="Бинт", allowed_shop_kinds=["general_store"])]
     draft.shop_policies = [ShopPolicyDraft()]
     period.starting_kits[0].items = [StartingKitItemDraft("bandage", 2)]
     draft.characters = [
@@ -272,7 +359,6 @@ def _complete_foundation() -> UniverseDraft:
             creature_kind_id="human",
             group_ids=["guards"],
             leader_group_ids=["guards"],
-            language_knowledge=[{"language_id": "common", "progress_units": 40}],
             abilities=[AbilityDraft(id="watch")],
         )
     ]
@@ -306,9 +392,7 @@ def test_ability_name_above_runtime_limit_cannot_be_published() -> None:
             "частота появления",
         ),
         (
-            lambda draft: draft.shop_policies[0].__setattr__(
-                "maximum_assortment_size", 11
-            ),
+            lambda draft: draft.shop_policies[0].__setattr__("maximum_assortment_size", 11),
             "ассортимента",
         ),
         (lambda draft: draft.characters[0].group_ids.append("missing"), "объединение персонажа"),
@@ -319,14 +403,12 @@ def test_ability_name_above_runtime_limit_cannot_be_published() -> None:
             "место обитания",
         ),
         (
-            lambda draft: draft.periods[0].starting_kits[0].items[0].__setattr__(
-                "quantity", 0
-            ),
+            lambda draft: draft.periods[0].starting_kits[0].items[0].__setattr__("quantity", 0),
             "Количество",
         ),
         (
-            lambda draft: draft.periods[0].location_connections[0].connected_location_ids.append(
-                "moon"
+            lambda draft: (
+                draft.periods[0].location_connections[0].connected_location_ids.append("moon")
             ),
             "текущего периода",
         ),

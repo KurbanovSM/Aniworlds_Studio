@@ -12,10 +12,10 @@ from aniworlds_studio.foundation_models import (
     AbilityDraft,
     CharacterDraft,
     CreatureKindDraft,
+    EquipmentDraft,
     GameplayConfig,
     GroupDraft,
     ItemDraft,
-    LanguageDraft,
     LocationDraft,
     PeriodConnectionDraft,
     PeriodDraft,
@@ -64,14 +64,16 @@ def load_published_foundation(
         raise ValueError("Файл не является опубликованным миром Studio версии 4.")
     data = json.loads(json.dumps(payload["universe"]))
     kind_settings = data.pop("creature_kind_settings", [])
-    language_ids = data.pop("language_ids", [])
+    data.pop("language_ids", None)
     group_settings = data.pop("group_settings", [])
+    if data.get("item_catalog_section_id"):
+        data.pop("items", None)
+        data.pop("equipment", None)
     data["creature_kinds"] = _restore_shared_entries(
         kind_settings,
         catalogs.creature_kinds,
         "creature_kind_id",
     )
-    data["languages"] = _restore_shared_ids(language_ids, catalogs.languages)
     data["groups"] = _restore_shared_entries(group_settings, catalogs.groups, "group_id")
     draft = universe_from_mapping(data)
     validate_world_catalog_references(draft, catalogs)
@@ -91,7 +93,7 @@ def publication_payload(
         "schema_version": FOUNDATION_SCHEMA_VERSION,
         "artifact_type": FOUNDATION_ARTIFACT_TYPE,
         "published_at": timestamp.isoformat(),
-        "universe": _publication_universe(draft),
+        "universe": _publication_universe(draft, catalogs),
     }
 
 
@@ -120,8 +122,12 @@ def _write_new_json(path: Path, payload: dict) -> Path:
 
 def universe_from_mapping(data: dict[str, Any]) -> UniverseDraft:
     gameplay_keys = {
-        "currency_id", "currency_name", "currency_symbol", "strength_name",
-        "npc_starting_currency_min", "npc_starting_currency_max",
+        "currency_id",
+        "currency_name",
+        "currency_symbol",
+        "strength_name",
+        "npc_starting_currency_min",
+        "npc_starting_currency_max",
     }
     gameplay = GameplayConfig(**_only(data.get("gameplay", {}), gameplay_keys))
     periods = [_period_from_mapping(item) for item in data.get("periods", [])]
@@ -135,6 +141,7 @@ def universe_from_mapping(data: dict[str, Any]) -> UniverseDraft:
             "creature_kinds",
             "languages",
             "groups",
+            "equipment",
             "items",
             "shop_policies",
             "characters",
@@ -150,9 +157,11 @@ def universe_from_mapping(data: dict[str, Any]) -> UniverseDraft:
         gameplay=gameplay,
         periods=periods,
         locations=locations,
-        creature_kinds=[CreatureKindDraft(**item) for item in data.get("creature_kinds", [])],
-        languages=[LanguageDraft(**item) for item in data.get("languages", [])],
+        creature_kinds=[
+            _creature_kind_from_mapping(item) for item in data.get("creature_kinds", [])
+        ],
         groups=[GroupDraft(**item) for item in data.get("groups", [])],
+        equipment=[EquipmentDraft(**item) for item in data.get("equipment", [])],
         items=[ItemDraft(**item) for item in data.get("items", [])],
         shop_policies=[ShopPolicyDraft(**item) for item in data.get("shop_policies", [])],
         characters=[_character_from_mapping(item) for item in data.get("characters", [])],
@@ -179,9 +188,14 @@ def _kit_from_mapping(data: dict[str, Any]) -> StartingKitDraft:
 
 def _character_from_mapping(data: dict[str, Any]) -> CharacterDraft:
     return CharacterDraft(
-        **_without(data, {"abilities"}),
+        **_without(data, {"abilities", "language_knowledge", "items"}),
         abilities=[AbilityDraft(**item) for item in data.get("abilities", [])],
+        items=[StartingKitItemDraft(**item) for item in data.get("items", [])],
     )
+
+
+def _creature_kind_from_mapping(data: dict[str, Any]) -> CreatureKindDraft:
+    return CreatureKindDraft(**_without(data, {"default_languages"}))
 
 
 def replace_catalog_entries(
@@ -196,9 +210,9 @@ def replace_catalog_entries(
         },
         "periods": _period_from_mapping,
         "locations": lambda item: LocationDraft(**item),
-        "creature_kinds": lambda item: CreatureKindDraft(**item),
-        "languages": lambda item: LanguageDraft(**item),
+        "creature_kinds": _creature_kind_from_mapping,
         "groups": lambda item: GroupDraft(**item),
+        "equipment": lambda item: EquipmentDraft(**item),
         "items": lambda item: ItemDraft(**item),
         "shop_policies": lambda item: ShopPolicyDraft(**item),
         "characters": _character_from_mapping,
@@ -210,8 +224,41 @@ def replace_catalog_entries(
     setattr(draft, field_name, [builder(item) for item in entries])
 
 
-def _publication_universe(draft: UniverseDraft) -> dict[str, Any]:
+def _publication_universe(
+    draft: UniverseDraft,
+    catalogs: GlobalCatalogDraft,
+) -> dict[str, Any]:
     data = draft.to_mapping()
+    required_ids = {
+        item.id for item in catalogs.equipment if item.section_id == draft.item_catalog_section_id
+    }
+    required_ids.update(
+        entry.item_id
+        for period in draft.periods
+        for kit in period.starting_kits
+        for entry in kit.items
+    )
+    required_ids.update(
+        entry.item_id for character in draft.characters for entry in character.items
+    )
+    source_items = (
+        list(catalogs.equipment)
+        if draft.item_catalog_section_id
+        else [*draft.items, *draft.equipment]
+    )
+    data["items"] = [
+        {key: value for key, value in asdict(item).items() if key != "section_id"}
+        for item in source_items
+        if not draft.item_catalog_section_id or item.id in required_ids
+    ]
+    data.pop("equipment", None)
+    if not data.get("item_catalog_section_id"):
+        data.pop("item_catalog_section_id", None)
+    for character in data["characters"]:
+        if character.get("starting_currency_amount") == 0:
+            character.pop("starting_currency_amount", None)
+        if not character.get("items"):
+            character.pop("items", None)
     for location in data["locations"]:
         if location.get("map_x") is None:
             location.pop("map_x", None)
@@ -225,13 +272,11 @@ def _publication_universe(draft: UniverseDraft) -> dict[str, Any]:
     data["creature_kind_settings"] = [
         {
             "creature_kind_id": kind.id,
-            "default_languages": kind.default_languages,
             "habitat_location_ids": kind.habitat_location_ids,
             "period_ids": kind.period_ids,
         }
         for kind in draft.creature_kinds
     ]
-    data["language_ids"] = [language.id for language in draft.languages]
     data["group_settings"] = [
         {
             "group_id": group.id,
@@ -257,14 +302,6 @@ def _restore_shared_entries(settings, shared_entries, id_field: str) -> list[dic
         merged.update({key: value for key, value in setting.items() if key != id_field})
         restored.append(merged)
     return restored
-
-
-def _restore_shared_ids(identifiers, shared_entries) -> list[dict[str, Any]]:
-    available = {item.id: asdict(item) for item in shared_entries}
-    missing = [identifier for identifier in identifiers if identifier not in available]
-    if missing:
-        raise ValueError(f"Общий каталог не содержит записи: {', '.join(missing)}.")
-    return [available[identifier] for identifier in identifiers]
 
 
 def _migrate_version_one(data: dict[str, Any]) -> dict[str, Any]:

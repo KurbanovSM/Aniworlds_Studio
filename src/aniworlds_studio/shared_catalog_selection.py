@@ -57,9 +57,7 @@ class SharedCatalogSelectionEditor(ttk.Frame):
         controls = ttk.Frame(selected, style="Surface.TFrame")
         controls.pack(fill="x", pady=(8, 0))
         if self._world_fields:
-            ttk.Button(controls, text="Настроить в мире", command=self._configure).pack(
-                side="left"
-            )
+            ttk.Button(controls, text="Настроить в мире", command=self._configure).pack(side="left")
         ttk.Button(controls, text="Убрать из мира", command=self._remove).pack(
             side="left", padx=(6, 0)
         )
@@ -68,9 +66,9 @@ class SharedCatalogSelectionEditor(ttk.Frame):
         self._available.delete(0, "end")
         self._selected.delete(0, "end")
         for item in self._shared_entries():
-            self._available.insert("end", f"{item.name} ({item.id})")
+            self._available.insert("end", _entry_label(item))
         for item in self._world_entries():
-            self._selected.insert("end", f"{item.name} ({item.id})")
+            self._selected.insert("end", _entry_label(item))
 
     def _shared_entries(self) -> list:
         return getattr(self._get_catalogs(), self._field_name)
@@ -132,3 +130,8 @@ def _world_copy(field_name: str, shared):
 def _selected_index(widget: tk.Listbox) -> int | None:
     selected = widget.curselection()
     return int(selected[0]) if selected else None
+
+
+def _entry_label(item) -> str:
+    section = f"[{item.section_id}] " if getattr(item, "section_id", "") else ""
+    return f"{section}{item.name} ({item.id})"

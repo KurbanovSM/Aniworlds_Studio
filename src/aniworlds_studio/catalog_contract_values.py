@@ -1,5 +1,7 @@
 """Single Studio source for enumerated values emitted to the game contract."""
 
+# ruff: noqa: RUF001 - Russian user-facing labels are intentional.
+
 CATEGORY_OPTIONS = (
     ("Расовая принадлежность", "race"),
     ("Животное", "animal"),
@@ -15,7 +17,7 @@ COGNITION_OPTIONS = (
 COMMUNICATION_OPTIONS = (
     ("Сигналы", "signals"),
     ("Речь", "speech"),
-    ("Жестовый язык", "sign_language"),
+    ("Жесты", "sign_language"),
     ("Письмо", "writing"),
     ("Телепатия", "telepathy"),
     ("Особый способ", "other"),
@@ -40,7 +42,32 @@ ITEM_CATEGORY_OPTIONS = (
     ("Ключевой предмет", "key"),
     ("Артефакт", "artifact"),
 )
-SHOP_OPTIONS = (("Обычный магазин", "general_store"), ("Кузница", "forge"))
+EQUIPMENT_SLOT_OPTIONS = (
+    ("Не экипируется", ""),
+    ("Нижнее бельё", "underwear"),
+    ("Голова", "head"),
+    ("Торс", "torso"),
+    ("Руки", "hands"),
+    ("Ноги", "legs"),
+    ("Ступни", "feet"),
+    ("Активное оружие", "active_weapon"),
+)
+PROTECTION_OPTIONS = (
+    ("Без защиты", "none"),
+    ("Простая защита", "light"),
+    ("Средняя защита", "medium"),
+    ("Сильная защита", "heavy"),
+)
+SHOP_OPTIONS = (
+    ("Универсальная лавка", "general_store"),
+    ("Оружейная лавка", "weapon_shop"),
+    ("Магазин брони", "armor_shop"),
+    ("Магазин одежды", "clothing_shop"),
+    ("Аптека", "pharmacy"),
+    ("Лавка инструментов и свитков", "tool_and_scroll_shop"),
+    ("Продовольственная лавка", "food_shop"),
+    ("Кузница", "forge"),
+)
 
 
 def option_values(options: tuple[tuple[str, str], ...]) -> frozenset[str]:

@@ -22,7 +22,7 @@ class CatalogEditor(ttk.Frame):
 
     def __init__(
         self,
-        parent: ttk.Widget,
+        parent: tk.Misc,
         *,
         field_name: str,
         identity_field: str,
@@ -157,9 +157,7 @@ class CatalogEditor(ttk.Frame):
 
     def _delete(self, index: int) -> None:
         mappings = [
-            asdict(entry)
-            for position, entry in enumerate(self._entries())
-            if position != index
+            asdict(entry) for position, entry in enumerate(self._entries()) if position != index
         ]
         try:
             self._replace_entries(self._get_draft(), self._field_name, mappings)

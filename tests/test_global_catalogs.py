@@ -9,8 +9,9 @@ import pytest
 
 from aniworlds_studio.foundation_models import (
     CreatureKindDraft,
+    EquipmentDraft,
+    EquipmentSectionDraft,
     GroupDraft,
-    LanguageDraft,
     UniverseDraft,
 )
 from aniworlds_studio.global_catalogs import (
@@ -34,17 +35,38 @@ def test_new_shared_catalog_is_empty() -> None:
     catalogs = GlobalCatalogDraft()
 
     assert catalogs.creature_kinds == []
-    assert catalogs.languages == []
     assert catalogs.groups == []
     assert catalogs.traits == []
+    assert catalogs.equipment_sections == []
+    assert catalogs.equipment == []
 
 
 def test_studio_initial_catalog_comes_from_the_editable_authored_file() -> None:
     catalogs = load_initial_global_catalogs()
 
     assert catalogs.creature_kinds
-    assert catalogs.languages
     assert catalogs.traits
+    assert catalogs.equipment_sections == [EquipmentSectionDraft("Narutov4", "Наруто")]
+    assert {item.section_id for item in catalogs.equipment} == {"Narutov4"}
+
+
+def test_shared_equipment_round_trips_with_its_world_section(tmp_path) -> None:
+    equipment = EquipmentDraft(
+        id="cloak",
+        name="Плащ",
+        description="Дорожный плащ",
+        category="clothing",
+        equipment_slot="torso",
+        section_id="medieval",
+    )
+    catalogs = GlobalCatalogDraft(
+        equipment_sections=[EquipmentSectionDraft("medieval", "Средневековье")],
+        equipment=[equipment],
+    )
+
+    path = save_global_catalogs(catalogs, tmp_path)
+
+    assert load_global_catalogs(path).equipment == [equipment]
 
 
 def test_shared_catalogs_round_trip_and_require_explicit_replacement(tmp_path) -> None:
@@ -59,12 +81,12 @@ def test_shared_catalogs_round_trip_and_require_explicit_replacement(tmp_path) -
     with pytest.raises(FileExistsError):
         save_global_catalogs(catalogs, tmp_path)
     save_global_catalogs(catalogs, tmp_path, replace_existing=True)
-    assert json.loads(path.read_text(encoding="utf-8"))["studio_catalog_version"] == 2
+    assert json.loads(path.read_text(encoding="utf-8"))["studio_catalog_version"] == 3
 
 
 def test_world_relations_survive_shared_base_refresh() -> None:
     shared = CreatureKindDraft(id="human", name="Обновлённый человек")
-    catalogs = GlobalCatalogDraft(creature_kinds=[shared], languages=[], groups=[])
+    catalogs = GlobalCatalogDraft(creature_kinds=[shared], groups=[])
     draft = UniverseDraft()
     draft.creature_kinds = [
         CreatureKindDraft(
@@ -119,27 +141,43 @@ def test_server_catalog_contains_base_fields_without_world_relationships() -> No
     assert "period_states" not in group
 
 
+def test_server_catalog_publishes_complete_item_catalog_sections() -> None:
+    catalogs = GlobalCatalogDraft(
+        equipment_sections=[EquipmentSectionDraft("Narutov4", "Наруто")],
+        equipment=[
+            EquipmentDraft(
+                id="field-map",
+                name="Полевая карта",
+                description="Обычная карта местности.",
+                category="common",
+                section_id="Narutov4",
+            )
+        ],
+    )
+
+    payload = catalog_publication_payload(catalogs)["catalogs"]
+
+    assert payload["item_sections"] == [{"id": "Narutov4", "name": "Наруто"}]
+    assert payload["items"][0]["id"] == "field-map"
+    assert payload["items"][0]["section_id"] == "Narutov4"
+
+
 def test_server_catalog_publication_is_immutable(tmp_path) -> None:
     catalogs = GlobalCatalogDraft(
-        creature_kinds=[
-            CreatureKindDraft(id="human", name="Человек", description="Описание")
-        ]
+        creature_kinds=[CreatureKindDraft(id="human", name="Человек", description="Описание")]
     )
 
     path = publish_global_catalogs(catalogs, tmp_path)
 
     assert path.name == PUBLISHED_CATALOG_FILE_NAME
-    assert json.loads(path.read_text(encoding="utf-8"))["catalogs"]["languages"] == []
+    assert "languages" not in json.loads(path.read_text(encoding="utf-8"))["catalogs"]
     with pytest.raises(FileExistsError):
         publish_global_catalogs(catalogs, tmp_path)
 
 
 def test_published_server_catalog_opens_as_new_editable_draft(tmp_path) -> None:
     catalogs = GlobalCatalogDraft(
-        creature_kinds=[
-            CreatureKindDraft(id="human", name="Человек", description="Описание")
-        ],
-        languages=[LanguageDraft(id="common", name="Общий")],
+        creature_kinds=[CreatureKindDraft(id="human", name="Человек", description="Описание")],
         groups=[GroupDraft(id="guards", name="Стража", description="Описание")],
     )
     path = publish_global_catalogs(catalogs, tmp_path)
@@ -203,7 +241,7 @@ def test_trait_limits_match_the_game_catalog_contract(
 def test_world_rejects_reference_missing_from_shared_catalog() -> None:
     draft = UniverseDraft()
     draft.creature_kinds = [CreatureKindDraft(id="human", name="Человек")]
-    catalogs = GlobalCatalogDraft(creature_kinds=[], languages=draft.languages, groups=[])
+    catalogs = GlobalCatalogDraft(creature_kinds=[], groups=[])
 
     with pytest.raises(ValueError, match="human"):
         validate_world_catalog_references(draft, catalogs)
@@ -214,14 +252,14 @@ def test_catalog_preview_and_entry_replacement_use_public_contract() -> None:
 
     replace_global_catalog_entries(
         catalogs,
-        "languages",
-        [{"id": "common", "name": "Общий", "has_spoken_form": True}],
+        "groups",
+        [{"id": "guards", "name": "Стража", "description": "Описание"}],
     )
 
-    assert catalogs.languages == [LanguageDraft(id="common", name="Общий")]
-    assert json.loads(preview_global_catalogs(catalogs))["catalogs"]["languages"][0][
-        "id"
-    ] == "common"
+    assert catalogs.groups == [GroupDraft(id="guards", name="Стража", description="Описание")]
+    assert json.loads(preview_global_catalogs(catalogs))["catalogs"]["groups"][0]["id"] == (
+        "guards"
+    )
 
 
 def test_unknown_catalog_field_is_rejected() -> None:

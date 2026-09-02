@@ -35,19 +35,14 @@ def build_catalog_views(
             on_changed,
         )
     )
-    editors.append(
-        _add_catalog(
-            shell, "items", "Предметы", "Свойства, цены и количество", 9, get_draft, on_changed
-        )
-    )
-    editors.append(_add_kits(shell, 10, get_draft, on_changed))
+    editors.append(_add_kits(shell, 9, get_draft, get_global_catalogs, on_changed))
     editors.append(
         _add_shared(
             shell,
             "creature_kinds",
             "Расы и виды мира",
             "Выбор из общих каталогов",
-            11,
+            10,
             get_draft,
             get_global_catalogs,
             on_changed,
@@ -57,22 +52,10 @@ def build_catalog_views(
     editors.append(
         _add_shared(
             shell,
-            "languages",
-            "Языки мира",
-            "Выбор из общих каталогов",
-            12,
-            get_draft,
-            get_global_catalogs,
-            on_changed,
-        )
-    )
-    editors.append(
-        _add_shared(
-            shell,
             "groups",
             "Объединения мира",
             "Выбор и мировое состояние",
-            13,
+            11,
             get_draft,
             get_global_catalogs,
             on_changed,
@@ -85,16 +68,16 @@ def build_catalog_views(
             "characters",
             "Персонажи и NPC",
             "Анкеты и знания",
-            14,
+            12,
             get_draft,
             on_changed,
             get_reference_draft=get_global_catalogs,
         )
     )
     for number, field, title in (
-        (15, "npc_name_sets", "NPC · имена и фамилии"),
-        (16, "npc_biographies", "NPC · биографии"),
-        (17, "npc_generation_rules", "NPC · правила появления"),
+        (13, "npc_name_sets", "NPC · имена и фамилии"),
+        (14, "npc_biographies", "NPC · биографии"),
+        (15, "npc_generation_rules", "NPC · правила появления"),
     ):
         editors.append(
             _add_catalog(
@@ -172,7 +155,7 @@ def _add_locations(shell, number, get_draft, on_changed) -> list:
     return holder["editors"]
 
 
-def _add_kits(shell, number, get_draft, on_changed):
+def _add_kits(shell, number, get_draft, get_global_catalogs, on_changed):
     holder = {}
 
     def build(parent) -> None:
@@ -186,6 +169,7 @@ def _add_kits(shell, number, get_draft, on_changed):
             parent,
             child="starting_kits",
             get_draft=get_draft,
+            get_reference_draft=get_global_catalogs,
             on_changed=on_changed,
         )
         editor.pack(fill="both", expand=True)

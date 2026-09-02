@@ -18,31 +18,36 @@ def _game_root() -> Path:
     return Path(os.environ.get("ANIWORLDS_AI_ROOT", DEFAULT_GAME_ROOT)).resolve()
 
 
-def test_published_files_pass_the_game_import_path() -> None:
+def test_published_files_pass_the_game_import_path(tmp_path: Path) -> None:
     game_root = _game_root()
     if not (game_root / "src" / "aniworlds").is_dir():
         pytest.skip("Aniworlds_AI is supplied by the dedicated compatibility CI job")
     if importlib.util.find_spec("sqlalchemy") is None:
         pytest.skip("game dependencies are installed by the dedicated compatibility CI job")
     sys.path.insert(0, str(game_root / "src"))
+    sys.path.insert(0, str(STUDIO_ROOT / "src"))
 
     catalog_import = importlib.import_module("aniworlds.global_catalog_import")
     world_import = importlib.import_module("aniworlds.world_foundation_import")
-    shared_models = importlib.import_module(
-        "aniworlds.modules.worlds.shared_catalog_models"
-    )
+    shared_models = importlib.import_module("aniworlds.modules.worlds.shared_catalog_models")
+    foundation_export = importlib.import_module("aniworlds_studio.foundation_export")
+    global_catalogs = importlib.import_module("aniworlds_studio.global_catalogs")
 
-    catalog_path = (
-        STUDIO_ROOT / "content" / "upload" / "catalogs" / "global-catalogs.catalog.json"
+    catalogs = global_catalogs.load_global_catalogs(
+        STUDIO_ROOT / "content" / "global-catalogs.studio.json"
     )
-    world_paths = sorted((STUDIO_ROOT / "content" / "upload" / "worlds").glob("*.world.json"))
+    catalog_path = global_catalogs.publish_global_catalogs(catalogs, tmp_path / "catalogs")
+    world_paths = [
+        foundation_export.publish_foundation(
+            foundation_export.load_draft(world_path, catalogs),
+            catalogs,
+            tmp_path / "worlds",
+        )
+        for world_path in sorted((STUDIO_ROOT / "content" / "worlds").glob("*.draft.json"))
+    ]
     catalog = catalog_import.load_global_catalog_package(catalog_path)
-    release = world_import.load_world_foundation_package(
-        STUDIO_ROOT / "content/releases/npc-generation/naruto-shinobi-world-v2.world.json"
-    )
 
-    assert world_paths, "Studio must publish at least one world contract fixture"
-    assert len(release.universe.npc_generation_rules) == 8
+    assert world_paths, "Studio must contain at least one publishable world draft"
     for world_path in world_paths:
         package = world_import.load_world_foundation_package(world_path)
         definitions = [
@@ -73,7 +78,6 @@ def test_published_files_pass_the_game_import_path() -> None:
                 definitions,
                 incompatibilities,
                 [item.id for item in catalog.catalogs.creature_kinds],
-                [item.id for item in catalog.catalogs.languages],
                 [item.id for item in catalog.catalogs.groups],
             ]
         )

@@ -133,9 +133,7 @@ class PeriodLocationEditor(ttk.Frame):
         locations = {item.id: item for item in self._get_draft().locations}
         previous = self._source.current()
         self._source_ids = [item for item in period.location_ids if item in locations]
-        self._source["values"] = [
-            f"{locations[item].name} ({item})" for item in self._source_ids
-        ]
+        self._source["values"] = [f"{locations[item].name} ({item})" for item in self._source_ids]
         if self._source_ids:
             self._source.current(min(max(previous, 0), len(self._source_ids) - 1))
         self._refresh_transition()

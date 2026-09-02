@@ -8,8 +8,10 @@ from aniworlds_studio.catalog_contract_values import (
     CATEGORY_OPTIONS,
     COGNITION_OPTIONS,
     COMMUNICATION_OPTIONS,
+    EQUIPMENT_SLOT_OPTIONS,
     GROUP_TYPE_OPTIONS,
     ITEM_CATEGORY_OPTIONS,
+    PROTECTION_OPTIONS,
     SHOP_OPTIONS,
     option_values,
 )
@@ -18,6 +20,8 @@ from aniworlds_studio.foundation_models import (
     MAX_ABILITY_NAME_LENGTH,
     MAX_ABILITY_SHORT_DESCRIPTION_LENGTH,
     MAX_APPEARANCE_FREQUENCY,
+    MAX_CHARACTER_BIOGRAPHY_LENGTH,
+    MAX_CHARACTER_PROFESSION_LENGTH,
     MAX_STARTING_KIT_COUNT,
     MIN_APPEARANCE_FREQUENCY,
     MIN_STARTING_KIT_COUNT,
@@ -44,8 +48,6 @@ def validate_foundation(draft: UniverseDraft) -> None:
         raise InvalidFoundation("Добавьте хотя бы один период.")
     if not draft.creature_kinds:
         raise InvalidFoundation("Добавьте хотя бы один вид или расу.")
-    if not draft.languages:
-        raise InvalidFoundation("Добавьте хотя бы один язык.")
     _require_unique((period.id for period in draft.periods), "ID периодов")
     _validate_locations(draft)
     for period in draft.periods:
@@ -53,9 +55,6 @@ def validate_foundation(draft: UniverseDraft) -> None:
     _require_unique((kind.id for kind in draft.creature_kinds), "ID видов и рас")
     for kind in draft.creature_kinds:
         validate_shared_kind(kind)
-    _require_unique((language.id for language in draft.languages), "ID языков")
-    for language in draft.languages:
-        validate_shared_language(language)
     _validate_catalog_references(draft)
     validate_npc_generation(draft)
 
@@ -63,11 +62,10 @@ def validate_foundation(draft: UniverseDraft) -> None:
 def _validate_catalog_references(draft: UniverseDraft) -> None:
     period_ids = {item.id for item in draft.periods}
     locations = {location.id for location in draft.locations}
-    language_ids = {item.id for item in draft.languages}
     kind_ids = {item.id for item in draft.creature_kinds}
     group_ids = {item.id for item in draft.groups}
-    item_ids = {item.id for item in draft.items}
-    _require_unique((item.id for item in draft.items), "ID предметов")
+    legacy_items = (*draft.items, *draft.equipment)
+    _require_unique((item.id for item in legacy_items), "ID предметов")
     _require_unique((item.id for item in draft.groups), "ID объединений")
     _require_unique((item.id for item in draft.characters), "ID персонажей")
     _require_unique((item.shop_kind for item in draft.shop_policies), "Виды магазинов")
@@ -76,21 +74,19 @@ def _validate_catalog_references(draft: UniverseDraft) -> None:
         _require_references(kind.habitat_location_ids, locations, "место обитания")
         if kind.parent_kind_id is not None and kind.parent_kind_id not in kind_ids:
             raise InvalidFoundation(f"Не найден родительский вид: {kind.parent_kind_id}.")
-        _validate_language_knowledge(kind.default_languages, language_ids)
     for group in draft.groups:
         _validate_group(group, period_ids, locations, group_ids)
-    for item in draft.items:
+    for item in legacy_items:
         _validate_item(item)
     for policy in draft.shop_policies:
         if not 0 < policy.minimum_assortment_size <= policy.maximum_assortment_size <= 10:
             raise InvalidFoundation("Размер ассортимента магазина должен быть от 1 до 10.")
     for period in draft.periods:
         for kit in period.starting_kits:
-            _require_references((entry.item_id for entry in kit.items), item_ids, "предмет набора")
             if any(entry.quantity <= 0 for entry in kit.items):
                 raise InvalidFoundation("Количество предмета в наборе должно быть больше нуля.")
     for character in draft.characters:
-        _validate_character(character, period_ids, locations, kind_ids, group_ids, language_ids)
+        _validate_character(character, period_ids, locations, kind_ids, group_ids)
 
 
 def _validate_locations(draft: UniverseDraft) -> None:
@@ -142,19 +138,18 @@ def validate_shared_kind(kind) -> None:
         raise InvalidFoundation("Физическая особенность вида или расы не может быть пустой.")
 
 
-def validate_shared_language(language) -> None:
-    _require_shared_id(language.id, "ID языка")
-    _require_text(language.name, "Название языка")
-    if not language.has_spoken_form and not language.has_written_form:
-        raise InvalidFoundation("Язык должен иметь устную или письменную форму.")
-
-
 def validate_shared_group(group) -> None:
     _require_shared_id(group.id, "ID объединения")
     _require_text(group.name, "Название объединения")
     _require_text(group.description, "Описание объединения")
     if group.group_type not in option_values(GROUP_TYPE_OPTIONS):
         raise InvalidFoundation("Неизвестный тип объединения.")
+
+
+def validate_shared_equipment(item) -> None:
+    _validate_item(item)
+    if not item.section_id.strip():
+        raise InvalidFoundation(f"У предмета «{item.name}» не указан каталог.")
 
 
 def _validate_item(item) -> None:
@@ -165,12 +160,22 @@ def _validate_item(item) -> None:
         raise InvalidFoundation("Название предмета содержит запрещённый технический знак.")
     if item.category not in option_values(ITEM_CATEGORY_OPTIONS):
         raise InvalidFoundation("Неизвестная категория предмета.")
+    if item.equipment_slot is not None and item.equipment_slot not in option_values(
+        EQUIPMENT_SLOT_OPTIONS
+    ):
+        raise InvalidFoundation("Неизвестный слот экипировки.")
+    if item.protection_level not in option_values(PROTECTION_OPTIONS):
+        raise InvalidFoundation("Неизвестный уровень защиты.")
+    if item.equipment_slot == "active_weapon" and item.category != "weapon":
+        raise InvalidFoundation("Активным оружием может быть только оружие.")
+    if item.category == "weapon" and item.equipment_slot not in {None, "active_weapon"}:
+        raise InvalidFoundation("Оружие можно назначить только в слот активного оружия.")
+    if item.protection_level != "none" and item.equipment_slot is None:
+        raise InvalidFoundation("Защитному предмету требуется слот экипировки.")
     if item.uniqueness not in {"ordinary", "unique"}:
         raise InvalidFoundation("Неизвестный тип уникальности предмета.")
     if item.base_price < 0 or not (
-        MIN_APPEARANCE_FREQUENCY
-        <= item.appearance_weight
-        <= MAX_APPEARANCE_FREQUENCY
+        MIN_APPEARANCE_FREQUENCY <= item.appearance_weight <= MAX_APPEARANCE_FREQUENCY
     ):
         raise InvalidFoundation(
             "Цена не может быть отрицательной, а частота появления должна быть от 1 до 100."
@@ -183,12 +188,11 @@ def _validate_item(item) -> None:
         raise InvalidFoundation("Предмет ссылается на неизвестный вид магазина.")
 
 
-def _validate_character(
-    character, period_ids, location_ids, kind_ids, group_ids, language_ids
-) -> None:
+def _validate_character(character, period_ids, location_ids, kind_ids, group_ids) -> None:
     _require_id(character.id, "ID персонажа")
     _require_text(character.name, "Имя персонажа")
-    _require_text(character.biography, "Биография персонажа")
+    _require_text(character.biography, "Биография персонажа", MAX_CHARACTER_BIOGRAPHY_LENGTH)
+    _require_text(character.profession, "Профессия персонажа", MAX_CHARACTER_PROFESSION_LENGTH)
     if character.sex not in {"male", "female"} or not 18 <= character.age <= 10_000:
         raise InvalidFoundation("Пол или возраст подготовленного персонажа недопустим.")
     _require_references(character.period_ids, period_ids, "период персонажа")
@@ -196,7 +200,12 @@ def _validate_character(
     _require_references((character.creature_kind_id,), kind_ids, "вид персонажа")
     _require_references(character.group_ids, group_ids, "объединение персонажа")
     _require_references(character.leader_group_ids, set(character.group_ids), "лидерство персонажа")
-    _validate_language_knowledge(character.language_knowledge, language_ids)
+    if character.starting_currency_amount < 0:
+        raise InvalidFoundation("Личные деньги персонажа не могут быть отрицательными.")
+    if len(character.items) > 10 or any(item.quantity <= 0 for item in character.items):
+        raise InvalidFoundation(
+            "У персонажа может быть не больше 10 личных предметов с положительным количеством."
+        )
     if len(character.trait_ids) > 8 or len(character.abilities) > 8:
         raise InvalidFoundation("У персонажа может быть не больше восьми черт и способностей.")
     _require_unique(character.trait_ids, "Черты персонажа")
@@ -216,19 +225,6 @@ def _validate_character(
         )
         if ability.kind not in {"ordinary", "sustained"}:
             raise InvalidFoundation("Неизвестный тип способности.")
-
-
-def _validate_language_knowledge(entries, language_ids) -> None:
-    ids = [entry.get("language_id") for entry in entries]
-    if any(not isinstance(item, str) for item in ids):
-        raise InvalidFoundation("Знание языка должно содержать language_id.")
-    _require_unique(ids, "ID знаний языков")
-    _require_references(ids, language_ids, "язык")
-    if any(
-        not isinstance(entry.get("progress_units"), int) or entry["progress_units"] < 0
-        for entry in entries
-    ):
-        raise InvalidFoundation("Прогресс языка должен быть неотрицательным целым числом.")
 
 
 def _require_references(values, available: set[str], label: str) -> None:
@@ -308,9 +304,7 @@ def _require_shared_id(value: str, label: str) -> None:
         or "--" in normalized
         or any(not (character.isalnum() or character == "-") for character in normalized)
     ):
-        raise InvalidFoundation(
-            f"{label}: используйте строчные буквы, цифры и одиночный дефис."
-        )
+        raise InvalidFoundation(f"{label}: используйте строчные буквы, цифры и одиночный дефис.")
 
 
 def _require_text(value: str, label: str, maximum: int | None = None) -> None:

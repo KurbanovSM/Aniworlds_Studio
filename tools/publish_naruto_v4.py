@@ -10,6 +10,32 @@ from aniworlds_studio.global_catalogs import load_global_catalogs
 
 ROOT = Path(__file__).resolve().parents[1]
 
+
+def profession_for(biography: str) -> str:
+    """Give every authored character an explicit short occupation."""
+    folded = biography.casefold()
+    for marker, profession in (
+        ("хокаге", "Хокаге"),
+        ("казекаге", "Казекаге"),
+        ("цучикаге", "Цучикаге"),
+        ("мизукаге", "Мизукаге"),
+        ("райкаге", "Райкаге"),
+        ("саннин", "Саннин"),
+        ("медик", "Медик-ниндзя"),
+        ("самура", "Самурай"),
+        ("кукловод", "Кукловод"),
+        ("мечник", "Мечник"),
+        ("учитель академии", "Учитель Академии"),
+        ("телохранитель", "Телохранитель"),
+        ("стратег", "Военный стратег"),
+        ("куноити", "Куноити"),
+        ("шиноби", "Шиноби"),
+    ):
+        if marker in folded:
+            return profession
+    return "Шиноби"
+
+
 POSITIONS = {
     "konoha-gates": (170, 300),
     "konoha-center": (290, 300),
@@ -442,15 +468,17 @@ def main() -> None:
             sex=sex,
             age=age,
             biography=biography,
+            profession=profession_for(biography),
             origin_location_id=origin,
             creature_kind_id="human",
             trait_ids=traits,
             group_ids=groups,
             period_ids=["fourth-war" if identifier.endswith("fourth-war") else "before-pain"],
-            language_knowledge=[{"language_id": "shinobi-common", "progress_units": 20}],
         )
         for identifier, name, sex, age, biography, origin, groups, traits in CHARACTERS
     )
+    for character in draft.characters:
+        character.profession = profession_for(character.biography)
     assert len(draft.locations) == 30
     assert len(draft.characters) == 50
     save_draft(draft, ROOT / "content/worlds/naruto-v4.draft.json")
