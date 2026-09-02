@@ -21,6 +21,7 @@ from aniworlds_studio.foundation_models import (
     MAX_ABILITY_SHORT_DESCRIPTION_LENGTH,
     MAX_APPEARANCE_FREQUENCY,
     MAX_CHARACTER_BIOGRAPHY_LENGTH,
+    MAX_CHARACTER_NAME_LENGTH,
     MAX_CHARACTER_PROFESSION_LENGTH,
     MAX_STARTING_KIT_COUNT,
     MIN_APPEARANCE_FREQUENCY,
@@ -190,7 +191,7 @@ def _validate_item(item) -> None:
 
 def _validate_character(character, period_ids, location_ids, kind_ids, group_ids) -> None:
     _require_id(character.id, "ID персонажа")
-    _require_text(character.name, "Имя персонажа")
+    _require_text(character.name, "Имя персонажа", MAX_CHARACTER_NAME_LENGTH)
     _require_text(character.biography, "Биография персонажа", MAX_CHARACTER_BIOGRAPHY_LENGTH)
     _require_text(character.profession, "Профессия персонажа", MAX_CHARACTER_PROFESSION_LENGTH)
     if character.sex not in {"male", "female"} or not 18 <= character.age <= 10_000:

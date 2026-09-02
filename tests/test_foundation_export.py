@@ -382,6 +382,14 @@ def test_ability_name_above_runtime_limit_cannot_be_published() -> None:
         validate_foundation(draft)
 
 
+def test_character_name_above_database_limit_cannot_be_published() -> None:
+    draft = _complete_foundation()
+    draft.characters[0].name = "я" * 21
+
+    with pytest.raises(InvalidFoundation, match=r"Имя персонажа.*20"):
+        validate_foundation(draft)
+
+
 @pytest.mark.parametrize(
     ("mutation", "message"),
     [

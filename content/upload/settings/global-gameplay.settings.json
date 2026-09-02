@@ -1,0 +1,9 @@
+{
+  "schema_version": 1,
+  "artifact_type": "aniworlds.global_gameplay_settings",
+  "abilities": {
+    "initial_ability_limit": 5,
+    "learned_ability_limit": 10,
+    "ability_lesson_count": 4
+  }
+}

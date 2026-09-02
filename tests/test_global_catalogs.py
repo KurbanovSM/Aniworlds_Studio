@@ -46,8 +46,20 @@ def test_studio_initial_catalog_comes_from_the_editable_authored_file() -> None:
 
     assert catalogs.creature_kinds
     assert catalogs.traits
-    assert catalogs.equipment_sections == [EquipmentSectionDraft("Narutov4", "Наруто")]
-    assert {item.section_id for item in catalogs.equipment} == {"Narutov4"}
+    assert catalogs.equipment_sections == [
+        EquipmentSectionDraft("Narutov4", "Наруто"),
+        EquipmentSectionDraft("SoloLeveling", "Solo Leveling"),
+        EquipmentSectionDraft("AttackOnTitan", "Атака титанов"),
+        EquipmentSectionDraft("OnePunchMan", "One Punch Man"),
+        EquipmentSectionDraft("JujutsuKaisen", "Магическая битва"),
+    ]
+    assert {item.section_id for item in catalogs.equipment} == {
+        "Narutov4",
+        "SoloLeveling",
+        "AttackOnTitan",
+        "OnePunchMan",
+        "JujutsuKaisen",
+    }
 
 
 def test_shared_equipment_round_trips_with_its_world_section(tmp_path) -> None:

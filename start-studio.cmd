@@ -1,9 +1,10 @@
 @echo off
 setlocal
-set "STUDIO_EXE=%~dp0.venv\Scripts\aniworlds-studio.exe"
-if not exist "%STUDIO_EXE%" (
+set "STUDIO_PYTHON=%~dp0.venv\Scripts\pythonw.exe"
+if not exist "%STUDIO_PYTHON%" (
   echo Studio is not installed. Follow the setup steps in README.md.
   pause
   exit /b 1
 )
-start "" "%STUDIO_EXE%"
+set "PYTHONPATH=%~dp0src"
+start "" "%STUDIO_PYTHON%" -m aniworlds_studio

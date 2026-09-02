@@ -1,0 +1,6379 @@
+{
+  "draft_version": 2,
+  "universe": {
+    "id": "one-punch-man-v1",
+    "name": "One Punch Man: Мир героев",
+    "description": "Сверхсовременный мир городов, героев, чудовищ, киборгов и организаций, ежедневно сталкивающихся с угрозами разного уровня.",
+    "world_rules": "Ассоциация героев присваивает классы и уровни угроз. Репутация не гарантирует истинную силу. Исключительные способности принадлежат конкретным персонажам и не копируются без подтверждённой причины.",
+    "power_systems": "Сила возникает через тренировку, мутации, технологии, экстрасенсорные способности и превращение в монстра. Сервер оценивает последствия действий по описанным возможностям персонажа.",
+    "gameplay": {
+      "currency_id": "opm-yen",
+      "currency_name": "Иена",
+      "currency_symbol": "¥",
+      "strength_name": "Боевой ресурс",
+      "npc_starting_currency_min": 0,
+      "npc_starting_currency_max": 10000
+    },
+    "item_catalog_section_id": "OnePunchMan",
+    "periods": [
+      {
+        "id": "hero-registration",
+        "name": "Начало геройской службы",
+        "description": "Сайтама и Генос вступают в Ассоциацию героев.",
+        "lore": "Сайтама и Генос вступают в Ассоциацию героев. Состояние мира соответствует периоду «Начало геройской службы» и не смешивается с будущими раскрытиями.",
+        "initial_situation": "Игрок начинает собственную историю в период «Начало геройской службы» и выбирает одну из доступных стартовых точек.",
+        "location_ids": [
+          "opm-location-01",
+          "opm-location-02",
+          "opm-location-03",
+          "opm-location-04",
+          "opm-location-05",
+          "opm-location-06",
+          "opm-location-07",
+          "opm-location-08",
+          "opm-location-09",
+          "opm-location-10",
+          "opm-location-11",
+          "opm-location-12",
+          "opm-location-13",
+          "opm-location-14",
+          "opm-location-15",
+          "opm-location-16",
+          "opm-location-17",
+          "opm-location-18",
+          "opm-location-19",
+          "opm-location-20",
+          "opm-location-21",
+          "opm-location-22",
+          "opm-location-23",
+          "opm-location-24",
+          "opm-location-25",
+          "opm-location-26",
+          "opm-location-27",
+          "opm-location-28",
+          "opm-location-29",
+          "opm-location-30"
+        ],
+        "starting_location_ids": [
+          "opm-location-01",
+          "opm-location-02",
+          "opm-location-03",
+          "opm-location-04"
+        ],
+        "location_connections": [
+          {
+            "location_id": "opm-location-01",
+            "connected_location_ids": [
+              "opm-location-02",
+              "opm-location-07",
+              "opm-location-30"
+            ]
+          },
+          {
+            "location_id": "opm-location-02",
+            "connected_location_ids": [
+              "opm-location-01",
+              "opm-location-03",
+              "opm-location-08"
+            ]
+          },
+          {
+            "location_id": "opm-location-03",
+            "connected_location_ids": [
+              "opm-location-02",
+              "opm-location-04",
+              "opm-location-09"
+            ]
+          },
+          {
+            "location_id": "opm-location-04",
+            "connected_location_ids": [
+              "opm-location-03",
+              "opm-location-05",
+              "opm-location-10"
+            ]
+          },
+          {
+            "location_id": "opm-location-05",
+            "connected_location_ids": [
+              "opm-location-04",
+              "opm-location-06",
+              "opm-location-11"
+            ]
+          },
+          {
+            "location_id": "opm-location-06",
+            "connected_location_ids": [
+              "opm-location-05",
+              "opm-location-07",
+              "opm-location-12"
+            ]
+          },
+          {
+            "location_id": "opm-location-07",
+            "connected_location_ids": [
+              "opm-location-01",
+              "opm-location-06",
+              "opm-location-08",
+              "opm-location-13"
+            ]
+          },
+          {
+            "location_id": "opm-location-08",
+            "connected_location_ids": [
+              "opm-location-02",
+              "opm-location-07",
+              "opm-location-09",
+              "opm-location-14"
+            ]
+          },
+          {
+            "location_id": "opm-location-09",
+            "connected_location_ids": [
+              "opm-location-03",
+              "opm-location-08",
+              "opm-location-10",
+              "opm-location-15"
+            ]
+          },
+          {
+            "location_id": "opm-location-10",
+            "connected_location_ids": [
+              "opm-location-04",
+              "opm-location-09",
+              "opm-location-11",
+              "opm-location-16"
+            ]
+          },
+          {
+            "location_id": "opm-location-11",
+            "connected_location_ids": [
+              "opm-location-05",
+              "opm-location-10",
+              "opm-location-12",
+              "opm-location-17"
+            ]
+          },
+          {
+            "location_id": "opm-location-12",
+            "connected_location_ids": [
+              "opm-location-06",
+              "opm-location-11",
+              "opm-location-13",
+              "opm-location-18"
+            ]
+          },
+          {
+            "location_id": "opm-location-13",
+            "connected_location_ids": [
+              "opm-location-07",
+              "opm-location-12",
+              "opm-location-14",
+              "opm-location-19"
+            ]
+          },
+          {
+            "location_id": "opm-location-14",
+            "connected_location_ids": [
+              "opm-location-08",
+              "opm-location-13",
+              "opm-location-15",
+              "opm-location-20"
+            ]
+          },
+          {
+            "location_id": "opm-location-15",
+            "connected_location_ids": [
+              "opm-location-09",
+              "opm-location-14",
+              "opm-location-16",
+              "opm-location-21"
+            ]
+          },
+          {
+            "location_id": "opm-location-16",
+            "connected_location_ids": [
+              "opm-location-10",
+              "opm-location-15",
+              "opm-location-17",
+              "opm-location-22"
+            ]
+          },
+          {
+            "location_id": "opm-location-17",
+            "connected_location_ids": [
+              "opm-location-11",
+              "opm-location-16",
+              "opm-location-18",
+              "opm-location-23"
+            ]
+          },
+          {
+            "location_id": "opm-location-18",
+            "connected_location_ids": [
+              "opm-location-12",
+              "opm-location-17",
+              "opm-location-19",
+              "opm-location-24"
+            ]
+          },
+          {
+            "location_id": "opm-location-19",
+            "connected_location_ids": [
+              "opm-location-13",
+              "opm-location-18",
+              "opm-location-20",
+              "opm-location-25"
+            ]
+          },
+          {
+            "location_id": "opm-location-20",
+            "connected_location_ids": [
+              "opm-location-14",
+              "opm-location-19",
+              "opm-location-21",
+              "opm-location-26"
+            ]
+          },
+          {
+            "location_id": "opm-location-21",
+            "connected_location_ids": [
+              "opm-location-15",
+              "opm-location-20",
+              "opm-location-22",
+              "opm-location-27"
+            ]
+          },
+          {
+            "location_id": "opm-location-22",
+            "connected_location_ids": [
+              "opm-location-16",
+              "opm-location-21",
+              "opm-location-23",
+              "opm-location-28"
+            ]
+          },
+          {
+            "location_id": "opm-location-23",
+            "connected_location_ids": [
+              "opm-location-17",
+              "opm-location-22",
+              "opm-location-24",
+              "opm-location-29"
+            ]
+          },
+          {
+            "location_id": "opm-location-24",
+            "connected_location_ids": [
+              "opm-location-18",
+              "opm-location-23",
+              "opm-location-25",
+              "opm-location-30"
+            ]
+          },
+          {
+            "location_id": "opm-location-25",
+            "connected_location_ids": [
+              "opm-location-19",
+              "opm-location-24",
+              "opm-location-26"
+            ]
+          },
+          {
+            "location_id": "opm-location-26",
+            "connected_location_ids": [
+              "opm-location-20",
+              "opm-location-25",
+              "opm-location-27"
+            ]
+          },
+          {
+            "location_id": "opm-location-27",
+            "connected_location_ids": [
+              "opm-location-21",
+              "opm-location-26",
+              "opm-location-28"
+            ]
+          },
+          {
+            "location_id": "opm-location-28",
+            "connected_location_ids": [
+              "opm-location-22",
+              "opm-location-27",
+              "opm-location-29"
+            ]
+          },
+          {
+            "location_id": "opm-location-29",
+            "connected_location_ids": [
+              "opm-location-23",
+              "opm-location-28",
+              "opm-location-30"
+            ]
+          },
+          {
+            "location_id": "opm-location-30",
+            "connected_location_ids": [
+              "opm-location-01",
+              "opm-location-24",
+              "opm-location-29"
+            ]
+          }
+        ],
+        "starting_kits": [
+          {
+            "id": "opm-kit-01",
+            "name": "Разведчик",
+            "description": "Стартовый набор роли «Разведчик».",
+            "starting_currency_amount": 400,
+            "items": [
+              {
+                "item_id": "opm-weapon-01",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-consumable-01",
+                "quantity": 2
+              },
+              {
+                "item_id": "opm-clothing-01",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-05",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-10",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-17",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-22",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-28",
+                "quantity": 1
+              }
+            ]
+          },
+          {
+            "id": "opm-kit-02",
+            "name": "Боец",
+            "description": "Стартовый набор роли «Боец».",
+            "starting_currency_amount": 500,
+            "items": [
+              {
+                "item_id": "opm-weapon-02",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-consumable-02",
+                "quantity": 2
+              },
+              {
+                "item_id": "opm-clothing-02",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-06",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-11",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-18",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-23",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-29",
+                "quantity": 1
+              }
+            ]
+          },
+          {
+            "id": "opm-kit-03",
+            "name": "Защитник",
+            "description": "Стартовый набор роли «Защитник».",
+            "starting_currency_amount": 600,
+            "items": [
+              {
+                "item_id": "opm-weapon-03",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-consumable-03",
+                "quantity": 2
+              },
+              {
+                "item_id": "opm-clothing-03",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-07",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-12",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-19",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-24",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-30",
+                "quantity": 1
+              }
+            ]
+          },
+          {
+            "id": "opm-kit-04",
+            "name": "Медик",
+            "description": "Стартовый набор роли «Медик».",
+            "starting_currency_amount": 700,
+            "items": [
+              {
+                "item_id": "opm-weapon-04",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-consumable-04",
+                "quantity": 2
+              },
+              {
+                "item_id": "opm-clothing-04",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-08",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-13",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-20",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-25",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-31",
+                "quantity": 1
+              }
+            ]
+          },
+          {
+            "id": "opm-kit-05",
+            "name": "Стрелок",
+            "description": "Стартовый набор роли «Стрелок».",
+            "starting_currency_amount": 800,
+            "items": [
+              {
+                "item_id": "opm-weapon-05",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-consumable-05",
+                "quantity": 2
+              },
+              {
+                "item_id": "opm-clothing-01",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-09",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-14",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-21",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-26",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-32",
+                "quantity": 1
+              }
+            ]
+          },
+          {
+            "id": "opm-kit-06",
+            "name": "Специалист",
+            "description": "Стартовый набор роли «Специалист».",
+            "starting_currency_amount": 900,
+            "items": [
+              {
+                "item_id": "opm-weapon-06",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-consumable-06",
+                "quantity": 2
+              },
+              {
+                "item_id": "opm-clothing-02",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-05",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-15",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-17",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-27",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-28",
+                "quantity": 1
+              }
+            ]
+          },
+          {
+            "id": "opm-kit-07",
+            "name": "Путешественник",
+            "description": "Стартовый набор роли «Путешественник».",
+            "starting_currency_amount": 1000,
+            "items": [
+              {
+                "item_id": "opm-weapon-07",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-consumable-07",
+                "quantity": 2
+              },
+              {
+                "item_id": "opm-clothing-03",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-06",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-16",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-18",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-22",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-29",
+                "quantity": 1
+              }
+            ]
+          },
+          {
+            "id": "opm-kit-08",
+            "name": "Новичок",
+            "description": "Стартовый набор роли «Новичок».",
+            "starting_currency_amount": 1100,
+            "items": [
+              {
+                "item_id": "opm-weapon-08",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-consumable-08",
+                "quantity": 2
+              },
+              {
+                "item_id": "opm-clothing-04",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-07",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-10",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-19",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-23",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-30",
+                "quantity": 1
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "monster-uprising",
+        "name": "Восстание монстров",
+        "description": "Число угроз растёт, а Ассоциация монстров наносит открытый удар.",
+        "lore": "Число угроз растёт, а Ассоциация монстров наносит открытый удар. Состояние мира соответствует периоду «Восстание монстров» и не смешивается с будущими раскрытиями.",
+        "initial_situation": "Игрок начинает собственную историю в период «Восстание монстров» и выбирает одну из доступных стартовых точек.",
+        "location_ids": [
+          "opm-location-01",
+          "opm-location-02",
+          "opm-location-03",
+          "opm-location-04",
+          "opm-location-05",
+          "opm-location-06",
+          "opm-location-07",
+          "opm-location-08",
+          "opm-location-09",
+          "opm-location-10",
+          "opm-location-11",
+          "opm-location-12",
+          "opm-location-13",
+          "opm-location-14",
+          "opm-location-15",
+          "opm-location-16",
+          "opm-location-17",
+          "opm-location-18",
+          "opm-location-19",
+          "opm-location-20",
+          "opm-location-21",
+          "opm-location-22",
+          "opm-location-23",
+          "opm-location-24",
+          "opm-location-25",
+          "opm-location-26",
+          "opm-location-27",
+          "opm-location-28",
+          "opm-location-29",
+          "opm-location-30"
+        ],
+        "starting_location_ids": [
+          "opm-location-01",
+          "opm-location-02",
+          "opm-location-03",
+          "opm-location-04"
+        ],
+        "location_connections": [
+          {
+            "location_id": "opm-location-01",
+            "connected_location_ids": [
+              "opm-location-02",
+              "opm-location-07",
+              "opm-location-30"
+            ]
+          },
+          {
+            "location_id": "opm-location-02",
+            "connected_location_ids": [
+              "opm-location-01",
+              "opm-location-03",
+              "opm-location-08"
+            ]
+          },
+          {
+            "location_id": "opm-location-03",
+            "connected_location_ids": [
+              "opm-location-02",
+              "opm-location-04",
+              "opm-location-09"
+            ]
+          },
+          {
+            "location_id": "opm-location-04",
+            "connected_location_ids": [
+              "opm-location-03",
+              "opm-location-05",
+              "opm-location-10"
+            ]
+          },
+          {
+            "location_id": "opm-location-05",
+            "connected_location_ids": [
+              "opm-location-04",
+              "opm-location-06",
+              "opm-location-11"
+            ]
+          },
+          {
+            "location_id": "opm-location-06",
+            "connected_location_ids": [
+              "opm-location-05",
+              "opm-location-07",
+              "opm-location-12"
+            ]
+          },
+          {
+            "location_id": "opm-location-07",
+            "connected_location_ids": [
+              "opm-location-01",
+              "opm-location-06",
+              "opm-location-08",
+              "opm-location-13"
+            ]
+          },
+          {
+            "location_id": "opm-location-08",
+            "connected_location_ids": [
+              "opm-location-02",
+              "opm-location-07",
+              "opm-location-09",
+              "opm-location-14"
+            ]
+          },
+          {
+            "location_id": "opm-location-09",
+            "connected_location_ids": [
+              "opm-location-03",
+              "opm-location-08",
+              "opm-location-10",
+              "opm-location-15"
+            ]
+          },
+          {
+            "location_id": "opm-location-10",
+            "connected_location_ids": [
+              "opm-location-04",
+              "opm-location-09",
+              "opm-location-11",
+              "opm-location-16"
+            ]
+          },
+          {
+            "location_id": "opm-location-11",
+            "connected_location_ids": [
+              "opm-location-05",
+              "opm-location-10",
+              "opm-location-12",
+              "opm-location-17"
+            ]
+          },
+          {
+            "location_id": "opm-location-12",
+            "connected_location_ids": [
+              "opm-location-06",
+              "opm-location-11",
+              "opm-location-13",
+              "opm-location-18"
+            ]
+          },
+          {
+            "location_id": "opm-location-13",
+            "connected_location_ids": [
+              "opm-location-07",
+              "opm-location-12",
+              "opm-location-14",
+              "opm-location-19"
+            ]
+          },
+          {
+            "location_id": "opm-location-14",
+            "connected_location_ids": [
+              "opm-location-08",
+              "opm-location-13",
+              "opm-location-15",
+              "opm-location-20"
+            ]
+          },
+          {
+            "location_id": "opm-location-15",
+            "connected_location_ids": [
+              "opm-location-09",
+              "opm-location-14",
+              "opm-location-16",
+              "opm-location-21"
+            ]
+          },
+          {
+            "location_id": "opm-location-16",
+            "connected_location_ids": [
+              "opm-location-10",
+              "opm-location-15",
+              "opm-location-17",
+              "opm-location-22"
+            ]
+          },
+          {
+            "location_id": "opm-location-17",
+            "connected_location_ids": [
+              "opm-location-11",
+              "opm-location-16",
+              "opm-location-18",
+              "opm-location-23"
+            ]
+          },
+          {
+            "location_id": "opm-location-18",
+            "connected_location_ids": [
+              "opm-location-12",
+              "opm-location-17",
+              "opm-location-19",
+              "opm-location-24"
+            ]
+          },
+          {
+            "location_id": "opm-location-19",
+            "connected_location_ids": [
+              "opm-location-13",
+              "opm-location-18",
+              "opm-location-20",
+              "opm-location-25"
+            ]
+          },
+          {
+            "location_id": "opm-location-20",
+            "connected_location_ids": [
+              "opm-location-14",
+              "opm-location-19",
+              "opm-location-21",
+              "opm-location-26"
+            ]
+          },
+          {
+            "location_id": "opm-location-21",
+            "connected_location_ids": [
+              "opm-location-15",
+              "opm-location-20",
+              "opm-location-22",
+              "opm-location-27"
+            ]
+          },
+          {
+            "location_id": "opm-location-22",
+            "connected_location_ids": [
+              "opm-location-16",
+              "opm-location-21",
+              "opm-location-23",
+              "opm-location-28"
+            ]
+          },
+          {
+            "location_id": "opm-location-23",
+            "connected_location_ids": [
+              "opm-location-17",
+              "opm-location-22",
+              "opm-location-24",
+              "opm-location-29"
+            ]
+          },
+          {
+            "location_id": "opm-location-24",
+            "connected_location_ids": [
+              "opm-location-18",
+              "opm-location-23",
+              "opm-location-25",
+              "opm-location-30"
+            ]
+          },
+          {
+            "location_id": "opm-location-25",
+            "connected_location_ids": [
+              "opm-location-19",
+              "opm-location-24",
+              "opm-location-26"
+            ]
+          },
+          {
+            "location_id": "opm-location-26",
+            "connected_location_ids": [
+              "opm-location-20",
+              "opm-location-25",
+              "opm-location-27"
+            ]
+          },
+          {
+            "location_id": "opm-location-27",
+            "connected_location_ids": [
+              "opm-location-21",
+              "opm-location-26",
+              "opm-location-28"
+            ]
+          },
+          {
+            "location_id": "opm-location-28",
+            "connected_location_ids": [
+              "opm-location-22",
+              "opm-location-27",
+              "opm-location-29"
+            ]
+          },
+          {
+            "location_id": "opm-location-29",
+            "connected_location_ids": [
+              "opm-location-23",
+              "opm-location-28",
+              "opm-location-30"
+            ]
+          },
+          {
+            "location_id": "opm-location-30",
+            "connected_location_ids": [
+              "opm-location-01",
+              "opm-location-24",
+              "opm-location-29"
+            ]
+          }
+        ],
+        "starting_kits": [
+          {
+            "id": "opm-kit-01",
+            "name": "Разведчик",
+            "description": "Стартовый набор роли «Разведчик».",
+            "starting_currency_amount": 400,
+            "items": [
+              {
+                "item_id": "opm-weapon-01",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-consumable-01",
+                "quantity": 2
+              },
+              {
+                "item_id": "opm-clothing-01",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-05",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-10",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-17",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-22",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-28",
+                "quantity": 1
+              }
+            ]
+          },
+          {
+            "id": "opm-kit-02",
+            "name": "Боец",
+            "description": "Стартовый набор роли «Боец».",
+            "starting_currency_amount": 500,
+            "items": [
+              {
+                "item_id": "opm-weapon-02",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-consumable-02",
+                "quantity": 2
+              },
+              {
+                "item_id": "opm-clothing-02",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-06",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-11",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-18",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-23",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-29",
+                "quantity": 1
+              }
+            ]
+          },
+          {
+            "id": "opm-kit-03",
+            "name": "Защитник",
+            "description": "Стартовый набор роли «Защитник».",
+            "starting_currency_amount": 600,
+            "items": [
+              {
+                "item_id": "opm-weapon-03",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-consumable-03",
+                "quantity": 2
+              },
+              {
+                "item_id": "opm-clothing-03",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-07",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-12",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-19",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-24",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-30",
+                "quantity": 1
+              }
+            ]
+          },
+          {
+            "id": "opm-kit-04",
+            "name": "Медик",
+            "description": "Стартовый набор роли «Медик».",
+            "starting_currency_amount": 700,
+            "items": [
+              {
+                "item_id": "opm-weapon-04",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-consumable-04",
+                "quantity": 2
+              },
+              {
+                "item_id": "opm-clothing-04",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-08",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-13",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-20",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-25",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-31",
+                "quantity": 1
+              }
+            ]
+          },
+          {
+            "id": "opm-kit-05",
+            "name": "Стрелок",
+            "description": "Стартовый набор роли «Стрелок».",
+            "starting_currency_amount": 800,
+            "items": [
+              {
+                "item_id": "opm-weapon-05",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-consumable-05",
+                "quantity": 2
+              },
+              {
+                "item_id": "opm-clothing-01",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-09",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-14",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-21",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-26",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-32",
+                "quantity": 1
+              }
+            ]
+          },
+          {
+            "id": "opm-kit-06",
+            "name": "Специалист",
+            "description": "Стартовый набор роли «Специалист».",
+            "starting_currency_amount": 900,
+            "items": [
+              {
+                "item_id": "opm-weapon-06",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-consumable-06",
+                "quantity": 2
+              },
+              {
+                "item_id": "opm-clothing-02",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-05",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-15",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-17",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-27",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-28",
+                "quantity": 1
+              }
+            ]
+          },
+          {
+            "id": "opm-kit-07",
+            "name": "Путешественник",
+            "description": "Стартовый набор роли «Путешественник».",
+            "starting_currency_amount": 1000,
+            "items": [
+              {
+                "item_id": "opm-weapon-07",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-consumable-07",
+                "quantity": 2
+              },
+              {
+                "item_id": "opm-clothing-03",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-06",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-16",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-18",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-22",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-29",
+                "quantity": 1
+              }
+            ]
+          },
+          {
+            "id": "opm-kit-08",
+            "name": "Новичок",
+            "description": "Стартовый набор роли «Новичок».",
+            "starting_currency_amount": 1100,
+            "items": [
+              {
+                "item_id": "opm-weapon-08",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-consumable-08",
+                "quantity": 2
+              },
+              {
+                "item_id": "opm-clothing-04",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-07",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-10",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-19",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-23",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-30",
+                "quantity": 1
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "neo-hero-era",
+        "name": "Эпоха Неогероев",
+        "description": "Новая организация оспаривает порядок Ассоциации героев.",
+        "lore": "Новая организация оспаривает порядок Ассоциации героев. Состояние мира соответствует периоду «Эпоха Неогероев» и не смешивается с будущими раскрытиями.",
+        "initial_situation": "Игрок начинает собственную историю в период «Эпоха Неогероев» и выбирает одну из доступных стартовых точек.",
+        "location_ids": [
+          "opm-location-01",
+          "opm-location-02",
+          "opm-location-03",
+          "opm-location-04",
+          "opm-location-05",
+          "opm-location-06",
+          "opm-location-07",
+          "opm-location-08",
+          "opm-location-09",
+          "opm-location-10",
+          "opm-location-11",
+          "opm-location-12",
+          "opm-location-13",
+          "opm-location-14",
+          "opm-location-15",
+          "opm-location-16",
+          "opm-location-17",
+          "opm-location-18",
+          "opm-location-19",
+          "opm-location-20",
+          "opm-location-21",
+          "opm-location-22",
+          "opm-location-23",
+          "opm-location-24",
+          "opm-location-25",
+          "opm-location-26",
+          "opm-location-27",
+          "opm-location-28",
+          "opm-location-29",
+          "opm-location-30"
+        ],
+        "starting_location_ids": [
+          "opm-location-01",
+          "opm-location-02",
+          "opm-location-03",
+          "opm-location-04"
+        ],
+        "location_connections": [
+          {
+            "location_id": "opm-location-01",
+            "connected_location_ids": [
+              "opm-location-02",
+              "opm-location-07",
+              "opm-location-30"
+            ]
+          },
+          {
+            "location_id": "opm-location-02",
+            "connected_location_ids": [
+              "opm-location-01",
+              "opm-location-03",
+              "opm-location-08"
+            ]
+          },
+          {
+            "location_id": "opm-location-03",
+            "connected_location_ids": [
+              "opm-location-02",
+              "opm-location-04",
+              "opm-location-09"
+            ]
+          },
+          {
+            "location_id": "opm-location-04",
+            "connected_location_ids": [
+              "opm-location-03",
+              "opm-location-05",
+              "opm-location-10"
+            ]
+          },
+          {
+            "location_id": "opm-location-05",
+            "connected_location_ids": [
+              "opm-location-04",
+              "opm-location-06",
+              "opm-location-11"
+            ]
+          },
+          {
+            "location_id": "opm-location-06",
+            "connected_location_ids": [
+              "opm-location-05",
+              "opm-location-07",
+              "opm-location-12"
+            ]
+          },
+          {
+            "location_id": "opm-location-07",
+            "connected_location_ids": [
+              "opm-location-01",
+              "opm-location-06",
+              "opm-location-08",
+              "opm-location-13"
+            ]
+          },
+          {
+            "location_id": "opm-location-08",
+            "connected_location_ids": [
+              "opm-location-02",
+              "opm-location-07",
+              "opm-location-09",
+              "opm-location-14"
+            ]
+          },
+          {
+            "location_id": "opm-location-09",
+            "connected_location_ids": [
+              "opm-location-03",
+              "opm-location-08",
+              "opm-location-10",
+              "opm-location-15"
+            ]
+          },
+          {
+            "location_id": "opm-location-10",
+            "connected_location_ids": [
+              "opm-location-04",
+              "opm-location-09",
+              "opm-location-11",
+              "opm-location-16"
+            ]
+          },
+          {
+            "location_id": "opm-location-11",
+            "connected_location_ids": [
+              "opm-location-05",
+              "opm-location-10",
+              "opm-location-12",
+              "opm-location-17"
+            ]
+          },
+          {
+            "location_id": "opm-location-12",
+            "connected_location_ids": [
+              "opm-location-06",
+              "opm-location-11",
+              "opm-location-13",
+              "opm-location-18"
+            ]
+          },
+          {
+            "location_id": "opm-location-13",
+            "connected_location_ids": [
+              "opm-location-07",
+              "opm-location-12",
+              "opm-location-14",
+              "opm-location-19"
+            ]
+          },
+          {
+            "location_id": "opm-location-14",
+            "connected_location_ids": [
+              "opm-location-08",
+              "opm-location-13",
+              "opm-location-15",
+              "opm-location-20"
+            ]
+          },
+          {
+            "location_id": "opm-location-15",
+            "connected_location_ids": [
+              "opm-location-09",
+              "opm-location-14",
+              "opm-location-16",
+              "opm-location-21"
+            ]
+          },
+          {
+            "location_id": "opm-location-16",
+            "connected_location_ids": [
+              "opm-location-10",
+              "opm-location-15",
+              "opm-location-17",
+              "opm-location-22"
+            ]
+          },
+          {
+            "location_id": "opm-location-17",
+            "connected_location_ids": [
+              "opm-location-11",
+              "opm-location-16",
+              "opm-location-18",
+              "opm-location-23"
+            ]
+          },
+          {
+            "location_id": "opm-location-18",
+            "connected_location_ids": [
+              "opm-location-12",
+              "opm-location-17",
+              "opm-location-19",
+              "opm-location-24"
+            ]
+          },
+          {
+            "location_id": "opm-location-19",
+            "connected_location_ids": [
+              "opm-location-13",
+              "opm-location-18",
+              "opm-location-20",
+              "opm-location-25"
+            ]
+          },
+          {
+            "location_id": "opm-location-20",
+            "connected_location_ids": [
+              "opm-location-14",
+              "opm-location-19",
+              "opm-location-21",
+              "opm-location-26"
+            ]
+          },
+          {
+            "location_id": "opm-location-21",
+            "connected_location_ids": [
+              "opm-location-15",
+              "opm-location-20",
+              "opm-location-22",
+              "opm-location-27"
+            ]
+          },
+          {
+            "location_id": "opm-location-22",
+            "connected_location_ids": [
+              "opm-location-16",
+              "opm-location-21",
+              "opm-location-23",
+              "opm-location-28"
+            ]
+          },
+          {
+            "location_id": "opm-location-23",
+            "connected_location_ids": [
+              "opm-location-17",
+              "opm-location-22",
+              "opm-location-24",
+              "opm-location-29"
+            ]
+          },
+          {
+            "location_id": "opm-location-24",
+            "connected_location_ids": [
+              "opm-location-18",
+              "opm-location-23",
+              "opm-location-25",
+              "opm-location-30"
+            ]
+          },
+          {
+            "location_id": "opm-location-25",
+            "connected_location_ids": [
+              "opm-location-19",
+              "opm-location-24",
+              "opm-location-26"
+            ]
+          },
+          {
+            "location_id": "opm-location-26",
+            "connected_location_ids": [
+              "opm-location-20",
+              "opm-location-25",
+              "opm-location-27"
+            ]
+          },
+          {
+            "location_id": "opm-location-27",
+            "connected_location_ids": [
+              "opm-location-21",
+              "opm-location-26",
+              "opm-location-28"
+            ]
+          },
+          {
+            "location_id": "opm-location-28",
+            "connected_location_ids": [
+              "opm-location-22",
+              "opm-location-27",
+              "opm-location-29"
+            ]
+          },
+          {
+            "location_id": "opm-location-29",
+            "connected_location_ids": [
+              "opm-location-23",
+              "opm-location-28",
+              "opm-location-30"
+            ]
+          },
+          {
+            "location_id": "opm-location-30",
+            "connected_location_ids": [
+              "opm-location-01",
+              "opm-location-24",
+              "opm-location-29"
+            ]
+          }
+        ],
+        "starting_kits": [
+          {
+            "id": "opm-kit-01",
+            "name": "Разведчик",
+            "description": "Стартовый набор роли «Разведчик».",
+            "starting_currency_amount": 400,
+            "items": [
+              {
+                "item_id": "opm-weapon-01",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-consumable-01",
+                "quantity": 2
+              },
+              {
+                "item_id": "opm-clothing-01",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-05",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-10",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-17",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-22",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-28",
+                "quantity": 1
+              }
+            ]
+          },
+          {
+            "id": "opm-kit-02",
+            "name": "Боец",
+            "description": "Стартовый набор роли «Боец».",
+            "starting_currency_amount": 500,
+            "items": [
+              {
+                "item_id": "opm-weapon-02",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-consumable-02",
+                "quantity": 2
+              },
+              {
+                "item_id": "opm-clothing-02",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-06",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-11",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-18",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-23",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-29",
+                "quantity": 1
+              }
+            ]
+          },
+          {
+            "id": "opm-kit-03",
+            "name": "Защитник",
+            "description": "Стартовый набор роли «Защитник».",
+            "starting_currency_amount": 600,
+            "items": [
+              {
+                "item_id": "opm-weapon-03",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-consumable-03",
+                "quantity": 2
+              },
+              {
+                "item_id": "opm-clothing-03",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-07",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-12",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-19",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-24",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-30",
+                "quantity": 1
+              }
+            ]
+          },
+          {
+            "id": "opm-kit-04",
+            "name": "Медик",
+            "description": "Стартовый набор роли «Медик».",
+            "starting_currency_amount": 700,
+            "items": [
+              {
+                "item_id": "opm-weapon-04",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-consumable-04",
+                "quantity": 2
+              },
+              {
+                "item_id": "opm-clothing-04",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-08",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-13",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-20",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-25",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-31",
+                "quantity": 1
+              }
+            ]
+          },
+          {
+            "id": "opm-kit-05",
+            "name": "Стрелок",
+            "description": "Стартовый набор роли «Стрелок».",
+            "starting_currency_amount": 800,
+            "items": [
+              {
+                "item_id": "opm-weapon-05",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-consumable-05",
+                "quantity": 2
+              },
+              {
+                "item_id": "opm-clothing-01",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-09",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-14",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-21",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-26",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-32",
+                "quantity": 1
+              }
+            ]
+          },
+          {
+            "id": "opm-kit-06",
+            "name": "Специалист",
+            "description": "Стартовый набор роли «Специалист».",
+            "starting_currency_amount": 900,
+            "items": [
+              {
+                "item_id": "opm-weapon-06",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-consumable-06",
+                "quantity": 2
+              },
+              {
+                "item_id": "opm-clothing-02",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-05",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-15",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-17",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-27",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-28",
+                "quantity": 1
+              }
+            ]
+          },
+          {
+            "id": "opm-kit-07",
+            "name": "Путешественник",
+            "description": "Стартовый набор роли «Путешественник».",
+            "starting_currency_amount": 1000,
+            "items": [
+              {
+                "item_id": "opm-weapon-07",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-consumable-07",
+                "quantity": 2
+              },
+              {
+                "item_id": "opm-clothing-03",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-06",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-16",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-18",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-22",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-29",
+                "quantity": 1
+              }
+            ]
+          },
+          {
+            "id": "opm-kit-08",
+            "name": "Новичок",
+            "description": "Стартовый набор роли «Новичок».",
+            "starting_currency_amount": 1100,
+            "items": [
+              {
+                "item_id": "opm-weapon-08",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-consumable-08",
+                "quantity": 2
+              },
+              {
+                "item_id": "opm-clothing-04",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-07",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-10",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-19",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-23",
+                "quantity": 1
+              },
+              {
+                "item_id": "opm-clothing-30",
+                "quantity": 1
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "locations": [
+      {
+        "id": "opm-location-01",
+        "name": "Город A",
+        "description": "Город A — важная локация мира «One Punch Man: Мир героев», где могут происходить встречи, задания и конфликты.",
+        "price_coefficient": 0.9,
+        "map_x": 90,
+        "map_y": 90
+      },
+      {
+        "id": "opm-location-02",
+        "name": "Штаб Ассоциации героев",
+        "description": "Штаб Ассоциации героев — важная локация мира «One Punch Man: Мир героев», где могут происходить встречи, задания и конфликты.",
+        "price_coefficient": 1.0,
+        "map_x": 240,
+        "map_y": 90
+      },
+      {
+        "id": "opm-location-03",
+        "name": "Город B",
+        "description": "Город B — важная локация мира «One Punch Man: Мир героев», где могут происходить встречи, задания и конфликты.",
+        "price_coefficient": 1.1,
+        "map_x": 390,
+        "map_y": 90
+      },
+      {
+        "id": "opm-location-04",
+        "name": "Город C",
+        "description": "Город C — важная локация мира «One Punch Man: Мир героев», где могут происходить встречи, задания и конфликты.",
+        "price_coefficient": 1.2,
+        "map_x": 540,
+        "map_y": 90
+      },
+      {
+        "id": "opm-location-05",
+        "name": "Город D",
+        "description": "Город D — важная локация мира «One Punch Man: Мир героев», где могут происходить встречи, задания и конфликты.",
+        "price_coefficient": 1.3,
+        "map_x": 690,
+        "map_y": 90
+      },
+      {
+        "id": "opm-location-06",
+        "name": "Город E",
+        "description": "Город E — важная локация мира «One Punch Man: Мир героев», где могут происходить встречи, задания и конфликты.",
+        "price_coefficient": 0.8,
+        "map_x": 840,
+        "map_y": 90
+      },
+      {
+        "id": "opm-location-07",
+        "name": "Город F",
+        "description": "Город F — важная локация мира «One Punch Man: Мир героев», где могут происходить встречи, задания и конфликты.",
+        "price_coefficient": 0.9,
+        "map_x": 90,
+        "map_y": 210
+      },
+      {
+        "id": "opm-location-08",
+        "name": "Город G",
+        "description": "Город G — важная локация мира «One Punch Man: Мир героев», где могут происходить встречи, задания и конфликты.",
+        "price_coefficient": 1.0,
+        "map_x": 240,
+        "map_y": 210
+      },
+      {
+        "id": "opm-location-09",
+        "name": "Город H",
+        "description": "Город H — важная локация мира «One Punch Man: Мир героев», где могут происходить встречи, задания и конфликты.",
+        "price_coefficient": 1.1,
+        "map_x": 390,
+        "map_y": 210
+      },
+      {
+        "id": "opm-location-10",
+        "name": "Город I",
+        "description": "Город I — важная локация мира «One Punch Man: Мир героев», где могут происходить встречи, задания и конфликты.",
+        "price_coefficient": 1.2,
+        "map_x": 540,
+        "map_y": 210
+      },
+      {
+        "id": "opm-location-11",
+        "name": "Город J",
+        "description": "Город J — важная локация мира «One Punch Man: Мир героев», где могут происходить встречи, задания и конфликты.",
+        "price_coefficient": 1.3,
+        "map_x": 690,
+        "map_y": 210
+      },
+      {
+        "id": "opm-location-12",
+        "name": "Город K",
+        "description": "Город K — важная локация мира «One Punch Man: Мир героев», где могут происходить встречи, задания и конфликты.",
+        "price_coefficient": 0.8,
+        "map_x": 840,
+        "map_y": 210
+      },
+      {
+        "id": "opm-location-13",
+        "name": "Город L",
+        "description": "Город L — важная локация мира «One Punch Man: Мир героев», где могут происходить встречи, задания и конфликты.",
+        "price_coefficient": 0.9,
+        "map_x": 90,
+        "map_y": 330
+      },
+      {
+        "id": "opm-location-14",
+        "name": "Город M",
+        "description": "Город M — важная локация мира «One Punch Man: Мир героев», где могут происходить встречи, задания и конфликты.",
+        "price_coefficient": 1.0,
+        "map_x": 240,
+        "map_y": 330
+      },
+      {
+        "id": "opm-location-15",
+        "name": "Город N",
+        "description": "Город N — важная локация мира «One Punch Man: Мир героев», где могут происходить встречи, задания и конфликты.",
+        "price_coefficient": 1.1,
+        "map_x": 390,
+        "map_y": 330
+      },
+      {
+        "id": "opm-location-16",
+        "name": "Город Q",
+        "description": "Город Q — важная локация мира «One Punch Man: Мир героев», где могут происходить встречи, задания и конфликты.",
+        "price_coefficient": 1.2,
+        "map_x": 540,
+        "map_y": 330
+      },
+      {
+        "id": "opm-location-17",
+        "name": "Город R",
+        "description": "Город R — важная локация мира «One Punch Man: Мир героев», где могут происходить встречи, задания и конфликты.",
+        "price_coefficient": 1.3,
+        "map_x": 690,
+        "map_y": 330
+      },
+      {
+        "id": "opm-location-18",
+        "name": "Город S",
+        "description": "Город S — важная локация мира «One Punch Man: Мир героев», где могут происходить встречи, задания и конфликты.",
+        "price_coefficient": 0.8,
+        "map_x": 840,
+        "map_y": 330
+      },
+      {
+        "id": "opm-location-19",
+        "name": "Город W",
+        "description": "Город W — важная локация мира «One Punch Man: Мир героев», где могут происходить встречи, задания и конфликты.",
+        "price_coefficient": 0.9,
+        "map_x": 90,
+        "map_y": 450
+      },
+      {
+        "id": "opm-location-20",
+        "name": "Город Z",
+        "description": "Город Z — важная локация мира «One Punch Man: Мир героев», где могут происходить встречи, задания и конфликты.",
+        "price_coefficient": 1.0,
+        "map_x": 240,
+        "map_y": 450
+      },
+      {
+        "id": "opm-location-21",
+        "name": "Квартира Сайтамы",
+        "description": "Квартира Сайтамы — важная локация мира «One Punch Man: Мир героев», где могут происходить встречи, задания и конфликты.",
+        "price_coefficient": 1.1,
+        "map_x": 390,
+        "map_y": 450
+      },
+      {
+        "id": "opm-location-22",
+        "name": "Дом эволюции",
+        "description": "Дом эволюции — важная локация мира «One Punch Man: Мир героев», где могут происходить встречи, задания и конфликты.",
+        "price_coefficient": 1.2,
+        "map_x": 540,
+        "map_y": 450
+      },
+      {
+        "id": "opm-location-23",
+        "name": "Додзё Банга",
+        "description": "Додзё Банга — важная локация мира «One Punch Man: Мир героев», где могут происходить встречи, задания и конфликты.",
+        "price_coefficient": 1.3,
+        "map_x": 690,
+        "map_y": 450
+      },
+      {
+        "id": "opm-location-24",
+        "name": "Тюрьма строгого режима",
+        "description": "Тюрьма строгого режима — важная локация мира «One Punch Man: Мир героев», где могут происходить встречи, задания и конфликты.",
+        "price_coefficient": 0.8,
+        "map_x": 840,
+        "map_y": 450
+      },
+      {
+        "id": "opm-location-25",
+        "name": "Убежище Ассоциации монстров",
+        "description": "Убежище Ассоциации монстров — важная локация мира «One Punch Man: Мир героев», где могут происходить встречи, задания и конфликты.",
+        "price_coefficient": 0.9,
+        "map_x": 90,
+        "map_y": 570
+      },
+      {
+        "id": "opm-location-26",
+        "name": "Суперконтинентальный стадион",
+        "description": "Суперконтинентальный стадион — важная локация мира «One Punch Man: Мир героев», где могут происходить встречи, задания и конфликты.",
+        "price_coefficient": 1.0,
+        "map_x": 240,
+        "map_y": 570
+      },
+      {
+        "id": "opm-location-27",
+        "name": "Лаборатория Кусено",
+        "description": "Лаборатория Кусено — важная локация мира «One Punch Man: Мир героев», где могут происходить встречи, задания и конфликты.",
+        "price_coefficient": 1.1,
+        "map_x": 390,
+        "map_y": 570
+      },
+      {
+        "id": "opm-location-28",
+        "name": "Деревня ниндзя",
+        "description": "Деревня ниндзя — важная локация мира «One Punch Man: Мир героев», где могут происходить встречи, задания и конфликты.",
+        "price_coefficient": 1.2,
+        "map_x": 540,
+        "map_y": 570
+      },
+      {
+        "id": "opm-location-29",
+        "name": "База Неогероев",
+        "description": "База Неогероев — важная локация мира «One Punch Man: Мир героев», где могут происходить встречи, задания и конфликты.",
+        "price_coefficient": 1.3,
+        "map_x": 690,
+        "map_y": 570
+      },
+      {
+        "id": "opm-location-30",
+        "name": "Космический корабль Бороса",
+        "description": "Космический корабль Бороса — важная локация мира «One Punch Man: Мир героев», где могут происходить встречи, задания и конфликты.",
+        "price_coefficient": 0.8,
+        "map_x": 840,
+        "map_y": 570
+      }
+    ],
+    "creature_kinds": [
+      {
+        "id": "human",
+        "name": "Человек",
+        "description": "Обычный разумный человек.",
+        "category": "race",
+        "cognition": "sapient",
+        "communication_modes": [
+          "speech",
+          "writing",
+          "signals"
+        ],
+        "physical_features": [
+          "Человеческое телосложение"
+        ],
+        "habitat_location_ids": [
+          "opm-location-01",
+          "opm-location-02",
+          "opm-location-03",
+          "opm-location-04",
+          "opm-location-05",
+          "opm-location-06",
+          "opm-location-07",
+          "opm-location-08",
+          "opm-location-09",
+          "opm-location-10",
+          "opm-location-11",
+          "opm-location-12",
+          "opm-location-13",
+          "opm-location-14",
+          "opm-location-15",
+          "opm-location-16",
+          "opm-location-17",
+          "opm-location-18",
+          "opm-location-19",
+          "opm-location-20",
+          "opm-location-21",
+          "opm-location-22",
+          "opm-location-23",
+          "opm-location-24",
+          "opm-location-25",
+          "opm-location-26",
+          "opm-location-27",
+          "opm-location-28",
+          "opm-location-29",
+          "opm-location-30"
+        ],
+        "period_ids": [
+          "hero-registration",
+          "monster-uprising",
+          "neo-hero-era"
+        ],
+        "parent_kind_id": null
+      },
+      {
+        "id": "opm-kind-01",
+        "name": "Киборг",
+        "description": "Киборг — особый вид существ этого мира.",
+        "category": "supernatural",
+        "cognition": "sapient",
+        "communication_modes": [
+          "speech",
+          "writing",
+          "signals"
+        ],
+        "physical_features": [
+          "Признаки вида: Киборг"
+        ],
+        "habitat_location_ids": [
+          "opm-location-01",
+          "opm-location-02",
+          "opm-location-03",
+          "opm-location-04",
+          "opm-location-05",
+          "opm-location-06",
+          "opm-location-07",
+          "opm-location-08",
+          "opm-location-09",
+          "opm-location-10",
+          "opm-location-11",
+          "opm-location-12",
+          "opm-location-13",
+          "opm-location-14",
+          "opm-location-15",
+          "opm-location-16",
+          "opm-location-17",
+          "opm-location-18",
+          "opm-location-19",
+          "opm-location-20",
+          "opm-location-21",
+          "opm-location-22",
+          "opm-location-23",
+          "opm-location-24",
+          "opm-location-25",
+          "opm-location-26",
+          "opm-location-27",
+          "opm-location-28",
+          "opm-location-29",
+          "opm-location-30"
+        ],
+        "period_ids": [
+          "hero-registration",
+          "monster-uprising",
+          "neo-hero-era"
+        ],
+        "parent_kind_id": null
+      },
+      {
+        "id": "opm-kind-02",
+        "name": "Робот",
+        "description": "Робот — особый вид существ этого мира.",
+        "category": "supernatural",
+        "cognition": "sapient",
+        "communication_modes": [
+          "speech",
+          "writing",
+          "signals"
+        ],
+        "physical_features": [
+          "Признаки вида: Робот"
+        ],
+        "habitat_location_ids": [
+          "opm-location-01",
+          "opm-location-02",
+          "opm-location-03",
+          "opm-location-04",
+          "opm-location-05",
+          "opm-location-06",
+          "opm-location-07",
+          "opm-location-08",
+          "opm-location-09",
+          "opm-location-10",
+          "opm-location-11",
+          "opm-location-12",
+          "opm-location-13",
+          "opm-location-14",
+          "opm-location-15",
+          "opm-location-16",
+          "opm-location-17",
+          "opm-location-18",
+          "opm-location-19",
+          "opm-location-20",
+          "opm-location-21",
+          "opm-location-22",
+          "opm-location-23",
+          "opm-location-24",
+          "opm-location-25",
+          "opm-location-26",
+          "opm-location-27",
+          "opm-location-28",
+          "opm-location-29",
+          "opm-location-30"
+        ],
+        "period_ids": [
+          "hero-registration",
+          "monster-uprising",
+          "neo-hero-era"
+        ],
+        "parent_kind_id": null
+      },
+      {
+        "id": "opm-kind-03",
+        "name": "Монстр",
+        "description": "Монстр — особый вид существ этого мира.",
+        "category": "supernatural",
+        "cognition": "sapient",
+        "communication_modes": [
+          "speech",
+          "writing",
+          "signals"
+        ],
+        "physical_features": [
+          "Признаки вида: Монстр"
+        ],
+        "habitat_location_ids": [
+          "opm-location-01",
+          "opm-location-02",
+          "opm-location-03",
+          "opm-location-04",
+          "opm-location-05",
+          "opm-location-06",
+          "opm-location-07",
+          "opm-location-08",
+          "opm-location-09",
+          "opm-location-10",
+          "opm-location-11",
+          "opm-location-12",
+          "opm-location-13",
+          "opm-location-14",
+          "opm-location-15",
+          "opm-location-16",
+          "opm-location-17",
+          "opm-location-18",
+          "opm-location-19",
+          "opm-location-20",
+          "opm-location-21",
+          "opm-location-22",
+          "opm-location-23",
+          "opm-location-24",
+          "opm-location-25",
+          "opm-location-26",
+          "opm-location-27",
+          "opm-location-28",
+          "opm-location-29",
+          "opm-location-30"
+        ],
+        "period_ids": [
+          "hero-registration",
+          "monster-uprising",
+          "neo-hero-era"
+        ],
+        "parent_kind_id": null
+      },
+      {
+        "id": "opm-kind-04",
+        "name": "Инопланетянин",
+        "description": "Инопланетянин — особый вид существ этого мира.",
+        "category": "supernatural",
+        "cognition": "sapient",
+        "communication_modes": [
+          "speech",
+          "writing",
+          "signals"
+        ],
+        "physical_features": [
+          "Признаки вида: Инопланетянин"
+        ],
+        "habitat_location_ids": [
+          "opm-location-01",
+          "opm-location-02",
+          "opm-location-03",
+          "opm-location-04",
+          "opm-location-05",
+          "opm-location-06",
+          "opm-location-07",
+          "opm-location-08",
+          "opm-location-09",
+          "opm-location-10",
+          "opm-location-11",
+          "opm-location-12",
+          "opm-location-13",
+          "opm-location-14",
+          "opm-location-15",
+          "opm-location-16",
+          "opm-location-17",
+          "opm-location-18",
+          "opm-location-19",
+          "opm-location-20",
+          "opm-location-21",
+          "opm-location-22",
+          "opm-location-23",
+          "opm-location-24",
+          "opm-location-25",
+          "opm-location-26",
+          "opm-location-27",
+          "opm-location-28",
+          "opm-location-29",
+          "opm-location-30"
+        ],
+        "period_ids": [
+          "hero-registration",
+          "monster-uprising",
+          "neo-hero-era"
+        ],
+        "parent_kind_id": null
+      }
+    ],
+    "groups": [
+      {
+        "id": "opm-group-01",
+        "name": "Ассоциация героев",
+        "group_type": "organization",
+        "description": "Ассоциация героев — действующая организация мира «One Punch Man: Мир героев».",
+        "location_ids": [
+          "opm-location-01",
+          "opm-location-06"
+        ],
+        "ally_ids": [],
+        "enemy_ids": [],
+        "period_states": {
+          "hero-registration": "active",
+          "monster-uprising": "active",
+          "neo-hero-era": "active"
+        }
+      },
+      {
+        "id": "opm-group-02",
+        "name": "Фубуки-группа",
+        "group_type": "organization",
+        "description": "Фубуки-группа — действующая организация мира «One Punch Man: Мир героев».",
+        "location_ids": [
+          "opm-location-02",
+          "opm-location-07"
+        ],
+        "ally_ids": [],
+        "enemy_ids": [],
+        "period_states": {
+          "hero-registration": "active",
+          "monster-uprising": "active",
+          "neo-hero-era": "active"
+        }
+      },
+      {
+        "id": "opm-group-03",
+        "name": "Совет мастеров меча",
+        "group_type": "organization",
+        "description": "Совет мастеров меча — действующая организация мира «One Punch Man: Мир героев».",
+        "location_ids": [
+          "opm-location-03",
+          "opm-location-08"
+        ],
+        "ally_ids": [],
+        "enemy_ids": [],
+        "period_states": {
+          "hero-registration": "active",
+          "monster-uprising": "active",
+          "neo-hero-era": "active"
+        }
+      },
+      {
+        "id": "opm-group-04",
+        "name": "Додзё Банга",
+        "group_type": "organization",
+        "description": "Додзё Банга — действующая организация мира «One Punch Man: Мир героев».",
+        "location_ids": [
+          "opm-location-04",
+          "opm-location-09"
+        ],
+        "ally_ids": [],
+        "enemy_ids": [],
+        "period_states": {
+          "hero-registration": "active",
+          "monster-uprising": "active",
+          "neo-hero-era": "active"
+        }
+      },
+      {
+        "id": "opm-group-05",
+        "name": "Дом эволюции",
+        "group_type": "organization",
+        "description": "Дом эволюции — действующая организация мира «One Punch Man: Мир героев».",
+        "location_ids": [
+          "opm-location-05",
+          "opm-location-10"
+        ],
+        "ally_ids": [],
+        "enemy_ids": [],
+        "period_states": {
+          "hero-registration": "active",
+          "monster-uprising": "active",
+          "neo-hero-era": "active"
+        }
+      },
+      {
+        "id": "opm-group-06",
+        "name": "Ассоциация монстров",
+        "group_type": "organization",
+        "description": "Ассоциация монстров — действующая организация мира «One Punch Man: Мир героев».",
+        "location_ids": [
+          "opm-location-06",
+          "opm-location-11"
+        ],
+        "ally_ids": [],
+        "enemy_ids": [],
+        "period_states": {
+          "hero-registration": "active",
+          "monster-uprising": "active",
+          "neo-hero-era": "active"
+        }
+      },
+      {
+        "id": "opm-group-07",
+        "name": "Организация",
+        "group_type": "organization",
+        "description": "Организация — действующая организация мира «One Punch Man: Мир героев».",
+        "location_ids": [
+          "opm-location-07",
+          "opm-location-12"
+        ],
+        "ally_ids": [],
+        "enemy_ids": [],
+        "period_states": {
+          "hero-registration": "active",
+          "monster-uprising": "active",
+          "neo-hero-era": "active"
+        }
+      },
+      {
+        "id": "opm-group-08",
+        "name": "Деревня ниндзя",
+        "group_type": "organization",
+        "description": "Деревня ниндзя — действующая организация мира «One Punch Man: Мир героев».",
+        "location_ids": [
+          "opm-location-08",
+          "opm-location-13"
+        ],
+        "ally_ids": [],
+        "enemy_ids": [],
+        "period_states": {
+          "hero-registration": "active",
+          "monster-uprising": "active",
+          "neo-hero-era": "active"
+        }
+      },
+      {
+        "id": "opm-group-09",
+        "name": "Неогерои",
+        "group_type": "organization",
+        "description": "Неогерои — действующая организация мира «One Punch Man: Мир героев».",
+        "location_ids": [
+          "opm-location-09",
+          "opm-location-14"
+        ],
+        "ally_ids": [],
+        "enemy_ids": [],
+        "period_states": {
+          "hero-registration": "active",
+          "monster-uprising": "active",
+          "neo-hero-era": "active"
+        }
+      },
+      {
+        "id": "opm-group-10",
+        "name": "Тёмные похитители материи",
+        "group_type": "organization",
+        "description": "Тёмные похитители материи — действующая организация мира «One Punch Man: Мир героев».",
+        "location_ids": [
+          "opm-location-10",
+          "opm-location-15"
+        ],
+        "ally_ids": [],
+        "enemy_ids": [],
+        "period_states": {
+          "hero-registration": "active",
+          "monster-uprising": "active",
+          "neo-hero-era": "active"
+        }
+      }
+    ],
+    "equipment": [],
+    "items": [],
+    "shop_policies": [
+      {
+        "shop_kind": "general_store",
+        "minimum_assortment_size": 4,
+        "maximum_assortment_size": 10
+      },
+      {
+        "shop_kind": "weapon_shop",
+        "minimum_assortment_size": 4,
+        "maximum_assortment_size": 10
+      },
+      {
+        "shop_kind": "armor_shop",
+        "minimum_assortment_size": 4,
+        "maximum_assortment_size": 10
+      },
+      {
+        "shop_kind": "clothing_shop",
+        "minimum_assortment_size": 4,
+        "maximum_assortment_size": 10
+      },
+      {
+        "shop_kind": "pharmacy",
+        "minimum_assortment_size": 4,
+        "maximum_assortment_size": 10
+      },
+      {
+        "shop_kind": "tool_and_scroll_shop",
+        "minimum_assortment_size": 4,
+        "maximum_assortment_size": 10
+      },
+      {
+        "shop_kind": "food_shop",
+        "minimum_assortment_size": 4,
+        "maximum_assortment_size": 10
+      },
+      {
+        "shop_kind": "forge",
+        "minimum_assortment_size": 4,
+        "maximum_assortment_size": 10
+      }
+    ],
+    "characters": [
+      {
+        "id": "opm-character-01",
+        "name": "Сайтама",
+        "sex": "male",
+        "age": 25,
+        "biography": "Сайтама — герой мира «One Punch Man: Мир героев». Известен навыком «Один удар». Его решения, знания и отношение определяются выбранным периодом и событиями игры.",
+        "profession": "герой",
+        "origin_location_id": "opm-location-01",
+        "creature_kind_id": "human",
+        "cognition_override": null,
+        "trait_ids": [
+          "observant"
+        ],
+        "abilities": [
+          {
+            "id": "opm-ability-01",
+            "name": "Один удар",
+            "short_description": "Сверхмощный физический удар",
+            "description": "Сайтама наносит физический удар подавляющей силы. Обычная цель получает сокрушительное повреждение в точке попадания; результат всё равно зависит от факта попадания и природы цели.",
+            "kind": "ordinary"
+          }
+        ],
+        "group_ids": [
+          "opm-group-01"
+        ],
+        "leader_group_ids": [],
+        "period_ids": [
+          "hero-registration",
+          "monster-uprising",
+          "neo-hero-era"
+        ],
+        "starting_currency_amount": 197,
+        "items": [
+          {
+            "item_id": "opm-clothing-01",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-10",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-17",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-22",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-28",
+            "quantity": 1
+          }
+        ]
+      },
+      {
+        "id": "opm-character-02",
+        "name": "Генос",
+        "sex": "male",
+        "age": 19,
+        "biography": "Генос — киборг-герой мира «One Punch Man: Мир героев». Известен навыком «Испепеляющая пушка». Его решения, знания и отношение определяются выбранным периодом и событиями игры.",
+        "profession": "киборг-герой",
+        "origin_location_id": "opm-location-02",
+        "creature_kind_id": "opm-kind-01",
+        "cognition_override": null,
+        "trait_ids": [
+          "loyal"
+        ],
+        "abilities": [
+          {
+            "id": "opm-ability-02",
+            "name": "Испепеляющая пушка",
+            "short_description": "Выпускает направленный поток жара",
+            "description": "Генос выпускает из ладоней или грудного ядра концентрированный поток пламени и энергии. Мощность ограничена зарядом, охлаждением корпуса и целостностью его модулей.",
+            "kind": "ordinary"
+          }
+        ],
+        "group_ids": [
+          "opm-group-01"
+        ],
+        "leader_group_ids": [],
+        "period_ids": [
+          "hero-registration",
+          "monster-uprising",
+          "neo-hero-era"
+        ],
+        "starting_currency_amount": 394,
+        "items": [
+          {
+            "item_id": "opm-weapon-02",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-02",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-06",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-11",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-18",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-23",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-29",
+            "quantity": 1
+          }
+        ]
+      },
+      {
+        "id": "opm-character-03",
+        "name": "Кинг",
+        "sex": "male",
+        "age": 29,
+        "biography": "Кинг — герой S-класса мира «One Punch Man: Мир героев». Известен навыком «Двигатель Кинга». Его решения, знания и отношение определяются выбранным периодом и событиями игры.",
+        "profession": "герой S-класса",
+        "origin_location_id": "opm-location-03",
+        "creature_kind_id": "human",
+        "cognition_override": null,
+        "trait_ids": [
+          "strategic"
+        ],
+        "abilities": [
+          {
+            "id": "opm-ability-03",
+            "name": "Двигатель Кинга",
+            "short_description": "Пугает противников громким сердцебиением",
+            "description": "Громкое сердцебиение Кинга окружающие принимают за признак чудовищной силы. Это может запугать не знающего правду противника, но не усиливает тело и не наносит урон.",
+            "kind": "ordinary"
+          }
+        ],
+        "group_ids": [
+          "opm-group-01"
+        ],
+        "leader_group_ids": [],
+        "period_ids": [
+          "hero-registration",
+          "monster-uprising",
+          "neo-hero-era"
+        ],
+        "starting_currency_amount": 591,
+        "items": [
+          {
+            "item_id": "opm-weapon-03",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-03",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-07",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-12",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-19",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-24",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-30",
+            "quantity": 1
+          }
+        ]
+      },
+      {
+        "id": "opm-character-04",
+        "name": "Банг",
+        "sex": "male",
+        "age": 81,
+        "biography": "Банг — мастер боевых искусств мира «One Punch Man: Мир героев». Известен навыком «Кулак текущей воды». Его решения, знания и отношение определяются выбранным периодом и событиями игры.",
+        "profession": "мастер боевых искусств",
+        "origin_location_id": "opm-location-04",
+        "creature_kind_id": "human",
+        "cognition_override": null,
+        "trait_ids": [
+          "cautious"
+        ],
+        "abilities": [
+          {
+            "id": "opm-ability-04",
+            "name": "Кулак текущей воды",
+            "short_description": "Управляет стихией: воду",
+            "description": "Техника «Кулак текущей воды» создаёт и направляет воду для атаки или изменения ближайшей среды; дальность и мощность зависят от запаса энергии и видимой цели.",
+            "kind": "ordinary"
+          }
+        ],
+        "group_ids": [
+          "opm-group-04"
+        ],
+        "leader_group_ids": [],
+        "period_ids": [
+          "hero-registration",
+          "monster-uprising",
+          "neo-hero-era"
+        ],
+        "starting_currency_amount": 788,
+        "items": [
+          {
+            "item_id": "opm-weapon-04",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-04",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-08",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-13",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-20",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-25",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-31",
+            "quantity": 1
+          }
+        ]
+      },
+      {
+        "id": "opm-character-05",
+        "name": "Бомб",
+        "sex": "male",
+        "age": 25,
+        "biography": "Бомб — мастер боевых искусств мира «One Punch Man: Мир героев». Известен навыком «Кулак вихревого ветра». Его решения, знания и отношение определяются выбранным периодом и событиями игры.",
+        "profession": "мастер боевых искусств",
+        "origin_location_id": "opm-location-05",
+        "creature_kind_id": "human",
+        "cognition_override": null,
+        "trait_ids": [
+          "brave"
+        ],
+        "abilities": [
+          {
+            "id": "opm-ability-05",
+            "name": "Кулак вихревого ветра",
+            "short_description": "Проводит отработанную боевую атаку",
+            "description": "Приём «Кулак вихревого ветра» повышает точность и силу подходящей атаки оружием или телом. Результат зависит от дистанции, попадания, защиты цели и состояния исполнителя.",
+            "kind": "ordinary"
+          }
+        ],
+        "group_ids": [
+          "opm-group-04"
+        ],
+        "leader_group_ids": [],
+        "period_ids": [
+          "hero-registration",
+          "monster-uprising",
+          "neo-hero-era"
+        ],
+        "starting_currency_amount": 985,
+        "items": [
+          {
+            "item_id": "opm-weapon-05",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-01",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-09",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-14",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-21",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-26",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-32",
+            "quantity": 1
+          }
+        ]
+      },
+      {
+        "id": "opm-character-06",
+        "name": "Фубуки",
+        "sex": "female",
+        "age": 23,
+        "biography": "Фубуки — эспер-герой мира «One Punch Man: Мир героев». Известен навыком «Психокинез». Его решения, знания и отношение определяются выбранным периодом и событиями игры.",
+        "profession": "эспер-герой",
+        "origin_location_id": "opm-location-06",
+        "creature_kind_id": "human",
+        "cognition_override": null,
+        "trait_ids": [
+          "determined"
+        ],
+        "abilities": [
+          {
+            "id": "opm-ability-06",
+            "name": "Психокинез",
+            "short_description": "Перемещает объекты силой мысли",
+            "description": "Двигает видимые предметы и существ силой мысли, создаёт толчки и удержание. Масса, дистанция и сопротивление цели увеличивают нагрузку и расход сил.",
+            "kind": "ordinary"
+          }
+        ],
+        "group_ids": [
+          "opm-group-02"
+        ],
+        "leader_group_ids": [],
+        "period_ids": [
+          "hero-registration",
+          "monster-uprising",
+          "neo-hero-era"
+        ],
+        "starting_currency_amount": 1182,
+        "items": [
+          {
+            "item_id": "opm-weapon-06",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-02",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-05",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-15",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-17",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-27",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-28",
+            "quantity": 1
+          }
+        ]
+      },
+      {
+        "id": "opm-character-07",
+        "name": "Татсумаки",
+        "sex": "male",
+        "age": 28,
+        "biography": "Татсумаки — эспер-герой мира «One Punch Man: Мир героев». Известен навыком «Сверхмощный психокинез». Его решения, знания и отношение определяются выбранным периодом и событиями игры.",
+        "profession": "эспер-герой",
+        "origin_location_id": "opm-location-07",
+        "creature_kind_id": "human",
+        "cognition_override": null,
+        "trait_ids": [
+          "observant"
+        ],
+        "abilities": [
+          {
+            "id": "opm-ability-07",
+            "name": "Сверхмощный психокинез",
+            "short_description": "Поднимает огромные массы силой мысли",
+            "description": "Татсумаки телекинетически поднимает здания и массивных противников, создаёт барьеры и скручивает материю; длительная нагрузка и сопротивление сильной цели истощают её.",
+            "kind": "ordinary"
+          }
+        ],
+        "group_ids": [
+          "opm-group-01"
+        ],
+        "leader_group_ids": [],
+        "period_ids": [
+          "hero-registration",
+          "monster-uprising",
+          "neo-hero-era"
+        ],
+        "starting_currency_amount": 1379,
+        "items": [
+          {
+            "item_id": "opm-weapon-07",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-03",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-06",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-16",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-18",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-22",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-29",
+            "quantity": 1
+          }
+        ]
+      },
+      {
+        "id": "opm-character-08",
+        "name": "Атомный Самурай",
+        "sex": "male",
+        "age": 25,
+        "biography": "Атомный Самурай — герой-мечник мира «One Punch Man: Мир героев». Известен навыком «Атомный разрез». Его решения, знания и отношение определяются выбранным периодом и событиями игры.",
+        "profession": "герой-мечник",
+        "origin_location_id": "opm-location-08",
+        "creature_kind_id": "human",
+        "cognition_override": null,
+        "trait_ids": [
+          "loyal"
+        ],
+        "abilities": [
+          {
+            "id": "opm-ability-08",
+            "name": "Атомный разрез",
+            "short_description": "Проводит отработанную боевую атаку",
+            "description": "Приём «Атомный разрез» повышает точность и силу подходящей атаки оружием или телом. Результат зависит от дистанции, попадания, защиты цели и состояния исполнителя.",
+            "kind": "ordinary"
+          }
+        ],
+        "group_ids": [
+          "opm-group-03"
+        ],
+        "leader_group_ids": [],
+        "period_ids": [
+          "hero-registration",
+          "monster-uprising",
+          "neo-hero-era"
+        ],
+        "starting_currency_amount": 1576,
+        "items": [
+          {
+            "item_id": "opm-weapon-08",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-04",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-07",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-10",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-19",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-23",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-30",
+            "quantity": 1
+          }
+        ]
+      },
+      {
+        "id": "opm-character-09",
+        "name": "Бусидрилл",
+        "sex": "male",
+        "age": 25,
+        "biography": "Бусидрилл — мечник мира «One Punch Man: Мир героев». Известен навыком «Спиральный выпад». Его решения, знания и отношение определяются выбранным периодом и событиями игры.",
+        "profession": "мечник",
+        "origin_location_id": "opm-location-09",
+        "creature_kind_id": "human",
+        "cognition_override": null,
+        "trait_ids": [
+          "strategic"
+        ],
+        "abilities": [
+          {
+            "id": "opm-ability-09",
+            "name": "Спиральный выпад",
+            "short_description": "Проводит отработанную боевую атаку",
+            "description": "Приём «Спиральный выпад» повышает точность и силу подходящей атаки оружием или телом. Результат зависит от дистанции, попадания, защиты цели и состояния исполнителя.",
+            "kind": "ordinary"
+          }
+        ],
+        "group_ids": [
+          "opm-group-03"
+        ],
+        "leader_group_ids": [],
+        "period_ids": [
+          "hero-registration",
+          "monster-uprising",
+          "neo-hero-era"
+        ],
+        "starting_currency_amount": 1773,
+        "items": [
+          {
+            "item_id": "opm-weapon-09",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-01",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-08",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-11",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-20",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-24",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-31",
+            "quantity": 1
+          }
+        ]
+      },
+      {
+        "id": "opm-character-10",
+        "name": "Иайан",
+        "sex": "male",
+        "age": 25,
+        "biography": "Иайан — мечник мира «One Punch Man: Мир героев». Известен навыком «Быстрый клинок». Его решения, знания и отношение определяются выбранным периодом и событиями игры.",
+        "profession": "мечник",
+        "origin_location_id": "opm-location-10",
+        "creature_kind_id": "human",
+        "cognition_override": null,
+        "trait_ids": [
+          "cautious"
+        ],
+        "abilities": [
+          {
+            "id": "opm-ability-10",
+            "name": "Быстрый клинок",
+            "short_description": "Проводит отработанную боевую атаку",
+            "description": "Приём «Быстрый клинок» повышает точность и силу подходящей атаки оружием или телом. Результат зависит от дистанции, попадания, защиты цели и состояния исполнителя.",
+            "kind": "ordinary"
+          }
+        ],
+        "group_ids": [],
+        "leader_group_ids": [],
+        "period_ids": [
+          "hero-registration",
+          "monster-uprising",
+          "neo-hero-era"
+        ],
+        "starting_currency_amount": 1970,
+        "items": [
+          {
+            "item_id": "opm-weapon-10",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-02",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-09",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-12",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-21",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-25",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-32",
+            "quantity": 1
+          }
+        ]
+      },
+      {
+        "id": "opm-character-11",
+        "name": "Окамаитати",
+        "sex": "male",
+        "age": 25,
+        "biography": "Окамаитати — мечник мира «One Punch Man: Мир героев». Известен навыком «Воздушный клинок». Его решения, знания и отношение определяются выбранным периодом и событиями игры.",
+        "profession": "мечник",
+        "origin_location_id": "opm-location-11",
+        "creature_kind_id": "human",
+        "cognition_override": null,
+        "trait_ids": [
+          "brave"
+        ],
+        "abilities": [
+          {
+            "id": "opm-ability-11",
+            "name": "Воздушный клинок",
+            "short_description": "Проводит отработанную боевую атаку",
+            "description": "Приём «Воздушный клинок» повышает точность и силу подходящей атаки оружием или телом. Результат зависит от дистанции, попадания, защиты цели и состояния исполнителя.",
+            "kind": "ordinary"
+          }
+        ],
+        "group_ids": [
+          "opm-group-03"
+        ],
+        "leader_group_ids": [],
+        "period_ids": [
+          "hero-registration",
+          "monster-uprising",
+          "neo-hero-era"
+        ],
+        "starting_currency_amount": 2167,
+        "items": [
+          {
+            "item_id": "opm-weapon-11",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-03",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-05",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-13",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-17",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-26",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-28",
+            "quantity": 1
+          }
+        ]
+      },
+      {
+        "id": "opm-character-12",
+        "name": "Ребёнок-Император",
+        "sex": "male",
+        "age": 18,
+        "biography": "Ребёнок-Император — герой-изобретатель мира «One Punch Man: Мир героев». Известен навыком «Тактические устройства». Его решения, знания и отношение определяются выбранным периодом и событиями игры.",
+        "profession": "герой-изобретатель",
+        "origin_location_id": "opm-location-12",
+        "creature_kind_id": "human",
+        "cognition_override": null,
+        "trait_ids": [
+          "determined"
+        ],
+        "abilities": [
+          {
+            "id": "opm-ability-12",
+            "name": "Тактические устройства",
+            "short_description": "Развёртывает подготовленные гаджеты",
+            "description": "Использует имеющиеся датчики, дроны, ловушки и оружейные модули для конкретной задачи. Устройство должно быть подготовлено, иметь заряд и оставаться исправным.",
+            "kind": "ordinary"
+          }
+        ],
+        "group_ids": [
+          "opm-group-01"
+        ],
+        "leader_group_ids": [],
+        "period_ids": [
+          "hero-registration",
+          "monster-uprising",
+          "neo-hero-era"
+        ],
+        "starting_currency_amount": 2364,
+        "items": [
+          {
+            "item_id": "opm-weapon-12",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-04",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-06",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-14",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-18",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-27",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-29",
+            "quantity": 1
+          }
+        ]
+      },
+      {
+        "id": "opm-character-13",
+        "name": "Зомбимен",
+        "sex": "male",
+        "age": 25,
+        "biography": "Зомбимен — герой-детектив мира «One Punch Man: Мир героев». Известен навыком «Регенерация». Его решения, знания и отношение определяются выбранным периодом и событиями игры.",
+        "profession": "герой-детектив",
+        "origin_location_id": "opm-location-13",
+        "creature_kind_id": "human",
+        "cognition_override": null,
+        "trait_ids": [
+          "observant"
+        ],
+        "abilities": [
+          {
+            "id": "opm-ability-13",
+            "name": "Регенерация",
+            "short_description": "Восстанавливает повреждённое тело",
+            "description": "Способность «Регенерация» постепенно восстанавливает повреждённые ткани, пока жив носитель и сохранён источник регенерации; мгновенное полное уничтожение остаётся смертельным.",
+            "kind": "ordinary"
+          }
+        ],
+        "group_ids": [
+          "opm-group-05"
+        ],
+        "leader_group_ids": [],
+        "period_ids": [
+          "hero-registration",
+          "monster-uprising",
+          "neo-hero-era"
+        ],
+        "starting_currency_amount": 2561,
+        "items": [
+          {
+            "item_id": "opm-weapon-13",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-01",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-07",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-15",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-19",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-22",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-30",
+            "quantity": 1
+          }
+        ]
+      },
+      {
+        "id": "opm-character-14",
+        "name": "Свинобог",
+        "sex": "male",
+        "age": 25,
+        "biography": "Свинобог — герой мира «One Punch Man: Мир героев». Известен навыком «Всепоглощение». Его решения, знания и отношение определяются выбранным периодом и событиями игры.",
+        "profession": "герой",
+        "origin_location_id": "opm-location-14",
+        "creature_kind_id": "human",
+        "cognition_override": null,
+        "trait_ids": [
+          "loyal"
+        ],
+        "abilities": [
+          {
+            "id": "opm-ability-14",
+            "name": "Всепоглощение",
+            "short_description": "Поглощает и переваривает материальную цель",
+            "description": "Позволяет проглотить подходящий предмет или существо и удерживать его внутри тела. Размер, сопротивление и опасные свойства цели могут сорвать попытку или причинить вред.",
+            "kind": "ordinary"
+          }
+        ],
+        "group_ids": [
+          "opm-group-01"
+        ],
+        "leader_group_ids": [],
+        "period_ids": [
+          "hero-registration",
+          "monster-uprising",
+          "neo-hero-era"
+        ],
+        "starting_currency_amount": 2758,
+        "items": [
+          {
+            "item_id": "opm-weapon-14",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-02",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-08",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-16",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-20",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-23",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-31",
+            "quantity": 1
+          }
+        ]
+      },
+      {
+        "id": "opm-character-15",
+        "name": "Тёмный Блеск",
+        "sex": "male",
+        "age": 25,
+        "biography": "Тёмный Блеск — герой мира «One Punch Man: Мир героев». Известен навыком «Сверхпрочная мускулатура». Его решения, знания и отношение определяются выбранным периодом и событиями игры.",
+        "profession": "герой",
+        "origin_location_id": "opm-location-15",
+        "creature_kind_id": "human",
+        "cognition_override": null,
+        "trait_ids": [
+          "strategic"
+        ],
+        "abilities": [
+          {
+            "id": "opm-ability-15",
+            "name": "Сверхпрочная мускулатура",
+            "short_description": "Повышает стойкость тела",
+            "description": "Способность «Сверхпрочная мускулатура» позволяет выдерживать более сильные удары и продолжать действие после обычной травмы; она не отменяет пробитую защиту и критическое разрушение органов.",
+            "kind": "ordinary"
+          }
+        ],
+        "group_ids": [
+          "opm-group-01"
+        ],
+        "leader_group_ids": [],
+        "period_ids": [
+          "hero-registration",
+          "monster-uprising",
+          "neo-hero-era"
+        ],
+        "starting_currency_amount": 2955,
+        "items": [
+          {
+            "item_id": "opm-weapon-15",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-03",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-09",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-10",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-21",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-24",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-32",
+            "quantity": 1
+          }
+        ]
+      },
+      {
+        "id": "opm-character-16",
+        "name": "Флэш",
+        "sex": "male",
+        "age": 25,
+        "biography": "Флэш — герой-ниндзя мира «One Punch Man: Мир героев». Известен навыком «Сверхскорость». Его решения, знания и отношение определяются выбранным периодом и событиями игры.",
+        "profession": "герой-ниндзя",
+        "origin_location_id": "opm-location-16",
+        "creature_kind_id": "human",
+        "cognition_override": null,
+        "trait_ids": [
+          "cautious"
+        ],
+        "abilities": [
+          {
+            "id": "opm-ability-16",
+            "name": "Сверхскорость",
+            "short_description": "Ускоряет движение и реакцию",
+            "description": "Навык «Сверхскорость» позволяет резко ускоряться, уклоняться и менять направление. Он не обеспечивает попадание без видимой цели и ограничен пространством и состоянием тела.",
+            "kind": "ordinary"
+          }
+        ],
+        "group_ids": [
+          "opm-group-08"
+        ],
+        "leader_group_ids": [],
+        "period_ids": [
+          "hero-registration",
+          "monster-uprising",
+          "neo-hero-era"
+        ],
+        "starting_currency_amount": 3152,
+        "items": [
+          {
+            "item_id": "opm-weapon-16",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-04",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-05",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-11",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-17",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-25",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-28",
+            "quantity": 1
+          }
+        ]
+      },
+      {
+        "id": "opm-character-17",
+        "name": "Приводной Рыцарь",
+        "sex": "male",
+        "age": 25,
+        "biography": "Приводной Рыцарь — киборг-герой мира «One Punch Man: Мир героев». Известен навыком «Тактическая трансформация». Его решения, знания и отношение определяются выбранным периодом и событиями игры.",
+        "profession": "киборг-герой",
+        "origin_location_id": "opm-location-17",
+        "creature_kind_id": "opm-kind-01",
+        "cognition_override": null,
+        "trait_ids": [
+          "brave"
+        ],
+        "abilities": [
+          {
+            "id": "opm-ability-17",
+            "name": "Тактическая трансформация",
+            "short_description": "Временно изменяет форму носителя",
+            "description": "Способность «Тактическая трансформация» переводит носителя в особую форму с соответствующими физическими свойствами; превращение расходует силы и прекращается при истощении или тяжёлой травме.",
+            "kind": "ordinary"
+          }
+        ],
+        "group_ids": [
+          "opm-group-01"
+        ],
+        "leader_group_ids": [],
+        "period_ids": [
+          "hero-registration",
+          "monster-uprising",
+          "neo-hero-era"
+        ],
+        "starting_currency_amount": 3349,
+        "items": [
+          {
+            "item_id": "opm-weapon-17",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-01",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-06",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-12",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-18",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-26",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-29",
+            "quantity": 1
+          }
+        ]
+      },
+      {
+        "id": "opm-character-18",
+        "name": "Металлический Рыцарь",
+        "sex": "male",
+        "age": 25,
+        "biography": "Металлический Рыцарь — инженер мира «One Punch Man: Мир героев». Известен навыком «Армия дронов». Его решения, знания и отношение определяются выбранным периодом и событиями игры.",
+        "profession": "инженер",
+        "origin_location_id": "opm-location-18",
+        "creature_kind_id": "human",
+        "cognition_override": null,
+        "trait_ids": [
+          "determined"
+        ],
+        "abilities": [
+          {
+            "id": "opm-ability-18",
+            "name": "Армия дронов",
+            "short_description": "Управляет связанными объектами или существами",
+            "description": "Способность «Армия дронов» позволяет отдавать команды заранее связанным объектам или существам; она не создаёт их из ничего и не подчиняет неподходящую цель автоматически.",
+            "kind": "ordinary"
+          }
+        ],
+        "group_ids": [],
+        "leader_group_ids": [],
+        "period_ids": [
+          "hero-registration",
+          "monster-uprising",
+          "neo-hero-era"
+        ],
+        "starting_currency_amount": 3546,
+        "items": [
+          {
+            "item_id": "opm-weapon-18",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-02",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-07",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-13",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-19",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-27",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-30",
+            "quantity": 1
+          }
+        ]
+      },
+      {
+        "id": "opm-character-19",
+        "name": "Танк-Топ Мастер",
+        "sex": "male",
+        "age": 25,
+        "biography": "Танк-Топ Мастер — герой мира «One Punch Man: Мир героев». Известен навыком «Сила майки». Его решения, знания и отношение определяются выбранным периодом и событиями игры.",
+        "profession": "герой",
+        "origin_location_id": "opm-location-19",
+        "creature_kind_id": "human",
+        "cognition_override": null,
+        "trait_ids": [
+          "observant"
+        ],
+        "abilities": [
+          {
+            "id": "opm-ability-19",
+            "name": "Сила майки",
+            "short_description": "Усиливает физический рывок уверенностью",
+            "description": "Танк-Топ Мастер использует тренированное тело для мощного броска, тарана или удара. Это физическая сила: результат зависит от опоры, попадания и прочности цели.",
+            "kind": "ordinary"
+          }
+        ],
+        "group_ids": [
+          "opm-group-01"
+        ],
+        "leader_group_ids": [],
+        "period_ids": [
+          "hero-registration",
+          "monster-uprising",
+          "neo-hero-era"
+        ],
+        "starting_currency_amount": 3743,
+        "items": [
+          {
+            "item_id": "opm-weapon-19",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-03",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-08",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-14",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-20",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-22",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-31",
+            "quantity": 1
+          }
+        ]
+      },
+      {
+        "id": "opm-character-20",
+        "name": "Пури Заключённый",
+        "sex": "male",
+        "age": 25,
+        "biography": "Пури Заключённый — герой мира «One Punch Man: Мир героев». Известен навыком «Ангельский стиль». Его решения, знания и отношение определяются выбранным периодом и событиями игры.",
+        "profession": "герой",
+        "origin_location_id": "opm-location-20",
+        "creature_kind_id": "human",
+        "cognition_override": null,
+        "trait_ids": [
+          "loyal"
+        ],
+        "abilities": [
+          {
+            "id": "opm-ability-20",
+            "name": "Ангельский стиль",
+            "short_description": "Усиливает тело и проводит ближнюю серию",
+            "description": "Пури Заключённый напрягает мышцы и проводит серию сверхчеловеческих ударов в ближнем бою. Приём требует контакта и не защищает от превосходящей дистанционной атаки.",
+            "kind": "ordinary"
+          }
+        ],
+        "group_ids": [
+          "opm-group-01"
+        ],
+        "leader_group_ids": [],
+        "period_ids": [
+          "hero-registration",
+          "monster-uprising",
+          "neo-hero-era"
+        ],
+        "starting_currency_amount": 3940,
+        "items": [
+          {
+            "item_id": "opm-weapon-20",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-04",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-09",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-15",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-21",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-23",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-32",
+            "quantity": 1
+          }
+        ]
+      },
+      {
+        "id": "opm-character-21",
+        "name": "Сладкая Маска",
+        "sex": "male",
+        "age": 25,
+        "biography": "Сладкая Маска — герой и артист мира «One Punch Man: Мир героев». Известен навыком «Сверхчеловеческая сила». Его решения, знания и отношение определяются выбранным периодом и событиями игры.",
+        "profession": "герой и артист",
+        "origin_location_id": "opm-location-21",
+        "creature_kind_id": "human",
+        "cognition_override": null,
+        "trait_ids": [
+          "strategic"
+        ],
+        "abilities": [
+          {
+            "id": "opm-ability-21",
+            "name": "Сверхчеловеческая сила",
+            "short_description": "Даёт физическую силу выше человеческой",
+            "description": "Позволяет поднимать тяжести, ломать прочные материалы и наносить усиленные удары. Не обеспечивает автоматическое попадание и не отменяет собственные травмы.",
+            "kind": "ordinary"
+          }
+        ],
+        "group_ids": [
+          "opm-group-01"
+        ],
+        "leader_group_ids": [],
+        "period_ids": [
+          "hero-registration",
+          "monster-uprising",
+          "neo-hero-era"
+        ],
+        "starting_currency_amount": 4137,
+        "items": [
+          {
+            "item_id": "opm-weapon-21",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-01",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-05",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-16",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-17",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-24",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-28",
+            "quantity": 1
+          }
+        ]
+      },
+      {
+        "id": "opm-character-22",
+        "name": "Бесправный Ездок",
+        "sex": "male",
+        "age": 25,
+        "biography": "Бесправный Ездок — герой мира «One Punch Man: Мир героев». Известен навыком «Несгибаемая воля». Его решения, знания и отношение определяются выбранным периодом и событиями игры.",
+        "profession": "герой",
+        "origin_location_id": "opm-location-22",
+        "creature_kind_id": "human",
+        "cognition_override": null,
+        "trait_ids": [
+          "cautious"
+        ],
+        "abilities": [
+          {
+            "id": "opm-ability-22",
+            "name": "Несгибаемая воля",
+            "short_description": "Повышает стойкость тела",
+            "description": "Способность «Несгибаемая воля» позволяет выдерживать более сильные удары и продолжать действие после обычной травмы; она не отменяет пробитую защиту и критическое разрушение органов.",
+            "kind": "ordinary"
+          }
+        ],
+        "group_ids": [
+          "opm-group-01"
+        ],
+        "leader_group_ids": [],
+        "period_ids": [
+          "hero-registration",
+          "monster-uprising",
+          "neo-hero-era"
+        ],
+        "starting_currency_amount": 4334,
+        "items": [
+          {
+            "item_id": "opm-weapon-22",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-02",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-06",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-10",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-18",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-25",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-29",
+            "quantity": 1
+          }
+        ]
+      },
+      {
+        "id": "opm-character-23",
+        "name": "Снэк",
+        "sex": "male",
+        "age": 25,
+        "biography": "Снэк — герой мира «One Punch Man: Мир героев». Известен навыком «Змеиный кулак». Его решения, знания и отношение определяются выбранным периодом и событиями игры.",
+        "profession": "герой",
+        "origin_location_id": "opm-location-23",
+        "creature_kind_id": "human",
+        "cognition_override": null,
+        "trait_ids": [
+          "brave"
+        ],
+        "abilities": [
+          {
+            "id": "opm-ability-23",
+            "name": "Змеиный кулак",
+            "short_description": "Проводит отработанную боевую атаку",
+            "description": "Приём «Змеиный кулак» повышает точность и силу подходящей атаки оружием или телом. Результат зависит от дистанции, попадания, защиты цели и состояния исполнителя.",
+            "kind": "ordinary"
+          }
+        ],
+        "group_ids": [
+          "opm-group-01"
+        ],
+        "leader_group_ids": [],
+        "period_ids": [
+          "hero-registration",
+          "monster-uprising",
+          "neo-hero-era"
+        ],
+        "starting_currency_amount": 4531,
+        "items": [
+          {
+            "item_id": "opm-weapon-23",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-03",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-07",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-11",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-19",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-26",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-30",
+            "quantity": 1
+          }
+        ]
+      },
+      {
+        "id": "opm-character-24",
+        "name": "Стингер",
+        "sex": "male",
+        "age": 25,
+        "biography": "Стингер — герой мира «One Punch Man: Мир героев». Известен навыком «Бамбуковое копьё». Его решения, знания и отношение определяются выбранным периодом и событиями игры.",
+        "profession": "герой",
+        "origin_location_id": "opm-location-24",
+        "creature_kind_id": "human",
+        "cognition_override": null,
+        "trait_ids": [
+          "determined"
+        ],
+        "abilities": [
+          {
+            "id": "opm-ability-24",
+            "name": "Бамбуковое копьё",
+            "short_description": "Проводит отработанную боевую атаку",
+            "description": "Приём «Бамбуковое копьё» повышает точность и силу подходящей атаки оружием или телом. Результат зависит от дистанции, попадания, защиты цели и состояния исполнителя.",
+            "kind": "ordinary"
+          }
+        ],
+        "group_ids": [
+          "opm-group-01"
+        ],
+        "leader_group_ids": [],
+        "period_ids": [
+          "hero-registration",
+          "monster-uprising",
+          "neo-hero-era"
+        ],
+        "starting_currency_amount": 4728,
+        "items": [
+          {
+            "item_id": "opm-weapon-24",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-04",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-08",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-12",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-20",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-27",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-31",
+            "quantity": 1
+          }
+        ]
+      },
+      {
+        "id": "opm-character-25",
+        "name": "Молниеносный Макс",
+        "sex": "male",
+        "age": 25,
+        "biography": "Молниеносный Макс — герой мира «One Punch Man: Мир героев». Известен навыком «Молниеносный удар». Его решения, знания и отношение определяются выбранным периодом и событиями игры.",
+        "profession": "герой",
+        "origin_location_id": "opm-location-25",
+        "creature_kind_id": "human",
+        "cognition_override": null,
+        "trait_ids": [
+          "observant"
+        ],
+        "abilities": [
+          {
+            "id": "opm-ability-25",
+            "name": "Молниеносный удар",
+            "short_description": "Проводит отработанную боевую атаку",
+            "description": "Приём «Молниеносный удар» повышает точность и силу подходящей атаки оружием или телом. Результат зависит от дистанции, попадания, защиты цели и состояния исполнителя.",
+            "kind": "ordinary"
+          }
+        ],
+        "group_ids": [
+          "opm-group-01"
+        ],
+        "leader_group_ids": [],
+        "period_ids": [
+          "hero-registration",
+          "monster-uprising",
+          "neo-hero-era"
+        ],
+        "starting_currency_amount": 4925,
+        "items": [
+          {
+            "item_id": "opm-weapon-25",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-01",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-09",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-13",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-21",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-22",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-32",
+            "quantity": 1
+          }
+        ]
+      },
+      {
+        "id": "opm-character-26",
+        "name": "Золотой Шар",
+        "sex": "male",
+        "age": 25,
+        "biography": "Золотой Шар — герой-стрелок мира «One Punch Man: Мир героев». Известен навыком «Рикошетный выстрел». Его решения, знания и отношение определяются выбранным периодом и событиями игры.",
+        "profession": "герой-стрелок",
+        "origin_location_id": "opm-location-26",
+        "creature_kind_id": "human",
+        "cognition_override": null,
+        "trait_ids": [
+          "loyal"
+        ],
+        "abilities": [
+          {
+            "id": "opm-ability-26",
+            "name": "Рикошетный выстрел",
+            "short_description": "Проводит отработанную боевую атаку",
+            "description": "Приём «Рикошетный выстрел» повышает точность и силу подходящей атаки оружием или телом. Результат зависит от дистанции, попадания, защиты цели и состояния исполнителя.",
+            "kind": "ordinary"
+          }
+        ],
+        "group_ids": [
+          "opm-group-01"
+        ],
+        "leader_group_ids": [],
+        "period_ids": [
+          "hero-registration",
+          "monster-uprising",
+          "neo-hero-era"
+        ],
+        "starting_currency_amount": 5122,
+        "items": [
+          {
+            "item_id": "opm-weapon-01",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-02",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-05",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-14",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-17",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-23",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-28",
+            "quantity": 1
+          }
+        ]
+      },
+      {
+        "id": "opm-character-27",
+        "name": "Пружинные Усы",
+        "sex": "male",
+        "age": 25,
+        "biography": "Пружинные Усы — герой-мечник мира «One Punch Man: Мир героев». Известен навыком «Фехтование рапирой». Его решения, знания и отношение определяются выбранным периодом и событиями игры.",
+        "profession": "герой-мечник",
+        "origin_location_id": "opm-location-27",
+        "creature_kind_id": "human",
+        "cognition_override": null,
+        "trait_ids": [
+          "strategic"
+        ],
+        "abilities": [
+          {
+            "id": "opm-ability-27",
+            "name": "Фехтование рапирой",
+            "short_description": "Проводит отработанную боевую атаку",
+            "description": "Приём «Фехтование рапирой» повышает точность и силу подходящей атаки оружием или телом. Результат зависит от дистанции, попадания, защиты цели и состояния исполнителя.",
+            "kind": "ordinary"
+          }
+        ],
+        "group_ids": [
+          "opm-group-01"
+        ],
+        "leader_group_ids": [],
+        "period_ids": [
+          "hero-registration",
+          "monster-uprising",
+          "neo-hero-era"
+        ],
+        "starting_currency_amount": 5319,
+        "items": [
+          {
+            "item_id": "opm-weapon-02",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-03",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-06",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-15",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-18",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-24",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-29",
+            "quantity": 1
+          }
+        ]
+      },
+      {
+        "id": "opm-character-28",
+        "name": "Очкарик",
+        "sex": "male",
+        "age": 25,
+        "biography": "Очкарик — герой мира «One Punch Man: Мир героев». Известен навыком «Анализ боя». Его решения, знания и отношение определяются выбранным периодом и событиями игры.",
+        "profession": "герой",
+        "origin_location_id": "opm-location-28",
+        "creature_kind_id": "human",
+        "cognition_override": null,
+        "trait_ids": [
+          "cautious"
+        ],
+        "abilities": [
+          {
+            "id": "opm-ability-28",
+            "name": "Анализ боя",
+            "short_description": "Использует опыт и доступные сведения",
+            "description": "Навык «Анализ боя» помогает Очкарик оценивать наблюдаемые факты, координировать людей и выбирать практичное решение; он не раскрывает неизвестные мысли или будущее.",
+            "kind": "ordinary"
+          }
+        ],
+        "group_ids": [
+          "opm-group-01"
+        ],
+        "leader_group_ids": [],
+        "period_ids": [
+          "hero-registration",
+          "monster-uprising",
+          "neo-hero-era"
+        ],
+        "starting_currency_amount": 5516,
+        "items": [
+          {
+            "item_id": "opm-weapon-03",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-04",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-07",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-16",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-19",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-25",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-30",
+            "quantity": 1
+          }
+        ]
+      },
+      {
+        "id": "opm-character-29",
+        "name": "Гаро",
+        "sex": "male",
+        "age": 25,
+        "biography": "Гаро — охотник на героев мира «One Punch Man: Мир героев». Известен навыком «Копирование техник». Его решения, знания и отношение определяются выбранным периодом и событиями игры.",
+        "profession": "охотник на героев",
+        "origin_location_id": "opm-location-29",
+        "creature_kind_id": "human",
+        "cognition_override": null,
+        "trait_ids": [
+          "brave"
+        ],
+        "abilities": [
+          {
+            "id": "opm-ability-29",
+            "name": "Копирование техник",
+            "short_description": "Воспроизводит наблюдённые боевые техники",
+            "description": "Позволяет воспроизвести технику, для которой выполнены условия копирования и хватает энергии; не даёт автоматически знания, опыта и врождённых физических органов оригинала.",
+            "kind": "ordinary"
+          }
+        ],
+        "group_ids": [
+          "opm-group-06"
+        ],
+        "leader_group_ids": [],
+        "period_ids": [
+          "hero-registration",
+          "monster-uprising",
+          "neo-hero-era"
+        ],
+        "starting_currency_amount": 5713,
+        "items": [
+          {
+            "item_id": "opm-weapon-04",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-01",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-08",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-10",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-20",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-26",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-31",
+            "quantity": 1
+          }
+        ]
+      },
+      {
+        "id": "opm-character-30",
+        "name": "Суйрю",
+        "sex": "male",
+        "age": 25,
+        "biography": "Суйрю — боец мира «One Punch Man: Мир героев». Известен навыком «Кулак тёмной пустоты». Его решения, знания и отношение определяются выбранным периодом и событиями игры.",
+        "profession": "боец",
+        "origin_location_id": "opm-location-30",
+        "creature_kind_id": "human",
+        "cognition_override": null,
+        "trait_ids": [
+          "determined"
+        ],
+        "abilities": [
+          {
+            "id": "opm-ability-30",
+            "name": "Кулак тёмной пустоты",
+            "short_description": "Проводит отработанную боевую атаку",
+            "description": "Приём «Кулак тёмной пустоты» повышает точность и силу подходящей атаки оружием или телом. Результат зависит от дистанции, попадания, защиты цели и состояния исполнителя.",
+            "kind": "ordinary"
+          }
+        ],
+        "group_ids": [],
+        "leader_group_ids": [],
+        "period_ids": [
+          "hero-registration",
+          "monster-uprising",
+          "neo-hero-era"
+        ],
+        "starting_currency_amount": 5910,
+        "items": [
+          {
+            "item_id": "opm-weapon-05",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-02",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-09",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-11",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-21",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-27",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-32",
+            "quantity": 1
+          }
+        ]
+      },
+      {
+        "id": "opm-character-31",
+        "name": "Суйко",
+        "sex": "female",
+        "age": 25,
+        "biography": "Суйко — боец мира «One Punch Man: Мир героев». Известен навыком «Боевые искусства». Его решения, знания и отношение определяются выбранным периодом и событиями игры.",
+        "profession": "боец",
+        "origin_location_id": "opm-location-01",
+        "creature_kind_id": "human",
+        "cognition_override": null,
+        "trait_ids": [
+          "observant"
+        ],
+        "abilities": [
+          {
+            "id": "opm-ability-31",
+            "name": "Боевые искусства",
+            "short_description": "Применяет стойки, захваты и точные удары",
+            "description": "Позволяет читать движения в ближнем бою, уклоняться и отвечать точным ударом или захватом. Преимущество снижается против неизвестной техники или огромной разницы в силе.",
+            "kind": "ordinary"
+          }
+        ],
+        "group_ids": [],
+        "leader_group_ids": [],
+        "period_ids": [
+          "hero-registration",
+          "monster-uprising",
+          "neo-hero-era"
+        ],
+        "starting_currency_amount": 6107,
+        "items": [
+          {
+            "item_id": "opm-weapon-06",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-03",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-05",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-12",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-17",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-22",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-28",
+            "quantity": 1
+          }
+        ]
+      },
+      {
+        "id": "opm-character-32",
+        "name": "Чаранко",
+        "sex": "male",
+        "age": 18,
+        "biography": "Чаранко — ученик додзё мира «One Punch Man: Мир героев». Известен навыком «Базовый кулак воды». Его решения, знания и отношение определяются выбранным периодом и событиями игры.",
+        "profession": "ученик додзё",
+        "origin_location_id": "opm-location-02",
+        "creature_kind_id": "human",
+        "cognition_override": null,
+        "trait_ids": [
+          "loyal"
+        ],
+        "abilities": [
+          {
+            "id": "opm-ability-32",
+            "name": "Базовый кулак воды",
+            "short_description": "Управляет стихией: воду",
+            "description": "Техника «Базовый кулак воды» создаёт и направляет воду для атаки или изменения ближайшей среды; дальность и мощность зависят от запаса энергии и видимой цели.",
+            "kind": "ordinary"
+          }
+        ],
+        "group_ids": [
+          "opm-group-04"
+        ],
+        "leader_group_ids": [],
+        "period_ids": [
+          "hero-registration",
+          "monster-uprising",
+          "neo-hero-era"
+        ],
+        "starting_currency_amount": 6304,
+        "items": [
+          {
+            "item_id": "opm-weapon-07",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-04",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-06",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-13",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-18",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-23",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-29",
+            "quantity": 1
+          }
+        ]
+      },
+      {
+        "id": "opm-character-33",
+        "name": "Доктор Кусено",
+        "sex": "male",
+        "age": 25,
+        "biography": "Доктор Кусено — учёный мира «One Punch Man: Мир героев». Известен навыком «Кибернетика». Его решения, знания и отношение определяются выбранным периодом и событиями игры.",
+        "profession": "учёный",
+        "origin_location_id": "opm-location-03",
+        "creature_kind_id": "human",
+        "cognition_override": null,
+        "trait_ids": [
+          "strategic"
+        ],
+        "abilities": [
+          {
+            "id": "opm-ability-33",
+            "name": "Кибернетика",
+            "short_description": "Ремонтирует и перестраивает кибернетические модули",
+            "description": "Позволяет диагностировать, ремонтировать и модифицировать имеющийся кибернетический корпус. Требует инструментов, деталей и времени; не создаёт готовый модуль из ничего.",
+            "kind": "ordinary"
+          }
+        ],
+        "group_ids": [],
+        "leader_group_ids": [],
+        "period_ids": [
+          "hero-registration",
+          "monster-uprising",
+          "neo-hero-era"
+        ],
+        "starting_currency_amount": 6501,
+        "items": [
+          {
+            "item_id": "opm-weapon-08",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-01",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-07",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-14",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-19",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-24",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-30",
+            "quantity": 1
+          }
+        ]
+      },
+      {
+        "id": "opm-character-34",
+        "name": "Доктор Генус",
+        "sex": "male",
+        "age": 25,
+        "biography": "Доктор Генус — учёный мира «One Punch Man: Мир героев». Известен навыком «Генная инженерия». Его решения, знания и отношение определяются выбранным периодом и событиями игры.",
+        "profession": "учёный",
+        "origin_location_id": "opm-location-04",
+        "creature_kind_id": "human",
+        "cognition_override": null,
+        "trait_ids": [
+          "cautious"
+        ],
+        "abilities": [
+          {
+            "id": "opm-ability-34",
+            "name": "Генная инженерия",
+            "short_description": "Изменяет живые организмы в лаборатории",
+            "description": "Позволяет выращивать и модифицировать организмы по подготовленному проекту. Требует лаборатории, образцов и времени и не превращает цель мгновенно в ходе разговора.",
+            "kind": "ordinary"
+          }
+        ],
+        "group_ids": [
+          "opm-group-05"
+        ],
+        "leader_group_ids": [],
+        "period_ids": [
+          "hero-registration",
+          "monster-uprising",
+          "neo-hero-era"
+        ],
+        "starting_currency_amount": 6698,
+        "items": [
+          {
+            "item_id": "opm-weapon-09",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-02",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-08",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-15",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-20",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-25",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-31",
+            "quantity": 1
+          }
+        ]
+      },
+      {
+        "id": "opm-character-35",
+        "name": "Скоростной Соник",
+        "sex": "male",
+        "age": 25,
+        "biography": "Скоростной Соник — ниндзя-наёмник мира «One Punch Man: Мир героев». Известен навыком «Техника десяти теней». Его решения, знания и отношение определяются выбранным периодом и событиями игры.",
+        "profession": "ниндзя-наёмник",
+        "origin_location_id": "opm-location-05",
+        "creature_kind_id": "human",
+        "cognition_override": null,
+        "trait_ids": [
+          "brave"
+        ],
+        "abilities": [
+          {
+            "id": "opm-ability-35",
+            "name": "Техника десяти теней",
+            "short_description": "Призывает сикигами через тени",
+            "description": "Призывает приручённых сикигами из теней и использует тени для хранения или перемещения. Непокорённого сикигами нельзя надёжно контролировать, а уничтоженный не возвращается прежним.",
+            "kind": "ordinary"
+          }
+        ],
+        "group_ids": [],
+        "leader_group_ids": [],
+        "period_ids": [
+          "hero-registration",
+          "monster-uprising",
+          "neo-hero-era"
+        ],
+        "starting_currency_amount": 6895,
+        "items": [
+          {
+            "item_id": "opm-weapon-10",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-03",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-09",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-16",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-21",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-26",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-32",
+            "quantity": 1
+          }
+        ]
+      },
+      {
+        "id": "opm-character-36",
+        "name": "Бласт",
+        "sex": "male",
+        "age": 25,
+        "biography": "Бласт — герой S-класса мира «One Punch Man: Мир героев». Известен навыком «Пространственные врата». Его решения, знания и отношение определяются выбранным периодом и событиями игры.",
+        "profession": "герой S-класса",
+        "origin_location_id": "opm-location-06",
+        "creature_kind_id": "human",
+        "cognition_override": null,
+        "trait_ids": [
+          "determined"
+        ],
+        "abilities": [
+          {
+            "id": "opm-ability-36",
+            "name": "Пространственные врата",
+            "short_description": "Открывает проход между двумя точками",
+            "description": "Создаёт пространственные порталы для перемещения людей, предметов или атак между выбранными точками; выход должен быть доступен восприятию или известен пользователю.",
+            "kind": "ordinary"
+          }
+        ],
+        "group_ids": [
+          "opm-group-01"
+        ],
+        "leader_group_ids": [],
+        "period_ids": [
+          "hero-registration",
+          "monster-uprising",
+          "neo-hero-era"
+        ],
+        "starting_currency_amount": 7092,
+        "items": [
+          {
+            "item_id": "opm-weapon-11",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-04",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-05",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-10",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-17",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-27",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-28",
+            "quantity": 1
+          }
+        ]
+      },
+      {
+        "id": "opm-character-37",
+        "name": "Борос",
+        "sex": "male",
+        "age": 25,
+        "biography": "Борос — инопланетный завоеватель мира «One Punch Man: Мир героев». Известен навыком «Метеорный взрыв». Его решения, знания и отношение определяются выбранным периодом и событиями игры.",
+        "profession": "инопланетный завоеватель",
+        "origin_location_id": "opm-location-07",
+        "creature_kind_id": "opm-kind-04",
+        "cognition_override": null,
+        "trait_ids": [
+          "observant"
+        ],
+        "abilities": [
+          {
+            "id": "opm-ability-37",
+            "name": "Метеорный взрыв",
+            "short_description": "Резко усиливает скорость и мощь тела",
+            "description": "Борос высвобождает внутреннюю энергию, многократно повышая скорость и силу, но режим быстро разрушает его тело и требует последующей регенерации.",
+            "kind": "ordinary"
+          }
+        ],
+        "group_ids": [
+          "opm-group-10"
+        ],
+        "leader_group_ids": [],
+        "period_ids": [
+          "hero-registration",
+          "monster-uprising",
+          "neo-hero-era"
+        ],
+        "starting_currency_amount": 7289,
+        "items": [
+          {
+            "item_id": "opm-weapon-12",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-01",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-06",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-11",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-18",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-22",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-29",
+            "quantity": 1
+          }
+        ]
+      },
+      {
+        "id": "opm-character-38",
+        "name": "Мелзальгальд",
+        "sex": "male",
+        "age": 25,
+        "biography": "Мелзальгальд — инопланетный воин мира «One Punch Man: Мир героев». Известен навыком «Регенерация тел». Его решения, знания и отношение определяются выбранным периодом и событиями игры.",
+        "profession": "инопланетный воин",
+        "origin_location_id": "opm-location-08",
+        "creature_kind_id": "opm-kind-04",
+        "cognition_override": null,
+        "trait_ids": [
+          "loyal"
+        ],
+        "abilities": [
+          {
+            "id": "opm-ability-38",
+            "name": "Регенерация тел",
+            "short_description": "Восстанавливает повреждённое тело",
+            "description": "Способность «Регенерация тел» постепенно восстанавливает повреждённые ткани, пока жив носитель и сохранён источник регенерации; мгновенное полное уничтожение остаётся смертельным.",
+            "kind": "ordinary"
+          }
+        ],
+        "group_ids": [
+          "opm-group-10"
+        ],
+        "leader_group_ids": [],
+        "period_ids": [
+          "hero-registration",
+          "monster-uprising",
+          "neo-hero-era"
+        ],
+        "starting_currency_amount": 7486,
+        "items": [
+          {
+            "item_id": "opm-weapon-13",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-02",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-07",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-12",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-19",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-23",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-30",
+            "quantity": 1
+          }
+        ]
+      },
+      {
+        "id": "opm-character-39",
+        "name": "Гэрюганшуп",
+        "sex": "male",
+        "age": 25,
+        "biography": "Гэрюганшуп — инопланетный эспер мира «One Punch Man: Мир героев». Известен навыком «Гравитационная волна». Его решения, знания и отношение определяются выбранным периодом и событиями игры.",
+        "profession": "инопланетный эспер",
+        "origin_location_id": "opm-location-09",
+        "creature_kind_id": "human",
+        "cognition_override": null,
+        "trait_ids": [
+          "strategic"
+        ],
+        "abilities": [
+          {
+            "id": "opm-ability-39",
+            "name": "Гравитационная волна",
+            "short_description": "Прижимает или отбрасывает массу телекинезом",
+            "description": "Создаёт направленное телекинетическое давление, способное прижать или отбросить объекты. Дальность, масса цели и встречная сила определяют результат.",
+            "kind": "ordinary"
+          }
+        ],
+        "group_ids": [],
+        "leader_group_ids": [],
+        "period_ids": [
+          "hero-registration",
+          "monster-uprising",
+          "neo-hero-era"
+        ],
+        "starting_currency_amount": 7683,
+        "items": [
+          {
+            "item_id": "opm-weapon-14",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-03",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-08",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-13",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-20",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-24",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-31",
+            "quantity": 1
+          }
+        ]
+      },
+      {
+        "id": "opm-character-40",
+        "name": "Ороти",
+        "sex": "male",
+        "age": 25,
+        "biography": "Ороти — король монстров мира «One Punch Man: Мир героев». Известен навыком «Поглощение энергии». Его решения, знания и отношение определяются выбранным периодом и событиями игры.",
+        "profession": "король монстров",
+        "origin_location_id": "opm-location-10",
+        "creature_kind_id": "opm-kind-03",
+        "cognition_override": null,
+        "trait_ids": [
+          "cautious"
+        ],
+        "abilities": [
+          {
+            "id": "opm-ability-40",
+            "name": "Поглощение энергии",
+            "short_description": "Поглощает доступную внешнюю энергию",
+            "description": "Забирает энергию из совместимого источника для усиления или восстановления. Не поглощает материю автоматически, требует контакта или доступного потока и имеет предел вместимости.",
+            "kind": "ordinary"
+          }
+        ],
+        "group_ids": [
+          "opm-group-06"
+        ],
+        "leader_group_ids": [],
+        "period_ids": [
+          "hero-registration",
+          "monster-uprising",
+          "neo-hero-era"
+        ],
+        "starting_currency_amount": 7880,
+        "items": [
+          {
+            "item_id": "opm-weapon-15",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-04",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-09",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-14",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-21",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-25",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-32",
+            "quantity": 1
+          }
+        ]
+      },
+      {
+        "id": "opm-character-41",
+        "name": "Псайкос",
+        "sex": "female",
+        "age": 25,
+        "biography": "Псайкос — лидер монстров мира «One Punch Man: Мир героев». Известен навыком «Психокинез». Его решения, знания и отношение определяются выбранным периодом и событиями игры.",
+        "profession": "лидер монстров",
+        "origin_location_id": "opm-location-11",
+        "creature_kind_id": "opm-kind-03",
+        "cognition_override": null,
+        "trait_ids": [
+          "brave"
+        ],
+        "abilities": [
+          {
+            "id": "opm-ability-41",
+            "name": "Психокинез",
+            "short_description": "Перемещает объекты силой мысли",
+            "description": "Двигает видимые предметы и существ силой мысли, создаёт толчки и удержание. Масса, дистанция и сопротивление цели увеличивают нагрузку и расход сил.",
+            "kind": "ordinary"
+          }
+        ],
+        "group_ids": [
+          "opm-group-06"
+        ],
+        "leader_group_ids": [],
+        "period_ids": [
+          "hero-registration",
+          "monster-uprising",
+          "neo-hero-era"
+        ],
+        "starting_currency_amount": 8077,
+        "items": [
+          {
+            "item_id": "opm-weapon-16",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-01",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-05",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-15",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-17",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-26",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-28",
+            "quantity": 1
+          }
+        ]
+      },
+      {
+        "id": "opm-character-42",
+        "name": "Гёро-Гёро",
+        "sex": "male",
+        "age": 25,
+        "biography": "Гёро-Гёро — кукловод мира «One Punch Man: Мир героев». Известен навыком «Телекинетическая связь». Его решения, знания и отношение определяются выбранным периодом и событиями игры.",
+        "profession": "кукловод",
+        "origin_location_id": "opm-location-12",
+        "creature_kind_id": "human",
+        "cognition_override": null,
+        "trait_ids": [
+          "determined"
+        ],
+        "abilities": [
+          {
+            "id": "opm-ability-42",
+            "name": "Телекинетическая связь",
+            "short_description": "Использует опыт и доступные сведения",
+            "description": "Навык «Телекинетическая связь» помогает Гёро-Гёро оценивать наблюдаемые факты, координировать людей и выбирать практичное решение; он не раскрывает неизвестные мысли или будущее.",
+            "kind": "ordinary"
+          }
+        ],
+        "group_ids": [
+          "opm-group-06"
+        ],
+        "leader_group_ids": [],
+        "period_ids": [
+          "hero-registration",
+          "monster-uprising",
+          "neo-hero-era"
+        ],
+        "starting_currency_amount": 8274,
+        "items": [
+          {
+            "item_id": "opm-weapon-17",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-02",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-06",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-16",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-18",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-27",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-29",
+            "quantity": 1
+          }
+        ]
+      },
+      {
+        "id": "opm-character-43",
+        "name": "Чёрный Спермий",
+        "sex": "male",
+        "age": 25,
+        "biography": "Чёрный Спермий — монстр мира «One Punch Man: Мир героев». Известен навыком «Разделение клеток». Его решения, знания и отношение определяются выбранным периодом и событиями игры.",
+        "profession": "монстр",
+        "origin_location_id": "opm-location-13",
+        "creature_kind_id": "opm-kind-03",
+        "cognition_override": null,
+        "trait_ids": [
+          "observant"
+        ],
+        "abilities": [
+          {
+            "id": "opm-ability-43",
+            "name": "Разделение клеток",
+            "short_description": "Создаёт автономные копии из клеток",
+            "description": "Разделяет тело на множество самостоятельных копий; каждая сохраняет долю общей силы и может объединиться обратно. Уничтожение клеток уменьшает доступную массу.",
+            "kind": "ordinary"
+          }
+        ],
+        "group_ids": [
+          "opm-group-06"
+        ],
+        "leader_group_ids": [],
+        "period_ids": [
+          "hero-registration",
+          "monster-uprising",
+          "neo-hero-era"
+        ],
+        "starting_currency_amount": 8471,
+        "items": [
+          {
+            "item_id": "opm-weapon-18",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-03",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-07",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-10",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-19",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-22",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-30",
+            "quantity": 1
+          }
+        ]
+      },
+      {
+        "id": "opm-character-44",
+        "name": "Бездомный Император",
+        "sex": "male",
+        "age": 25,
+        "biography": "Бездомный Император — монстр мира «One Punch Man: Мир героев». Известен навыком «Сферы света». Его решения, знания и отношение определяются выбранным периодом и событиями игры.",
+        "profession": "монстр",
+        "origin_location_id": "opm-location-14",
+        "creature_kind_id": "opm-kind-03",
+        "cognition_override": null,
+        "trait_ids": [
+          "loyal"
+        ],
+        "abilities": [
+          {
+            "id": "opm-ability-44",
+            "name": "Сферы света",
+            "short_description": "Создаёт управляемые энергетические снаряды",
+            "description": "Формирует светящиеся энергетические сферы и направляет их в видимые цели. Взрывная мощность зависит от вложенной энергии, а укрытие или уклонение могут сорвать попадание.",
+            "kind": "ordinary"
+          }
+        ],
+        "group_ids": [],
+        "leader_group_ids": [],
+        "period_ids": [
+          "hero-registration",
+          "monster-uprising",
+          "neo-hero-era"
+        ],
+        "starting_currency_amount": 8668,
+        "items": [
+          {
+            "item_id": "opm-weapon-19",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-04",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-08",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-11",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-20",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-23",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-31",
+            "quantity": 1
+          }
+        ]
+      },
+      {
+        "id": "opm-character-45",
+        "name": "Злая Природная Вода",
+        "sex": "male",
+        "age": 25,
+        "biography": "Злая Природная Вода — монстр мира «One Punch Man: Мир героев». Известен навыком «Водяные струи». Его решения, знания и отношение определяются выбранным периодом и событиями игры.",
+        "profession": "монстр",
+        "origin_location_id": "opm-location-15",
+        "creature_kind_id": "opm-kind-03",
+        "cognition_override": null,
+        "trait_ids": [
+          "strategic"
+        ],
+        "abilities": [
+          {
+            "id": "opm-ability-45",
+            "name": "Водяные струи",
+            "short_description": "Управляет стихией: воду",
+            "description": "Техника «Водяные струи» создаёт и направляет воду для атаки или изменения ближайшей среды; дальность и мощность зависят от запаса энергии и видимой цели.",
+            "kind": "ordinary"
+          }
+        ],
+        "group_ids": [],
+        "leader_group_ids": [],
+        "period_ids": [
+          "hero-registration",
+          "monster-uprising",
+          "neo-hero-era"
+        ],
+        "starting_currency_amount": 8865,
+        "items": [
+          {
+            "item_id": "opm-weapon-20",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-01",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-09",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-12",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-21",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-24",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-32",
+            "quantity": 1
+          }
+        ]
+      },
+      {
+        "id": "opm-character-46",
+        "name": "Переросший Ровер",
+        "sex": "male",
+        "age": 25,
+        "biography": "Переросший Ровер — монстр-зверь мира «One Punch Man: Мир героев». Известен навыком «Энергетические залпы». Его решения, знания и отношение определяются выбранным периодом и событиями игры.",
+        "profession": "монстр-зверь",
+        "origin_location_id": "opm-location-16",
+        "creature_kind_id": "opm-kind-03",
+        "cognition_override": null,
+        "trait_ids": [
+          "cautious"
+        ],
+        "abilities": [
+          {
+            "id": "opm-ability-46",
+            "name": "Энергетические залпы",
+            "short_description": "Выпускает серию энергетических зарядов",
+            "description": "Выпускает несколько направленных зарядов по видимому сектору. Рассеивание повышает площадь обстрела, но снижает точность и силу каждого попадания.",
+            "kind": "ordinary"
+          }
+        ],
+        "group_ids": [],
+        "leader_group_ids": [],
+        "period_ids": [
+          "hero-registration",
+          "monster-uprising",
+          "neo-hero-era"
+        ],
+        "starting_currency_amount": 9062,
+        "items": [
+          {
+            "item_id": "opm-weapon-21",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-02",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-05",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-13",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-17",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-25",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-28",
+            "quantity": 1
+          }
+        ]
+      },
+      {
+        "id": "opm-character-47",
+        "name": "Феникс",
+        "sex": "male",
+        "age": 25,
+        "biography": "Феникс — монстр мира «One Punch Man: Мир героев». Известен навыком «Воскрешение костюма». Его решения, знания и отношение определяются выбранным периодом и событиями игры.",
+        "profession": "монстр",
+        "origin_location_id": "opm-location-17",
+        "creature_kind_id": "opm-kind-03",
+        "cognition_override": null,
+        "trait_ids": [
+          "brave"
+        ],
+        "abilities": [
+          {
+            "id": "opm-ability-47",
+            "name": "Воскрешение костюма",
+            "short_description": "Восстанавливается из целого костюма",
+            "description": "Пока особый костюм сохраняет целостность и энергию, Феникс может восстановить тело и усилить форму после поражения; полное уничтожение костюма прекращает эффект.",
+            "kind": "ordinary"
+          }
+        ],
+        "group_ids": [],
+        "leader_group_ids": [],
+        "period_ids": [
+          "hero-registration",
+          "monster-uprising",
+          "neo-hero-era"
+        ],
+        "starting_currency_amount": 9259,
+        "items": [
+          {
+            "item_id": "opm-weapon-22",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-03",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-06",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-14",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-18",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-26",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-29",
+            "quantity": 1
+          }
+        ]
+      },
+      {
+        "id": "opm-character-48",
+        "name": "Нян",
+        "sex": "male",
+        "age": 25,
+        "biography": "Нян — монстр мира «One Punch Man: Мир героев». Известен навыком «Проникновение в щели». Его решения, знания и отношение определяются выбранным периодом и событиями игры.",
+        "profession": "монстр",
+        "origin_location_id": "opm-location-18",
+        "creature_kind_id": "opm-kind-03",
+        "cognition_override": null,
+        "trait_ids": [
+          "determined"
+        ],
+        "abilities": [
+          {
+            "id": "opm-ability-48",
+            "name": "Проникновение в щели",
+            "short_description": "Сплющивает тело и проходит через проёмы",
+            "description": "Позволяет сделать тело чрезвычайно плоским и протиснуться через узкую щель либо обойти преграду. Не позволяет пройти через сплошной материал без отверстия.",
+            "kind": "ordinary"
+          }
+        ],
+        "group_ids": [],
+        "leader_group_ids": [],
+        "period_ids": [
+          "hero-registration",
+          "monster-uprising",
+          "neo-hero-era"
+        ],
+        "starting_currency_amount": 9456,
+        "items": [
+          {
+            "item_id": "opm-weapon-23",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-04",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-07",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-15",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-19",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-27",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-30",
+            "quantity": 1
+          }
+        ]
+      },
+      {
+        "id": "opm-character-49",
+        "name": "Вакциномен",
+        "sex": "male",
+        "age": 25,
+        "biography": "Вакциномен — монстр мира «One Punch Man: Мир героев». Известен навыком «Энергетические сферы». Его решения, знания и отношение определяются выбранным периодом и событиями игры.",
+        "profession": "монстр",
+        "origin_location_id": "opm-location-19",
+        "creature_kind_id": "opm-kind-03",
+        "cognition_override": null,
+        "trait_ids": [
+          "observant"
+        ],
+        "abilities": [
+          {
+            "id": "opm-ability-49",
+            "name": "Энергетические сферы",
+            "short_description": "Формирует взрывные энергетические сферы",
+            "description": "Создаёт плотные энергетические снаряды и направляет их по видимой траектории. Мощность и число сфер ограничены запасом энергии пользователя.",
+            "kind": "ordinary"
+          }
+        ],
+        "group_ids": [],
+        "leader_group_ids": [],
+        "period_ids": [
+          "hero-registration",
+          "monster-uprising",
+          "neo-hero-era"
+        ],
+        "starting_currency_amount": 9653,
+        "items": [
+          {
+            "item_id": "opm-weapon-24",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-01",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-08",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-16",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-20",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-22",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-31",
+            "quantity": 1
+          }
+        ]
+      },
+      {
+        "id": "opm-character-50",
+        "name": "Глубоководный Король",
+        "sex": "male",
+        "age": 25,
+        "biography": "Глубоководный Король — король морян мира «One Punch Man: Мир героев». Известен навыком «Усиление дождём». Его решения, знания и отношение определяются выбранным периодом и событиями игры.",
+        "profession": "король морян",
+        "origin_location_id": "opm-location-20",
+        "creature_kind_id": "human",
+        "cognition_override": null,
+        "trait_ids": [
+          "loyal"
+        ],
+        "abilities": [
+          {
+            "id": "opm-ability-50",
+            "name": "Усиление дождём",
+            "short_description": "Усиливается при контакте с водой",
+            "description": "Влага и дождь ускоряют восстановление и повышают физическую силу Глубоководного Короля. В сухой среде усиление ослабевает и не возникает без достаточного количества воды.",
+            "kind": "ordinary"
+          }
+        ],
+        "group_ids": [],
+        "leader_group_ids": [],
+        "period_ids": [
+          "hero-registration",
+          "monster-uprising",
+          "neo-hero-era"
+        ],
+        "starting_currency_amount": 9850,
+        "items": [
+          {
+            "item_id": "opm-weapon-25",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-02",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-09",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-10",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-21",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-23",
+            "quantity": 1
+          },
+          {
+            "item_id": "opm-clothing-32",
+            "quantity": 1
+          }
+        ]
+      }
+    ],
+    "npc_name_sets": [
+      {
+        "id": "opm-names",
+        "name": "Имена жителей",
+        "male_names": [
+          "Харуто",
+          "Харуки",
+          "Харудзи",
+          "Харута",
+          "Харуру",
+          "Акито",
+          "Акики",
+          "Акидзи",
+          "Акита",
+          "Акиру",
+          "Рэнто",
+          "Рэнки",
+          "Рэндзи",
+          "Рэнта",
+          "Рэнру",
+          "Кэйто",
+          "Кэйки",
+          "Кэйдзи",
+          "Кэйта",
+          "Кэйру",
+          "Синто",
+          "Синки",
+          "Синдзи",
+          "Синта",
+          "Синру",
+          "Юто",
+          "Юки",
+          "Юдзи",
+          "Юта",
+          "Юру",
+          "Рёто",
+          "Рёки",
+          "Рёдзи",
+          "Рёта",
+          "Рёру",
+          "Такэто",
+          "Такэки",
+          "Такэдзи",
+          "Такэта",
+          "Такэру",
+          "Хирото",
+          "Хироки",
+          "Хиродзи",
+          "Хирота",
+          "Хирору",
+          "Масато",
+          "Масаки",
+          "Масадзи",
+          "Масата",
+          "Масару"
+        ],
+        "female_names": [
+          "Аяко",
+          "Аяна",
+          "Аяри",
+          "Аями",
+          "Аяэ",
+          "Мико",
+          "Мина",
+          "Мири",
+          "Мими",
+          "Миэ",
+          "Юко",
+          "Юна",
+          "Юри",
+          "Юми",
+          "Юэ",
+          "Ханако",
+          "Ханана",
+          "Ханари",
+          "Ханами",
+          "Ханаэ",
+          "Рико",
+          "Рина",
+          "Рири",
+          "Рими",
+          "Риэ",
+          "Нако",
+          "Нана",
+          "Нари",
+          "Нами",
+          "Наэ",
+          "Сако",
+          "Сана",
+          "Сари",
+          "Сами",
+          "Саэ",
+          "Коко",
+          "Кона",
+          "Кори",
+          "Коми",
+          "Коэ",
+          "Эмико",
+          "Эмина",
+          "Эмири",
+          "Эмими",
+          "Эмиэ",
+          "Како",
+          "Кана",
+          "Кари",
+          "Ками",
+          "Каэ"
+        ],
+        "surnames": [
+          "Сато",
+          "Судзуки",
+          "Такахаси",
+          "Танака",
+          "Ватанабэ",
+          "Ито",
+          "Ямамото",
+          "Накамура",
+          "Кобаяси",
+          "Като",
+          "Ёсида",
+          "Ямада",
+          "Сасаки",
+          "Ямагути",
+          "Мацумото",
+          "Иноуэ",
+          "Кимура",
+          "Симидзу",
+          "Хаяси",
+          "Сайто",
+          "Ямадзаки",
+          "Мори",
+          "Абэ",
+          "Икэда",
+          "Хасимото",
+          "Ямасита",
+          "Исикава",
+          "Накадзима",
+          "Маэда",
+          "Фудзита",
+          "Огава",
+          "Гото",
+          "Окада",
+          "Хасэгава",
+          "Мураками",
+          "Кондо",
+          "Исхи",
+          "Сакаи",
+          "Эндо",
+          "Аоки",
+          "Фудзии",
+          "Нисимура",
+          "Фукуда",
+          "Ота",
+          "Миура",
+          "Окамото",
+          "Мацуда",
+          "Накагава",
+          "Накахара",
+          "Уэда"
+        ]
+      }
+    ],
+    "npc_biographies": [
+      {
+        "id": "opm-biography-01",
+        "name": "Опытный героя C-класса",
+        "text": "Опытный представитель роли героя C-класса: ищет пропавшего близкого и не доверяет незнакомцам без причины. Знает лишь то, что мог узнать лично в текущем периоде."
+      },
+      {
+        "id": "opm-biography-02",
+        "name": "Опытный героя B-класса",
+        "text": "Опытный представитель роли героя B-класса: выполняет опасное поручение и скрывает его детали от посторонних. Знает лишь то, что мог узнать лично в текущем периоде."
+      },
+      {
+        "id": "opm-biography-03",
+        "name": "Опытный героя A-класса",
+        "text": "Опытный представитель роли героя A-класса: копит деньги на безопасную жизнь и внимательно оценивает любую сделку. Знает лишь то, что мог узнать лично в текущем периоде."
+      },
+      {
+        "id": "opm-biography-04",
+        "name": "Опытный героя S-класса",
+        "text": "Опытный представитель роли героя S-класса: пережил недавнюю катастрофу и старается не повторять прежних ошибок. Знает лишь то, что мог узнать лично в текущем периоде."
+      },
+      {
+        "id": "opm-biography-05",
+        "name": "Опытный спасателя",
+        "text": "Опытный представитель роли спасателя: защищает свой район и охотно делится только лично проверенными сведениями. Знает лишь то, что мог узнать лично в текущем периоде."
+      },
+      {
+        "id": "opm-biography-06",
+        "name": "Опытный киборга",
+        "text": "Опытный представитель роли киборга: мечтает заслужить признание, но боится переоценить собственные силы. Знает лишь то, что мог узнать лично в текущем периоде."
+      },
+      {
+        "id": "opm-biography-07",
+        "name": "Опытный изобретателя",
+        "text": "Опытный представитель роли изобретателя: разыскивает наставника и собирает слухи, не выдавая их за доказанные факты. Знает лишь то, что мог узнать лично в текущем периоде."
+      },
+      {
+        "id": "opm-biography-08",
+        "name": "Опытный мечника",
+        "text": "Опытный представитель роли мечника: обязан организации и разрывается между приказом и личной совестью. Знает лишь то, что мог узнать лично в текущем периоде."
+      },
+      {
+        "id": "opm-biography-09",
+        "name": "Опытный эспера",
+        "text": "Опытный представитель роли эспера: торгует полезными сведениями и всегда требует равноценную услугу. Знает лишь то, что мог узнать лично в текущем периоде."
+      },
+      {
+        "id": "opm-biography-10",
+        "name": "Опытный городского патрульного",
+        "text": "Опытный представитель роли городского патрульного: пытается начать новую жизнь, поэтому избегает разговоров о прошлом. Знает лишь то, что мог узнать лично в текущем периоде."
+      },
+      {
+        "id": "opm-biography-11",
+        "name": "Начинающий героя C-класса",
+        "text": "Начинающий представитель роли героя C-класса: ищет пропавшего близкого и не доверяет незнакомцам без причины. Знает лишь то, что мог узнать лично в текущем периоде."
+      },
+      {
+        "id": "opm-biography-12",
+        "name": "Начинающий героя B-класса",
+        "text": "Начинающий представитель роли героя B-класса: выполняет опасное поручение и скрывает его детали от посторонних. Знает лишь то, что мог узнать лично в текущем периоде."
+      },
+      {
+        "id": "opm-biography-13",
+        "name": "Начинающий героя A-класса",
+        "text": "Начинающий представитель роли героя A-класса: копит деньги на безопасную жизнь и внимательно оценивает любую сделку. Знает лишь то, что мог узнать лично в текущем периоде."
+      },
+      {
+        "id": "opm-biography-14",
+        "name": "Начинающий героя S-класса",
+        "text": "Начинающий представитель роли героя S-класса: пережил недавнюю катастрофу и старается не повторять прежних ошибок. Знает лишь то, что мог узнать лично в текущем периоде."
+      },
+      {
+        "id": "opm-biography-15",
+        "name": "Начинающий спасателя",
+        "text": "Начинающий представитель роли спасателя: защищает свой район и охотно делится только лично проверенными сведениями. Знает лишь то, что мог узнать лично в текущем периоде."
+      },
+      {
+        "id": "opm-biography-16",
+        "name": "Начинающий киборга",
+        "text": "Начинающий представитель роли киборга: мечтает заслужить признание, но боится переоценить собственные силы. Знает лишь то, что мог узнать лично в текущем периоде."
+      },
+      {
+        "id": "opm-biography-17",
+        "name": "Начинающий изобретателя",
+        "text": "Начинающий представитель роли изобретателя: разыскивает наставника и собирает слухи, не выдавая их за доказанные факты. Знает лишь то, что мог узнать лично в текущем периоде."
+      },
+      {
+        "id": "opm-biography-18",
+        "name": "Начинающий мечника",
+        "text": "Начинающий представитель роли мечника: обязан организации и разрывается между приказом и личной совестью. Знает лишь то, что мог узнать лично в текущем периоде."
+      },
+      {
+        "id": "opm-biography-19",
+        "name": "Начинающий эспера",
+        "text": "Начинающий представитель роли эспера: торгует полезными сведениями и всегда требует равноценную услугу. Знает лишь то, что мог узнать лично в текущем периоде."
+      },
+      {
+        "id": "opm-biography-20",
+        "name": "Начинающий городского патрульного",
+        "text": "Начинающий представитель роли городского патрульного: пытается начать новую жизнь, поэтому избегает разговоров о прошлом. Знает лишь то, что мог узнать лично в текущем периоде."
+      }
+    ],
+    "npc_generation_rules": [
+      {
+        "id": "opm-npc-fallback",
+        "name": "Обычный житель",
+        "role": "",
+        "period_ids": [
+          "hero-registration",
+          "monster-uprising",
+          "neo-hero-era"
+        ],
+        "location_ids": [
+          "opm-location-01",
+          "opm-location-02",
+          "opm-location-03",
+          "opm-location-04",
+          "opm-location-05",
+          "opm-location-06",
+          "opm-location-07",
+          "opm-location-08",
+          "opm-location-09",
+          "opm-location-10",
+          "opm-location-11",
+          "opm-location-12",
+          "opm-location-13",
+          "opm-location-14",
+          "opm-location-15",
+          "opm-location-16",
+          "opm-location-17",
+          "opm-location-18",
+          "opm-location-19",
+          "opm-location-20",
+          "opm-location-21",
+          "opm-location-22",
+          "opm-location-23",
+          "opm-location-24",
+          "opm-location-25",
+          "opm-location-26",
+          "opm-location-27",
+          "opm-location-28",
+          "opm-location-29",
+          "opm-location-30"
+        ],
+        "creature_kind_id": "human",
+        "weight": 20,
+        "age_min": 18,
+        "age_max": 75,
+        "sexes": [
+          "male",
+          "female"
+        ],
+        "name_set_id": "opm-names",
+        "biography_ids": [
+          "opm-biography-01",
+          "opm-biography-02",
+          "opm-biography-03",
+          "opm-biography-04",
+          "opm-biography-05",
+          "opm-biography-06",
+          "opm-biography-07",
+          "opm-biography-08",
+          "opm-biography-09",
+          "opm-biography-10",
+          "opm-biography-11",
+          "opm-biography-12",
+          "opm-biography-13",
+          "opm-biography-14",
+          "opm-biography-15",
+          "opm-biography-16",
+          "opm-biography-17",
+          "opm-biography-18",
+          "opm-biography-19",
+          "opm-biography-20"
+        ],
+        "trait_ids": [
+          "cautious",
+          "loyal",
+          "observant",
+          "hardworking",
+          "calm"
+        ]
+      },
+      {
+        "id": "opm-npc-rule-01",
+        "name": "Появление NPC · 1",
+        "role": "merchant",
+        "period_ids": [
+          "hero-registration",
+          "monster-uprising",
+          "neo-hero-era"
+        ],
+        "location_ids": [
+          "opm-location-01"
+        ],
+        "creature_kind_id": "human",
+        "weight": 6,
+        "age_min": 18,
+        "age_max": 65,
+        "sexes": [
+          "male",
+          "female"
+        ],
+        "name_set_id": "opm-names",
+        "biography_ids": [
+          "opm-biography-01",
+          "opm-biography-11"
+        ],
+        "trait_ids": [
+          "loyal"
+        ]
+      },
+      {
+        "id": "opm-npc-rule-02",
+        "name": "Появление NPC · 2",
+        "role": "fighter",
+        "period_ids": [
+          "hero-registration",
+          "monster-uprising",
+          "neo-hero-era"
+        ],
+        "location_ids": [
+          "opm-location-04"
+        ],
+        "creature_kind_id": "human",
+        "weight": 7,
+        "age_min": 18,
+        "age_max": 65,
+        "sexes": [
+          "male",
+          "female"
+        ],
+        "name_set_id": "opm-names",
+        "biography_ids": [
+          "opm-biography-02",
+          "opm-biography-12"
+        ],
+        "trait_ids": [
+          "observant"
+        ]
+      },
+      {
+        "id": "opm-npc-rule-03",
+        "name": "Появление NPC · 3",
+        "role": "scout",
+        "period_ids": [
+          "hero-registration",
+          "monster-uprising",
+          "neo-hero-era"
+        ],
+        "location_ids": [
+          "opm-location-07"
+        ],
+        "creature_kind_id": "human",
+        "weight": 8,
+        "age_min": 18,
+        "age_max": 65,
+        "sexes": [
+          "male",
+          "female"
+        ],
+        "name_set_id": "opm-names",
+        "biography_ids": [
+          "opm-biography-03",
+          "opm-biography-13"
+        ],
+        "trait_ids": [
+          "hardworking"
+        ]
+      },
+      {
+        "id": "opm-npc-rule-04",
+        "name": "Появление NPC · 4",
+        "role": "medic",
+        "period_ids": [
+          "hero-registration",
+          "monster-uprising",
+          "neo-hero-era"
+        ],
+        "location_ids": [
+          "opm-location-10"
+        ],
+        "creature_kind_id": "human",
+        "weight": 9,
+        "age_min": 18,
+        "age_max": 65,
+        "sexes": [
+          "male",
+          "female"
+        ],
+        "name_set_id": "opm-names",
+        "biography_ids": [
+          "opm-biography-04",
+          "opm-biography-14"
+        ],
+        "trait_ids": [
+          "calm"
+        ]
+      },
+      {
+        "id": "opm-npc-rule-05",
+        "name": "Появление NPC · 5",
+        "role": "artisan",
+        "period_ids": [
+          "hero-registration",
+          "monster-uprising",
+          "neo-hero-era"
+        ],
+        "location_ids": [
+          "opm-location-13"
+        ],
+        "creature_kind_id": "human",
+        "weight": 10,
+        "age_min": 18,
+        "age_max": 65,
+        "sexes": [
+          "male",
+          "female"
+        ],
+        "name_set_id": "opm-names",
+        "biography_ids": [
+          "opm-biography-05",
+          "opm-biography-15"
+        ],
+        "trait_ids": [
+          "cautious"
+        ]
+      },
+      {
+        "id": "opm-npc-rule-06",
+        "name": "Появление NPC · 6",
+        "role": "official",
+        "period_ids": [
+          "hero-registration",
+          "monster-uprising",
+          "neo-hero-era"
+        ],
+        "location_ids": [
+          "opm-location-16"
+        ],
+        "creature_kind_id": "human",
+        "weight": 11,
+        "age_min": 18,
+        "age_max": 65,
+        "sexes": [
+          "male",
+          "female"
+        ],
+        "name_set_id": "opm-names",
+        "biography_ids": [
+          "opm-biography-06",
+          "opm-biography-16"
+        ],
+        "trait_ids": [
+          "loyal"
+        ]
+      },
+      {
+        "id": "opm-npc-rule-07",
+        "name": "Появление NPC · 7",
+        "role": "traveler",
+        "period_ids": [
+          "hero-registration",
+          "monster-uprising",
+          "neo-hero-era"
+        ],
+        "location_ids": [
+          "opm-location-19"
+        ],
+        "creature_kind_id": "human",
+        "weight": 12,
+        "age_min": 18,
+        "age_max": 65,
+        "sexes": [
+          "male",
+          "female"
+        ],
+        "name_set_id": "opm-names",
+        "biography_ids": [
+          "opm-biography-07",
+          "opm-biography-17"
+        ],
+        "trait_ids": [
+          "observant"
+        ]
+      },
+      {
+        "id": "opm-npc-rule-08",
+        "name": "Появление NPC · 8",
+        "role": "guard",
+        "period_ids": [
+          "hero-registration",
+          "monster-uprising",
+          "neo-hero-era"
+        ],
+        "location_ids": [
+          "opm-location-22"
+        ],
+        "creature_kind_id": "human",
+        "weight": 13,
+        "age_min": 18,
+        "age_max": 65,
+        "sexes": [
+          "male",
+          "female"
+        ],
+        "name_set_id": "opm-names",
+        "biography_ids": [
+          "opm-biography-08",
+          "opm-biography-18"
+        ],
+        "trait_ids": [
+          "hardworking"
+        ]
+      },
+      {
+        "id": "opm-npc-rule-09",
+        "name": "Появление NPC · 9",
+        "role": "scholar",
+        "period_ids": [
+          "hero-registration",
+          "monster-uprising",
+          "neo-hero-era"
+        ],
+        "location_ids": [
+          "opm-location-25"
+        ],
+        "creature_kind_id": "human",
+        "weight": 14,
+        "age_min": 18,
+        "age_max": 65,
+        "sexes": [
+          "male",
+          "female"
+        ],
+        "name_set_id": "opm-names",
+        "biography_ids": [
+          "opm-biography-09",
+          "opm-biography-19"
+        ],
+        "trait_ids": [
+          "calm"
+        ]
+      },
+      {
+        "id": "opm-npc-rule-10",
+        "name": "Появление NPC · 10",
+        "role": "resident",
+        "period_ids": [
+          "hero-registration",
+          "monster-uprising",
+          "neo-hero-era"
+        ],
+        "location_ids": [
+          "opm-location-28"
+        ],
+        "creature_kind_id": "human",
+        "weight": 15,
+        "age_min": 18,
+        "age_max": 65,
+        "sexes": [
+          "male",
+          "female"
+        ],
+        "name_set_id": "opm-names",
+        "biography_ids": [
+          "opm-biography-10",
+          "opm-biography-20"
+        ],
+        "trait_ids": [
+          "cautious"
+        ]
+      }
+    ]
+  }
+}
