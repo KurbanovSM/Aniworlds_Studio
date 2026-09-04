@@ -9,7 +9,12 @@ from aniworlds_studio.global_catalogs import (
     publish_global_catalogs,
     validate_world_catalog_references,
 )
-from aniworlds_studio.global_settings_export import GlobalAbilitySettings, export_global_settings
+from aniworlds_studio.global_settings_export import (
+    DEFAULT_NARRATOR_SYSTEM_PROMPT,
+    GlobalAbilitySettings,
+    GlobalNarratorSettings,
+    export_global_settings,
+)
 from aniworlds_studio.promo_export import build_turn_promo, export_promo
 
 ROOT = Path(__file__).parents[1]
@@ -120,13 +125,29 @@ def test_naruto_v4_uses_all_specialized_shop_kinds() -> None:
 
 
 def test_global_settings_publish_the_current_studio_values(tmp_path: Path) -> None:
-    path = export_global_settings(GlobalAbilitySettings(), tmp_path)
+    path = export_global_settings(
+        GlobalAbilitySettings(),
+        GlobalNarratorSettings(DEFAULT_NARRATOR_SYSTEM_PROMPT),
+        tmp_path,
+    )
     published = json.loads(path.read_text(encoding="utf-8"))
     settings = GlobalAbilitySettings(**published["abilities"])
 
     settings.validate()
-    assert published["schema_version"] == 1
+    assert published["schema_version"] == 2
     assert published["artifact_type"] == "aniworlds.global_gameplay_settings"
+    assert published["narrator"]["system_prompt_template"] == DEFAULT_NARRATOR_SYSTEM_PROMPT
+
+
+def test_committed_upload_contains_the_current_narrator_prompt() -> None:
+    published = json.loads(
+        (CONTENT / "upload" / "settings" / "global-gameplay.settings.json").read_text(
+            encoding="utf-8"
+        )
+    )
+
+    assert published["schema_version"] == 2
+    assert published["narrator"]["system_prompt_template"] == DEFAULT_NARRATOR_SYSTEM_PROMPT
 
 
 def test_audit_promo_is_written_by_the_studio_exporter(tmp_path: Path) -> None:

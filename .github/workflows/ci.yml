@@ -29,8 +29,8 @@ jobs:
       - uses: actions/checkout@v4
         if: env.ANIWORLDS_AI_REPO_TOKEN != ''
         with:
-          repository: KurbanovSM/Aniworlds_AI
-          path: .integration/Aniworlds_AI
+          repository: KurbanovSM/Aniworlds_AI_v3
+          path: .integration/Aniworlds_AI_v3
           token: ${{ env.ANIWORLDS_AI_REPO_TOKEN }}
           persist-credentials: false
       - uses: actions/setup-python@v5
@@ -38,8 +38,8 @@ jobs:
         with:
           python-version: "3.12"
       - if: env.ANIWORLDS_AI_REPO_TOKEN != ''
-        run: python -m pip install -e ".[dev]" -e .integration/Aniworlds_AI
+        run: python -m pip install -e ".[dev]" -e .integration/Aniworlds_AI_v3
       - if: env.ANIWORLDS_AI_REPO_TOKEN != ''
         run: python -m pytest tests/test_published_game_compatibility.py
         env:
-          ANIWORLDS_AI_ROOT: ${{ github.workspace }}/.integration/Aniworlds_AI
+          ANIWORLDS_AI_ROOT: ${{ github.workspace }}/.integration/Aniworlds_AI_v3

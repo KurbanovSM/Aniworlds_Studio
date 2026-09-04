@@ -11,7 +11,7 @@ from unittest.mock import AsyncMock, MagicMock
 import pytest
 
 STUDIO_ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_GAME_ROOT = STUDIO_ROOT.parent / "Aniworlds_AI"
+DEFAULT_GAME_ROOT = STUDIO_ROOT.parent / "Aniworlds_AI_v3"
 
 
 def _game_root() -> Path:
@@ -21,7 +21,7 @@ def _game_root() -> Path:
 def test_published_files_pass_the_game_import_path(tmp_path: Path) -> None:
     game_root = _game_root()
     if not (game_root / "src" / "aniworlds").is_dir():
-        pytest.skip("Aniworlds_AI is supplied by the dedicated compatibility CI job")
+        pytest.skip("Aniworlds_AI_v3 is supplied by the dedicated compatibility CI job")
     if importlib.util.find_spec("sqlalchemy") is None:
         pytest.skip("game dependencies are installed by the dedicated compatibility CI job")
     sys.path.insert(0, str(game_root / "src"))
@@ -32,6 +32,25 @@ def test_published_files_pass_the_game_import_path(tmp_path: Path) -> None:
     shared_models = importlib.import_module("aniworlds.modules.worlds.shared_catalog_models")
     foundation_export = importlib.import_module("aniworlds_studio.foundation_export")
     global_catalogs = importlib.import_module("aniworlds_studio.global_catalogs")
+    global_settings_catalog = importlib.import_module("aniworlds.global_settings_catalog")
+    global_settings_export = importlib.import_module(
+        "aniworlds_studio.global_settings_export"
+    )
+
+    settings_directory = tmp_path / "settings"
+    global_settings_export.export_global_settings(
+        global_settings_export.GlobalAbilitySettings(),
+        global_settings_export.GlobalNarratorSettings(
+            global_settings_export.DEFAULT_NARRATOR_SYSTEM_PROMPT
+        ),
+        settings_directory,
+    )
+    settings = global_settings_catalog.FileGlobalGameplaySettingsCatalog(settings_directory)
+    assert settings.load().initial_ability_limit == 5
+    assert (
+        settings.load_narrator_system_prompt_template()
+        == global_settings_export.DEFAULT_NARRATOR_SYSTEM_PROMPT
+    )
 
     catalogs = global_catalogs.load_global_catalogs(
         STUDIO_ROOT / "content" / "global-catalogs.studio.json"
